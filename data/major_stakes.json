@@ -1,0 +1,10 @@
+{
+  "as_of": "2026-03-31",
+  "source": "공공데이터포털 · 국민연금공단 대량보유주식 보고내역",
+  "fetched_at": "2026-07-12T00:00:00+09:00",
+  "stakes": [
+    {"name": "(주)KB금융지주", "report_date": "2026-01-29", "ownership_pct": 8.94},
+    {"name": "효성티앤씨", "report_date": "2026-01-22", "ownership_pct": 7.86},
+    {"name": "(주)유한양행", "report_date": "2026-02-24", "ownership_pct": 6.83}
+  ]
+}

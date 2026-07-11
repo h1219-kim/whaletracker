@@ -1,0 +1,24 @@
+{
+  "fetched_at": "2026-07-12T00:00:00+09:00",
+  "range_start": "2026-01-14",
+  "range_end": "2026-07-12",
+  "filings": [
+    {
+      "rcp_no": "20260707000347",
+      "filed_date": "2026-07-07",
+      "company": "코리아써키트",
+      "corp_code": "00152686",
+      "report_type": "exec",
+      "report_name": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "prev": {"date": "2026-06-30", "shares": 2521629, "ratio": 9.09},
+      "curr": {"date": "2026-07-02", "shares": 2383828, "ratio": 8.6},
+      "delta": {"shares": -137801, "ratio": -0.49},
+      "trades": [
+        {"reason": "장내매도(-)", "date": "2026-07-01", "delta_shares": -113075, "price": 85753.0},
+        {"reason": "장내매수(+)", "date": "2026-07-02", "delta_shares": 5274, "price": 95515.0},
+        {"reason": "장내매도(-)", "date": "2026-07-02", "delta_shares": -30000, "price": 91880.0}
+      ],
+      "parse_ok": true
+    }
+  ]
+}

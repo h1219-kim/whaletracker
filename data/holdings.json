@@ -1,0 +1,12 @@
+{
+  "as_of": "2024-12-31",
+  "source": "공공데이터포털 · 국민연금공단 국내주식 투자정보",
+  "fetched_at": "2026-07-12T00:00:00+09:00",
+  "total_value_100m": 424475.0,
+  "stocks": [
+    {"rank": 1, "name": "삼성전자", "value_100m": 230421.0, "weight_pct": 16.7, "ownership_pct": 7.26},
+    {"rank": 2, "name": "SK하이닉스", "value_100m": 95627.0, "weight_pct": 6.93, "ownership_pct": 7.55},
+    {"rank": 3, "name": "LG에너지솔루션", "value_100m": 51706.0, "weight_pct": 3.75, "ownership_pct": 6.35},
+    {"rank": 4, "name": "삼성바이오로직스", "value_100m": 46721.0, "weight_pct": 3.39, "ownership_pct": 6.92}
+  ]
+}

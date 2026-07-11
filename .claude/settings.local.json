@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:www.data.go.kr)",
+      "PowerShell($sp = \"C:\\\\Users\\\\HK\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-HK-Documents-codes-whaletracker\\\\c06ae944-dfb9-4838-907e-0020a0aa591c\\\\scratchpad\"; Invoke-WebRequest -Uri \"https://www.data.go.kr/data/3070507/fileData.do\" -UserAgent \"Mozilla/5.0\" -OutFile \"$sp\\\\datago_holdings.html\"; Invoke-WebRequest -Uri \"https://www.data.go.kr/data/15106890/fileData.do\" -UserAgent \"Mozilla/5.0\" -OutFile \"$sp\\\\datago_5pct.html\"; Get-ChildItem $sp | Select-Object Name, Length)"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "as_of": "2026-04",
+  "source": "국민연금기금운용본부 포트폴리오 현황",
+  "fetched_at": "2026-07-12T00:00:00+09:00",
+  "total_trillion": 1670.7,
+  "assets": [
+    {"name": "해외주식", "value_trillion": 604.5, "weight_pct": 36.2},
+    {"name": "국내주식", "value_trillion": 419.5, "weight_pct": 25.1},
+    {"name": "국내채권", "value_trillion": 293.6, "weight_pct": 17.6},
+    {"name": "대체투자", "value_trillion": 245.7, "weight_pct": 14.7},
+    {"name": "해외채권", "value_trillion": 103.1, "weight_pct": 6.2},
+    {"name": "단기자금", "value_trillion": 3.6, "weight_pct": 0.2},
+    {"name": "복지·기타", "value_trillion": 1.5, "weight_pct": 0.1}
+  ]
+}
