@@ -322,7 +322,7 @@ function renderTrends() {
   }
   caption.textContent =
     `DART 지분 공시의 보고 전→후 지분율 순변동(Δ%p) · ${t.since} 이후 접수분 · ` +
-    "정정공시와 본문 미해석 공시는 집계에서 제외";
+    "같은 매매가 대량보유·주요주주 공시로 겹치면 더 넓게 포착한 쪽만 집계(이중 계상 방지)";
 }
 
 function renderDiverging() {
@@ -381,6 +381,7 @@ function renderDiverging() {
         tooltipRow("Δ주식수", fmtDeltaShares(r.delta_shares)),
         tooltipRow("공시", `${r.filings}건`),
         tooltipRow("최근 접수일", fmtDate(r.last_date)),
+        tooltipRow("집계 기준", r.basis === "exec" ? "주요주주 공시" : "대량보유 공시"),
       ]));
     row.append(hit);
     plot.append(row);

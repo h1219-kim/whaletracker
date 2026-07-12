@@ -126,8 +126,11 @@ def compute_trends(days: int = 90, data_dir=None, today: date | None = None) -> 
         f for f in filings if (f.get("filed_date") or "") >= since_str
     ]
 
-    # 회사별 순변동 집계
-    agg: dict[str, dict] = {}
+    # 회사별 × 보고유형별 순변동을 따로 모은다.
+    # 같은 매매가 대량보유(bulk)와 주요주주(exec) 공시로 이중 보고되는 일이
+    # 흔하므로(10%+ 보유 종목), 유형을 합산하면 변동이 과대 계상된다.
+    # → 유형별 체인 합계를 구한 뒤 절대값이 큰 쪽(더 넓게 포착한 쪽)만 채택.
+    by_key_type: dict[tuple, dict] = {}
     for filing in in_range:
         if not filing.get("parse_ok"):
             continue
@@ -137,8 +140,9 @@ def compute_trends(days: int = 90, data_dir=None, today: date | None = None) -> 
         if delta.get("ratio") is None:
             continue  # 최초 보고 등 — 증감 미상은 합산 불가
         key = filing.get("corp_code") or filing.get("company") or ""
-        entry = agg.setdefault(
-            key,
+        rtype = filing.get("report_type") or "?"
+        entry = by_key_type.setdefault(
+            (key, rtype),
             {
                 "company": filing.get("company"),
                 "corp_code": filing.get("corp_code"),
@@ -146,6 +150,7 @@ def compute_trends(days: int = 90, data_dir=None, today: date | None = None) -> 
                 "delta_shares": 0,
                 "last_date": "",
                 "filings": 0,
+                "basis": rtype,
             },
         )
         entry["delta_ratio"] += delta.get("ratio") or 0.0
@@ -156,8 +161,26 @@ def compute_trends(days: int = 90, data_dir=None, today: date | None = None) -> 
             entry["last_date"] = filed
             entry["company"] = filing.get("company")
 
-    for entry in agg.values():
+    # 회사별로 대표 유형 채택 (|순변동| 큰 쪽, 동률이면 bulk 우선)
+    agg: dict[str, dict] = {}
+    for (key, rtype), entry in by_key_type.items():
         entry["delta_ratio"] = round(entry["delta_ratio"], 2)
+        cur = agg.get(key)
+        if cur is None:
+            agg[key] = entry
+            continue
+        better = abs(entry["delta_ratio"]) > abs(cur["delta_ratio"]) or (
+            abs(entry["delta_ratio"]) == abs(cur["delta_ratio"]) and rtype == "bulk"
+        )
+        picked = entry if better else cur
+        other = cur if better else entry
+        # 공시 수·최근 접수일은 두 유형을 합쳐 보여준다 (변동값은 대표 유형만)
+        picked = dict(picked)
+        picked["filings"] += other["filings"]
+        if other["last_date"] > picked["last_date"]:
+            picked["last_date"] = other["last_date"]
+            picked["company"] = other["company"]
+        agg[key] = picked
 
     all_buys = sorted(
         (e for e in agg.values() if e["delta_ratio"] > 0),

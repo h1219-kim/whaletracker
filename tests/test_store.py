@@ -120,6 +120,25 @@ def test_compute_trends_no_data(tmp_path):
     assert t["top_buys"] == [] and t["top_sells"] == [] and t["recent_filings"] == []
 
 
+def test_compute_trends_no_double_count_across_report_types(tmp_path):
+    """같은 회사의 bulk·exec가 같은 매매를 이중 보고하면 합산하지 않고
+    |순변동|이 큰 유형만 채택한다. 공시 수는 두 유형을 합쳐 보여준다."""
+    filings = [
+        _filing("B1", "중복사", "2026-06-01", 5.85, 585, corp="C1", rtype="bulk"),
+        _filing("E1", "중복사", "2026-06-02", 2.73, 273, corp="C1", rtype="exec"),
+        _filing("E2", "중복사", "2026-05-20", 0.10, 10, corp="C1", rtype="exec"),
+    ]
+    store.save_data("filings", {"filings": filings}, tmp_path)
+    t = store.compute_trends(days=90, data_dir=tmp_path, today=date(2026, 7, 12))
+    assert len(t["top_buys"]) == 1
+    b = t["top_buys"][0]
+    assert b["delta_ratio"] == pytest.approx(5.85)  # 8.68로 합산되면 안 됨
+    assert b["delta_shares"] == 585  # 채택 유형(bulk)의 주식수
+    assert b["basis"] == "bulk"
+    assert b["filings"] == 3  # 공시 수는 전체
+    assert b["last_date"] == "2026-06-02"
+
+
 def test_compute_trends_top12_cap(tmp_path):
     filings = [_filing(f"R{i}", f"회사{i}", "2026-07-01", 0.1 + i * 0.01, corp=f"C{i}")
                for i in range(20)]
