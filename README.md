@@ -6,6 +6,7 @@
 - 국내주식 종목별 보유 현황 (평가액·비중·지분율, 1,200종목 검색)
 - 최근 매매 동향 — DART 공시 기반 순매수/순매도 상위 종목, 개별 매매 내역(일자·수량·단가)
 - 연기금 일별 순매수 (코스피·코스닥, 간접 지표) — 공시보다 빠른 일별 방향성
+- 연기금 **종목별** 순매수·매도 상위 (1주/1개월/3개월, KRX) — 어떤 종목을 사고팔았는지
 - 미국 주식 보유 (SEC 13F, 분기) — 전체 보유 목록과 분기 매매 상위
 
 ## 실행 방법 (Windows)
@@ -56,6 +57,7 @@ Unregister-ScheduledTask -TaskName "WhaleTracker 데이터 수집"   # 삭제
 | 대량보유주식 보고내역 (5%+) | [공공데이터포털](https://www.data.go.kr/data/15106890/fileData.do) | 분기 |
 | 지분 변동 공시 (매매 내역) | [DART 전자공시](https://dart.fss.or.kr) — 제출인: 국민연금공단 | 실시간 |
 | 연기금 일별 순매수 (간접) | KRX 투자자별 매매동향 ([네이버 금융](https://finance.naver.com/sise/sise_trans_style.naver) 집계) | 일 |
+| 연기금 종목별 순매수 (간접) | [KRX 정보데이터시스템](https://data.krx.co.kr) 투자자별 순매수상위종목 | 일 |
 | 미국 주식 보유 | [SEC EDGAR 13F](https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001608046&type=13F) | 분기 |
 
 ## 알아둘 것 (데이터의 한계)

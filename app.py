@@ -104,6 +104,13 @@ def api_pension_flow():
     return jsonify(data if data is not None else {"empty": True})
 
 
+@app.route("/api/pension-stock-flow")
+def api_pension_stock_flow():
+    """연기금 종목별 순매수/매도(pension_stock_flow.json) 패스스루 — 간접 지표."""
+    data = _read_json("pension_stock_flow.json")
+    return jsonify(data if data is not None else {"empty": True})
+
+
 @app.route("/api/us-holdings")
 def api_us_holdings():
     """미국 주식 13F 보유(us_holdings.json) 패스스루."""

@@ -9,9 +9,11 @@ const state = {
   majorStakes: null,
   trends: null,
   pensionFlow: null,
+  pensionStockFlow: null,
   usHoldings: null,
   days: 90,
   pensionMarket: "kospi",
+  pensionWindow: "1m",
   holdingsView: { query: "", sortKey: "rank", sortAsc: true, page: 1, perPage: 25 },
   usView: { query: "", sortKey: "value_usd", sortAsc: false, page: 1, perPage: 25 },
   filingsShown: 30,
@@ -809,8 +811,110 @@ function bindPensionMarketToggle() {
       toggle.querySelectorAll("button").forEach((b) => b.classList.toggle("active", b === btn));
       state.pensionMarket = btn.dataset.market;
       renderPensionFlow();
+      renderPensionStock();
     });
   });
+}
+
+/* --------------------------------------- 연기금 종목별 순매수·매도 */
+function bindPensionWindowToggle() {
+  const toggle = $("pension-window-toggle");
+  toggle.querySelectorAll("button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (btn.dataset.window === state.pensionWindow) return;
+      toggle.querySelectorAll("button").forEach((b) => b.classList.toggle("active", b === btn));
+      state.pensionWindow = btn.dataset.window;
+      renderPensionStock();
+    });
+  });
+}
+
+function renderPensionStock() {
+  const chartBox = clear($("pension-stock-chart"));
+  const tableBox = clear($("pension-stock-table"));
+  const caption = $("pension-stock-caption");
+
+  const psf = state.pensionStockFlow;
+  const win = psf && !psf.empty && psf.windows
+    ? psf.windows.find((w) => w.key === state.pensionWindow) : null;
+  const mkt = win ? win.markets[state.pensionMarket] : null;
+  if (!mkt || (!mkt.buys.length && !mkt.sells.length)) {
+    caption.textContent = "";
+    chartBox.append(el("div", { class: "placeholder" }, "데이터가 없습니다. [데이터 갱신]을 눌러 수집하세요."));
+    return;
+  }
+  caption.textContent = `${win.start} ~ ${win.end} 누적 순매수 대금 기준 · 출처: KRX`;
+
+  // 다이버징 가로 바 — 순매수 상위 10 / 순매도 상위 10 (억원)
+  const rows = [
+    ...mkt.buys.slice(0, 10),
+    ...mkt.sells.slice(0, 10).reverse(), // 아래로 갈수록 매도 규모 확대
+  ].map((r) => ({ ...r, eok: r.net_value / 1e8 }));
+  const maxAbs = Math.max(...rows.map((r) => Math.abs(r.eok)));
+  const { max: xmax, ticks } = niceScale(maxAbs, 3);
+
+  const names = el("div", { class: "hchart-names" });
+  const plot = el("div", { class: "hchart-plot" });
+  const xpos = (v) => 50 + (v / xmax) * 50;
+  plot.append(el("div", { class: "gridline zero", style: "left:50%" }));
+  ticks.forEach((tk) => {
+    plot.append(el("div", { class: "gridline", style: `left:${xpos(tk)}%` }));
+    plot.append(el("div", { class: "gridline", style: `left:${xpos(-tk)}%` }));
+  });
+
+  rows.forEach((r) => {
+    names.append(el("div", { class: "hchart-name", title: r.name }, r.name));
+    const positive = r.eok >= 0;
+    const w = (Math.abs(r.eok) / xmax) * 50;
+    const row = el("div", { class: "hchart-row" });
+    row.append(el("div", {
+      class: `hbar${positive ? "" : " neg"}`,
+      style: `left:${positive ? 50 : 50 - w}%; width:${w}%; background:${positive ? "var(--buy)" : "var(--sell)"}`,
+    }));
+    row.append(el("div", {
+      class: "hbar-value",
+      style: positive ? `left:calc(${50 + w}% + 6px)` : `right:calc(${50 + w}% + 6px); left:auto`,
+    }, fmtEok(Math.round(r.eok))));
+    const hit = el("div", { class: "hbar-hit" });
+    bindTooltip(hit, (e) =>
+      showTooltip(e, r.name, [
+        tooltipRow("순매수 대금", fmtEok(Math.round(r.eok)) + "원",
+          positive ? "var(--buy)" : "var(--sell)"),
+        tooltipRow("순매수 수량", fmtDeltaShares(r.net_shares)),
+        tooltipRow("기간", `${win.label} (${win.start}~${win.end})`),
+      ]));
+    row.append(hit);
+    plot.append(row);
+  });
+
+  const axis = el("div", { class: "hchart-axis" });
+  axis.append(el("span", { style: "left:50%" }, "0"));
+  ticks.forEach((tk) => {
+    axis.append(el("span", { style: `left:${xpos(tk)}%` }, `+${fmtInt(tk)}억`));
+    axis.append(el("span", { style: `left:${xpos(-tk)}%` }, `−${fmtInt(tk)}억`));
+  });
+  chartBox.append(el("div", { class: "hchart" },
+    el("div", { class: "hchart-grid" }, names, plot),
+    el("div", { class: "hchart-grid" }, el("div"), axis)));
+  chartBox.append(el("div", { class: "legend" },
+    el("span", { class: "legend-item" },
+      el("span", { class: "legend-swatch", style: "background:var(--buy)" }), "순매수"),
+    el("span", { class: "legend-item" },
+      el("span", { class: "legend-swatch", style: "background:var(--sell)" }), "순매도")));
+
+  // 테이블 대체 뷰 — 상위 20 + 20 전체
+  const mkRows = (list) => list.map((r) =>
+    el("tr", {},
+      el("td", {}, r.name),
+      el("td", { class: "num" }, r.code),
+      el("td", { class: `num ${deltaClass(r.net_value)}` }, fmtEok(Math.round(r.net_value / 1e8))),
+      el("td", { class: "num" }, fmtDeltaShares(r.net_shares))));
+  const table = el("table", { class: "data-table" },
+    el("thead", {}, el("tr", {},
+      el("th", {}, "종목"), el("th", { class: "num" }, "코드"),
+      el("th", { class: "num" }, "순매수 대금(억)"), el("th", { class: "num" }, "순매수 수량"))),
+    el("tbody", {}, [...mkt.buys, ...mkt.sells].map((r) => mkRows([r])[0])));
+  tableBox.append(el("div", { class: "table-wrap" }, table));
 }
 
 /* ------------------------------------------------- 미국 주식 (13F) */
@@ -1160,12 +1264,13 @@ function bindRefresh() {
 
 /* ============================================================ 초기화 */
 async function loadAll() {
-  const [h, a, m, t, pf, us] = await Promise.all([
+  const [h, a, m, t, pf, psf, us] = await Promise.all([
     fetchJSON("/api/holdings"),
     fetchJSON("/api/allocation"),
     fetchJSON("/api/major-stakes"),
     fetchJSON(`/api/trends?days=${state.days}`),
     fetchJSON("/api/pension-flow"),
+    fetchJSON("/api/pension-stock-flow"),
     fetchJSON("/api/us-holdings"),
   ]);
   state.holdings = h.body;
@@ -1173,6 +1278,7 @@ async function loadAll() {
   state.majorStakes = m.body;
   state.trends = t.body;
   state.pensionFlow = pf.body;
+  state.pensionStockFlow = psf.body;
   state.usHoldings = us.body;
 
   renderBadges();
@@ -1180,6 +1286,7 @@ async function loadAll() {
   renderAllocation();
   renderTrends();
   renderPensionFlow();
+  renderPensionStock();
   renderHoldings();
   renderUsHoldings();
   renderFooterDates();
@@ -1211,6 +1318,7 @@ async function init() {
   bindViewToggles();
   bindDaysToggle();
   bindPensionMarketToggle();
+  bindPensionWindowToggle();
   bindRefresh();
   await loadAll();
   // 페이지 로드 시 이미 갱신이 돌고 있으면 따라간다

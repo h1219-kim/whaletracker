@@ -101,6 +101,29 @@
     </div>
     <div id="pension-flow-chart" class="view-chart"></div>
     <div id="pension-flow-table" class="view-table" hidden></div>
+
+    <div class="subcard">
+      <div class="card-head">
+        <div>
+          <h3>종목별 순매수·매도 상위</h3>
+          <p id="pension-stock-caption" class="card-caption"></p>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap">
+          <div class="seg-toggle" id="pension-window-toggle" role="group" aria-label="기간 선택">
+            <button type="button" data-window="1w">1주</button>
+            <button type="button" data-window="1m" class="active">1개월</button>
+            <button type="button" data-window="3m">3개월</button>
+          </div>
+          <div class="view-toggle" data-target="pension-stock">
+            <button type="button" class="active" data-view="chart">차트</button>
+            <button type="button" data-view="table">테이블</button>
+          </div>
+        </div>
+      </div>
+      <div id="pension-stock-chart" class="view-chart"></div>
+      <div id="pension-stock-table" class="view-table" hidden></div>
+    </div>
+
     <p class="card-caption">
       ‘연기금등’에는 국민연금 외 연기금(사학·공무원연금 등)이 포함되고,
       국민연금이 자산운용사에 위탁한 물량은 투신·사모로 집계되어 빠집니다 — 방향성 참고용.

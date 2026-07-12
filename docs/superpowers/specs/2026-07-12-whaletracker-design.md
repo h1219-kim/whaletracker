@@ -185,6 +185,19 @@ whaletracker/
 
 차트 구현 규칙: dataviz 스킬 절차 준수 — 팔레트는 `references/palette.md` 기본 팔레트 사용, `scripts/validate_palette.js`로 라이트/다크 검증, 얇은 마크·2px 간격·호버 툴팁·테이블 대체 뷰 제공. 이중축 금지, 파이 금지(스택바), 색은 텍스트에 쓰지 않음.
 
+## 6.5 간접 지표 확장 (2026-07-12~13 추가)
+
+- **연기금 일별 순매수** (`naver_flow.py` → pension_flow.json): 네이버 금융 investorDealTrendDay.naver
+  (sosok 01/02, EUC-KR, 11컬럼 — 기관 세부 6개 합≈기관계 검증, 연기금등=10번째 컬럼). 60거래일.
+- **연기금 종목별 순매수/매도** (`krx_flow.py` → pension_stock_flow.json): KRX 정규 통계 화면은
+  로그인제이나, 외부 임베드용 outerLoader(MDCSTAT024)의 bld
+  `dbms/MDC_OUT/STAT/standard/MDCSTAT02401_OUT`은 Referer만으로 접근 가능.
+  invstTpCd=6000(연기금등) — 일별 합계가 네이버 수치와 일치함을 교차 검증(2026-07-13, +355억).
+  기간 3종(1주/1개월/3개월) × 시장 2종, 상/하위 20종목씩 저장.
+- **미국 주식 13F** (`sec13f.py` → us_holdings.json): SEC EDGAR CIK 1608046, 13F-HR 분기.
+  연락처 포함 UA 필수, cusip 집계, putCall·PRN 제외, 직전 분기와 비교(신규/청산/Δ주식수).
+- 한계 고지: '연기금등' ≠ 국민연금 단독 (타 연기금 포함, 위탁운용분은 투신·사모로 집계).
+
 ## 7. 오류 처리
 
 - 각 소스 독립 수집: 하나 실패해도 나머지 저장, 기존 캐시 유지(부분 갱신).
