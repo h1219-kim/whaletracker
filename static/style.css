@@ -24,17 +24,18 @@
   --s8: #eb6834;
   --other: #898781; /* "기타" 접기 세그먼트 */
 
-  /* 다이버징 pair: blue ↔ red (palette.md Diverging pair) */
-  --buy: #2a78d6;
-  --sell: #e34948;
+  /* 다이버징 pair: red ↔ blue (palette.md Diverging pair)
+     — 한국 증시 관행: 매수/상승=빨강, 매도/하락=파랑 */
+  --buy: #e34948;
+  --sell: #2a78d6;
   --div-mid: #f0efec;
 
   /* 시퀀셜(blue) 대표 스텝 — 보유 상위 20 바 */
   --seq: #2a78d6;
 
-  /* 델타 텍스트 (문서화된 스텝만 사용: blue550 / status critical) */
-  --buy-text: #1c5cab;
-  --sell-text: #d03b3b;
+  /* 델타 텍스트 (문서화된 스텝만 사용: status critical / blue550) */
+  --buy-text: #d03b3b;
+  --sell-text: #1c5cab;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -58,14 +59,14 @@
     --s8: #d95926;
     --other: #898781;
 
-    --buy: #3987e5;
-    --sell: #e66767;
+    --buy: #e66767;
+    --sell: #3987e5;
     --div-mid: #383835;
 
     --seq: #3987e5;
 
-    --buy-text: #86b6ef; /* blue250 — 다크 표면 위 텍스트용 */
-    --sell-text: #e66767;
+    --buy-text: #e66767;
+    --sell-text: #86b6ef; /* blue250 — 다크 표면 위 텍스트용 */
   }
 }
 
@@ -516,6 +517,20 @@ table.data-table {
 }
 .pagination button:hover:not(:disabled) { color: var(--text-1); }
 .pagination button:disabled { opacity: 0.4; cursor: default; }
+
+.more-btn {
+  display: block;
+  margin: 12px auto 0;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-2);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 12.5px;
+  padding: 6px 18px;
+  cursor: pointer;
+}
+.more-btn:hover { color: var(--text-1); }
 
 /* ------------------------------------------------------------------ 툴팁 */
 .tooltip {

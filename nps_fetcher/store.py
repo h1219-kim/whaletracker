@@ -150,14 +150,15 @@ def compute_trends(days: int = 90, data_dir=None, today: date | None = None) -> 
     for entry in agg.values():
         entry["delta_ratio"] = round(entry["delta_ratio"], 2)
 
-    buys = sorted(
+    all_buys = sorted(
         (e for e in agg.values() if e["delta_ratio"] > 0),
         key=lambda e: (-e["delta_ratio"], -abs(e["delta_shares"])),
-    )[:12]
-    sells = sorted(
+    )
+    all_sells = sorted(
         (e for e in agg.values() if e["delta_ratio"] < 0),
         key=lambda e: (e["delta_ratio"], -abs(e["delta_shares"])),
-    )[:12]
+    )
+    buys, sells = all_buys[:12], all_sells[:12]
 
     recent = sorted(
         in_range,
@@ -168,6 +169,8 @@ def compute_trends(days: int = 90, data_dir=None, today: date | None = None) -> 
     return {
         "days": days,
         "since": since_str,
+        "buy_count": len(all_buys),
+        "sell_count": len(all_sells),
         "top_buys": buys,
         "top_sells": sells,
         "recent_filings": recent,

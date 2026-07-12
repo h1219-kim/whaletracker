@@ -95,6 +95,10 @@ def test_compute_trends_aggregation(filings_dir):
 
     assert sells["매도사"]["delta_ratio"] == pytest.approx(-1.08)
 
+    # 상위 12개 캡과 무관한 전체 종목 수
+    assert t["buy_count"] == 1
+    assert t["sell_count"] == 1
+
     # 기간 밖/파싱 실패/정정은 집계 제외
     assert "옛날사" not in buys
     assert "실패사" not in buys and "실패사" not in sells
