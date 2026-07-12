@@ -220,6 +220,24 @@ a { color: var(--buy-text); }
 
 .card-caption { margin: 2px 0 0; font-size: 12px; color: var(--muted); }
 
+/* 섹션 접기/펼치기 */
+.collapse-btn {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text-2);
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+  align-self: flex-start;
+}
+.collapse-btn:hover { color: var(--text-1); }
+section.card.collapsed > .card-head { margin-bottom: 0; }
+section.card.collapsed .card-body { display: none; }
+
 .subcard { margin-top: 18px; }
 .subcard:first-child { margin-top: 0; }
 

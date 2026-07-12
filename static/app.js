@@ -564,7 +564,8 @@ function renderHoldings() {
   }
   caption.textContent =
     `${fmtAsOf(h.as_of)} 기준 (연 1회 공시) · ${fmtInt(h.stocks.length)}종목 · ` +
-    `평가액 합계 ${fmtValue100m(h.total_value_100m)}`;
+    `평가액 합계 ${fmtValue100m(h.total_value_100m)}` +
+    (h.as_of === "2024-12-31" ? " · 2025년 말 데이터는 2026년 9월 공개 예정" : "");
 }
 
 function renderTop20() {
@@ -1149,6 +1150,50 @@ function renderFooterDates() {
 
 /* ============================================================ 상호작용 */
 
+/* 섹션 접기/펼치기 — 상태는 localStorage에 저장 */
+const COLLAPSE_KEY = "whale.collapsed";
+// 기본 접힘: 연 1회 공시라 참고용인 국내주식 보유 현황
+const DEFAULT_COLLAPSED = { "holdings-section": true };
+// 펼칠 때 실측 기반 렌더(라벨 폭 측정 등)를 다시 수행
+const SECTION_RERENDER = {
+  "pension-flow-section": () => { renderPensionFlow(); renderPensionStock(); },
+  "trends-section": renderTrends,
+  "us-section": renderUsHoldings,
+  "allocation-section": renderAllocation,
+  "holdings-section": renderHoldings,
+};
+
+function initCollapsibles() {
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem(COLLAPSE_KEY) || "{}"); } catch (e) { /* 무시 */ }
+
+  document.querySelectorAll("main > section.card").forEach((sec) => {
+    const head = sec.querySelector(":scope > .card-head");
+    if (!head) return;
+    // card-head를 제외한 내용을 .card-body로 감싼다
+    const body = el("div", { class: "card-body" });
+    [...sec.children].filter((c) => c !== head).forEach((c) => body.append(c));
+    sec.append(body);
+
+    const collapsed = sec.id in saved ? !!saved[sec.id] : !!DEFAULT_COLLAPSED[sec.id];
+    sec.classList.toggle("collapsed", collapsed);
+
+    const btn = el("button", {
+      class: "collapse-btn", type: "button",
+      "aria-expanded": String(!collapsed), title: "섹션 접기/펼치기",
+    }, collapsed ? "▸" : "▾");
+    btn.addEventListener("click", () => {
+      const nowCollapsed = sec.classList.toggle("collapsed");
+      btn.textContent = nowCollapsed ? "▸" : "▾";
+      btn.setAttribute("aria-expanded", String(!nowCollapsed));
+      saved[sec.id] = nowCollapsed;
+      try { localStorage.setItem(COLLAPSE_KEY, JSON.stringify(saved)); } catch (e) { /* 무시 */ }
+      if (!nowCollapsed && SECTION_RERENDER[sec.id]) SECTION_RERENDER[sec.id]();
+    });
+    head.append(btn);
+  });
+}
+
 function bindViewToggles() {
   document.querySelectorAll(".view-toggle").forEach((toggle) => {
     const target = toggle.dataset.target;
@@ -1315,6 +1360,7 @@ async function watchServerRefresh() {
 }
 
 async function init() {
+  initCollapsibles();
   bindViewToggles();
   bindDaysToggle();
   bindPensionMarketToggle();

@@ -33,59 +33,11 @@
   <!-- 2. KPI 카드 행 -->
   <section id="kpi-section" class="kpi-row" aria-label="핵심 지표"></section>
 
-  <!-- 3. 자산배분 -->
-  <section class="card" id="allocation-section">
-    <div class="card-head">
-      <div>
-        <h2>자산배분</h2>
-        <p id="allocation-caption" class="card-caption"></p>
-      </div>
-      <div class="view-toggle" data-target="allocation">
-        <button type="button" class="active" data-view="chart">차트</button>
-        <button type="button" data-view="table">테이블</button>
-      </div>
-    </div>
-    <div id="allocation-chart" class="view-chart"></div>
-    <div id="allocation-table" class="view-table" hidden></div>
-  </section>
-
-  <!-- 4. 최근 매매 동향 (핵심) -->
-  <section class="card" id="trends-section">
-    <div class="card-head">
-      <div>
-        <h2>최근 매매 동향</h2>
-        <p id="trends-caption" class="card-caption"></p>
-      </div>
-      <div class="seg-toggle" id="days-toggle" role="group" aria-label="조회 기간">
-        <button type="button" data-days="30">30일</button>
-        <button type="button" data-days="90" class="active">90일</button>
-        <button type="button" data-days="180">180일</button>
-      </div>
-    </div>
-    <div id="trends-body">
-      <div class="subcard">
-        <div class="card-head">
-          <h3>종목별 순매수·순매도 (Δ지분율, %p)</h3>
-          <div class="view-toggle" data-target="diverging">
-            <button type="button" class="active" data-view="chart">차트</button>
-            <button type="button" data-view="table">테이블</button>
-          </div>
-        </div>
-        <div id="diverging-chart" class="view-chart"></div>
-        <div id="diverging-table" class="view-table" hidden></div>
-      </div>
-      <div class="subcard">
-        <h3>최근 공시</h3>
-        <div id="filings-table"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4.5 연기금 일별 순매수 (간접 지표) -->
+  <!-- 3. 연기금 수급 (가장 신선한 간접 지표 — 최상단) -->
   <section class="card" id="pension-flow-section">
     <div class="card-head">
       <div>
-        <h2>연기금 일별 순매수 <span class="type-badge">간접 지표</span></h2>
+        <h2>연기금 수급 <span class="type-badge">간접 지표 · 매일 갱신</span></h2>
         <p id="pension-flow-caption" class="card-caption"></p>
       </div>
       <div style="display:flex; gap:8px; flex-wrap:wrap">
@@ -130,30 +82,39 @@
     </p>
   </section>
 
-  <!-- 5. 국내주식 보유 현황 -->
-  <section class="card" id="holdings-section">
+  <!-- 4. 국민연금 확정 매매 (DART 공시) -->
+  <section class="card" id="trends-section">
     <div class="card-head">
       <div>
-        <h2>국내주식 보유 현황</h2>
-        <p id="holdings-caption" class="card-caption"></p>
+        <h2>최근 매매 동향 <span class="type-badge">국민연금 확정 · 공시 실시간</span></h2>
+        <p id="trends-caption" class="card-caption"></p>
+      </div>
+      <div class="seg-toggle" id="days-toggle" role="group" aria-label="조회 기간">
+        <button type="button" data-days="30">30일</button>
+        <button type="button" data-days="90" class="active">90일</button>
+        <button type="button" data-days="180">180일</button>
       </div>
     </div>
-    <div class="subcard">
-      <h3>평가액 상위 20종목</h3>
-      <div id="top20-chart"></div>
-    </div>
-    <div class="subcard">
-      <div class="card-head">
-        <h3>전체 종목</h3>
-        <input id="holdings-search" class="search-input" type="search"
-               placeholder="종목명 검색" aria-label="종목명 검색">
+    <div id="trends-body">
+      <div class="subcard">
+        <div class="card-head">
+          <h3>종목별 순매수·순매도 (Δ지분율, %p)</h3>
+          <div class="view-toggle" data-target="diverging">
+            <button type="button" class="active" data-view="chart">차트</button>
+            <button type="button" data-view="table">테이블</button>
+          </div>
+        </div>
+        <div id="diverging-chart" class="view-chart"></div>
+        <div id="diverging-table" class="view-table" hidden></div>
       </div>
-      <div id="holdings-table"></div>
-      <div id="holdings-pagination" class="pagination"></div>
+      <div class="subcard">
+        <h3>최근 공시</h3>
+        <div id="filings-table"></div>
+      </div>
     </div>
   </section>
 
-  <!-- 5.5 미국 주식 보유 (SEC 13F) -->
+  <!-- 5. 미국 주식 보유 (SEC 13F) -->
   <section class="card" id="us-section">
     <div class="card-head">
       <div>
@@ -184,6 +145,45 @@
       </div>
       <div id="us-table"></div>
       <div id="us-pagination" class="pagination"></div>
+    </div>
+  </section>
+
+  <!-- 6. 자산배분 -->
+  <section class="card" id="allocation-section">
+    <div class="card-head">
+      <div>
+        <h2>자산배분 <span class="type-badge">월 갱신</span></h2>
+        <p id="allocation-caption" class="card-caption"></p>
+      </div>
+      <div class="view-toggle" data-target="allocation">
+        <button type="button" class="active" data-view="chart">차트</button>
+        <button type="button" data-view="table">테이블</button>
+      </div>
+    </div>
+    <div id="allocation-chart" class="view-chart"></div>
+    <div id="allocation-table" class="view-table" hidden></div>
+  </section>
+
+  <!-- 7. 국내주식 보유 현황 (연 1회 공시 — 참고용) -->
+  <section class="card" id="holdings-section">
+    <div class="card-head">
+      <div>
+        <h2>국내주식 보유 현황 <span class="type-badge">연 1회 공시</span></h2>
+        <p id="holdings-caption" class="card-caption"></p>
+      </div>
+    </div>
+    <div class="subcard">
+      <h3>평가액 상위 20종목</h3>
+      <div id="top20-chart"></div>
+    </div>
+    <div class="subcard">
+      <div class="card-head">
+        <h3>전체 종목</h3>
+        <input id="holdings-search" class="search-input" type="search"
+               placeholder="종목명 검색" aria-label="종목명 검색">
+      </div>
+      <div id="holdings-table"></div>
+      <div id="holdings-pagination" class="pagination"></div>
     </div>
   </section>
 </main>
