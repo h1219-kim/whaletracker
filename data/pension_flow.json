@@ -1,0 +1,851 @@
+{
+  "source": "KRX 투자자별 매매동향 (네이버 금융 집계)",
+  "fetched_at": "2026-07-12T23:44:38+09:00",
+  "unit": "억원",
+  "markets": {
+    "kospi": [
+      {
+        "date": "2026-04-14",
+        "pension": -256,
+        "individual": -23919,
+        "foreign": 8276,
+        "inst_total": 12545
+      },
+      {
+        "date": "2026-04-15",
+        "pension": -1116,
+        "individual": -9400,
+        "foreign": 4973,
+        "inst_total": 368
+      },
+      {
+        "date": "2026-04-16",
+        "pension": -299,
+        "individual": -18050,
+        "foreign": 4814,
+        "inst_total": 10783
+      },
+      {
+        "date": "2026-04-17",
+        "pension": -757,
+        "individual": 14464,
+        "foreign": -19974,
+        "inst_total": 1501
+      },
+      {
+        "date": "2026-04-20",
+        "pension": 80,
+        "individual": -3158,
+        "foreign": -2338,
+        "inst_total": 2938
+      },
+      {
+        "date": "2026-04-21",
+        "pension": 622,
+        "individual": -19204,
+        "foreign": 11565,
+        "inst_total": 9181
+      },
+      {
+        "date": "2026-04-22",
+        "pension": 995,
+        "individual": 11984,
+        "foreign": -6762,
+        "inst_total": -4046
+      },
+      {
+        "date": "2026-04-23",
+        "pension": 197,
+        "individual": 4514,
+        "foreign": -820,
+        "inst_total": -2965
+      },
+      {
+        "date": "2026-04-24",
+        "pension": -202,
+        "individual": 11832,
+        "foreign": -19496,
+        "inst_total": 8053
+      },
+      {
+        "date": "2026-04-27",
+        "pension": -1771,
+        "individual": -19758,
+        "foreign": 8563,
+        "inst_total": 11349
+      },
+      {
+        "date": "2026-04-28",
+        "pension": -277,
+        "individual": -1306,
+        "foreign": -1843,
+        "inst_total": 3532
+      },
+      {
+        "date": "2026-04-29",
+        "pension": -21,
+        "individual": 1681,
+        "foreign": -6071,
+        "inst_total": 4771
+      },
+      {
+        "date": "2026-04-30",
+        "pension": 350,
+        "individual": 11824,
+        "foreign": -14559,
+        "inst_total": 2838
+      },
+      {
+        "date": "2026-05-04",
+        "pension": -507,
+        "individual": -47936,
+        "foreign": 29308,
+        "inst_total": 20098
+      },
+      {
+        "date": "2026-05-06",
+        "pension": -1590,
+        "individual": -5715,
+        "foreign": 31085,
+        "inst_total": -22894
+      },
+      {
+        "date": "2026-05-07",
+        "pension": 494,
+        "individual": 59925,
+        "foreign": -66987,
+        "inst_total": 8917
+      },
+      {
+        "date": "2026-05-08",
+        "pension": -502,
+        "individual": 39707,
+        "foreign": -52967,
+        "inst_total": 12542
+      },
+      {
+        "date": "2026-05-11",
+        "pension": -2948,
+        "individual": 28669,
+        "foreign": -28147,
+        "inst_total": -458
+      },
+      {
+        "date": "2026-05-12",
+        "pension": -1857,
+        "individual": 66818,
+        "foreign": -56090,
+        "inst_total": -12138
+      },
+      {
+        "date": "2026-05-13",
+        "pension": -2363,
+        "individual": 18868,
+        "foreign": -37227,
+        "inst_total": 16876
+      },
+      {
+        "date": "2026-05-14",
+        "pension": -1933,
+        "individual": 18499,
+        "foreign": -21450,
+        "inst_total": 1927
+      },
+      {
+        "date": "2026-05-15",
+        "pension": -949,
+        "individual": 72308,
+        "foreign": -56040,
+        "inst_total": -17347
+      },
+      {
+        "date": "2026-05-18",
+        "pension": 16,
+        "individual": 22094,
+        "foreign": -36492,
+        "inst_total": 13904
+      },
+      {
+        "date": "2026-05-19",
+        "pension": -1386,
+        "individual": 56289,
+        "foreign": -57242,
+        "inst_total": 1575
+      },
+      {
+        "date": "2026-05-20",
+        "pension": -1515,
+        "individual": 17104,
+        "foreign": -29310,
+        "inst_total": 11070
+      },
+      {
+        "date": "2026-05-21",
+        "pension": -959,
+        "individual": -26754,
+        "foreign": -2212,
+        "inst_total": 29008
+      },
+      {
+        "date": "2026-05-22",
+        "pension": -1161,
+        "individual": 10655,
+        "foreign": -19221,
+        "inst_total": 7583
+      },
+      {
+        "date": "2026-05-26",
+        "pension": -1162,
+        "individual": -5745,
+        "foreign": -1321,
+        "inst_total": 8168
+      },
+      {
+        "date": "2026-05-27",
+        "pension": -3930,
+        "individual": 4064,
+        "foreign": -2493,
+        "inst_total": -126
+      },
+      {
+        "date": "2026-05-28",
+        "pension": -275,
+        "individual": 36146,
+        "foreign": -27414,
+        "inst_total": -10422
+      },
+      {
+        "date": "2026-05-29",
+        "pension": 909,
+        "individual": -14054,
+        "foreign": -10421,
+        "inst_total": 23688
+      },
+      {
+        "date": "2026-06-01",
+        "pension": -305,
+        "individual": 3862,
+        "foreign": -28219,
+        "inst_total": 24427
+      },
+      {
+        "date": "2026-06-02",
+        "pension": 707,
+        "individual": 63537,
+        "foreign": -63035,
+        "inst_total": -546
+      },
+      {
+        "date": "2026-06-04",
+        "pension": -492,
+        "individual": 50135,
+        "foreign": -66663,
+        "inst_total": 15255
+      },
+      {
+        "date": "2026-06-05",
+        "pension": -607,
+        "individual": 42240,
+        "foreign": -27638,
+        "inst_total": -13809
+      },
+      {
+        "date": "2026-06-08",
+        "pension": 485,
+        "individual": 17628,
+        "foreign": -2644,
+        "inst_total": -17164
+      },
+      {
+        "date": "2026-06-09",
+        "pension": -233,
+        "individual": -6167,
+        "foreign": -20064,
+        "inst_total": 25048
+      },
+      {
+        "date": "2026-06-10",
+        "pension": -2642,
+        "individual": 48643,
+        "foreign": -27754,
+        "inst_total": -22665
+      },
+      {
+        "date": "2026-06-11",
+        "pension": -1125,
+        "individual": 20803,
+        "foreign": -14640,
+        "inst_total": -7561
+      },
+      {
+        "date": "2026-06-12",
+        "pension": -3248,
+        "individual": -43174,
+        "foreign": 22041,
+        "inst_total": 22870
+      },
+      {
+        "date": "2026-06-15",
+        "pension": 250,
+        "individual": -15124,
+        "foreign": 10774,
+        "inst_total": 4462
+      },
+      {
+        "date": "2026-06-16",
+        "pension": -338,
+        "individual": -21841,
+        "foreign": 15353,
+        "inst_total": 7076
+      },
+      {
+        "date": "2026-06-17",
+        "pension": -1676,
+        "individual": 5254,
+        "foreign": -9952,
+        "inst_total": 5957
+      },
+      {
+        "date": "2026-06-18",
+        "pension": -3921,
+        "individual": -4156,
+        "foreign": 12776,
+        "inst_total": -7682
+      },
+      {
+        "date": "2026-06-19",
+        "pension": -5267,
+        "individual": 16478,
+        "foreign": -3555,
+        "inst_total": -12244
+      },
+      {
+        "date": "2026-06-22",
+        "pension": -1834,
+        "individual": 21506,
+        "foreign": -25466,
+        "inst_total": 3034
+      },
+      {
+        "date": "2026-06-23",
+        "pension": -2937,
+        "individual": 85910,
+        "foreign": -42047,
+        "inst_total": -44760
+      },
+      {
+        "date": "2026-06-24",
+        "pension": 131,
+        "individual": 26312,
+        "foreign": -46546,
+        "inst_total": 19095
+      },
+      {
+        "date": "2026-06-25",
+        "pension": -25,
+        "individual": -24136,
+        "foreign": -8754,
+        "inst_total": 33244
+      },
+      {
+        "date": "2026-06-26",
+        "pension": -482,
+        "individual": 81919,
+        "foreign": -42906,
+        "inst_total": -41224
+      },
+      {
+        "date": "2026-06-29",
+        "pension": 581,
+        "individual": 45975,
+        "foreign": -77332,
+        "inst_total": 29327
+      },
+      {
+        "date": "2026-06-30",
+        "pension": -394,
+        "individual": 8401,
+        "foreign": -37992,
+        "inst_total": 29332
+      },
+      {
+        "date": "2026-07-01",
+        "pension": -2177,
+        "individual": 17370,
+        "foreign": -17028,
+        "inst_total": -700
+      },
+      {
+        "date": "2026-07-02",
+        "pension": -495,
+        "individual": 62413,
+        "foreign": -43706,
+        "inst_total": -20825
+      },
+      {
+        "date": "2026-07-03",
+        "pension": 563,
+        "individual": -22942,
+        "foreign": -21750,
+        "inst_total": 44079
+      },
+      {
+        "date": "2026-07-06",
+        "pension": -338,
+        "individual": 26829,
+        "foreign": -13144,
+        "inst_total": -14618
+      },
+      {
+        "date": "2026-07-07",
+        "pension": 285,
+        "individual": 31359,
+        "foreign": -29172,
+        "inst_total": -3108
+      },
+      {
+        "date": "2026-07-08",
+        "pension": -950,
+        "individual": -358,
+        "foreign": 3437,
+        "inst_total": -3552
+      },
+      {
+        "date": "2026-07-09",
+        "pension": 736,
+        "individual": -13278,
+        "foreign": 1343,
+        "inst_total": 12884
+      },
+      {
+        "date": "2026-07-10",
+        "pension": 355,
+        "individual": -7805,
+        "foreign": -3228,
+        "inst_total": 11314
+      }
+    ],
+    "kosdaq": [
+      {
+        "date": "2026-04-14",
+        "pension": 146,
+        "individual": 1160,
+        "foreign": -64,
+        "inst_total": -1288
+      },
+      {
+        "date": "2026-04-15",
+        "pension": 218,
+        "individual": -2561,
+        "foreign": 2209,
+        "inst_total": 1767
+      },
+      {
+        "date": "2026-04-16",
+        "pension": -59,
+        "individual": 3605,
+        "foreign": -2463,
+        "inst_total": -640
+      },
+      {
+        "date": "2026-04-17",
+        "pension": 122,
+        "individual": 14,
+        "foreign": 133,
+        "inst_total": 138
+      },
+      {
+        "date": "2026-04-20",
+        "pension": -159,
+        "individual": 1622,
+        "foreign": 216,
+        "inst_total": -1604
+      },
+      {
+        "date": "2026-04-21",
+        "pension": 30,
+        "individual": 4909,
+        "foreign": -2830,
+        "inst_total": -1202
+      },
+      {
+        "date": "2026-04-22",
+        "pension": -695,
+        "individual": 2969,
+        "foreign": 1621,
+        "inst_total": -3691
+      },
+      {
+        "date": "2026-04-23",
+        "pension": -31,
+        "individual": 3249,
+        "foreign": -1462,
+        "inst_total": -1495
+      },
+      {
+        "date": "2026-04-24",
+        "pension": 206,
+        "individual": -8990,
+        "foreign": 7325,
+        "inst_total": 1887
+      },
+      {
+        "date": "2026-04-27",
+        "pension": -290,
+        "individual": 1418,
+        "foreign": -1722,
+        "inst_total": 849
+      },
+      {
+        "date": "2026-04-28",
+        "pension": 11,
+        "individual": 7962,
+        "foreign": -4949,
+        "inst_total": -2543
+      },
+      {
+        "date": "2026-04-29",
+        "pension": -456,
+        "individual": 1379,
+        "foreign": -21,
+        "inst_total": -729
+      },
+      {
+        "date": "2026-04-30",
+        "pension": -270,
+        "individual": 5532,
+        "foreign": -2112,
+        "inst_total": -3045
+      },
+      {
+        "date": "2026-05-04",
+        "pension": 148,
+        "individual": -4422,
+        "foreign": 5548,
+        "inst_total": -729
+      },
+      {
+        "date": "2026-05-06",
+        "pension": -473,
+        "individual": 6105,
+        "foreign": -615,
+        "inst_total": -5435
+      },
+      {
+        "date": "2026-05-07",
+        "pension": -63,
+        "individual": -177,
+        "foreign": 1747,
+        "inst_total": -1323
+      },
+      {
+        "date": "2026-05-08",
+        "pension": -113,
+        "individual": -4694,
+        "foreign": 4046,
+        "inst_total": 803
+      },
+      {
+        "date": "2026-05-11",
+        "pension": 144,
+        "individual": 847,
+        "foreign": 1160,
+        "inst_total": -1630
+      },
+      {
+        "date": "2026-05-12",
+        "pension": -88,
+        "individual": -2234,
+        "foreign": 5216,
+        "inst_total": -2584
+      },
+      {
+        "date": "2026-05-13",
+        "pension": -532,
+        "individual": 5899,
+        "foreign": -6016,
+        "inst_total": 39
+      },
+      {
+        "date": "2026-05-14",
+        "pension": 29,
+        "individual": 911,
+        "foreign": -1349,
+        "inst_total": 595
+      },
+      {
+        "date": "2026-05-15",
+        "pension": -273,
+        "individual": -1448,
+        "foreign": 4081,
+        "inst_total": -1673
+      },
+      {
+        "date": "2026-05-18",
+        "pension": -699,
+        "individual": -84,
+        "foreign": 2369,
+        "inst_total": -2540
+      },
+      {
+        "date": "2026-05-19",
+        "pension": -557,
+        "individual": 1032,
+        "foreign": 1307,
+        "inst_total": -659
+      },
+      {
+        "date": "2026-05-20",
+        "pension": -366,
+        "individual": -580,
+        "foreign": 2009,
+        "inst_total": -1367
+      },
+      {
+        "date": "2026-05-21",
+        "pension": -60,
+        "individual": -2509,
+        "foreign": 1366,
+        "inst_total": 1391
+      },
+      {
+        "date": "2026-05-22",
+        "pension": 858,
+        "individual": -8793,
+        "foreign": 5975,
+        "inst_total": 3010
+      },
+      {
+        "date": "2026-05-26",
+        "pension": 153,
+        "individual": 2306,
+        "foreign": -1031,
+        "inst_total": -256
+      },
+      {
+        "date": "2026-05-27",
+        "pension": 373,
+        "individual": 6315,
+        "foreign": -847,
+        "inst_total": -5411
+      },
+      {
+        "date": "2026-05-28",
+        "pension": -275,
+        "individual": 381,
+        "foreign": 3821,
+        "inst_total": -4011
+      },
+      {
+        "date": "2026-05-29",
+        "pension": -415,
+        "individual": 3094,
+        "foreign": 115,
+        "inst_total": -3140
+      },
+      {
+        "date": "2026-06-01",
+        "pension": -853,
+        "individual": -4916,
+        "foreign": 8064,
+        "inst_total": -2912
+      },
+      {
+        "date": "2026-06-02",
+        "pension": -479,
+        "individual": -4090,
+        "foreign": 3401,
+        "inst_total": 1327
+      },
+      {
+        "date": "2026-06-04",
+        "pension": 199,
+        "individual": -1633,
+        "foreign": -424,
+        "inst_total": 2066
+      },
+      {
+        "date": "2026-06-05",
+        "pension": 311,
+        "individual": 337,
+        "foreign": -1878,
+        "inst_total": 1508
+      },
+      {
+        "date": "2026-06-08",
+        "pension": -541,
+        "individual": -1245,
+        "foreign": 2976,
+        "inst_total": -1466
+      },
+      {
+        "date": "2026-06-09",
+        "pension": 266,
+        "individual": -5112,
+        "foreign": 3126,
+        "inst_total": 1996
+      },
+      {
+        "date": "2026-06-10",
+        "pension": -196,
+        "individual": 1167,
+        "foreign": 1420,
+        "inst_total": -1125
+      },
+      {
+        "date": "2026-06-11",
+        "pension": 878,
+        "individual": -3634,
+        "foreign": -3601,
+        "inst_total": 7149
+      },
+      {
+        "date": "2026-06-12",
+        "pension": 648,
+        "individual": -9416,
+        "foreign": 2769,
+        "inst_total": 6315
+      },
+      {
+        "date": "2026-06-15",
+        "pension": -306,
+        "individual": 6162,
+        "foreign": -8164,
+        "inst_total": 2166
+      },
+      {
+        "date": "2026-06-16",
+        "pension": -110,
+        "individual": 7907,
+        "foreign": -3095,
+        "inst_total": -4630
+      },
+      {
+        "date": "2026-06-17",
+        "pension": 311,
+        "individual": -335,
+        "foreign": 400,
+        "inst_total": -101
+      },
+      {
+        "date": "2026-06-18",
+        "pension": 34,
+        "individual": 3842,
+        "foreign": -1235,
+        "inst_total": -2659
+      },
+      {
+        "date": "2026-06-19",
+        "pension": -125,
+        "individual": 750,
+        "foreign": 4977,
+        "inst_total": -5838
+      },
+      {
+        "date": "2026-06-22",
+        "pension": 330,
+        "individual": -4634,
+        "foreign": 3152,
+        "inst_total": 1456
+      },
+      {
+        "date": "2026-06-23",
+        "pension": -107,
+        "individual": -3979,
+        "foreign": 2746,
+        "inst_total": 1329
+      },
+      {
+        "date": "2026-06-24",
+        "pension": 277,
+        "individual": -3184,
+        "foreign": -320,
+        "inst_total": 3363
+      },
+      {
+        "date": "2026-06-25",
+        "pension": 153,
+        "individual": 1452,
+        "foreign": 212,
+        "inst_total": -1707
+      },
+      {
+        "date": "2026-06-26",
+        "pension": 331,
+        "individual": -6688,
+        "foreign": 3510,
+        "inst_total": 3084
+      },
+      {
+        "date": "2026-06-29",
+        "pension": 562,
+        "individual": -5272,
+        "foreign": 266,
+        "inst_total": 5043
+      },
+      {
+        "date": "2026-06-30",
+        "pension": 330,
+        "individual": 3909,
+        "foreign": -2464,
+        "inst_total": -1428
+      },
+      {
+        "date": "2026-07-01",
+        "pension": 498,
+        "individual": -1082,
+        "foreign": 2472,
+        "inst_total": -1255
+      },
+      {
+        "date": "2026-07-02",
+        "pension": -829,
+        "individual": 4859,
+        "foreign": -1942,
+        "inst_total": -3091
+      },
+      {
+        "date": "2026-07-03",
+        "pension": -277,
+        "individual": 1075,
+        "foreign": -202,
+        "inst_total": -1037
+      },
+      {
+        "date": "2026-07-06",
+        "pension": -615,
+        "individual": 2591,
+        "foreign": -447,
+        "inst_total": -2244
+      },
+      {
+        "date": "2026-07-07",
+        "pension": -43,
+        "individual": -3616,
+        "foreign": 3742,
+        "inst_total": -100
+      },
+      {
+        "date": "2026-07-08",
+        "pension": -288,
+        "individual": -1959,
+        "foreign": 3376,
+        "inst_total": -1453
+      },
+      {
+        "date": "2026-07-09",
+        "pension": 284,
+        "individual": -3217,
+        "foreign": 221,
+        "inst_total": 3081
+      },
+      {
+        "date": "2026-07-10",
+        "pension": 416,
+        "individual": -4213,
+        "foreign": -1563,
+        "inst_total": 5825
+      }
+    ]
+  }
+}

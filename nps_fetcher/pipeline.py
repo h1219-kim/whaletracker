@@ -7,7 +7,7 @@
 
 from datetime import date, timedelta
 
-from . import dart, datago, npsfund, store
+from . import dart, datago, naver_flow, npsfund, sec13f, store
 from .http_util import make_session
 
 
@@ -26,8 +26,10 @@ def run_refresh(days: int = 180, max_new: int = 300, progress=None) -> dict:
     errors: dict[str, str] = {}
     counts: dict[str, int] = {}
 
+    TOTAL = 6
+
     # 1) 자산배분 (기금운용본부)
-    report("자산배분 수집", 0, 4)
+    report("자산배분 수집", 0, TOTAL)
     try:
         allocation = npsfund.fetch_allocation(session)
         store.save_data("allocation", allocation)
@@ -36,7 +38,7 @@ def run_refresh(days: int = 180, max_new: int = 300, progress=None) -> dict:
         errors["allocation"] = str(e)
 
     # 2) 국내주식 보유종목 (공공데이터포털)
-    report("보유종목 수집", 1, 4)
+    report("보유종목 수집", 1, TOTAL)
     try:
         holdings = datago.fetch_holdings(session)
         store.save_data("holdings", holdings)
@@ -45,7 +47,7 @@ def run_refresh(days: int = 180, max_new: int = 300, progress=None) -> dict:
         errors["holdings"] = str(e)
 
     # 3) 대량보유 스냅샷 (공공데이터포털)
-    report("대량보유 스냅샷 수집", 2, 4)
+    report("대량보유 스냅샷 수집", 2, TOTAL)
     try:
         stakes = datago.fetch_major_stakes(session)
         store.save_data("major_stakes", stakes)
@@ -53,8 +55,26 @@ def run_refresh(days: int = 180, max_new: int = 300, progress=None) -> dict:
     except Exception as e:
         errors["major_stakes"] = str(e)
 
-    # 4) DART 공시 — 목록 후 신규 건만 본문 파싱 (증분)
-    report("DART 공시 목록 조회", 3, 4)
+    # 4) 연기금 일별 순매수 (네이버 금융 — 간접 지표)
+    report("연기금 매매동향 수집", 3, TOTAL)
+    try:
+        flow = naver_flow.fetch_pension_flow(session)
+        store.save_data("pension_flow", flow)
+        counts["pension_flow_days"] = len(flow["markets"]["kospi"])
+    except Exception as e:
+        errors["pension_flow"] = str(e)
+
+    # 5) 미국 주식 보유 (SEC 13F)
+    report("미국 주식 13F 수집", 4, TOTAL)
+    try:
+        us = sec13f.fetch_us_holdings()
+        store.save_data("us_holdings", us)
+        counts["us_holdings"] = us["count"]
+    except Exception as e:
+        errors["us_holdings"] = str(e)
+
+    # 6) DART 공시 — 목록 후 신규 건만 본문 파싱 (증분)
+    report("DART 공시 목록 조회", 5, TOTAL)
     try:
         end = date.today()
         start = end - timedelta(days=days)
@@ -76,6 +96,7 @@ def run_refresh(days: int = 180, max_new: int = 300, progress=None) -> dict:
         for i, meta in enumerate(new_metas, 1):
             report(f"DART 공시 본문 파싱 ({meta['company']})", i, total)
             detailed.append(dart.fetch_filing_detail(meta, session))
+        report("저장", 5, TOTAL)
 
         merged = store.merge_filings(
             existing,
@@ -88,5 +109,5 @@ def run_refresh(days: int = 180, max_new: int = 300, progress=None) -> dict:
     except Exception as e:
         errors["dart"] = str(e)
 
-    report("완료", 4, 4)
+    report("완료", TOTAL, TOTAL)
     return {"ok": not errors, "errors": errors, "counts": counts}

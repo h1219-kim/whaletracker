@@ -81,6 +81,32 @@
     </div>
   </section>
 
+  <!-- 4.5 연기금 일별 순매수 (간접 지표) -->
+  <section class="card" id="pension-flow-section">
+    <div class="card-head">
+      <div>
+        <h2>연기금 일별 순매수 <span class="type-badge">간접 지표</span></h2>
+        <p id="pension-flow-caption" class="card-caption"></p>
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap">
+        <div class="seg-toggle" id="pension-market-toggle" role="group" aria-label="시장 선택">
+          <button type="button" data-market="kospi" class="active">코스피</button>
+          <button type="button" data-market="kosdaq">코스닥</button>
+        </div>
+        <div class="view-toggle" data-target="pension-flow">
+          <button type="button" class="active" data-view="chart">차트</button>
+          <button type="button" data-view="table">테이블</button>
+        </div>
+      </div>
+    </div>
+    <div id="pension-flow-chart" class="view-chart"></div>
+    <div id="pension-flow-table" class="view-table" hidden></div>
+    <p class="card-caption">
+      ‘연기금등’에는 국민연금 외 연기금(사학·공무원연금 등)이 포함되고,
+      국민연금이 자산운용사에 위탁한 물량은 투신·사모로 집계되어 빠집니다 — 방향성 참고용.
+    </p>
+  </section>
+
   <!-- 5. 국내주식 보유 현황 -->
   <section class="card" id="holdings-section">
     <div class="card-head">
@@ -103,6 +129,40 @@
       <div id="holdings-pagination" class="pagination"></div>
     </div>
   </section>
+
+  <!-- 5.5 미국 주식 보유 (SEC 13F) -->
+  <section class="card" id="us-section">
+    <div class="card-head">
+      <div>
+        <h2>미국 주식 보유 <span class="type-badge">SEC 13F · 분기</span></h2>
+        <p id="us-caption" class="card-caption"></p>
+      </div>
+    </div>
+    <div class="subcard">
+      <h3>평가액 상위 15종목</h3>
+      <div id="us-top-chart"></div>
+    </div>
+    <div class="subcard">
+      <div class="card-head">
+        <h3>분기 매매 상위 (추정 거래대금)</h3>
+        <div class="view-toggle" data-target="us-delta">
+          <button type="button" class="active" data-view="chart">차트</button>
+          <button type="button" data-view="table">테이블</button>
+        </div>
+      </div>
+      <div id="us-delta-chart" class="view-chart"></div>
+      <div id="us-delta-table" class="view-table" hidden></div>
+    </div>
+    <div class="subcard">
+      <div class="card-head">
+        <h3>전체 종목</h3>
+        <input id="us-search" class="search-input" type="search"
+               placeholder="종목명 검색" aria-label="미국 주식 종목명 검색">
+      </div>
+      <div id="us-table"></div>
+      <div id="us-pagination" class="pagination"></div>
+    </div>
+  </section>
 </main>
 
 <!-- 6. 푸터 -->
@@ -111,7 +171,9 @@
     출처:
     <a href="https://www.data.go.kr/data/3070507/fileData.do" target="_blank" rel="noopener noreferrer">공공데이터포털 (국내주식 투자정보·대량보유 보고내역)</a> ·
     <a href="https://fund.nps.or.kr" target="_blank" rel="noopener noreferrer">국민연금기금운용본부 (포트폴리오 현황)</a> ·
-    <a href="https://dart.fss.or.kr" target="_blank" rel="noopener noreferrer">DART 전자공시시스템 (지분 공시)</a>
+    <a href="https://dart.fss.or.kr" target="_blank" rel="noopener noreferrer">DART 전자공시시스템 (지분 공시)</a> ·
+    <a href="https://finance.naver.com/sise/sise_trans_style.naver" target="_blank" rel="noopener noreferrer">KRX 투자자별 매매동향 (네이버 금융 집계)</a> ·
+    <a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&amp;CIK=0001608046&amp;type=13F" target="_blank" rel="noopener noreferrer">SEC EDGAR 13F (미국 주식)</a>
   </p>
   <p id="footer-dates" class="footer-note"></p>
   <p class="footer-note">

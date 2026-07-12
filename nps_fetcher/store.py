@@ -15,7 +15,10 @@ from pathlib import Path
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 
 # 관리 대상 데이터셋 이름
-VALID_NAMES = ("holdings", "allocation", "major_stakes", "filings")
+VALID_NAMES = (
+    "holdings", "allocation", "major_stakes", "filings",
+    "pension_flow", "us_holdings",
+)
 
 # 한국 표준시
 KST = timezone(timedelta(hours=9))

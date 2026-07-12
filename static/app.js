@@ -8,8 +8,12 @@ const state = {
   allocation: null,
   majorStakes: null,
   trends: null,
+  pensionFlow: null,
+  usHoldings: null,
   days: 90,
+  pensionMarket: "kospi",
   holdingsView: { query: "", sortKey: "rank", sortAsc: true, page: 1, perPage: 25 },
+  usView: { query: "", sortKey: "value_usd", sortAsc: false, page: 1, perPage: 25 },
   filingsShown: 30,
 };
 
@@ -65,6 +69,22 @@ function fmtDeltaShares(n) {
 
 function fmtDate(d) {
   return d || "—";
+}
+
+// USD: $131.7B / $942M / $12K
+function fmtUsd(v) {
+  const abs = Math.abs(v);
+  const sign = v < 0 ? "−" : "";
+  if (abs >= 1e9) return `${sign}$${(abs / 1e9).toLocaleString("en-US", { maximumFractionDigits: 1 })}B`;
+  if (abs >= 1e6) return `${sign}$${(abs / 1e6).toLocaleString("en-US", { maximumFractionDigits: 0 })}M`;
+  if (abs >= 1e3) return `${sign}$${(abs / 1e3).toLocaleString("en-US", { maximumFractionDigits: 0 })}K`;
+  return `${sign}$${Math.round(abs).toLocaleString("en-US")}`;
+}
+
+// 억원 순매수: +2,118억 / −950억
+function fmtEok(v) {
+  const sign = v > 0 ? "+" : v < 0 ? "−" : "";
+  return `${sign}${fmtInt(Math.abs(v))}억`;
 }
 
 // "2024-12-31" → "2024년 말", "2026-04" → "2026년 4월 말"
@@ -673,6 +693,340 @@ function renderHoldingsTable() {
     next);
 }
 
+/* ------------------------------------------------- 연기금 일별 순매수 */
+const SVG_NS = "http://www.w3.org/2000/svg";
+
+function svgEl(tag, attrs = {}) {
+  const node = document.createElementNS(SVG_NS, tag);
+  for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, v);
+  return node;
+}
+
+function renderPensionFlow() {
+  const chartBox = clear($("pension-flow-chart"));
+  const tableBox = clear($("pension-flow-table"));
+  const caption = $("pension-flow-caption");
+
+  const pf = state.pensionFlow;
+  const rows = pf && !pf.empty && pf.markets ? pf.markets[state.pensionMarket] || [] : [];
+  if (!rows.length) {
+    caption.textContent = "";
+    chartBox.append(el("div", { class: "placeholder" }, "데이터가 없습니다. [데이터 갱신]을 눌러 수집하세요."));
+    return;
+  }
+
+  const sum = (n) => rows.slice(-n).reduce((s, r) => s + r.pension, 0);
+  caption.textContent =
+    `연기금등 순매수 (억원) · 최근 ${rows.length}거래일 · ` +
+    `5일 누적 ${fmtEok(sum(5))} · 20일 누적 ${fmtEok(sum(20))}`;
+
+  // SVG 컬럼 차트 — 양수(매수)=빨강, 음수(매도)=파랑, 0 기준선
+  const W = 960, plotH = 190, axisH = 24, padL = 56, padR = 8, padT = 8;
+  const H = padT + plotH + axisH;
+  const plotW = W - padL - padR;
+  const maxAbs = Math.max(...rows.map((r) => Math.abs(r.pension)), 1);
+  const { max: ymax, ticks } = niceScale(maxAbs, 2);
+  const y = (v) => padT + plotH / 2 - (v / ymax) * (plotH / 2);
+  const slot = plotW / rows.length;
+  const barW = Math.min(24, Math.max(2, slot - 2)); // 2px 표면 갭
+
+  const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "연기금 일별 순매수 차트" });
+
+  // 그리드 (헤어라인 실선) + y 눈금
+  for (const t of [...ticks.map((v) => -v), 0, ...ticks]) {
+    const line = svgEl("line", {
+      x1: padL, x2: W - padR, y1: y(t), y2: y(t),
+      stroke: t === 0 ? "var(--baseline)" : "var(--grid)", "stroke-width": 1,
+    });
+    svg.append(line);
+    const label = svgEl("text", { x: padL - 6, y: y(t) + 4, "text-anchor": "end", class: "svg-tick" });
+    label.textContent = t === 0 ? "0" : `${t > 0 ? "+" : "−"}${fmtInt(Math.abs(t))}`;
+    svg.append(label);
+  }
+
+  rows.forEach((r, i) => {
+    const cx = padL + slot * i + slot / 2;
+    const positive = r.pension >= 0;
+    const h = Math.abs(r.pension) / ymax * (plotH / 2);
+    const bar = svgEl("rect", {
+      x: cx - barW / 2,
+      y: positive ? y(r.pension) : y(0),
+      width: barW,
+      height: Math.max(h, r.pension === 0 ? 0 : 1),
+      fill: positive ? "var(--buy)" : "var(--sell)",
+      rx: 2,
+    });
+    svg.append(bar);
+    // x 라벨: 대략 10일 간격
+    if (i % 10 === 0 || i === rows.length - 1) {
+      const label = svgEl("text", { x: cx, y: padT + plotH + 16, "text-anchor": "middle", class: "svg-tick" });
+      label.textContent = r.date.slice(5).replace("-", ".");
+      svg.append(label);
+    }
+    // 히트 타깃(슬롯 전체 높이) + 툴팁
+    const hit = svgEl("rect", {
+      x: padL + slot * i, y: padT, width: slot, height: plotH, fill: "transparent",
+    });
+    hit.style.cursor = "default";
+    bindTooltip(hit, (e) =>
+      showTooltip(e, r.date, [
+        tooltipRow("연기금등", fmtEok(r.pension) + "원", positive ? "var(--buy)" : "var(--sell)"),
+        tooltipRow("개인", fmtEok(r.individual) + "원"),
+        tooltipRow("외국인", fmtEok(r.foreign) + "원"),
+        tooltipRow("기관계", fmtEok(r.inst_total) + "원"),
+      ]));
+    svg.append(hit);
+  });
+
+  chartBox.append(svg);
+  chartBox.append(el("div", { class: "legend" },
+    el("span", { class: "legend-item" },
+      el("span", { class: "legend-swatch", style: "background:var(--buy)" }), "순매수"),
+    el("span", { class: "legend-item" },
+      el("span", { class: "legend-swatch", style: "background:var(--sell)" }), "순매도")));
+
+  // 테이블 대체 뷰 (최신순)
+  const table = el("table", { class: "data-table" },
+    el("thead", {}, el("tr", {},
+      el("th", {}, "날짜"), el("th", { class: "num" }, "연기금등(억)"),
+      el("th", { class: "num" }, "개인(억)"), el("th", { class: "num" }, "외국인(억)"),
+      el("th", { class: "num" }, "기관계(억)"))),
+    el("tbody", {}, [...rows].reverse().map((r) =>
+      el("tr", {},
+        el("td", {}, r.date),
+        el("td", { class: `num ${deltaClass(r.pension)}` }, fmtEok(r.pension)),
+        el("td", { class: "num" }, fmtEok(r.individual)),
+        el("td", { class: "num" }, fmtEok(r.foreign)),
+        el("td", { class: "num" }, fmtEok(r.inst_total))))));
+  tableBox.append(el("div", { class: "table-wrap" }, table));
+}
+
+function bindPensionMarketToggle() {
+  const toggle = $("pension-market-toggle");
+  toggle.querySelectorAll("button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (btn.dataset.market === state.pensionMarket) return;
+      toggle.querySelectorAll("button").forEach((b) => b.classList.toggle("active", b === btn));
+      state.pensionMarket = btn.dataset.market;
+      renderPensionFlow();
+    });
+  });
+}
+
+/* ------------------------------------------------- 미국 주식 (13F) */
+function renderUsHoldings() {
+  renderUsTop();
+  renderUsDelta();
+  renderUsTable();
+  const caption = $("us-caption");
+  const us = state.usHoldings;
+  if (!us || us.empty) {
+    caption.textContent = "";
+    return;
+  }
+  caption.textContent =
+    `${us.as_of} 기준 (제출 ${us.filed_date}) · ${fmtInt(us.count)}종목 · ` +
+    `총 ${fmtUsd(us.total_value_usd)} · 전분기(${us.prev_as_of}) 대비 신규 ${us.new_count} · 청산 ${us.exited_count}`;
+}
+
+function renderUsTop() {
+  const box = clear($("us-top-chart"));
+  const us = state.usHoldings;
+  if (!us || us.empty || !us.holdings) {
+    box.append(el("div", { class: "placeholder" }, "데이터가 없습니다. [데이터 갱신]을 눌러 수집하세요."));
+    return;
+  }
+  const top = us.holdings.slice(0, 15);
+  const maxVal = Math.max(...top.map((h) => h.value_usd));
+  const { max: xmax, ticks } = niceScale(maxVal / 1e9, 4); // $B 눈금
+
+  const names = el("div", { class: "hchart-names" });
+  const plot = el("div", { class: "hchart-plot" });
+  ticks.forEach((tk) => plot.append(el("div", { class: "gridline", style: `left:${(tk / xmax) * 100}%` })));
+  plot.append(el("div", { class: "gridline zero", style: "left:0%" }));
+
+  top.forEach((h, i) => {
+    names.append(el("div", { class: "hchart-name", title: h.issuer }, h.issuer));
+    const w = (h.value_usd / 1e9 / xmax) * 100;
+    const row = el("div", { class: "hchart-row" });
+    row.append(el("div", { class: "hbar", style: `left:0%; width:${w}%; background:var(--seq)` }));
+    if (i < 5) {
+      row.append(el("div", { class: "hbar-value", style: `left:calc(${w}% + 6px)` }, fmtUsd(h.value_usd)));
+    }
+    const hit = el("div", { class: "hbar-hit" });
+    bindTooltip(hit, (e) =>
+      showTooltip(e, h.issuer, [
+        tooltipRow("평가액", fmtUsd(h.value_usd), "var(--seq)"),
+        tooltipRow("비중", `${h.weight_pct}%`),
+        tooltipRow("주식수", fmtInt(h.shares)),
+        tooltipRow("분기 증감", h.delta_shares === null ? "신규 편입" : fmtDeltaShares(h.delta_shares)),
+      ]));
+    row.append(hit);
+    plot.append(row);
+  });
+
+  const axis = el("div", { class: "hchart-axis" });
+  axis.append(el("span", { style: "left:0%" }, "0"));
+  ticks.forEach((tk) => axis.append(el("span", { style: `left:${(tk / xmax) * 100}%` }, `$${tk}B`)));
+  box.append(el("div", { class: "hchart" },
+    el("div", { class: "hchart-grid" }, names, plot),
+    el("div", { class: "hchart-grid" }, el("div"), axis)));
+}
+
+// 분기 매매 상위 — 추정 거래대금(Δ주식수 × 평균단가), 신규/청산 포함
+function usDeltaRows() {
+  const us = state.usHoldings;
+  if (!us || us.empty) return [];
+  const rows = [];
+  for (const h of us.holdings || []) {
+    if (h.prev_shares === null) {
+      rows.push({ issuer: h.issuer, est_usd: h.value_usd, kind: "신규" });
+    } else if (h.delta_shares && h.shares > 0) {
+      rows.push({ issuer: h.issuer, est_usd: h.delta_shares * (h.value_usd / h.shares), kind: null });
+    }
+  }
+  for (const x of us.exited || []) {
+    rows.push({ issuer: x.issuer, est_usd: -x.prev_value_usd, kind: "청산" });
+  }
+  const buys = rows.filter((r) => r.est_usd > 0).sort((a, b) => b.est_usd - a.est_usd).slice(0, 8);
+  const sells = rows.filter((r) => r.est_usd < 0).sort((a, b) => a.est_usd - b.est_usd).slice(0, 8);
+  return [...buys, ...sells.reverse()];
+}
+
+function renderUsDelta() {
+  const chartBox = clear($("us-delta-chart"));
+  const tableBox = clear($("us-delta-table"));
+  const rows = usDeltaRows();
+  if (!rows.length) {
+    chartBox.append(el("div", { class: "placeholder" }, "데이터가 없습니다."));
+    return;
+  }
+  const maxAbs = Math.max(...rows.map((r) => Math.abs(r.est_usd)));
+  const { max: xmax, ticks } = niceScale(maxAbs / 1e9, 3);
+
+  const names = el("div", { class: "hchart-names" });
+  const plot = el("div", { class: "hchart-plot" });
+  const xpos = (v) => 50 + (v / xmax) * 50;
+  plot.append(el("div", { class: "gridline zero", style: `left:50%` }));
+  ticks.forEach((tk) => {
+    plot.append(el("div", { class: "gridline", style: `left:${xpos(tk)}%` }));
+    plot.append(el("div", { class: "gridline", style: `left:${xpos(-tk)}%` }));
+  });
+
+  rows.forEach((r) => {
+    names.append(el("div", { class: "hchart-name", title: r.issuer }, r.issuer));
+    const positive = r.est_usd >= 0;
+    const w = (Math.abs(r.est_usd) / 1e9 / xmax) * 50;
+    const row = el("div", { class: "hchart-row" });
+    row.append(el("div", {
+      class: `hbar${positive ? "" : " neg"}`,
+      style: `left:${positive ? 50 : 50 - w}%; width:${w}%; background:${positive ? "var(--buy)" : "var(--sell)"}`,
+    }));
+    row.append(el("div", {
+      class: "hbar-value",
+      style: positive ? `left:calc(${50 + w}% + 6px)` : `right:calc(${50 + w}% + 6px); left:auto`,
+    }, fmtUsd(r.est_usd) + (r.kind ? ` (${r.kind})` : "")));
+    const hit = el("div", { class: "hbar-hit" });
+    bindTooltip(hit, (e) =>
+      showTooltip(e, r.issuer, [
+        tooltipRow("추정 거래대금", fmtUsd(r.est_usd), positive ? "var(--buy)" : "var(--sell)"),
+        tooltipRow("구분", r.kind || (positive ? "지분 확대" : "지분 축소")),
+      ]));
+    row.append(hit);
+    plot.append(row);
+  });
+
+  const axis = el("div", { class: "hchart-axis" });
+  axis.append(el("span", { style: "left:50%" }, "0"));
+  ticks.forEach((tk) => {
+    axis.append(el("span", { style: `left:${xpos(tk)}%` }, `+$${tk}B`));
+    axis.append(el("span", { style: `left:${xpos(-tk)}%` }, `−$${tk}B`));
+  });
+  chartBox.append(el("div", { class: "hchart" },
+    el("div", { class: "hchart-grid" }, names, plot),
+    el("div", { class: "hchart-grid" }, el("div"), axis)));
+  chartBox.append(el("div", { class: "legend" },
+    el("span", { class: "legend-item" },
+      el("span", { class: "legend-swatch", style: "background:var(--buy)" }), "매수(확대·신규)"),
+    el("span", { class: "legend-item" },
+      el("span", { class: "legend-swatch", style: "background:var(--sell)" }), "매도(축소·청산)")));
+
+  const table = el("table", { class: "data-table" },
+    el("thead", {}, el("tr", {},
+      el("th", {}, "종목"), el("th", { class: "num" }, "추정 거래대금"), el("th", {}, "구분"))),
+    el("tbody", {}, rows.map((r) =>
+      el("tr", {},
+        el("td", {}, r.issuer),
+        el("td", { class: `num ${deltaClass(r.est_usd)}` }, fmtUsd(r.est_usd)),
+        el("td", {}, r.kind || (r.est_usd >= 0 ? "지분 확대" : "지분 축소"))))));
+  tableBox.append(el("div", { class: "table-wrap" }, table));
+}
+
+const US_COLUMNS = [
+  { key: "issuer", label: "종목명", num: false },
+  { key: "shares", label: "주식수", num: true },
+  { key: "value_usd", label: "평가액", num: true },
+  { key: "weight_pct", label: "비중(%)", num: true },
+  { key: "delta_shares", label: "Δ주식수(분기)", num: true },
+];
+
+function renderUsTable() {
+  const box = clear($("us-table"));
+  const pag = clear($("us-pagination"));
+  const us = state.usHoldings;
+  if (!us || us.empty || !us.holdings) {
+    box.append(el("div", { class: "placeholder" }, "데이터가 없습니다."));
+    return;
+  }
+  const v = state.usView;
+  let rows = us.holdings;
+  if (v.query) {
+    const q = v.query.toLowerCase();
+    rows = rows.filter((h) => h.issuer.toLowerCase().includes(q));
+  }
+  rows = [...rows].sort((a, b) => {
+    const x = a[v.sortKey] ?? -Infinity, y = b[v.sortKey] ?? -Infinity;
+    const cmp = typeof x === "string" ? x.localeCompare(y) : x - y;
+    return v.sortAsc ? cmp : -cmp;
+  });
+  const pages = Math.max(1, Math.ceil(rows.length / v.perPage));
+  if (v.page > pages) v.page = pages;
+  const pageRows = rows.slice((v.page - 1) * v.perPage, v.page * v.perPage);
+
+  const headCells = US_COLUMNS.map((c) => {
+    const th = el("th", { class: `sortable${c.num ? " num" : ""}` }, c.label);
+    if (v.sortKey === c.key) th.append(el("span", { class: "sort-arrow" }, v.sortAsc ? "▲" : "▼"));
+    th.addEventListener("click", () => {
+      if (v.sortKey === c.key) v.sortAsc = !v.sortAsc;
+      else { v.sortKey = c.key; v.sortAsc = c.key === "issuer"; }
+      v.page = 1;
+      renderUsTable();
+    });
+    return th;
+  });
+
+  const tbody = el("tbody");
+  pageRows.forEach((h) => {
+    tbody.append(el("tr", {},
+      el("td", {}, h.issuer),
+      el("td", { class: "num" }, fmtInt(h.shares)),
+      el("td", { class: "num" }, fmtUsd(h.value_usd)),
+      el("td", { class: "num" }, h.weight_pct.toFixed(2)),
+      el("td", { class: `num ${h.delta_shares === null ? "" : deltaClass(h.delta_shares)}` },
+        h.delta_shares === null
+          ? el("span", { class: "amend-badge" }, "신규")
+          : fmtDeltaShares(h.delta_shares))));
+  });
+  box.append(el("div", { class: "table-wrap" },
+    el("table", { class: "data-table" }, el("thead", {}, el("tr", {}, headCells)), tbody)));
+
+  const prev = el("button", { disabled: v.page <= 1 ? "" : null }, "이전");
+  prev.addEventListener("click", () => { v.page -= 1; renderUsTable(); });
+  const next = el("button", { disabled: v.page >= pages ? "" : null }, "다음");
+  next.addEventListener("click", () => { v.page += 1; renderUsTable(); });
+  pag.append(prev, el("span", {}, `${v.page} / ${pages} 페이지 · ${fmtInt(rows.length)}종목`), next);
+}
+
 /* ------------------------------------------------------ 푸터 */
 function renderFooterDates() {
   const node = $("footer-dates");
@@ -806,22 +1160,28 @@ function bindRefresh() {
 
 /* ============================================================ 초기화 */
 async function loadAll() {
-  const [h, a, m, t] = await Promise.all([
+  const [h, a, m, t, pf, us] = await Promise.all([
     fetchJSON("/api/holdings"),
     fetchJSON("/api/allocation"),
     fetchJSON("/api/major-stakes"),
     fetchJSON(`/api/trends?days=${state.days}`),
+    fetchJSON("/api/pension-flow"),
+    fetchJSON("/api/us-holdings"),
   ]);
   state.holdings = h.body;
   state.allocation = a.body;
   state.majorStakes = m.body;
   state.trends = t.body;
+  state.pensionFlow = pf.body;
+  state.usHoldings = us.body;
 
   renderBadges();
   renderKPIs();
   renderAllocation();
   renderTrends();
+  renderPensionFlow();
   renderHoldings();
+  renderUsHoldings();
   renderFooterDates();
 }
 
@@ -850,6 +1210,7 @@ async function watchServerRefresh() {
 async function init() {
   bindViewToggles();
   bindDaysToggle();
+  bindPensionMarketToggle();
   bindRefresh();
   await loadAll();
   // 페이지 로드 시 이미 갱신이 돌고 있으면 따라간다
@@ -870,6 +1231,13 @@ searchInput.addEventListener("input", () => {
   state.holdingsView.query = searchInput.value.trim();
   state.holdingsView.page = 1;
   renderHoldingsTable();
+});
+
+const usSearchInput = $("us-search");
+usSearchInput.addEventListener("input", () => {
+  state.usView.query = usSearchInput.value.trim();
+  state.usView.page = 1;
+  renderUsTable();
 });
 
 init();

@@ -97,6 +97,20 @@ def api_major_stakes():
     return jsonify(data if data is not None else {"empty": True})
 
 
+@app.route("/api/pension-flow")
+def api_pension_flow():
+    """연기금 일별 순매수(pension_flow.json) 패스스루 — 간접 지표."""
+    data = _read_json("pension_flow.json")
+    return jsonify(data if data is not None else {"empty": True})
+
+
+@app.route("/api/us-holdings")
+def api_us_holdings():
+    """미국 주식 13F 보유(us_holdings.json) 패스스루."""
+    data = _read_json("us_holdings.json")
+    return jsonify(data if data is not None else {"empty": True})
+
+
 # ---------------------------------------------------------------------------
 # trends — nps_fetcher.store 집계 사용 (지연 임포트)
 # ---------------------------------------------------------------------------
