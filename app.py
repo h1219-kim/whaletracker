@@ -213,25 +213,35 @@ def _run_refresh_job():
         )
 
 
-@app.route("/api/refresh", methods=["POST"])
-def api_refresh():
-    """데이터 갱신 시작. 이미 실행 중이면 409."""
+def _start_refresh():
+    """갱신 스레드를 시작한다. 반환: "started" | "running" | "no_fetcher"."""
     global _refresh_thread
     with _refresh_lock:
         if _refresh_state["running"]:
-            return jsonify({"started": False, "error": "이미 갱신이 실행 중입니다"}), 409
+            return "running"
         try:
             _get_fetcher()
         except ImportError:
-            return jsonify(
-                {"started": False,
-                 "error": "nps_fetcher 패키지를 찾을 수 없습니다 (수집 모듈 미설치)"}
-            ), 503
+            return "no_fetcher"
         _refresh_state.update(running=True, step="준비 중", done=0, total=0, error=None)
         _refresh_thread = threading.Thread(
             target=_run_refresh_job, name="whaletracker-refresh", daemon=True
         )
         _refresh_thread.start()
+    return "started"
+
+
+@app.route("/api/refresh", methods=["POST"])
+def api_refresh():
+    """데이터 갱신 시작. 이미 실행 중이면 409."""
+    result = _start_refresh()
+    if result == "running":
+        return jsonify({"started": False, "error": "이미 갱신이 실행 중입니다"}), 409
+    if result == "no_fetcher":
+        return jsonify(
+            {"started": False,
+             "error": "nps_fetcher 패키지를 찾을 수 없습니다 (수집 모듈 미설치)"}
+        ), 503
     return jsonify({"started": True})
 
 
@@ -245,6 +255,54 @@ def api_refresh_status():
 
 
 # ---------------------------------------------------------------------------
+# 자동 갱신 — 서버가 떠 있는 동안 데이터가 오래되면 알아서 수집한다
+# ---------------------------------------------------------------------------
+
+AUTO_CHECK_SECONDS = 15 * 60  # 신선도 점검 주기
+
+
+def _data_is_stale(max_age_hours, now=None):
+    """filings.json의 fetched_at이 max_age_hours보다 오래됐으면 True.
+
+    파일이 없거나 타임스탬프를 읽을 수 없어도 True (수집이 필요한 상태).
+    """
+    data = _read_json("filings.json")
+    fetched_at = (data or {}).get("fetched_at")
+    if not fetched_at:
+        return True
+    try:
+        fetched = datetime.fromisoformat(fetched_at)
+    except ValueError:
+        return True
+    now = now or datetime.now().astimezone()
+    if fetched.tzinfo is None:
+        fetched = fetched.astimezone()
+    return (now - fetched).total_seconds() > max_age_hours * 3600
+
+
+def _auto_refresh_loop(max_age_hours):
+    """백그라운드 데몬 — 주기적으로 신선도를 점검해 오래되면 갱신을 시작한다."""
+    import time
+
+    while True:
+        try:
+            if _data_is_stale(max_age_hours):
+                _start_refresh()  # 이미 실행 중이면 아무 일도 하지 않는다
+        except Exception:
+            pass  # 자동 갱신 실패가 서버를 죽여서는 안 된다
+        time.sleep(AUTO_CHECK_SECONDS)
+
+
+def start_auto_refresh(max_age_hours):
+    thread = threading.Thread(
+        target=_auto_refresh_loop, args=(max_age_hours,),
+        name="whaletracker-auto-refresh", daemon=True,
+    )
+    thread.start()
+    return thread
+
+
+# ---------------------------------------------------------------------------
 # 실행 진입점
 # ---------------------------------------------------------------------------
 
@@ -252,6 +310,12 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="WhaleTracker 대시보드 서버")
     parser.add_argument("--port", type=int, default=5000, help="포트 (기본 5000)")
     parser.add_argument("--debug", action="store_true", help="Flask 디버그 모드")
+    parser.add_argument(
+        "--auto-refresh", type=float, default=24, metavar="HOURS",
+        help="데이터가 이 시간(시)보다 오래되면 자동 수집 (기본 24, 0=끄기)",
+    )
     args = parser.parse_args()
+    if args.auto_refresh > 0:
+        start_auto_refresh(args.auto_refresh)
     # threaded: 갱신 폴링과 데이터 요청이 동시에 와도 직렬화되지 않도록
     app.run(host="127.0.0.1", port=args.port, debug=args.debug, threaded=True)

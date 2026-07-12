@@ -68,6 +68,7 @@ whaletracker/
 - **백엔드**: Python 3.13 + Flask. 수집은 requests+BeautifulSoup(lxml).
 - **프론트**: 서버 렌더 아님 — Flask가 JSON API 제공, index.html이 fetch로 그림. 차트는 외부 라이브러리 없이 손수 만든 SVG/HTML 바 차트(의존성/CSP 최소화, dataviz 스킬 준수가 더 쉬움).
 - **갱신**: UI의 "데이터 갱신" 버튼 → `POST /api/refresh` → 백그라운드 스레드로 수집 실행, `GET /api/refresh/status` 폴링. CLI `python -m nps_fetcher`도 동일 동작.
+- **자동 갱신** (2026-07-12 추가): 서버 데몬 스레드가 15분마다 `filings.json`의 `fetched_at` 신선도를 점검, `--auto-refresh HOURS`(기본 24, 0=끄기)보다 오래되면 수동 갱신과 같은 경로로 수집 시작. 프론트는 5분마다 `last_finished` 변화를 감시해 자동 반영(토스트 + 리로드). 진행 중이던 수동 갱신과는 단일 스레드 가드를 공유.
 
 ## 4. 데이터 스키마 (계약 — 백엔드/프론트 공통)
 

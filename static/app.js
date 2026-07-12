@@ -779,6 +779,7 @@ async function pollRefreshStatus() {
     return;
   }
   endProgress();
+  lastFinishedSeen = status.last_finished || lastFinishedSeen;
   setLastFinished(status.last_finished);
   if (status.error) showToast(`갱신 중 오류: ${status.error}`, 6000);
   else showToast("데이터 갱신 완료");
@@ -824,6 +825,28 @@ async function loadAll() {
   renderFooterDates();
 }
 
+/* 서버 측 자동 갱신 감시 — 5분마다 확인해서 새 데이터가 있으면 다시 그린다 */
+let lastFinishedSeen = null;
+
+async function watchServerRefresh() {
+  if (pollTimer) return; // 수동 갱신을 이미 따라가는 중
+  const { status: code, body: status } = await fetchJSON("/api/refresh/status");
+  if (code === 0) return;
+  if (status.running) {
+    // 자동 갱신이 서버에서 시작됨 — 진행 UI로 따라간다
+    $("refresh-btn").disabled = true;
+    setProgress(status);
+    pollTimer = setInterval(pollRefreshStatus, 1000);
+    return;
+  }
+  if (status.last_finished && status.last_finished !== lastFinishedSeen) {
+    lastFinishedSeen = status.last_finished;
+    setLastFinished(status.last_finished);
+    showToast("데이터가 자동 갱신되었습니다");
+    await loadAll();
+  }
+}
+
 async function init() {
   bindViewToggles();
   bindDaysToggle();
@@ -836,8 +859,10 @@ async function init() {
     setProgress(status);
     pollTimer = setInterval(pollRefreshStatus, 1000);
   } else {
+    lastFinishedSeen = status.last_finished || null;
     setLastFinished(status.last_finished);
   }
+  setInterval(watchServerRefresh, 5 * 60 * 1000);
 }
 
 const searchInput = $("holdings-search");

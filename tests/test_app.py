@@ -244,6 +244,31 @@ def test_refresh_503_when_fetcher_missing(client, monkeypatch):
     assert status["running"] is False
 
 
+def test_data_is_stale_logic(data_dir):
+    """자동 갱신의 신선도 판정 — 파일 없음/오래됨/신선함."""
+    from datetime import datetime, timedelta, timezone
+
+    kst = timezone(timedelta(hours=9))
+    now = datetime(2026, 7, 12, 12, 0, 0, tzinfo=kst)
+
+    # 파일이 없으면 수집 필요
+    assert app_module._data_is_stale(24, now=now) is True
+
+    # 25시간 전 수집 → 오래됨
+    old = (now - timedelta(hours=25)).isoformat(timespec="seconds")
+    _write_json(data_dir / "filings.json", {"fetched_at": old, "filings": []})
+    assert app_module._data_is_stale(24, now=now) is True
+
+    # 1시간 전 수집 → 신선함
+    fresh = (now - timedelta(hours=1)).isoformat(timespec="seconds")
+    _write_json(data_dir / "filings.json", {"fetched_at": fresh, "filings": []})
+    assert app_module._data_is_stale(24, now=now) is False
+
+    # 타임스탬프가 깨져 있으면 수집 필요
+    _write_json(data_dir / "filings.json", {"fetched_at": "not-a-date", "filings": []})
+    assert app_module._data_is_stale(24, now=now) is True
+
+
 def test_refresh_error_is_reported_in_status(client, monkeypatch):
     def refresh_all(progress=None):
         raise RuntimeError("수집 실패 테스트")
