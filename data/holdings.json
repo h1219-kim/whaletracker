@@ -1,12 +1,8408 @@
 {
   "as_of": "2024-12-31",
   "source": "공공데이터포털 · 국민연금공단 국내주식 투자정보",
-  "fetched_at": "2026-07-12T00:00:00+09:00",
-  "total_value_100m": 424475.0,
+  "fetched_at": "2026-07-12T18:27:20+09:00",
+  "total_value_100m": 1380094.0,
   "stocks": [
-    {"rank": 1, "name": "삼성전자", "value_100m": 230421.0, "weight_pct": 16.7, "ownership_pct": 7.26},
-    {"rank": 2, "name": "SK하이닉스", "value_100m": 95627.0, "weight_pct": 6.93, "ownership_pct": 7.55},
-    {"rank": 3, "name": "LG에너지솔루션", "value_100m": 51706.0, "weight_pct": 3.75, "ownership_pct": 6.35},
-    {"rank": 4, "name": "삼성바이오로직스", "value_100m": 46721.0, "weight_pct": 3.39, "ownership_pct": 6.92}
+    {
+      "rank": 1,
+      "name": "삼성전자",
+      "value_100m": 230421.0,
+      "weight_pct": 16.7,
+      "ownership_pct": 7.26
+    },
+    {
+      "rank": 2,
+      "name": "SK하이닉스",
+      "value_100m": 95627.0,
+      "weight_pct": 6.93,
+      "ownership_pct": 7.55
+    },
+    {
+      "rank": 3,
+      "name": "LG에너지솔루션",
+      "value_100m": 51706.0,
+      "weight_pct": 3.75,
+      "ownership_pct": 6.35
+    },
+    {
+      "rank": 4,
+      "name": "삼성바이오로직스",
+      "value_100m": 46721.0,
+      "weight_pct": 3.39,
+      "ownership_pct": 6.92
+    },
+    {
+      "rank": 5,
+      "name": "현대차",
+      "value_100m": 33529.0,
+      "weight_pct": 2.43,
+      "ownership_pct": 7.55
+    },
+    {
+      "rank": 6,
+      "name": "기아",
+      "value_100m": 28589.0,
+      "weight_pct": 2.07,
+      "ownership_pct": 7.14
+    },
+    {
+      "rank": 7,
+      "name": "NAVER",
+      "value_100m": 28134.0,
+      "weight_pct": 2.04,
+      "ownership_pct": 8.94
+    },
+    {
+      "rank": 8,
+      "name": "셀트리온",
+      "value_100m": 27624.0,
+      "weight_pct": 2.0,
+      "ownership_pct": 6.79
+    },
+    {
+      "rank": 9,
+      "name": "KB금융",
+      "value_100m": 27405.0,
+      "weight_pct": 1.99,
+      "ownership_pct": 8.4
+    },
+    {
+      "rank": 10,
+      "name": "신한지주",
+      "value_100m": 20547.0,
+      "weight_pct": 1.49,
+      "ownership_pct": 8.56
+    },
+    {
+      "rank": 11,
+      "name": "현대모비스",
+      "value_100m": 19937.0,
+      "weight_pct": 1.44,
+      "ownership_pct": 9.06
+    },
+    {
+      "rank": 12,
+      "name": "HD현대중공업",
+      "value_100m": 16837.0,
+      "weight_pct": 1.22,
+      "ownership_pct": 6.6
+    },
+    {
+      "rank": 13,
+      "name": "POSCO홀딩스",
+      "value_100m": 15628.0,
+      "weight_pct": 1.13,
+      "ownership_pct": 7.46
+    },
+    {
+      "rank": 14,
+      "name": "하나금융지주",
+      "value_100m": 15081.0,
+      "weight_pct": 1.09,
+      "ownership_pct": 9.25
+    },
+    {
+      "rank": 15,
+      "name": "삼성물산",
+      "value_100m": 14852.0,
+      "weight_pct": 1.08,
+      "ownership_pct": 7.28
+    },
+    {
+      "rank": 16,
+      "name": "LG화학",
+      "value_100m": 14546.0,
+      "weight_pct": 1.05,
+      "ownership_pct": 8.25
+    },
+    {
+      "rank": 17,
+      "name": "삼성생명",
+      "value_100m": 13400.0,
+      "weight_pct": 0.97,
+      "ownership_pct": 7.07
+    },
+    {
+      "rank": 18,
+      "name": "메리츠금융지주",
+      "value_100m": 13180.0,
+      "weight_pct": 0.95,
+      "ownership_pct": 6.65
+    },
+    {
+      "rank": 19,
+      "name": "삼성SDI",
+      "value_100m": 12598.0,
+      "weight_pct": 0.91,
+      "ownership_pct": 7.41
+    },
+    {
+      "rank": 20,
+      "name": "삼성화재",
+      "value_100m": 11794.0,
+      "weight_pct": 0.85,
+      "ownership_pct": 6.94
+    },
+    {
+      "rank": 21,
+      "name": "한화에어로스페이스",
+      "value_100m": 11063.0,
+      "weight_pct": 0.8,
+      "ownership_pct": 7.44
+    },
+    {
+      "rank": 22,
+      "name": "HD한국조선해양",
+      "value_100m": 10583.0,
+      "weight_pct": 0.77,
+      "ownership_pct": 6.55
+    },
+    {
+      "rank": 23,
+      "name": "HD현대일렉트릭",
+      "value_100m": 10556.0,
+      "weight_pct": 0.76,
+      "ownership_pct": 7.67
+    },
+    {
+      "rank": 24,
+      "name": "SK텔레콤",
+      "value_100m": 10435.0,
+      "weight_pct": 0.76,
+      "ownership_pct": 8.8
+    },
+    {
+      "rank": 25,
+      "name": "LG전자",
+      "value_100m": 10374.0,
+      "weight_pct": 0.75,
+      "ownership_pct": 7.59
+    },
+    {
+      "rank": 26,
+      "name": "카카오",
+      "value_100m": 10196.0,
+      "weight_pct": 0.74,
+      "ownership_pct": 6.02
+    },
+    {
+      "rank": 27,
+      "name": "크래프톤",
+      "value_100m": 10014.0,
+      "weight_pct": 0.73,
+      "ownership_pct": 6.69
+    },
+    {
+      "rank": 28,
+      "name": "SK이노베이션",
+      "value_100m": 10006.0,
+      "weight_pct": 0.72,
+      "ownership_pct": 5.92
+    },
+    {
+      "rank": 29,
+      "name": "한국전력",
+      "value_100m": 9662.0,
+      "weight_pct": 0.7,
+      "ownership_pct": 7.5
+    },
+    {
+      "rank": 30,
+      "name": "KT&G",
+      "value_100m": 9517.0,
+      "weight_pct": 0.69,
+      "ownership_pct": 7.09
+    },
+    {
+      "rank": 31,
+      "name": "삼성전기",
+      "value_100m": 9388.0,
+      "weight_pct": 0.68,
+      "ownership_pct": 10.16
+    },
+    {
+      "rank": 32,
+      "name": "삼성에스디에스",
+      "value_100m": 9307.0,
+      "weight_pct": 0.67,
+      "ownership_pct": 9.41
+    },
+    {
+      "rank": 33,
+      "name": "현대글로비스",
+      "value_100m": 8878.0,
+      "weight_pct": 0.64,
+      "ownership_pct": 10.03
+    },
+    {
+      "rank": 34,
+      "name": "KT",
+      "value_100m": 8583.0,
+      "weight_pct": 0.62,
+      "ownership_pct": 7.76
+    },
+    {
+      "rank": 35,
+      "name": "두산에너빌리티",
+      "value_100m": 8254.0,
+      "weight_pct": 0.6,
+      "ownership_pct": 7.34
+    },
+    {
+      "rank": 36,
+      "name": "삼성중공업",
+      "value_100m": 8184.0,
+      "weight_pct": 0.59,
+      "ownership_pct": 8.23
+    },
+    {
+      "rank": 37,
+      "name": "고려아연",
+      "value_100m": 8171.0,
+      "weight_pct": 0.59,
+      "ownership_pct": 3.92
+    },
+    {
+      "rank": 38,
+      "name": "HMM",
+      "value_100m": 7940.0,
+      "weight_pct": 0.58,
+      "ownership_pct": 5.11
+    },
+    {
+      "rank": 39,
+      "name": "우리금융지주",
+      "value_100m": 7808.0,
+      "weight_pct": 0.57,
+      "ownership_pct": 6.84
+    },
+    {
+      "rank": 40,
+      "name": "SK스퀘어",
+      "value_100m": 7734.0,
+      "weight_pct": 0.56,
+      "ownership_pct": 7.23
+    },
+    {
+      "rank": 41,
+      "name": "대한항공",
+      "value_100m": 7696.0,
+      "weight_pct": 0.56,
+      "ownership_pct": 9.25
+    },
+    {
+      "rank": 42,
+      "name": "LG",
+      "value_100m": 7618.0,
+      "weight_pct": 0.55,
+      "ownership_pct": 6.72
+    },
+    {
+      "rank": 43,
+      "name": "SK",
+      "value_100m": 7263.0,
+      "weight_pct": 0.53,
+      "ownership_pct": 7.63
+    },
+    {
+      "rank": 44,
+      "name": "유한양행",
+      "value_100m": 6983.0,
+      "weight_pct": 0.51,
+      "ownership_pct": 7.29
+    },
+    {
+      "rank": 45,
+      "name": "한화오션",
+      "value_100m": 6741.0,
+      "weight_pct": 0.49,
+      "ownership_pct": 5.9
+    },
+    {
+      "rank": 46,
+      "name": "HD현대미포",
+      "value_100m": 6557.0,
+      "weight_pct": 0.48,
+      "ownership_pct": 12.23
+    },
+    {
+      "rank": 47,
+      "name": "기업은행",
+      "value_100m": 6215.0,
+      "weight_pct": 0.45,
+      "ownership_pct": 5.43
+    },
+    {
+      "rank": 48,
+      "name": "하이브",
+      "value_100m": 6054.0,
+      "weight_pct": 0.44,
+      "ownership_pct": 7.52
+    },
+    {
+      "rank": 49,
+      "name": "포스코퓨처엠",
+      "value_100m": 5921.0,
+      "weight_pct": 0.43,
+      "ownership_pct": 5.37
+    },
+    {
+      "rank": 50,
+      "name": "카카오뱅크",
+      "value_100m": 5780.0,
+      "weight_pct": 0.42,
+      "ownership_pct": 5.76
+    },
+    {
+      "rank": 51,
+      "name": "SK바이오팜",
+      "value_100m": 5720.0,
+      "weight_pct": 0.41,
+      "ownership_pct": 6.58
+    },
+    {
+      "rank": 52,
+      "name": "DB손해보험",
+      "value_100m": 5371.0,
+      "weight_pct": 0.39,
+      "ownership_pct": 7.38
+    },
+    {
+      "rank": 53,
+      "name": "HD현대",
+      "value_100m": 5213.0,
+      "weight_pct": 0.38,
+      "ownership_pct": 8.33
+    },
+    {
+      "rank": 54,
+      "name": "삼성증권",
+      "value_100m": 5191.0,
+      "weight_pct": 0.38,
+      "ownership_pct": 13.37
+    },
+    {
+      "rank": 55,
+      "name": "HD현대마린솔루션",
+      "value_100m": 4912.0,
+      "weight_pct": 0.36,
+      "ownership_pct": 6.85
+    },
+    {
+      "rank": 56,
+      "name": "삼양식품",
+      "value_100m": 4890.0,
+      "weight_pct": 0.35,
+      "ownership_pct": 8.49
+    },
+    {
+      "rank": 57,
+      "name": "CJ제일제당",
+      "value_100m": 4813.0,
+      "weight_pct": 0.35,
+      "ownership_pct": 12.51
+    },
+    {
+      "rank": 58,
+      "name": "LIG넥스원",
+      "value_100m": 4708.0,
+      "weight_pct": 0.34,
+      "ownership_pct": 9.71
+    },
+    {
+      "rank": 59,
+      "name": "한국항공우주",
+      "value_100m": 4547.0,
+      "weight_pct": 0.33,
+      "ownership_pct": 8.5
+    },
+    {
+      "rank": 60,
+      "name": "효성중공업",
+      "value_100m": 4506.0,
+      "weight_pct": 0.33,
+      "ownership_pct": 12.29
+    },
+    {
+      "rank": 61,
+      "name": "LS ELECTRIC",
+      "value_100m": 4453.0,
+      "weight_pct": 0.32,
+      "ownership_pct": 9.23
+    },
+    {
+      "rank": 62,
+      "name": "한미반도체",
+      "value_100m": 4443.0,
+      "weight_pct": 0.32,
+      "ownership_pct": 5.57
+    },
+    {
+      "rank": 63,
+      "name": "현대로템",
+      "value_100m": 4374.0,
+      "weight_pct": 0.32,
+      "ownership_pct": 8.07
+    },
+    {
+      "rank": 64,
+      "name": "LG생활건강",
+      "value_100m": 4284.0,
+      "weight_pct": 0.31,
+      "ownership_pct": 9.0
+    },
+    {
+      "rank": 65,
+      "name": "오리온",
+      "value_100m": 4264.0,
+      "weight_pct": 0.31,
+      "ownership_pct": 10.53
+    },
+    {
+      "rank": 66,
+      "name": "S-Oil",
+      "value_100m": 4228.0,
+      "weight_pct": 0.31,
+      "ownership_pct": 6.85
+    },
+    {
+      "rank": 67,
+      "name": "한국금융지주",
+      "value_100m": 4169.0,
+      "weight_pct": 0.3,
+      "ownership_pct": 10.49
+    },
+    {
+      "rank": 68,
+      "name": "포스코인터내셔널",
+      "value_100m": 4125.0,
+      "weight_pct": 0.3,
+      "ownership_pct": 5.92
+    },
+    {
+      "rank": 69,
+      "name": "NH투자증권",
+      "value_100m": 3949.0,
+      "weight_pct": 0.29,
+      "ownership_pct": 8.65
+    },
+    {
+      "rank": 70,
+      "name": "LS",
+      "value_100m": 3930.0,
+      "weight_pct": 0.28,
+      "ownership_pct": 12.94
+    },
+    {
+      "rank": 71,
+      "name": "현대차2우B",
+      "value_100m": 3917.0,
+      "weight_pct": 0.28,
+      "ownership_pct": 7.02
+    },
+    {
+      "rank": 72,
+      "name": "아모레퍼시픽",
+      "value_100m": 3895.0,
+      "weight_pct": 0.28,
+      "ownership_pct": 6.35
+    },
+    {
+      "rank": 73,
+      "name": "키움증권",
+      "value_100m": 3863.0,
+      "weight_pct": 0.28,
+      "ownership_pct": 13.02
+    },
+    {
+      "rank": 74,
+      "name": "한미약품",
+      "value_100m": 3813.0,
+      "weight_pct": 0.28,
+      "ownership_pct": 10.61
+    },
+    {
+      "rank": 75,
+      "name": "한화시스템",
+      "value_100m": 3659.0,
+      "weight_pct": 0.27,
+      "ownership_pct": 8.58
+    },
+    {
+      "rank": 76,
+      "name": "두산",
+      "value_100m": 3616.0,
+      "weight_pct": 0.26,
+      "ownership_pct": 8.58
+    },
+    {
+      "rank": 77,
+      "name": "알테오젠",
+      "value_100m": 3615.0,
+      "weight_pct": 0.26,
+      "ownership_pct": 2.19
+    },
+    {
+      "rank": 78,
+      "name": "CJ",
+      "value_100m": 3597.0,
+      "weight_pct": 0.26,
+      "ownership_pct": 12.44
+    },
+    {
+      "rank": 79,
+      "name": "한국타이어앤테크놀로지",
+      "value_100m": 3383.0,
+      "weight_pct": 0.25,
+      "ownership_pct": 7.11
+    },
+    {
+      "rank": 80,
+      "name": "코웨이",
+      "value_100m": 3307.0,
+      "weight_pct": 0.24,
+      "ownership_pct": 6.69
+    },
+    {
+      "rank": 81,
+      "name": "LG이노텍",
+      "value_100m": 3307.0,
+      "weight_pct": 0.24,
+      "ownership_pct": 8.62
+    },
+    {
+      "rank": 82,
+      "name": "엔씨소프트",
+      "value_100m": 3259.0,
+      "weight_pct": 0.24,
+      "ownership_pct": 8.1
+    },
+    {
+      "rank": 83,
+      "name": "LG유플러스",
+      "value_100m": 3176.0,
+      "weight_pct": 0.23,
+      "ownership_pct": 7.05
+    },
+    {
+      "rank": 84,
+      "name": "두산밥캣",
+      "value_100m": 3078.0,
+      "weight_pct": 0.22,
+      "ownership_pct": 7.33
+    },
+    {
+      "rank": 85,
+      "name": "BNK금융지주",
+      "value_100m": 3038.0,
+      "weight_pct": 0.22,
+      "ownership_pct": 9.17
+    },
+    {
+      "rank": 86,
+      "name": "삼성카드",
+      "value_100m": 2749.0,
+      "weight_pct": 0.2,
+      "ownership_pct": 6.01
+    },
+    {
+      "rank": 87,
+      "name": "시프트업",
+      "value_100m": 2745.0,
+      "weight_pct": 0.2,
+      "ownership_pct": 7.42
+    },
+    {
+      "rank": 88,
+      "name": "GS",
+      "value_100m": 2691.0,
+      "weight_pct": 0.2,
+      "ownership_pct": 7.37
+    },
+    {
+      "rank": 89,
+      "name": "맥쿼리인프라",
+      "value_100m": 2590.0,
+      "weight_pct": 0.19,
+      "ownership_pct": 5.1
+    },
+    {
+      "rank": 90,
+      "name": "미래에셋증권",
+      "value_100m": 2583.0,
+      "weight_pct": 0.19,
+      "ownership_pct": 5.49
+    },
+    {
+      "rank": 91,
+      "name": "농심",
+      "value_100m": 2553.0,
+      "weight_pct": 0.18,
+      "ownership_pct": 11.22
+    },
+    {
+      "rank": 92,
+      "name": "LG디스플레이",
+      "value_100m": 2532.0,
+      "weight_pct": 0.18,
+      "ownership_pct": 5.55
+    },
+    {
+      "rank": 93,
+      "name": "한진칼",
+      "value_100m": 2407.0,
+      "weight_pct": 0.17,
+      "ownership_pct": 4.78
+    },
+    {
+      "rank": 94,
+      "name": "한국가스공사",
+      "value_100m": 2361.0,
+      "weight_pct": 0.17,
+      "ownership_pct": 7.37
+    },
+    {
+      "rank": 95,
+      "name": "현대오토에버",
+      "value_100m": 2306.0,
+      "weight_pct": 0.17,
+      "ownership_pct": 6.67
+    },
+    {
+      "rank": 96,
+      "name": "넷마블",
+      "value_100m": 2290.0,
+      "weight_pct": 0.17,
+      "ownership_pct": 5.15
+    },
+    {
+      "rank": 97,
+      "name": "코스맥스",
+      "value_100m": 2269.0,
+      "weight_pct": 0.16,
+      "ownership_pct": 13.41
+    },
+    {
+      "rank": 98,
+      "name": "HL만도",
+      "value_100m": 2257.0,
+      "weight_pct": 0.16,
+      "ownership_pct": 11.83
+    },
+    {
+      "rank": 99,
+      "name": "삼성E&A",
+      "value_100m": 2252.0,
+      "weight_pct": 0.16,
+      "ownership_pct": 6.95
+    },
+    {
+      "rank": 100,
+      "name": "금호석유",
+      "value_100m": 2227.0,
+      "weight_pct": 0.16,
+      "ownership_pct": 8.99
+    },
+    {
+      "rank": 101,
+      "name": "녹십자",
+      "value_100m": 2224.0,
+      "weight_pct": 0.16,
+      "ownership_pct": 10.6
+    },
+    {
+      "rank": 102,
+      "name": "제일기획",
+      "value_100m": 2216.0,
+      "weight_pct": 0.16,
+      "ownership_pct": 11.36
+    },
+    {
+      "rank": 103,
+      "name": "현대제철",
+      "value_100m": 2166.0,
+      "weight_pct": 0.16,
+      "ownership_pct": 7.71
+    },
+    {
+      "rank": 104,
+      "name": "강원랜드",
+      "value_100m": 2161.0,
+      "weight_pct": 0.16,
+      "ownership_pct": 6.33
+    },
+    {
+      "rank": 105,
+      "name": "KCC",
+      "value_100m": 2121.0,
+      "weight_pct": 0.15,
+      "ownership_pct": 10.14
+    },
+    {
+      "rank": 106,
+      "name": "현대건설",
+      "value_100m": 2119.0,
+      "weight_pct": 0.15,
+      "ownership_pct": 7.49
+    },
+    {
+      "rank": 107,
+      "name": "SKC",
+      "value_100m": 2119.0,
+      "weight_pct": 0.15,
+      "ownership_pct": 5.33
+    },
+    {
+      "rank": 108,
+      "name": "CJ대한통운",
+      "value_100m": 2094.0,
+      "weight_pct": 0.15,
+      "ownership_pct": 10.88
+    },
+    {
+      "rank": 109,
+      "name": "한올바이오파마",
+      "value_100m": 2075.0,
+      "weight_pct": 0.15,
+      "ownership_pct": 10.27
+    },
+    {
+      "rank": 110,
+      "name": "에코프로머티",
+      "value_100m": 2071.0,
+      "weight_pct": 0.15,
+      "ownership_pct": 4.51
+    },
+    {
+      "rank": 111,
+      "name": "JB금융지주",
+      "value_100m": 2033.0,
+      "weight_pct": 0.15,
+      "ownership_pct": 6.41
+    },
+    {
+      "rank": 112,
+      "name": "삼성전자우",
+      "value_100m": 1982.0,
+      "weight_pct": 0.14,
+      "ownership_pct": 0.54
+    },
+    {
+      "rank": 113,
+      "name": "한화엔진",
+      "value_100m": 1953.0,
+      "weight_pct": 0.14,
+      "ownership_pct": 12.7
+    },
+    {
+      "rank": 114,
+      "name": "영원무역",
+      "value_100m": 1878.0,
+      "weight_pct": 0.14,
+      "ownership_pct": 9.99
+    },
+    {
+      "rank": 115,
+      "name": "한전KPS",
+      "value_100m": 1866.0,
+      "weight_pct": 0.14,
+      "ownership_pct": 9.4
+    },
+    {
+      "rank": 116,
+      "name": "엘앤에프",
+      "value_100m": 1862.0,
+      "weight_pct": 0.13,
+      "ownership_pct": 6.33
+    },
+    {
+      "rank": 117,
+      "name": "카카오페이",
+      "value_100m": 1846.0,
+      "weight_pct": 0.13,
+      "ownership_pct": 5.22
+    },
+    {
+      "rank": 118,
+      "name": "더존비즈온",
+      "value_100m": 1784.0,
+      "weight_pct": 0.13,
+      "ownership_pct": 9.22
+    },
+    {
+      "rank": 119,
+      "name": "이마트",
+      "value_100m": 1769.0,
+      "weight_pct": 0.13,
+      "ownership_pct": 10.0
+    },
+    {
+      "rank": 120,
+      "name": "SK바이오사이언스",
+      "value_100m": 1729.0,
+      "weight_pct": 0.13,
+      "ownership_pct": 4.38
+    },
+    {
+      "rank": 121,
+      "name": "휠라홀딩스",
+      "value_100m": 1712.0,
+      "weight_pct": 0.12,
+      "ownership_pct": 7.07
+    },
+    {
+      "rank": 122,
+      "name": "씨에스윈드",
+      "value_100m": 1648.0,
+      "weight_pct": 0.12,
+      "ownership_pct": 9.33
+    },
+    {
+      "rank": 123,
+      "name": "한전기술",
+      "value_100m": 1645.0,
+      "weight_pct": 0.12,
+      "ownership_pct": 8.12
+    },
+    {
+      "rank": 124,
+      "name": "두산로보틱스",
+      "value_100m": 1635.0,
+      "weight_pct": 0.12,
+      "ownership_pct": 4.82
+    },
+    {
+      "rank": 125,
+      "name": "대웅제약",
+      "value_100m": 1632.0,
+      "weight_pct": 0.12,
+      "ownership_pct": 11.15
+    },
+    {
+      "rank": 126,
+      "name": "한화솔루션",
+      "value_100m": 1629.0,
+      "weight_pct": 0.12,
+      "ownership_pct": 5.88
+    },
+    {
+      "rank": 127,
+      "name": "리가켐바이오",
+      "value_100m": 1617.0,
+      "weight_pct": 0.12,
+      "ownership_pct": 4.05
+    },
+    {
+      "rank": 128,
+      "name": "현대해상",
+      "value_100m": 1601.0,
+      "weight_pct": 0.12,
+      "ownership_pct": 7.25
+    },
+    {
+      "rank": 129,
+      "name": "에이피알",
+      "value_100m": 1574.0,
+      "weight_pct": 0.11,
+      "ownership_pct": 8.25
+    },
+    {
+      "rank": 130,
+      "name": "한국콜마",
+      "value_100m": 1546.0,
+      "weight_pct": 0.11,
+      "ownership_pct": 11.88
+    },
+    {
+      "rank": 131,
+      "name": "롯데케미칼",
+      "value_100m": 1488.0,
+      "weight_pct": 0.11,
+      "ownership_pct": 5.82
+    },
+    {
+      "rank": 132,
+      "name": "현대엘리베이",
+      "value_100m": 1483.0,
+      "weight_pct": 0.11,
+      "ownership_pct": 7.24
+    },
+    {
+      "rank": 133,
+      "name": "리노공업",
+      "value_100m": 1477.0,
+      "weight_pct": 0.11,
+      "ownership_pct": 5.06
+    },
+    {
+      "rank": 134,
+      "name": "F&F",
+      "value_100m": 1470.0,
+      "weight_pct": 0.11,
+      "ownership_pct": 7.07
+    },
+    {
+      "rank": 135,
+      "name": "HDC현대산업개발",
+      "value_100m": 1464.0,
+      "weight_pct": 0.11,
+      "ownership_pct": 12.31
+    },
+    {
+      "rank": 136,
+      "name": "HD현대인프라코어",
+      "value_100m": 1439.0,
+      "weight_pct": 0.1,
+      "ownership_pct": 10.84
+    },
+    {
+      "rank": 137,
+      "name": "에스원",
+      "value_100m": 1414.0,
+      "weight_pct": 0.1,
+      "ownership_pct": 6.29
+    },
+    {
+      "rank": 138,
+      "name": "이수페타시스",
+      "value_100m": 1401.0,
+      "weight_pct": 0.1,
+      "ownership_pct": 8.09
+    },
+    {
+      "rank": 139,
+      "name": "DL이앤씨",
+      "value_100m": 1398.0,
+      "weight_pct": 0.1,
+      "ownership_pct": 11.24
+    },
+    {
+      "rank": 140,
+      "name": "셀트리온(배당)",
+      "value_100m": 1381.0,
+      "weight_pct": 0.1,
+      "ownership_pct": 0.0
+    },
+    {
+      "rank": 141,
+      "name": "BGF리테일",
+      "value_100m": 1373.0,
+      "weight_pct": 0.1,
+      "ownership_pct": 7.75
+    },
+    {
+      "rank": 142,
+      "name": "신세계",
+      "value_100m": 1364.0,
+      "weight_pct": 0.1,
+      "ownership_pct": 10.42
+    },
+    {
+      "rank": 143,
+      "name": "포스코DX",
+      "value_100m": 1333.0,
+      "weight_pct": 0.1,
+      "ownership_pct": 4.6
+    },
+    {
+      "rank": 144,
+      "name": "GS건설",
+      "value_100m": 1302.0,
+      "weight_pct": 0.09,
+      "ownership_pct": 8.77
+    },
+    {
+      "rank": 145,
+      "name": "한미사이언스",
+      "value_100m": 1279.0,
+      "weight_pct": 0.09,
+      "ownership_pct": 6.35
+    },
+    {
+      "rank": 146,
+      "name": "롯데지주",
+      "value_100m": 1241.0,
+      "weight_pct": 0.09,
+      "ownership_pct": 5.42
+    },
+    {
+      "rank": 147,
+      "name": "한화",
+      "value_100m": 1205.0,
+      "weight_pct": 0.09,
+      "ownership_pct": 5.98
+    },
+    {
+      "rank": 148,
+      "name": "HLB",
+      "value_100m": 1201.0,
+      "weight_pct": 0.09,
+      "ownership_pct": 1.25
+    },
+    {
+      "rank": 149,
+      "name": "팬오션",
+      "value_100m": 1198.0,
+      "weight_pct": 0.09,
+      "ownership_pct": 6.79
+    },
+    {
+      "rank": 150,
+      "name": "한온시스템",
+      "value_100m": 1196.0,
+      "weight_pct": 0.09,
+      "ownership_pct": 5.59
+    },
+    {
+      "rank": 151,
+      "name": "코리안리",
+      "value_100m": 1186.0,
+      "weight_pct": 0.09,
+      "ownership_pct": 7.66
+    },
+    {
+      "rank": 152,
+      "name": "파마리서치",
+      "value_100m": 1174.0,
+      "weight_pct": 0.09,
+      "ownership_pct": 4.26
+    },
+    {
+      "rank": 153,
+      "name": "대한전선",
+      "value_100m": 1165.0,
+      "weight_pct": 0.08,
+      "ownership_pct": 5.6
+    },
+    {
+      "rank": 154,
+      "name": "풍산",
+      "value_100m": 1155.0,
+      "weight_pct": 0.08,
+      "ownership_pct": 8.26
+    },
+    {
+      "rank": 155,
+      "name": "GS리테일",
+      "value_100m": 1153.0,
+      "weight_pct": 0.08,
+      "ownership_pct": 8.36
+    },
+    {
+      "rank": 156,
+      "name": "한화생명",
+      "value_100m": 1145.0,
+      "weight_pct": 0.08,
+      "ownership_pct": 5.36
+    },
+    {
+      "rank": 157,
+      "name": "한화인더스트리얼솔루션즈",
+      "value_100m": 1136.0,
+      "weight_pct": 0.08,
+      "ownership_pct": 7.12
+    },
+    {
+      "rank": 158,
+      "name": "에스엘",
+      "value_100m": 1133.0,
+      "weight_pct": 0.08,
+      "ownership_pct": 8.1
+    },
+    {
+      "rank": 159,
+      "name": "일진전기",
+      "value_100m": 1115.0,
+      "weight_pct": 0.08,
+      "ownership_pct": 8.58
+    },
+    {
+      "rank": 160,
+      "name": "한솔케미칼",
+      "value_100m": 1101.0,
+      "weight_pct": 0.08,
+      "ownership_pct": 10.01
+    },
+    {
+      "rank": 161,
+      "name": "LX인터내셔널",
+      "value_100m": 1084.0,
+      "weight_pct": 0.08,
+      "ownership_pct": 10.34
+    },
+    {
+      "rank": 162,
+      "name": "아모레G",
+      "value_100m": 1082.0,
+      "weight_pct": 0.08,
+      "ownership_pct": 6.31
+    },
+    {
+      "rank": 163,
+      "name": "현대백화점",
+      "value_100m": 1070.0,
+      "weight_pct": 0.08,
+      "ownership_pct": 10.01
+    },
+    {
+      "rank": 164,
+      "name": "산일전기",
+      "value_100m": 1034.0,
+      "weight_pct": 0.07,
+      "ownership_pct": 4.95
+    },
+    {
+      "rank": 165,
+      "name": "DB하이텍",
+      "value_100m": 1021.0,
+      "weight_pct": 0.07,
+      "ownership_pct": 6.94
+    },
+    {
+      "rank": 166,
+      "name": "HD현대건설기계",
+      "value_100m": 1019.0,
+      "weight_pct": 0.07,
+      "ownership_pct": 9.54
+    },
+    {
+      "rank": 167,
+      "name": "에코프로비엠",
+      "value_100m": 1019.0,
+      "weight_pct": 0.07,
+      "ownership_pct": 0.95
+    },
+    {
+      "rank": 168,
+      "name": "종근당",
+      "value_100m": 993.0,
+      "weight_pct": 0.07,
+      "ownership_pct": 8.47
+    },
+    {
+      "rank": 169,
+      "name": "롯데쇼핑",
+      "value_100m": 978.0,
+      "weight_pct": 0.07,
+      "ownership_pct": 6.39
+    },
+    {
+      "rank": 170,
+      "name": "DGB금융지주",
+      "value_100m": 974.0,
+      "weight_pct": 0.07,
+      "ownership_pct": 7.03
+    },
+    {
+      "rank": 171,
+      "name": "경동나비엔",
+      "value_100m": 972.0,
+      "weight_pct": 0.07,
+      "ownership_pct": 7.59
+    },
+    {
+      "rank": 172,
+      "name": "실리콘투",
+      "value_100m": 971.0,
+      "weight_pct": 0.07,
+      "ownership_pct": 4.88
+    },
+    {
+      "rank": 173,
+      "name": "롯데칠성",
+      "value_100m": 956.0,
+      "weight_pct": 0.07,
+      "ownership_pct": 9.2
+    },
+    {
+      "rank": 174,
+      "name": "휴젤",
+      "value_100m": 924.0,
+      "weight_pct": 0.07,
+      "ownership_pct": 2.61
+    },
+    {
+      "rank": 175,
+      "name": "JYP Ent.",
+      "value_100m": 922.0,
+      "weight_pct": 0.07,
+      "ownership_pct": 3.71
+    },
+    {
+      "rank": 176,
+      "name": "오뚜기",
+      "value_100m": 912.0,
+      "weight_pct": 0.07,
+      "ownership_pct": 5.75
+    },
+    {
+      "rank": 177,
+      "name": "에이비엘바이오",
+      "value_100m": 896.0,
+      "weight_pct": 0.06,
+      "ownership_pct": 6.21
+    },
+    {
+      "rank": 178,
+      "name": "OCI홀딩스",
+      "value_100m": 881.0,
+      "weight_pct": 0.06,
+      "ownership_pct": 7.83
+    },
+    {
+      "rank": 179,
+      "name": "하이트진로",
+      "value_100m": 879.0,
+      "weight_pct": 0.06,
+      "ownership_pct": 6.42
+    },
+    {
+      "rank": 180,
+      "name": "롯데정밀화학",
+      "value_100m": 853.0,
+      "weight_pct": 0.06,
+      "ownership_pct": 8.41
+    },
+    {
+      "rank": 181,
+      "name": "펩트론",
+      "value_100m": 848.0,
+      "weight_pct": 0.06,
+      "ownership_pct": 3.58
+    },
+    {
+      "rank": 182,
+      "name": "더블유게임즈",
+      "value_100m": 838.0,
+      "weight_pct": 0.06,
+      "ownership_pct": 7.23
+    },
+    {
+      "rank": 183,
+      "name": "대상",
+      "value_100m": 828.0,
+      "weight_pct": 0.06,
+      "ownership_pct": 12.44
+    },
+    {
+      "rank": 184,
+      "name": "세아제강지주",
+      "value_100m": 805.0,
+      "weight_pct": 0.06,
+      "ownership_pct": 10.76
+    },
+    {
+      "rank": 185,
+      "name": "SK아이이테크놀로지",
+      "value_100m": 802.0,
+      "weight_pct": 0.06,
+      "ownership_pct": 5.0
+    },
+    {
+      "rank": 186,
+      "name": "테크윙",
+      "value_100m": 801.0,
+      "weight_pct": 0.06,
+      "ownership_pct": 5.57
+    },
+    {
+      "rank": 187,
+      "name": "코스모신소재",
+      "value_100m": 787.0,
+      "weight_pct": 0.06,
+      "ownership_pct": 4.7
+    },
+    {
+      "rank": 188,
+      "name": "현대위아",
+      "value_100m": 784.0,
+      "weight_pct": 0.06,
+      "ownership_pct": 7.63
+    },
+    {
+      "rank": 189,
+      "name": "롯데웰푸드",
+      "value_100m": 762.0,
+      "weight_pct": 0.06,
+      "ownership_pct": 7.24
+    },
+    {
+      "rank": 190,
+      "name": "코스메카코리아",
+      "value_100m": 747.0,
+      "weight_pct": 0.05,
+      "ownership_pct": 12.64
+    },
+    {
+      "rank": 191,
+      "name": "한국단자",
+      "value_100m": 741.0,
+      "weight_pct": 0.05,
+      "ownership_pct": 10.63
+    },
+    {
+      "rank": 192,
+      "name": "하나투어",
+      "value_100m": 729.0,
+      "weight_pct": 0.05,
+      "ownership_pct": 8.36
+    },
+    {
+      "rank": 193,
+      "name": "대우건설",
+      "value_100m": 727.0,
+      "weight_pct": 0.05,
+      "ownership_pct": 5.64
+    },
+    {
+      "rank": 194,
+      "name": "삼성화재우",
+      "value_100m": 725.0,
+      "weight_pct": 0.05,
+      "ownership_pct": 8.28
+    },
+    {
+      "rank": 195,
+      "name": "효성티앤씨",
+      "value_100m": 722.0,
+      "weight_pct": 0.05,
+      "ownership_pct": 6.98
+    },
+    {
+      "rank": 196,
+      "name": "호텔신라",
+      "value_100m": 708.0,
+      "weight_pct": 0.05,
+      "ownership_pct": 4.89
+    },
+    {
+      "rank": 197,
+      "name": "솔루엠",
+      "value_100m": 704.0,
+      "weight_pct": 0.05,
+      "ownership_pct": 7.32
+    },
+    {
+      "rank": 198,
+      "name": "세방전지",
+      "value_100m": 700.0,
+      "weight_pct": 0.05,
+      "ownership_pct": 6.96
+    },
+    {
+      "rank": 199,
+      "name": "DL",
+      "value_100m": 682.0,
+      "weight_pct": 0.05,
+      "ownership_pct": 10.31
+    },
+    {
+      "rank": 200,
+      "name": "에스엠",
+      "value_100m": 675.0,
+      "weight_pct": 0.05,
+      "ownership_pct": 3.82
+    },
+    {
+      "rank": 201,
+      "name": "한국앤컴퍼니",
+      "value_100m": 656.0,
+      "weight_pct": 0.05,
+      "ownership_pct": 4.09
+    },
+    {
+      "rank": 202,
+      "name": "에코프로",
+      "value_100m": 652.0,
+      "weight_pct": 0.05,
+      "ownership_pct": 0.85
+    },
+    {
+      "rank": 203,
+      "name": "이노션",
+      "value_100m": 646.0,
+      "weight_pct": 0.05,
+      "ownership_pct": 8.33
+    },
+    {
+      "rank": 204,
+      "name": "클래시스",
+      "value_100m": 645.0,
+      "weight_pct": 0.05,
+      "ownership_pct": 2.07
+    },
+    {
+      "rank": 205,
+      "name": "동아쏘시오홀딩스",
+      "value_100m": 628.0,
+      "weight_pct": 0.05,
+      "ownership_pct": 9.01
+    },
+    {
+      "rank": 206,
+      "name": "롯데렌탈",
+      "value_100m": 626.0,
+      "weight_pct": 0.05,
+      "ownership_pct": 5.75
+    },
+    {
+      "rank": 207,
+      "name": "동원시스템즈",
+      "value_100m": 626.0,
+      "weight_pct": 0.05,
+      "ownership_pct": 5.35
+    },
+    {
+      "rank": 208,
+      "name": "대웅",
+      "value_100m": 626.0,
+      "weight_pct": 0.05,
+      "ownership_pct": 4.98
+    },
+    {
+      "rank": 209,
+      "name": "HK이노엔",
+      "value_100m": 624.0,
+      "weight_pct": 0.05,
+      "ownership_pct": 6.14
+    },
+    {
+      "rank": 210,
+      "name": "롯데에너지머티리얼즈",
+      "value_100m": 619.0,
+      "weight_pct": 0.04,
+      "ownership_pct": 5.68
+    },
+    {
+      "rank": 211,
+      "name": "한샘",
+      "value_100m": 616.0,
+      "weight_pct": 0.04,
+      "ownership_pct": 5.5
+    },
+    {
+      "rank": 212,
+      "name": "SK가스",
+      "value_100m": 615.0,
+      "weight_pct": 0.04,
+      "ownership_pct": 3.22
+    },
+    {
+      "rank": 213,
+      "name": "LX세미콘",
+      "value_100m": 613.0,
+      "weight_pct": 0.04,
+      "ownership_pct": 6.62
+    },
+    {
+      "rank": 214,
+      "name": "한세실업",
+      "value_100m": 610.0,
+      "weight_pct": 0.04,
+      "ownership_pct": 10.75
+    },
+    {
+      "rank": 215,
+      "name": "DN오토모티브",
+      "value_100m": 609.0,
+      "weight_pct": 0.04,
+      "ownership_pct": 5.63
+    },
+    {
+      "rank": 216,
+      "name": "루닛",
+      "value_100m": 608.0,
+      "weight_pct": 0.04,
+      "ownership_pct": 3.3
+    },
+    {
+      "rank": 217,
+      "name": "에스티팜",
+      "value_100m": 605.0,
+      "weight_pct": 0.04,
+      "ownership_pct": 3.38
+    },
+    {
+      "rank": 218,
+      "name": "TKG휴켐스",
+      "value_100m": 596.0,
+      "weight_pct": 0.04,
+      "ownership_pct": 8.55
+    },
+    {
+      "rank": 219,
+      "name": "대덕전자",
+      "value_100m": 572.0,
+      "weight_pct": 0.04,
+      "ownership_pct": 7.47
+    },
+    {
+      "rank": 220,
+      "name": "녹십자홀딩스",
+      "value_100m": 560.0,
+      "weight_pct": 0.04,
+      "ownership_pct": 6.88
+    },
+    {
+      "rank": 221,
+      "name": "에스디바이오센서",
+      "value_100m": 558.0,
+      "weight_pct": 0.04,
+      "ownership_pct": 4.36
+    },
+    {
+      "rank": 222,
+      "name": "두산퓨얼셀",
+      "value_100m": 558.0,
+      "weight_pct": 0.04,
+      "ownership_pct": 5.33
+    },
+    {
+      "rank": 223,
+      "name": "영원무역홀딩스",
+      "value_100m": 546.0,
+      "weight_pct": 0.04,
+      "ownership_pct": 4.81
+    },
+    {
+      "rank": 224,
+      "name": "이오테크닉스",
+      "value_100m": 535.0,
+      "weight_pct": 0.04,
+      "ownership_pct": 3.12
+    },
+    {
+      "rank": 225,
+      "name": "SK오션플랜트",
+      "value_100m": 530.0,
+      "weight_pct": 0.04,
+      "ownership_pct": 6.95
+    },
+    {
+      "rank": 226,
+      "name": "오리온홀딩스",
+      "value_100m": 528.0,
+      "weight_pct": 0.04,
+      "ownership_pct": 5.59
+    },
+    {
+      "rank": 227,
+      "name": "STX엔진",
+      "value_100m": 517.0,
+      "weight_pct": 0.04,
+      "ownership_pct": 11.19
+    },
+    {
+      "rank": 228,
+      "name": "ESR켄달스퀘어리츠",
+      "value_100m": 517.0,
+      "weight_pct": 0.04,
+      "ownership_pct": 5.7
+    },
+    {
+      "rank": 229,
+      "name": "SK리츠",
+      "value_100m": 508.0,
+      "weight_pct": 0.04,
+      "ownership_pct": 4.2
+    },
+    {
+      "rank": 230,
+      "name": "HS효성첨단소재",
+      "value_100m": 499.0,
+      "weight_pct": 0.04,
+      "ownership_pct": 6.37
+    },
+    {
+      "rank": 231,
+      "name": "DI동일",
+      "value_100m": 498.0,
+      "weight_pct": 0.04,
+      "ownership_pct": 4.73
+    },
+    {
+      "rank": 232,
+      "name": "GKL",
+      "value_100m": 491.0,
+      "weight_pct": 0.04,
+      "ownership_pct": 7.18
+    },
+    {
+      "rank": 233,
+      "name": "SK네트웍스",
+      "value_100m": 491.0,
+      "weight_pct": 0.04,
+      "ownership_pct": 5.35
+    },
+    {
+      "rank": 234,
+      "name": "LS에코에너지",
+      "value_100m": 488.0,
+      "weight_pct": 0.04,
+      "ownership_pct": 5.14
+    },
+    {
+      "rank": 235,
+      "name": "덴티움",
+      "value_100m": 485.0,
+      "weight_pct": 0.04,
+      "ownership_pct": 7.03
+    },
+    {
+      "rank": 236,
+      "name": "세아베스틸지주",
+      "value_100m": 470.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 6.64
+    },
+    {
+      "rank": 237,
+      "name": "한화투자증권",
+      "value_100m": 461.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 6.39
+    },
+    {
+      "rank": 238,
+      "name": "다우기술",
+      "value_100m": 457.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 5.71
+    },
+    {
+      "rank": 239,
+      "name": "효성",
+      "value_100m": 455.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 5.8
+    },
+    {
+      "rank": 240,
+      "name": "에스에프에이",
+      "value_100m": 454.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 6.48
+    },
+    {
+      "rank": 241,
+      "name": "코오롱인더",
+      "value_100m": 440.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 5.89
+    },
+    {
+      "rank": 242,
+      "name": "비에이치",
+      "value_100m": 436.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 7.28
+    },
+    {
+      "rank": 243,
+      "name": "SK케미칼",
+      "value_100m": 436.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 5.7
+    },
+    {
+      "rank": 244,
+      "name": "SNT모티브",
+      "value_100m": 434.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 7.36
+    },
+    {
+      "rank": 245,
+      "name": "ISC",
+      "value_100m": 413.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 2.7
+    },
+    {
+      "rank": 246,
+      "name": "KCC글라스",
+      "value_100m": 412.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 6.87
+    },
+    {
+      "rank": 247,
+      "name": "대주전자재료",
+      "value_100m": 410.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 3.54
+    },
+    {
+      "rank": 248,
+      "name": "보령",
+      "value_100m": 409.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 4.58
+    },
+    {
+      "rank": 249,
+      "name": "파크시스템스",
+      "value_100m": 406.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 2.75
+    },
+    {
+      "rank": 250,
+      "name": "동서",
+      "value_100m": 406.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 1.49
+    },
+    {
+      "rank": 251,
+      "name": "삼천당제약",
+      "value_100m": 405.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 1.16
+    },
+    {
+      "rank": 252,
+      "name": "NHN",
+      "value_100m": 405.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 6.78
+    },
+    {
+      "rank": 253,
+      "name": "현대차우",
+      "value_100m": 403.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 1.11
+    },
+    {
+      "rank": 254,
+      "name": "대한유화",
+      "value_100m": 403.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 7.99
+    },
+    {
+      "rank": 255,
+      "name": "성광벤드",
+      "value_100m": 401.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 6.18
+    },
+    {
+      "rank": 256,
+      "name": "엠로",
+      "value_100m": 401.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 5.11
+    },
+    {
+      "rank": 257,
+      "name": "케이씨텍",
+      "value_100m": 398.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 7.33
+    },
+    {
+      "rank": 258,
+      "name": "넥센타이어",
+      "value_100m": 394.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 6.71
+    },
+    {
+      "rank": 259,
+      "name": "SOOP",
+      "value_100m": 392.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 3.75
+    },
+    {
+      "rank": 260,
+      "name": "동아에스티",
+      "value_100m": 391.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 7.25
+    },
+    {
+      "rank": 261,
+      "name": "와이지엔터테인먼트",
+      "value_100m": 386.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 4.51
+    },
+    {
+      "rank": 262,
+      "name": "GS피앤엘",
+      "value_100m": 379.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 8.61
+    },
+    {
+      "rank": 263,
+      "name": "HD현대마린엔진",
+      "value_100m": 379.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 4.57
+    },
+    {
+      "rank": 264,
+      "name": "PI첨단소재",
+      "value_100m": 375.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 7.56
+    },
+    {
+      "rank": 265,
+      "name": "HPSP",
+      "value_100m": 367.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 1.69
+    },
+    {
+      "rank": 266,
+      "name": "제주항공",
+      "value_100m": 366.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 6.06
+    },
+    {
+      "rank": 267,
+      "name": "솔브레인",
+      "value_100m": 365.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 2.84
+    },
+    {
+      "rank": 268,
+      "name": "브이티",
+      "value_100m": 361.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 2.52
+    },
+    {
+      "rank": 269,
+      "name": "티씨케이",
+      "value_100m": 360.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 4.35
+    },
+    {
+      "rank": 270,
+      "name": "아이에스동서",
+      "value_100m": 355.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 5.62
+    },
+    {
+      "rank": 271,
+      "name": "SBS",
+      "value_100m": 350.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 8.52
+    },
+    {
+      "rank": 272,
+      "name": "TCC스틸",
+      "value_100m": 347.0,
+      "weight_pct": 0.03,
+      "ownership_pct": 4.86
+    },
+    {
+      "rank": 273,
+      "name": "화승엔터프라이즈",
+      "value_100m": 344.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 6.56
+    },
+    {
+      "rank": 274,
+      "name": "피에스케이",
+      "value_100m": 342.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 7.15
+    },
+    {
+      "rank": 275,
+      "name": "덕산네오룩스",
+      "value_100m": 339.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 4.92
+    },
+    {
+      "rank": 276,
+      "name": "OCI",
+      "value_100m": 326.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 6.23
+    },
+    {
+      "rank": 277,
+      "name": "대신증권",
+      "value_100m": 325.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 3.99
+    },
+    {
+      "rank": 278,
+      "name": "원익QnC",
+      "value_100m": 319.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 6.81
+    },
+    {
+      "rank": 279,
+      "name": "대한해운",
+      "value_100m": 315.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 5.86
+    },
+    {
+      "rank": 280,
+      "name": "한일시멘트",
+      "value_100m": 315.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 3.13
+    },
+    {
+      "rank": 281,
+      "name": "원익IPS",
+      "value_100m": 313.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 2.86
+    },
+    {
+      "rank": 282,
+      "name": "롯데관광개발",
+      "value_100m": 311.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 5.32
+    },
+    {
+      "rank": 283,
+      "name": "JW중외제약",
+      "value_100m": 307.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 5.5
+    },
+    {
+      "rank": 284,
+      "name": "LG전자우",
+      "value_100m": 304.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 4.29
+    },
+    {
+      "rank": 285,
+      "name": "보로노이",
+      "value_100m": 304.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 2.07
+    },
+    {
+      "rank": 286,
+      "name": "유니드",
+      "value_100m": 303.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 6.2
+    },
+    {
+      "rank": 287,
+      "name": "KG모빌리티",
+      "value_100m": 301.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 4.07
+    },
+    {
+      "rank": 288,
+      "name": "두산테스나",
+      "value_100m": 297.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 6.14
+    },
+    {
+      "rank": 289,
+      "name": "동양생명",
+      "value_100m": 297.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 4.1
+    },
+    {
+      "rank": 290,
+      "name": "삼양홀딩스",
+      "value_100m": 287.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 5.12
+    },
+    {
+      "rank": 291,
+      "name": "솔루스첨단소재",
+      "value_100m": 281.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 4.88
+    },
+    {
+      "rank": 292,
+      "name": "HDC",
+      "value_100m": 280.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 3.93
+    },
+    {
+      "rank": 293,
+      "name": "해성디에스",
+      "value_100m": 277.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 6.96
+    },
+    {
+      "rank": 294,
+      "name": "아시아나항공",
+      "value_100m": 276.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 1.29
+    },
+    {
+      "rank": 295,
+      "name": "코스모화학",
+      "value_100m": 275.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 4.68
+    },
+    {
+      "rank": 296,
+      "name": "동국제약",
+      "value_100m": 273.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 3.72
+    },
+    {
+      "rank": 297,
+      "name": "동진쎄미켐",
+      "value_100m": 271.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 2.52
+    },
+    {
+      "rank": 298,
+      "name": "메디톡스",
+      "value_100m": 268.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 2.94
+    },
+    {
+      "rank": 299,
+      "name": "동원F&B",
+      "value_100m": 263.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 4.39
+    },
+    {
+      "rank": 300,
+      "name": "CJ CGV",
+      "value_100m": 262.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 2.99
+    },
+    {
+      "rank": 301,
+      "name": "태영건설",
+      "value_100m": 260.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 3.75
+    },
+    {
+      "rank": 302,
+      "name": "미래에셋생명",
+      "value_100m": 255.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 2.74
+    },
+    {
+      "rank": 303,
+      "name": "에스앤에스텍",
+      "value_100m": 255.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 4.65
+    },
+    {
+      "rank": 304,
+      "name": "명신산업",
+      "value_100m": 255.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 4.71
+    },
+    {
+      "rank": 305,
+      "name": "SNT에너지",
+      "value_100m": 253.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 5.13
+    },
+    {
+      "rank": 306,
+      "name": "진에어",
+      "value_100m": 252.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 5.01
+    },
+    {
+      "rank": 307,
+      "name": "피에스케이홀딩스",
+      "value_100m": 250.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 3.04
+    },
+    {
+      "rank": 308,
+      "name": "레인보우로보틱스",
+      "value_100m": 246.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 0.78
+    },
+    {
+      "rank": 309,
+      "name": "CJ ENM",
+      "value_100m": 246.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 2.09
+    },
+    {
+      "rank": 310,
+      "name": "율촌화학",
+      "value_100m": 244.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 4.75
+    },
+    {
+      "rank": 311,
+      "name": "동원산업",
+      "value_100m": 243.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 1.83
+    },
+    {
+      "rank": 312,
+      "name": "동국제강",
+      "value_100m": 242.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 6.09
+    },
+    {
+      "rank": 313,
+      "name": "유진테크",
+      "value_100m": 239.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 3.33
+    },
+    {
+      "rank": 314,
+      "name": "KG스틸",
+      "value_100m": 238.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 4.31
+    },
+    {
+      "rank": 315,
+      "name": "후성",
+      "value_100m": 234.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 4.4
+    },
+    {
+      "rank": 316,
+      "name": "씨앤씨인터내셔널",
+      "value_100m": 232.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 5.08
+    },
+    {
+      "rank": 317,
+      "name": "한국카본",
+      "value_100m": 232.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 3.8
+    },
+    {
+      "rank": 318,
+      "name": "인터로조",
+      "value_100m": 231.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 7.01
+    },
+    {
+      "rank": 319,
+      "name": "젬백스",
+      "value_100m": 229.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 3.87
+    },
+    {
+      "rank": 320,
+      "name": "빙그레",
+      "value_100m": 226.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 2.82
+    },
+    {
+      "rank": 321,
+      "name": "일진하이솔루스",
+      "value_100m": 223.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 3.78
+    },
+    {
+      "rank": 322,
+      "name": "삼아알미늄",
+      "value_100m": 222.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 4.46
+    },
+    {
+      "rank": 323,
+      "name": "NICE평가정보",
+      "value_100m": 222.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 3.06
+    },
+    {
+      "rank": 324,
+      "name": "현대지에프홀딩스",
+      "value_100m": 221.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 2.91
+    },
+    {
+      "rank": 325,
+      "name": "금호타이어",
+      "value_100m": 220.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 1.61
+    },
+    {
+      "rank": 326,
+      "name": "비에이치아이",
+      "value_100m": 220.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 4.61
+    },
+    {
+      "rank": 327,
+      "name": "하이록코리아",
+      "value_100m": 220.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 7.1
+    },
+    {
+      "rank": 328,
+      "name": "한섬",
+      "value_100m": 220.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 6.38
+    },
+    {
+      "rank": 329,
+      "name": "현대홈쇼핑",
+      "value_100m": 217.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 3.98
+    },
+    {
+      "rank": 330,
+      "name": "드림텍",
+      "value_100m": 216.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 4.32
+    },
+    {
+      "rank": 331,
+      "name": "제이알글로벌리츠",
+      "value_100m": 215.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 3.95
+    },
+    {
+      "rank": 332,
+      "name": "한글과컴퓨터",
+      "value_100m": 207.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 4.06
+    },
+    {
+      "rank": 333,
+      "name": "LG화학우",
+      "value_100m": 207.0,
+      "weight_pct": 0.02,
+      "ownership_pct": 1.7
+    },
+    {
+      "rank": 334,
+      "name": "하나머티리얼즈",
+      "value_100m": 207.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 4.55
+    },
+    {
+      "rank": 335,
+      "name": "동성화인텍",
+      "value_100m": 206.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 4.6
+    },
+    {
+      "rank": 336,
+      "name": "서진시스템",
+      "value_100m": 204.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.35
+    },
+    {
+      "rank": 337,
+      "name": "넥슨게임즈",
+      "value_100m": 199.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.26
+    },
+    {
+      "rank": 338,
+      "name": "주성엔지니어링",
+      "value_100m": 198.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.42
+    },
+    {
+      "rank": 339,
+      "name": "올릭스",
+      "value_100m": 197.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 5.53
+    },
+    {
+      "rank": 340,
+      "name": "나노신소재",
+      "value_100m": 196.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.77
+    },
+    {
+      "rank": 341,
+      "name": "펄어비스",
+      "value_100m": 195.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.09
+    },
+    {
+      "rank": 342,
+      "name": "삼화전기",
+      "value_100m": 193.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 9.37
+    },
+    {
+      "rank": 343,
+      "name": "태광",
+      "value_100m": 191.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 4.09
+    },
+    {
+      "rank": 344,
+      "name": "SK디스커버리",
+      "value_100m": 187.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.56
+    },
+    {
+      "rank": 345,
+      "name": "쿠쿠홈시스",
+      "value_100m": 186.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 4.02
+    },
+    {
+      "rank": 346,
+      "name": "HL홀딩스",
+      "value_100m": 184.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 5.46
+    },
+    {
+      "rank": 347,
+      "name": "현대그린푸드",
+      "value_100m": 183.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 3.74
+    },
+    {
+      "rank": 348,
+      "name": "아모레퍼시픽우",
+      "value_100m": 182.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 5.36
+    },
+    {
+      "rank": 349,
+      "name": "이수스페셜티케미컬",
+      "value_100m": 182.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.91
+    },
+    {
+      "rank": 350,
+      "name": "현대코퍼레이션",
+      "value_100m": 181.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 7.18
+    },
+    {
+      "rank": 351,
+      "name": "삼화콘덴서",
+      "value_100m": 179.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 6.26
+    },
+    {
+      "rank": 352,
+      "name": "에스티아이",
+      "value_100m": 178.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 6.45
+    },
+    {
+      "rank": 353,
+      "name": "국도화학",
+      "value_100m": 178.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 6.26
+    },
+    {
+      "rank": 354,
+      "name": "엔켐",
+      "value_100m": 174.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 0.62
+    },
+    {
+      "rank": 355,
+      "name": "원익머트리얼즈",
+      "value_100m": 171.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 7.87
+    },
+    {
+      "rank": 356,
+      "name": "세진중공업",
+      "value_100m": 166.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 3.46
+    },
+    {
+      "rank": 357,
+      "name": "바디텍메드",
+      "value_100m": 166.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 4.2
+    },
+    {
+      "rank": 358,
+      "name": "컴투스",
+      "value_100m": 166.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.8
+    },
+    {
+      "rank": 359,
+      "name": "가온전선",
+      "value_100m": 165.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 3.09
+    },
+    {
+      "rank": 360,
+      "name": "위메이드",
+      "value_100m": 164.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.38
+    },
+    {
+      "rank": 361,
+      "name": "이녹스첨단소재",
+      "value_100m": 163.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 4.0
+    },
+    {
+      "rank": 362,
+      "name": "스튜디오드래곤",
+      "value_100m": 160.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.24
+    },
+    {
+      "rank": 363,
+      "name": "인텔리안테크",
+      "value_100m": 157.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 3.9
+    },
+    {
+      "rank": 364,
+      "name": "SNT다이내믹스",
+      "value_100m": 153.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.46
+    },
+    {
+      "rank": 365,
+      "name": "아세아시멘트",
+      "value_100m": 152.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 3.9
+    },
+    {
+      "rank": 366,
+      "name": "신성델타테크",
+      "value_100m": 149.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 0.47
+    },
+    {
+      "rank": 367,
+      "name": "펌텍코리아",
+      "value_100m": 149.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.76
+    },
+    {
+      "rank": 368,
+      "name": "디아이",
+      "value_100m": 147.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 3.6
+    },
+    {
+      "rank": 369,
+      "name": "LX하우시스",
+      "value_100m": 147.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 5.15
+    },
+    {
+      "rank": 370,
+      "name": "풀무원",
+      "value_100m": 144.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 3.53
+    },
+    {
+      "rank": 371,
+      "name": "롯데손해보험",
+      "value_100m": 142.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.27
+    },
+    {
+      "rank": 372,
+      "name": "LG생활건강우",
+      "value_100m": 140.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 4.84
+    },
+    {
+      "rank": 373,
+      "name": "뷰노",
+      "value_100m": 138.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 4.12
+    },
+    {
+      "rank": 374,
+      "name": "미래에셋증권2우B",
+      "value_100m": 137.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.52
+    },
+    {
+      "rank": 375,
+      "name": "삼양사",
+      "value_100m": 136.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.77
+    },
+    {
+      "rank": 376,
+      "name": "디어유",
+      "value_100m": 135.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.58
+    },
+    {
+      "rank": 377,
+      "name": "하나마이크론",
+      "value_100m": 129.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.11
+    },
+    {
+      "rank": 378,
+      "name": "파라다이스",
+      "value_100m": 129.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.46
+    },
+    {
+      "rank": 379,
+      "name": "세경하이테크",
+      "value_100m": 129.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 4.35
+    },
+    {
+      "rank": 380,
+      "name": "신영증권",
+      "value_100m": 127.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.02
+    },
+    {
+      "rank": 381,
+      "name": "종근당홀딩스",
+      "value_100m": 127.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 5.3
+    },
+    {
+      "rank": 382,
+      "name": "세아제강",
+      "value_100m": 126.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 3.69
+    },
+    {
+      "rank": 383,
+      "name": "화승인더",
+      "value_100m": 126.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 5.12
+    },
+    {
+      "rank": 384,
+      "name": "지아이이노베이션",
+      "value_100m": 125.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 3.19
+    },
+    {
+      "rank": 385,
+      "name": "한화손해보험",
+      "value_100m": 124.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.64
+    },
+    {
+      "rank": 386,
+      "name": "코미코",
+      "value_100m": 123.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 3.22
+    },
+    {
+      "rank": 387,
+      "name": "환인제약",
+      "value_100m": 123.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 5.61
+    },
+    {
+      "rank": 388,
+      "name": "지역난방공사",
+      "value_100m": 123.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.56
+    },
+    {
+      "rank": 389,
+      "name": "셀트리온제약",
+      "value_100m": 123.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 0.52
+    },
+    {
+      "rank": 390,
+      "name": "비올",
+      "value_100m": 121.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.58
+    },
+    {
+      "rank": 391,
+      "name": "LF",
+      "value_100m": 121.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.67
+    },
+    {
+      "rank": 392,
+      "name": "바이넥스",
+      "value_100m": 121.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.01
+    },
+    {
+      "rank": 393,
+      "name": "메가스터디교육",
+      "value_100m": 120.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.38
+    },
+    {
+      "rank": 394,
+      "name": "케이카",
+      "value_100m": 116.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.87
+    },
+    {
+      "rank": 395,
+      "name": "DS단석",
+      "value_100m": 114.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.12
+    },
+    {
+      "rank": 396,
+      "name": "감성코퍼레이션",
+      "value_100m": 112.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 3.97
+    },
+    {
+      "rank": 397,
+      "name": "KB발해인프라",
+      "value_100m": 111.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.17
+    },
+    {
+      "rank": 398,
+      "name": "E1",
+      "value_100m": 110.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.34
+    },
+    {
+      "rank": 399,
+      "name": "CJ제일제당 우",
+      "value_100m": 110.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 6.55
+    },
+    {
+      "rank": 400,
+      "name": "비나텍",
+      "value_100m": 110.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 6.33
+    },
+    {
+      "rank": 401,
+      "name": "롯데리츠",
+      "value_100m": 109.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.24
+    },
+    {
+      "rank": 402,
+      "name": "가온칩스",
+      "value_100m": 109.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.41
+    },
+    {
+      "rank": 403,
+      "name": "신한알파리츠",
+      "value_100m": 108.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.58
+    },
+    {
+      "rank": 404,
+      "name": "한솔제지",
+      "value_100m": 107.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 5.21
+    },
+    {
+      "rank": 405,
+      "name": "골프존",
+      "value_100m": 106.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.58
+    },
+    {
+      "rank": 406,
+      "name": "아이패밀리에스씨",
+      "value_100m": 105.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 3.26
+    },
+    {
+      "rank": 407,
+      "name": "SGC에너지",
+      "value_100m": 104.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.94
+    },
+    {
+      "rank": 408,
+      "name": "쿠쿠홀딩스",
+      "value_100m": 104.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.27
+    },
+    {
+      "rank": 409,
+      "name": "HLB생명과학",
+      "value_100m": 103.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 0.84
+    },
+    {
+      "rank": 410,
+      "name": "금호석유우",
+      "value_100m": 102.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 7.02
+    },
+    {
+      "rank": 411,
+      "name": "대한제강",
+      "value_100m": 101.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.6
+    },
+    {
+      "rank": 412,
+      "name": "티앤엘",
+      "value_100m": 101.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.85
+    },
+    {
+      "rank": 413,
+      "name": "AP시스템",
+      "value_100m": 100.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 4.13
+    },
+    {
+      "rank": 414,
+      "name": "유나이티드제약",
+      "value_100m": 99.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 3.33
+    },
+    {
+      "rank": 415,
+      "name": "미코",
+      "value_100m": 99.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 3.69
+    },
+    {
+      "rank": 416,
+      "name": "케이씨",
+      "value_100m": 96.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 4.27
+    },
+    {
+      "rank": 417,
+      "name": "신세계인터내셔날",
+      "value_100m": 94.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.61
+    },
+    {
+      "rank": 418,
+      "name": "삼천리",
+      "value_100m": 94.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.62
+    },
+    {
+      "rank": 419,
+      "name": "LX홀딩스",
+      "value_100m": 93.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.78
+    },
+    {
+      "rank": 420,
+      "name": "아세아제지",
+      "value_100m": 92.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.95
+    },
+    {
+      "rank": 421,
+      "name": "영풍",
+      "value_100m": 92.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.3
+    },
+    {
+      "rank": 422,
+      "name": "와이솔",
+      "value_100m": 91.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 6.45
+    },
+    {
+      "rank": 423,
+      "name": "테스",
+      "value_100m": 90.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.95
+    },
+    {
+      "rank": 424,
+      "name": "네오위즈",
+      "value_100m": 90.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.17
+    },
+    {
+      "rank": 425,
+      "name": "아세아",
+      "value_100m": 89.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.68
+    },
+    {
+      "rank": 426,
+      "name": "앱클론",
+      "value_100m": 88.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 3.57
+    },
+    {
+      "rank": 427,
+      "name": "더블유씨피",
+      "value_100m": 84.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.25
+    },
+    {
+      "rank": 428,
+      "name": "백산",
+      "value_100m": 83.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.92
+    },
+    {
+      "rank": 429,
+      "name": "애경케미칼",
+      "value_100m": 82.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.47
+    },
+    {
+      "rank": 430,
+      "name": "오스코텍",
+      "value_100m": 82.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 0.88
+    },
+    {
+      "rank": 431,
+      "name": "티에스이",
+      "value_100m": 81.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.77
+    },
+    {
+      "rank": 432,
+      "name": "신도리코",
+      "value_100m": 80.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.13
+    },
+    {
+      "rank": 433,
+      "name": "풍산홀딩스",
+      "value_100m": 80.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.15
+    },
+    {
+      "rank": 434,
+      "name": "마크로젠",
+      "value_100m": 79.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 4.4
+    },
+    {
+      "rank": 435,
+      "name": "카페24",
+      "value_100m": 78.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 0.95
+    },
+    {
+      "rank": 436,
+      "name": "태광산업",
+      "value_100m": 77.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.14
+    },
+    {
+      "rank": 437,
+      "name": "SPC삼립",
+      "value_100m": 77.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.78
+    },
+    {
+      "rank": 438,
+      "name": "송원산업",
+      "value_100m": 76.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.83
+    },
+    {
+      "rank": 439,
+      "name": "비츠로셀",
+      "value_100m": 76.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.57
+    },
+    {
+      "rank": 440,
+      "name": "쎄트렉아이",
+      "value_100m": 75.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.71
+    },
+    {
+      "rank": 441,
+      "name": "피엔티",
+      "value_100m": 75.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 0.83
+    },
+    {
+      "rank": 442,
+      "name": "아이쓰리시스템",
+      "value_100m": 74.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.33
+    },
+    {
+      "rank": 443,
+      "name": "GST",
+      "value_100m": 73.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.34
+    },
+    {
+      "rank": 444,
+      "name": "디와이파워",
+      "value_100m": 73.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 5.94
+    },
+    {
+      "rank": 445,
+      "name": "코람코라이프인프라리츠",
+      "value_100m": 73.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.82
+    },
+    {
+      "rank": 446,
+      "name": "쏘카",
+      "value_100m": 72.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.21
+    },
+    {
+      "rank": 447,
+      "name": "서연이화",
+      "value_100m": 70.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 2.22
+    },
+    {
+      "rank": 448,
+      "name": "아이센스",
+      "value_100m": 70.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.66
+    },
+    {
+      "rank": 449,
+      "name": "제이엘케이",
+      "value_100m": 70.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 3.36
+    },
+    {
+      "rank": 450,
+      "name": "고영",
+      "value_100m": 70.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.25
+    },
+    {
+      "rank": 451,
+      "name": "넥스틴",
+      "value_100m": 70.0,
+      "weight_pct": 0.01,
+      "ownership_pct": 1.31
+    },
+    {
+      "rank": 452,
+      "name": "파미셀",
+      "value_100m": 69.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.39
+    },
+    {
+      "rank": 453,
+      "name": "지누스",
+      "value_100m": 69.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.31
+    },
+    {
+      "rank": 454,
+      "name": "씨젠",
+      "value_100m": 68.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.58
+    },
+    {
+      "rank": 455,
+      "name": "제이에스코퍼레이션",
+      "value_100m": 67.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 3.47
+    },
+    {
+      "rank": 456,
+      "name": "데브시스터즈",
+      "value_100m": 66.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.99
+    },
+    {
+      "rank": 457,
+      "name": "휴메딕스",
+      "value_100m": 66.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.4
+    },
+    {
+      "rank": 458,
+      "name": "안랩",
+      "value_100m": 66.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.9
+    },
+    {
+      "rank": 459,
+      "name": "레이크머티리얼즈",
+      "value_100m": 65.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.91
+    },
+    {
+      "rank": 460,
+      "name": "티웨이항공",
+      "value_100m": 65.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.26
+    },
+    {
+      "rank": 461,
+      "name": "피엔에이치테크",
+      "value_100m": 65.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 8.36
+    },
+    {
+      "rank": 462,
+      "name": "대동",
+      "value_100m": 65.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.73
+    },
+    {
+      "rank": 463,
+      "name": "성우하이텍",
+      "value_100m": 64.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.6
+    },
+    {
+      "rank": 464,
+      "name": "우신시스템",
+      "value_100m": 64.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 6.08
+    },
+    {
+      "rank": 465,
+      "name": "수산인더스트리",
+      "value_100m": 63.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.28
+    },
+    {
+      "rank": 466,
+      "name": "한중엔시에스",
+      "value_100m": 63.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.96
+    },
+    {
+      "rank": 467,
+      "name": "한진",
+      "value_100m": 63.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.21
+    },
+    {
+      "rank": 468,
+      "name": "세방",
+      "value_100m": 63.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.9
+    },
+    {
+      "rank": 469,
+      "name": "한국쉘석유",
+      "value_100m": 62.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.51
+    },
+    {
+      "rank": 470,
+      "name": "한국철강",
+      "value_100m": 62.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.74
+    },
+    {
+      "rank": 471,
+      "name": "케이아이엔엑스",
+      "value_100m": 62.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.66
+    },
+    {
+      "rank": 472,
+      "name": "에이치브이엠",
+      "value_100m": 62.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.12
+    },
+    {
+      "rank": 473,
+      "name": "RFHIC",
+      "value_100m": 62.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.78
+    },
+    {
+      "rank": 474,
+      "name": "한미글로벌",
+      "value_100m": 61.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 3.37
+    },
+    {
+      "rank": 475,
+      "name": "자화전자",
+      "value_100m": 61.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.33
+    },
+    {
+      "rank": 476,
+      "name": "카카오게임즈",
+      "value_100m": 61.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.45
+    },
+    {
+      "rank": 477,
+      "name": "파인엠텍",
+      "value_100m": 61.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 3.11
+    },
+    {
+      "rank": 478,
+      "name": "농심홀딩스",
+      "value_100m": 60.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.05
+    },
+    {
+      "rank": 479,
+      "name": "진성티이씨",
+      "value_100m": 60.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 3.05
+    },
+    {
+      "rank": 480,
+      "name": "신세계푸드",
+      "value_100m": 60.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 4.28
+    },
+    {
+      "rank": 481,
+      "name": "삼진제약",
+      "value_100m": 59.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.36
+    },
+    {
+      "rank": 482,
+      "name": "화신",
+      "value_100m": 59.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.48
+    },
+    {
+      "rank": 483,
+      "name": "디아이티",
+      "value_100m": 59.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.49
+    },
+    {
+      "rank": 484,
+      "name": "엠앤씨솔루션",
+      "value_100m": 59.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.5
+    },
+    {
+      "rank": 485,
+      "name": "큐리언트",
+      "value_100m": 58.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 4.18
+    },
+    {
+      "rank": 486,
+      "name": "아이마켓코리아",
+      "value_100m": 58.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.16
+    },
+    {
+      "rank": 487,
+      "name": "SNT홀딩스",
+      "value_100m": 58.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.57
+    },
+    {
+      "rank": 488,
+      "name": "파트론",
+      "value_100m": 56.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.38
+    },
+    {
+      "rank": 489,
+      "name": "우진",
+      "value_100m": 56.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 4.32
+    },
+    {
+      "rank": 490,
+      "name": "인탑스",
+      "value_100m": 55.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.94
+    },
+    {
+      "rank": 491,
+      "name": "미원상사",
+      "value_100m": 55.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.62
+    },
+    {
+      "rank": 492,
+      "name": "유비쿼스",
+      "value_100m": 55.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 4.61
+    },
+    {
+      "rank": 493,
+      "name": "피에이치에이",
+      "value_100m": 54.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.56
+    },
+    {
+      "rank": 494,
+      "name": "스카이라이프",
+      "value_100m": 54.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.4
+    },
+    {
+      "rank": 495,
+      "name": "CJ4우(전환)",
+      "value_100m": 54.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.62
+    },
+    {
+      "rank": 496,
+      "name": "유니셈",
+      "value_100m": 53.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.93
+    },
+    {
+      "rank": 497,
+      "name": "한국정보통신",
+      "value_100m": 53.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.79
+    },
+    {
+      "rank": 498,
+      "name": "현대퓨처넷",
+      "value_100m": 52.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.25
+    },
+    {
+      "rank": 499,
+      "name": "현대차3우B",
+      "value_100m": 52.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.44
+    },
+    {
+      "rank": 500,
+      "name": "에스에이엠티",
+      "value_100m": 52.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.0
+    },
+    {
+      "rank": 501,
+      "name": "SK이터닉스",
+      "value_100m": 51.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.26
+    },
+    {
+      "rank": 502,
+      "name": "삼영무역",
+      "value_100m": 51.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.15
+    },
+    {
+      "rank": 503,
+      "name": "휴온스글로벌",
+      "value_100m": 50.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.92
+    },
+    {
+      "rank": 504,
+      "name": "매일유업",
+      "value_100m": 50.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.84
+    },
+    {
+      "rank": 505,
+      "name": "기가비스",
+      "value_100m": 50.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.61
+    },
+    {
+      "rank": 506,
+      "name": "KPX케미칼",
+      "value_100m": 50.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.36
+    },
+    {
+      "rank": 507,
+      "name": "애경산업",
+      "value_100m": 50.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.42
+    },
+    {
+      "rank": 508,
+      "name": "종근당(무상)",
+      "value_100m": 50.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.0
+    },
+    {
+      "rank": 509,
+      "name": "삼성전기우",
+      "value_100m": 49.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 3.01
+    },
+    {
+      "rank": 510,
+      "name": "노루페인트",
+      "value_100m": 49.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 3.11
+    },
+    {
+      "rank": 511,
+      "name": "효성화학",
+      "value_100m": 49.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 3.27
+    },
+    {
+      "rank": 512,
+      "name": "금양",
+      "value_100m": 49.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.36
+    },
+    {
+      "rank": 513,
+      "name": "이엔에프테크놀로지",
+      "value_100m": 49.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.03
+    },
+    {
+      "rank": 514,
+      "name": "퓨쳐켐",
+      "value_100m": 49.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.27
+    },
+    {
+      "rank": 515,
+      "name": "동성케미컬",
+      "value_100m": 48.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.56
+    },
+    {
+      "rank": 516,
+      "name": "전진건설로봇",
+      "value_100m": 48.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.92
+    },
+    {
+      "rank": 517,
+      "name": "에스피지",
+      "value_100m": 47.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.91
+    },
+    {
+      "rank": 518,
+      "name": "토니모리",
+      "value_100m": 47.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 3.18
+    },
+    {
+      "rank": 519,
+      "name": "한일홀딩스",
+      "value_100m": 47.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.08
+    },
+    {
+      "rank": 520,
+      "name": "미원에스씨",
+      "value_100m": 45.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.61
+    },
+    {
+      "rank": 521,
+      "name": "HDC랩스",
+      "value_100m": 45.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.02
+    },
+    {
+      "rank": 522,
+      "name": "서흥",
+      "value_100m": 44.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 3.0
+    },
+    {
+      "rank": 523,
+      "name": "윈스",
+      "value_100m": 44.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.93
+    },
+    {
+      "rank": 524,
+      "name": "한독",
+      "value_100m": 44.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.63
+    },
+    {
+      "rank": 525,
+      "name": "NICE",
+      "value_100m": 43.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.07
+    },
+    {
+      "rank": 526,
+      "name": "에코프로에이치엔",
+      "value_100m": 43.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.63
+    },
+    {
+      "rank": 527,
+      "name": "와이지-원",
+      "value_100m": 43.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.5
+    },
+    {
+      "rank": 528,
+      "name": "삼익THK",
+      "value_100m": 43.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.41
+    },
+    {
+      "rank": 529,
+      "name": "진시스템",
+      "value_100m": 43.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 7.18
+    },
+    {
+      "rank": 530,
+      "name": "콜마홀딩스",
+      "value_100m": 42.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.84
+    },
+    {
+      "rank": 531,
+      "name": "뷰웍스",
+      "value_100m": 42.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.0
+    },
+    {
+      "rank": 532,
+      "name": "서부T&D",
+      "value_100m": 42.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.19
+    },
+    {
+      "rank": 533,
+      "name": "인터플렉스",
+      "value_100m": 42.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.98
+    },
+    {
+      "rank": 534,
+      "name": "마이크로디지탈",
+      "value_100m": 42.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.57
+    },
+    {
+      "rank": 535,
+      "name": "남양유업",
+      "value_100m": 42.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.06
+    },
+    {
+      "rank": 536,
+      "name": "우주일렉트로",
+      "value_100m": 42.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.6
+    },
+    {
+      "rank": 537,
+      "name": "신세계 I&C",
+      "value_100m": 42.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.89
+    },
+    {
+      "rank": 538,
+      "name": "프로텍",
+      "value_100m": 42.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.74
+    },
+    {
+      "rank": 539,
+      "name": "유바이오로직스",
+      "value_100m": 41.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.93
+    },
+    {
+      "rank": 540,
+      "name": "오로스테크놀로지",
+      "value_100m": 41.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.71
+    },
+    {
+      "rank": 541,
+      "name": "대원제약",
+      "value_100m": 41.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.27
+    },
+    {
+      "rank": 542,
+      "name": "LS머트리얼즈",
+      "value_100m": 40.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.51
+    },
+    {
+      "rank": 543,
+      "name": "HLB테라퓨틱스",
+      "value_100m": 40.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.43
+    },
+    {
+      "rank": 544,
+      "name": "HD현대에너지솔루션",
+      "value_100m": 40.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.77
+    },
+    {
+      "rank": 545,
+      "name": "유니퀘스트",
+      "value_100m": 40.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.78
+    },
+    {
+      "rank": 546,
+      "name": "KSS해운",
+      "value_100m": 40.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.96
+    },
+    {
+      "rank": 547,
+      "name": "대상홀딩스",
+      "value_100m": 40.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.07
+    },
+    {
+      "rank": 548,
+      "name": "티이엠씨",
+      "value_100m": 39.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.36
+    },
+    {
+      "rank": 549,
+      "name": "제룡전기",
+      "value_100m": 39.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.52
+    },
+    {
+      "rank": 550,
+      "name": "롯데이노베이트",
+      "value_100m": 39.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.32
+    },
+    {
+      "rank": 551,
+      "name": "동양이엔피",
+      "value_100m": 38.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.72
+    },
+    {
+      "rank": 552,
+      "name": "동국씨엠",
+      "value_100m": 38.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.13
+    },
+    {
+      "rank": 553,
+      "name": "F&F홀딩스",
+      "value_100m": 38.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.8
+    },
+    {
+      "rank": 554,
+      "name": "콘텐트리중앙",
+      "value_100m": 38.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.23
+    },
+    {
+      "rank": 555,
+      "name": "에이프로젠",
+      "value_100m": 38.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.6
+    },
+    {
+      "rank": 556,
+      "name": "씨메스",
+      "value_100m": 38.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.35
+    },
+    {
+      "rank": 557,
+      "name": "한화리츠",
+      "value_100m": 38.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.6
+    },
+    {
+      "rank": 558,
+      "name": "크리스에프앤씨",
+      "value_100m": 37.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.64
+    },
+    {
+      "rank": 559,
+      "name": "태경케미컬",
+      "value_100m": 37.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.85
+    },
+    {
+      "rank": 560,
+      "name": "리파인",
+      "value_100m": 37.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.66
+    },
+    {
+      "rank": 561,
+      "name": "솔트룩스",
+      "value_100m": 37.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.35
+    },
+    {
+      "rank": 562,
+      "name": "아나패스",
+      "value_100m": 36.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.46
+    },
+    {
+      "rank": 563,
+      "name": "한국공항",
+      "value_100m": 36.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.01
+    },
+    {
+      "rank": 564,
+      "name": "딥노이드",
+      "value_100m": 36.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.94
+    },
+    {
+      "rank": 565,
+      "name": "코나아이",
+      "value_100m": 36.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.87
+    },
+    {
+      "rank": 566,
+      "name": "대원강업",
+      "value_100m": 35.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.47
+    },
+    {
+      "rank": 567,
+      "name": "엘앤씨바이오",
+      "value_100m": 35.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.65
+    },
+    {
+      "rank": 568,
+      "name": "코리아써키트",
+      "value_100m": 35.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.64
+    },
+    {
+      "rank": 569,
+      "name": "지씨셀",
+      "value_100m": 35.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.94
+    },
+    {
+      "rank": 570,
+      "name": "상아프론테크",
+      "value_100m": 35.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.21
+    },
+    {
+      "rank": 571,
+      "name": "사조대림",
+      "value_100m": 35.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.94
+    },
+    {
+      "rank": 572,
+      "name": "대덕",
+      "value_100m": 35.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.55
+    },
+    {
+      "rank": 573,
+      "name": "메지온",
+      "value_100m": 35.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.37
+    },
+    {
+      "rank": 574,
+      "name": "아모레G우",
+      "value_100m": 34.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 6.05
+    },
+    {
+      "rank": 575,
+      "name": "휴온스",
+      "value_100m": 34.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.05
+    },
+    {
+      "rank": 576,
+      "name": "제이앤티씨",
+      "value_100m": 34.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.31
+    },
+    {
+      "rank": 577,
+      "name": "덕산하이메탈",
+      "value_100m": 34.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.92
+    },
+    {
+      "rank": 578,
+      "name": "대양전기공업",
+      "value_100m": 33.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.72
+    },
+    {
+      "rank": 579,
+      "name": "바이오노트",
+      "value_100m": 33.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.69
+    },
+    {
+      "rank": 580,
+      "name": "디앤디파마텍",
+      "value_100m": 33.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.64
+    },
+    {
+      "rank": 581,
+      "name": "HJ중공업",
+      "value_100m": 33.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.66
+    },
+    {
+      "rank": 582,
+      "name": "넥스트바이오메디컬",
+      "value_100m": 33.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.99
+    },
+    {
+      "rank": 583,
+      "name": "SIMPAC",
+      "value_100m": 32.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.32
+    },
+    {
+      "rank": 584,
+      "name": "고려제강",
+      "value_100m": 32.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.72
+    },
+    {
+      "rank": 585,
+      "name": "신흥에스이씨",
+      "value_100m": 32.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.61
+    },
+    {
+      "rank": 586,
+      "name": "와이씨",
+      "value_100m": 32.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.38
+    },
+    {
+      "rank": 587,
+      "name": "네이처셀",
+      "value_100m": 32.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.23
+    },
+    {
+      "rank": 588,
+      "name": "HS효성",
+      "value_100m": 32.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.85
+    },
+    {
+      "rank": 589,
+      "name": "교보증권",
+      "value_100m": 32.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.5
+    },
+    {
+      "rank": 590,
+      "name": "나스미디어",
+      "value_100m": 31.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.95
+    },
+    {
+      "rank": 591,
+      "name": "엠씨넥스",
+      "value_100m": 31.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.9
+    },
+    {
+      "rank": 592,
+      "name": "효성ITX",
+      "value_100m": 31.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.19
+    },
+    {
+      "rank": 593,
+      "name": "디앤씨미디어",
+      "value_100m": 30.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.16
+    },
+    {
+      "rank": 594,
+      "name": "유안타증권",
+      "value_100m": 30.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.58
+    },
+    {
+      "rank": 595,
+      "name": "심텍",
+      "value_100m": 30.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.85
+    },
+    {
+      "rank": 596,
+      "name": "하이비젼시스템",
+      "value_100m": 30.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.14
+    },
+    {
+      "rank": 597,
+      "name": "태경산업",
+      "value_100m": 29.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.06
+    },
+    {
+      "rank": 598,
+      "name": "삼양패키징",
+      "value_100m": 29.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.14
+    },
+    {
+      "rank": 599,
+      "name": "NHN KCP",
+      "value_100m": 29.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.01
+    },
+    {
+      "rank": 600,
+      "name": "한국자산신탁",
+      "value_100m": 29.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.83
+    },
+    {
+      "rank": 601,
+      "name": "네오팜",
+      "value_100m": 29.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.5
+    },
+    {
+      "rank": 602,
+      "name": "KISCO홀딩스",
+      "value_100m": 28.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.88
+    },
+    {
+      "rank": 603,
+      "name": "그리드위즈",
+      "value_100m": 28.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.14
+    },
+    {
+      "rank": 604,
+      "name": "이리츠코크렙",
+      "value_100m": 28.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.06
+    },
+    {
+      "rank": 605,
+      "name": "다원시스",
+      "value_100m": 27.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.8
+    },
+    {
+      "rank": 606,
+      "name": "아난티",
+      "value_100m": 27.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.58
+    },
+    {
+      "rank": 607,
+      "name": "일신방직",
+      "value_100m": 27.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.53
+    },
+    {
+      "rank": 608,
+      "name": "바이오니아",
+      "value_100m": 27.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.55
+    },
+    {
+      "rank": 609,
+      "name": "에프에스티",
+      "value_100m": 27.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.78
+    },
+    {
+      "rank": 610,
+      "name": "삼영전자",
+      "value_100m": 27.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.35
+    },
+    {
+      "rank": 611,
+      "name": "에코앤드림",
+      "value_100m": 26.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.68
+    },
+    {
+      "rank": 612,
+      "name": "남해화학",
+      "value_100m": 26.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.86
+    },
+    {
+      "rank": 613,
+      "name": "광동제약",
+      "value_100m": 26.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.92
+    },
+    {
+      "rank": 614,
+      "name": "메디포스트",
+      "value_100m": 26.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.66
+    },
+    {
+      "rank": 615,
+      "name": "NH올원리츠",
+      "value_100m": 26.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.79
+    },
+    {
+      "rank": 616,
+      "name": "제이오",
+      "value_100m": 26.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.58
+    },
+    {
+      "rank": 617,
+      "name": "웹젠",
+      "value_100m": 26.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.54
+    },
+    {
+      "rank": 618,
+      "name": "더본코리아",
+      "value_100m": 26.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.55
+    },
+    {
+      "rank": 619,
+      "name": "퍼시스",
+      "value_100m": 26.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.54
+    },
+    {
+      "rank": 620,
+      "name": "두산우",
+      "value_100m": 25.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.6
+    },
+    {
+      "rank": 621,
+      "name": "인선이엔티",
+      "value_100m": 25.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.01
+    },
+    {
+      "rank": 622,
+      "name": "액트로",
+      "value_100m": 25.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 4.91
+    },
+    {
+      "rank": 623,
+      "name": "시노펙스",
+      "value_100m": 25.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.5
+    },
+    {
+      "rank": 624,
+      "name": "DI동일(배당)",
+      "value_100m": 25.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.0
+    },
+    {
+      "rank": 625,
+      "name": "한국토지신탁",
+      "value_100m": 25.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.99
+    },
+    {
+      "rank": 626,
+      "name": "토비스",
+      "value_100m": 25.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.77
+    },
+    {
+      "rank": 627,
+      "name": "현대차증권",
+      "value_100m": 24.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.03
+    },
+    {
+      "rank": 628,
+      "name": "하이젠알앤엠",
+      "value_100m": 24.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.59
+    },
+    {
+      "rank": 629,
+      "name": "컨텍",
+      "value_100m": 24.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.62
+    },
+    {
+      "rank": 630,
+      "name": "무림P&P",
+      "value_100m": 24.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.35
+    },
+    {
+      "rank": 631,
+      "name": "와이엠티",
+      "value_100m": 24.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.49
+    },
+    {
+      "rank": 632,
+      "name": "동원산업무상(보)",
+      "value_100m": 24.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.0
+    },
+    {
+      "rank": 633,
+      "name": "씨에스베어링",
+      "value_100m": 24.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.0
+    },
+    {
+      "rank": 634,
+      "name": "크라운제과",
+      "value_100m": 24.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.43
+    },
+    {
+      "rank": 635,
+      "name": "에스오에스랩",
+      "value_100m": 24.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.0
+    },
+    {
+      "rank": 636,
+      "name": "콜마비앤에이치",
+      "value_100m": 24.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.69
+    },
+    {
+      "rank": 637,
+      "name": "BGF",
+      "value_100m": 23.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.71
+    },
+    {
+      "rank": 638,
+      "name": "큐로셀",
+      "value_100m": 23.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.53
+    },
+    {
+      "rank": 639,
+      "name": "이스트소프트",
+      "value_100m": 23.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.87
+    },
+    {
+      "rank": 640,
+      "name": "모토닉",
+      "value_100m": 23.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.83
+    },
+    {
+      "rank": 641,
+      "name": "클리오",
+      "value_100m": 23.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.74
+    },
+    {
+      "rank": 642,
+      "name": "글로벌텍스프리",
+      "value_100m": 23.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.09
+    },
+    {
+      "rank": 643,
+      "name": "케어젠",
+      "value_100m": 23.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.15
+    },
+    {
+      "rank": 644,
+      "name": "오픈엣지테크놀로지",
+      "value_100m": 22.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.73
+    },
+    {
+      "rank": 645,
+      "name": "삼양통상",
+      "value_100m": 22.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.48
+    },
+    {
+      "rank": 646,
+      "name": "부광약품",
+      "value_100m": 22.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.7
+    },
+    {
+      "rank": 647,
+      "name": "칩스앤미디어",
+      "value_100m": 22.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.67
+    },
+    {
+      "rank": 648,
+      "name": "사람인",
+      "value_100m": 22.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.06
+    },
+    {
+      "rank": 649,
+      "name": "포스코스틸리온",
+      "value_100m": 22.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.25
+    },
+    {
+      "rank": 650,
+      "name": "현대리바트",
+      "value_100m": 22.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.38
+    },
+    {
+      "rank": 651,
+      "name": "스마트레이더시스템",
+      "value_100m": 22.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.96
+    },
+    {
+      "rank": 652,
+      "name": "백광산업",
+      "value_100m": 22.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.67
+    },
+    {
+      "rank": 653,
+      "name": "한국무브넥스",
+      "value_100m": 21.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.27
+    },
+    {
+      "rank": 654,
+      "name": "제이브이엠",
+      "value_100m": 21.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.93
+    },
+    {
+      "rank": 655,
+      "name": "솔브레인홀딩스",
+      "value_100m": 21.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.28
+    },
+    {
+      "rank": 656,
+      "name": "예스코홀딩스",
+      "value_100m": 21.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.7
+    },
+    {
+      "rank": 657,
+      "name": "에치에프알",
+      "value_100m": 21.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.9
+    },
+    {
+      "rank": 658,
+      "name": "디바이스이엔지",
+      "value_100m": 21.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.51
+    },
+    {
+      "rank": 659,
+      "name": "일동제약",
+      "value_100m": 21.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.64
+    },
+    {
+      "rank": 660,
+      "name": "케이엠더블유",
+      "value_100m": 21.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.59
+    },
+    {
+      "rank": 661,
+      "name": "삼일제약",
+      "value_100m": 21.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.72
+    },
+    {
+      "rank": 662,
+      "name": "천보",
+      "value_100m": 20.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.56
+    },
+    {
+      "rank": 663,
+      "name": "DB",
+      "value_100m": 20.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.77
+    },
+    {
+      "rank": 664,
+      "name": "모두투어",
+      "value_100m": 20.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.1
+    },
+    {
+      "rank": 665,
+      "name": "노루홀딩스",
+      "value_100m": 20.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.17
+    },
+    {
+      "rank": 666,
+      "name": "이엠텍",
+      "value_100m": 20.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.41
+    },
+    {
+      "rank": 667,
+      "name": "신한서부티엔디리츠",
+      "value_100m": 20.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.04
+    },
+    {
+      "rank": 668,
+      "name": "호전실업",
+      "value_100m": 20.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.63
+    },
+    {
+      "rank": 669,
+      "name": "조광피혁",
+      "value_100m": 20.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.55
+    },
+    {
+      "rank": 670,
+      "name": "LG우",
+      "value_100m": 20.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.11
+    },
+    {
+      "rank": 671,
+      "name": "대한제당",
+      "value_100m": 20.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.82
+    },
+    {
+      "rank": 672,
+      "name": "삼성FN리츠",
+      "value_100m": 19.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.46
+    },
+    {
+      "rank": 673,
+      "name": "한전산업",
+      "value_100m": 19.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.63
+    },
+    {
+      "rank": 674,
+      "name": "케이엔제이",
+      "value_100m": 19.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.78
+    },
+    {
+      "rank": 675,
+      "name": "신풍제약",
+      "value_100m": 19.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.35
+    },
+    {
+      "rank": 676,
+      "name": "태경비케이",
+      "value_100m": 19.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.52
+    },
+    {
+      "rank": 677,
+      "name": "스틱인베스트먼트",
+      "value_100m": 19.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.53
+    },
+    {
+      "rank": 678,
+      "name": "대한약품",
+      "value_100m": 19.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.2
+    },
+    {
+      "rank": 679,
+      "name": "텔레칩스",
+      "value_100m": 19.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.98
+    },
+    {
+      "rank": 680,
+      "name": "대성에너지",
+      "value_100m": 19.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.8
+    },
+    {
+      "rank": 681,
+      "name": "신대양제지",
+      "value_100m": 18.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.8
+    },
+    {
+      "rank": 682,
+      "name": "영진약품",
+      "value_100m": 18.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.5
+    },
+    {
+      "rank": 683,
+      "name": "디앤디플랫폼리츠",
+      "value_100m": 18.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.7
+    },
+    {
+      "rank": 684,
+      "name": "도화엔지니어링",
+      "value_100m": 18.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.82
+    },
+    {
+      "rank": 685,
+      "name": "한국화장품제조",
+      "value_100m": 18.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.77
+    },
+    {
+      "rank": 686,
+      "name": "무학",
+      "value_100m": 18.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.0
+    },
+    {
+      "rank": 687,
+      "name": "바이오다인",
+      "value_100m": 18.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.37
+    },
+    {
+      "rank": 688,
+      "name": "대창단조",
+      "value_100m": 18.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.26
+    },
+    {
+      "rank": 689,
+      "name": "KG케미칼",
+      "value_100m": 18.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.7
+    },
+    {
+      "rank": 690,
+      "name": "바이오플러스",
+      "value_100m": 18.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.42
+    },
+    {
+      "rank": 691,
+      "name": "코오롱",
+      "value_100m": 18.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.0
+    },
+    {
+      "rank": 692,
+      "name": "대원전선",
+      "value_100m": 17.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.77
+    },
+    {
+      "rank": 693,
+      "name": "필옵틱스",
+      "value_100m": 17.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.41
+    },
+    {
+      "rank": 694,
+      "name": "GS글로벌",
+      "value_100m": 17.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.78
+    },
+    {
+      "rank": 695,
+      "name": "LS마린솔루션",
+      "value_100m": 17.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.35
+    },
+    {
+      "rank": 696,
+      "name": "한일현대시멘트",
+      "value_100m": 17.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.65
+    },
+    {
+      "rank": 697,
+      "name": "동국홀딩스",
+      "value_100m": 17.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.72
+    },
+    {
+      "rank": 698,
+      "name": "큐알티",
+      "value_100m": 17.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.18
+    },
+    {
+      "rank": 699,
+      "name": "원텍",
+      "value_100m": 17.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.43
+    },
+    {
+      "rank": 700,
+      "name": "에이블씨엔씨",
+      "value_100m": 17.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.93
+    },
+    {
+      "rank": 701,
+      "name": "흥아해운",
+      "value_100m": 17.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.43
+    },
+    {
+      "rank": 702,
+      "name": "코리아에프티",
+      "value_100m": 16.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.34
+    },
+    {
+      "rank": 703,
+      "name": "잇츠한불",
+      "value_100m": 16.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.7
+    },
+    {
+      "rank": 704,
+      "name": "세아홀딩스",
+      "value_100m": 16.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.42
+    },
+    {
+      "rank": 705,
+      "name": "다올투자증권",
+      "value_100m": 16.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.85
+    },
+    {
+      "rank": 706,
+      "name": "종근당바이오",
+      "value_100m": 16.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.34
+    },
+    {
+      "rank": 707,
+      "name": "한화갤러리아",
+      "value_100m": 16.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.76
+    },
+    {
+      "rank": 708,
+      "name": "레이",
+      "value_100m": 16.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.77
+    },
+    {
+      "rank": 709,
+      "name": "신성이엔지",
+      "value_100m": 16.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.66
+    },
+    {
+      "rank": 710,
+      "name": "아모텍",
+      "value_100m": 16.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.92
+    },
+    {
+      "rank": 711,
+      "name": "진양홀딩스",
+      "value_100m": 16.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.93
+    },
+    {
+      "rank": 712,
+      "name": "롯데하이마트",
+      "value_100m": 16.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.93
+    },
+    {
+      "rank": 713,
+      "name": "오스테오닉",
+      "value_100m": 16.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.18
+    },
+    {
+      "rank": 714,
+      "name": "광주신세계",
+      "value_100m": 16.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.69
+    },
+    {
+      "rank": 715,
+      "name": "KG모빌리언스",
+      "value_100m": 16.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.86
+    },
+    {
+      "rank": 716,
+      "name": "농우바이오",
+      "value_100m": 16.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.37
+    },
+    {
+      "rank": 717,
+      "name": "KPX홀딩스",
+      "value_100m": 16.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.7
+    },
+    {
+      "rank": 718,
+      "name": "성신양회",
+      "value_100m": 16.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.85
+    },
+    {
+      "rank": 719,
+      "name": "넥센",
+      "value_100m": 16.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.63
+    },
+    {
+      "rank": 720,
+      "name": "하이트진로홀딩스",
+      "value_100m": 16.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.73
+    },
+    {
+      "rank": 721,
+      "name": "이연제약",
+      "value_100m": 15.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.64
+    },
+    {
+      "rank": 722,
+      "name": "대한제분",
+      "value_100m": 15.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.71
+    },
+    {
+      "rank": 723,
+      "name": "일양약품",
+      "value_100m": 15.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.7
+    },
+    {
+      "rank": 724,
+      "name": "KH바텍",
+      "value_100m": 15.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.78
+    },
+    {
+      "rank": 725,
+      "name": "일진홀딩스",
+      "value_100m": 15.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.81
+    },
+    {
+      "rank": 726,
+      "name": "아모레G3우(전환)",
+      "value_100m": 15.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.22
+    },
+    {
+      "rank": 727,
+      "name": "유진투자증권",
+      "value_100m": 15.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.63
+    },
+    {
+      "rank": 728,
+      "name": "코스맥스비티아이",
+      "value_100m": 15.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.78
+    },
+    {
+      "rank": 729,
+      "name": "레이언스",
+      "value_100m": 15.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.45
+    },
+    {
+      "rank": 730,
+      "name": "S-Oil우",
+      "value_100m": 15.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.96
+    },
+    {
+      "rank": 731,
+      "name": "대교",
+      "value_100m": 14.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.68
+    },
+    {
+      "rank": 732,
+      "name": "강남제비스코",
+      "value_100m": 14.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.87
+    },
+    {
+      "rank": 733,
+      "name": "노바렉스",
+      "value_100m": 14.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.02
+    },
+    {
+      "rank": 734,
+      "name": "JW생명과학",
+      "value_100m": 14.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.83
+    },
+    {
+      "rank": 735,
+      "name": "DB금융투자",
+      "value_100m": 14.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.65
+    },
+    {
+      "rank": 736,
+      "name": "NH투자증권우",
+      "value_100m": 14.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.61
+    },
+    {
+      "rank": 737,
+      "name": "벽산",
+      "value_100m": 14.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.12
+    },
+    {
+      "rank": 738,
+      "name": "엠아이텍",
+      "value_100m": 14.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.53
+    },
+    {
+      "rank": 739,
+      "name": "KB스타리츠",
+      "value_100m": 14.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.35
+    },
+    {
+      "rank": 740,
+      "name": "한솔테크닉스",
+      "value_100m": 14.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.1
+    },
+    {
+      "rank": 741,
+      "name": "디와이",
+      "value_100m": 14.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.35
+    },
+    {
+      "rank": 742,
+      "name": "덕산테코피아",
+      "value_100m": 14.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.23
+    },
+    {
+      "rank": 743,
+      "name": "삼영",
+      "value_100m": 14.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.08
+    },
+    {
+      "rank": 744,
+      "name": "서울가스",
+      "value_100m": 14.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.55
+    },
+    {
+      "rank": 745,
+      "name": "현대바이오",
+      "value_100m": 14.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.24
+    },
+    {
+      "rank": 746,
+      "name": "하림지주",
+      "value_100m": 13.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.22
+    },
+    {
+      "rank": 747,
+      "name": "한세예스24홀딩스",
+      "value_100m": 13.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.79
+    },
+    {
+      "rank": 748,
+      "name": "제닉",
+      "value_100m": 13.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.72
+    },
+    {
+      "rank": 749,
+      "name": "셀바스AI",
+      "value_100m": 13.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.42
+    },
+    {
+      "rank": 750,
+      "name": "AJ네트웍스",
+      "value_100m": 13.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.67
+    },
+    {
+      "rank": 751,
+      "name": "하나제약",
+      "value_100m": 13.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.68
+    },
+    {
+      "rank": 752,
+      "name": "SK디앤디",
+      "value_100m": 13.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.96
+    },
+    {
+      "rank": 753,
+      "name": "LG헬로비전",
+      "value_100m": 13.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.68
+    },
+    {
+      "rank": 754,
+      "name": "씨아이에스",
+      "value_100m": 13.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.22
+    },
+    {
+      "rank": 755,
+      "name": "한화3우B",
+      "value_100m": 13.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.43
+    },
+    {
+      "rank": 756,
+      "name": "CR홀딩스",
+      "value_100m": 13.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.47
+    },
+    {
+      "rank": 757,
+      "name": "SK증권",
+      "value_100m": 12.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.57
+    },
+    {
+      "rank": 758,
+      "name": "에어부산",
+      "value_100m": 12.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.46
+    },
+    {
+      "rank": 759,
+      "name": "선익시스템",
+      "value_100m": 12.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.3
+    },
+    {
+      "rank": 760,
+      "name": "조선내화",
+      "value_100m": 12.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.65
+    },
+    {
+      "rank": 761,
+      "name": "로보티즈",
+      "value_100m": 12.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.39
+    },
+    {
+      "rank": 762,
+      "name": "교촌에프앤비무상(보)",
+      "value_100m": 12.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.0
+    },
+    {
+      "rank": 763,
+      "name": "교촌에프앤비",
+      "value_100m": 12.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.87
+    },
+    {
+      "rank": 764,
+      "name": "동아지질",
+      "value_100m": 12.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.65
+    },
+    {
+      "rank": 765,
+      "name": "인바디",
+      "value_100m": 12.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.37
+    },
+    {
+      "rank": 766,
+      "name": "경동도시가스",
+      "value_100m": 12.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.13
+    },
+    {
+      "rank": 767,
+      "name": "흥국화재",
+      "value_100m": 12.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.5
+    },
+    {
+      "rank": 768,
+      "name": "제주반도체",
+      "value_100m": 12.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.38
+    },
+    {
+      "rank": 769,
+      "name": "동화약품",
+      "value_100m": 12.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.66
+    },
+    {
+      "rank": 770,
+      "name": "서울반도체",
+      "value_100m": 12.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.27
+    },
+    {
+      "rank": 771,
+      "name": "알루코",
+      "value_100m": 12.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.6
+    },
+    {
+      "rank": 772,
+      "name": "코오롱글로벌",
+      "value_100m": 12.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.7
+    },
+    {
+      "rank": 773,
+      "name": "우리기술투자",
+      "value_100m": 12.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.2
+    },
+    {
+      "rank": 774,
+      "name": "경농",
+      "value_100m": 12.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.66
+    },
+    {
+      "rank": 775,
+      "name": "쏠리드",
+      "value_100m": 12.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.28
+    },
+    {
+      "rank": 776,
+      "name": "웅진씽크빅",
+      "value_100m": 11.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.63
+    },
+    {
+      "rank": 777,
+      "name": "삼호개발",
+      "value_100m": 11.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.49
+    },
+    {
+      "rank": 778,
+      "name": "태림포장",
+      "value_100m": 11.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.83
+    },
+    {
+      "rank": 779,
+      "name": "삼화페인트",
+      "value_100m": 11.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.68
+    },
+    {
+      "rank": 780,
+      "name": "남선알미늄",
+      "value_100m": 11.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.59
+    },
+    {
+      "rank": 781,
+      "name": "제일약품",
+      "value_100m": 11.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.67
+    },
+    {
+      "rank": 782,
+      "name": "신라교역",
+      "value_100m": 11.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.75
+    },
+    {
+      "rank": 783,
+      "name": "한국금융지주우",
+      "value_100m": 11.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.36
+    },
+    {
+      "rank": 784,
+      "name": "한솔아이원스",
+      "value_100m": 11.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.59
+    },
+    {
+      "rank": 785,
+      "name": "동양",
+      "value_100m": 11.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.67
+    },
+    {
+      "rank": 786,
+      "name": "해태제과식품",
+      "value_100m": 11.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.63
+    },
+    {
+      "rank": 787,
+      "name": "비엠티",
+      "value_100m": 11.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.64
+    },
+    {
+      "rank": 788,
+      "name": "월덱스",
+      "value_100m": 11.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.39
+    },
+    {
+      "rank": 789,
+      "name": "쇼박스",
+      "value_100m": 11.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.55
+    },
+    {
+      "rank": 790,
+      "name": "코오롱ENP",
+      "value_100m": 11.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.54
+    },
+    {
+      "rank": 791,
+      "name": "성일하이텍",
+      "value_100m": 11.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.25
+    },
+    {
+      "rank": 792,
+      "name": "덕우전자",
+      "value_100m": 11.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.41
+    },
+    {
+      "rank": 793,
+      "name": "삼성물산우B",
+      "value_100m": 11.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.83
+    },
+    {
+      "rank": 794,
+      "name": "한농화성",
+      "value_100m": 10.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.5
+    },
+    {
+      "rank": 795,
+      "name": "HDC현대EP",
+      "value_100m": 10.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.91
+    },
+    {
+      "rank": 796,
+      "name": "서연",
+      "value_100m": 10.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.65
+    },
+    {
+      "rank": 797,
+      "name": "금강공업",
+      "value_100m": 10.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.9
+    },
+    {
+      "rank": 798,
+      "name": "AK홀딩스",
+      "value_100m": 10.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.8
+    },
+    {
+      "rank": 799,
+      "name": "TYM",
+      "value_100m": 10.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.5
+    },
+    {
+      "rank": 800,
+      "name": "노바텍",
+      "value_100m": 10.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.64
+    },
+    {
+      "rank": 801,
+      "name": "사조산업",
+      "value_100m": 10.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.57
+    },
+    {
+      "rank": 802,
+      "name": "일진다이아",
+      "value_100m": 10.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.64
+    },
+    {
+      "rank": 803,
+      "name": "에이엘티",
+      "value_100m": 10.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.17
+    },
+    {
+      "rank": 804,
+      "name": "한국석유",
+      "value_100m": 10.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.58
+    },
+    {
+      "rank": 805,
+      "name": "엘티씨",
+      "value_100m": 10.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.14
+    },
+    {
+      "rank": 806,
+      "name": "DL이앤씨2우(전환)",
+      "value_100m": 10.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.18
+    },
+    {
+      "rank": 807,
+      "name": "바텍",
+      "value_100m": 10.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.35
+    },
+    {
+      "rank": 808,
+      "name": "NPC",
+      "value_100m": 10.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.62
+    },
+    {
+      "rank": 809,
+      "name": "JW홀딩스",
+      "value_100m": 10.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.43
+    },
+    {
+      "rank": 810,
+      "name": "슈프리마",
+      "value_100m": 10.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.55
+    },
+    {
+      "rank": 811,
+      "name": "지니언스",
+      "value_100m": 10.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.13
+    },
+    {
+      "rank": 812,
+      "name": "휴스틸",
+      "value_100m": 10.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.45
+    },
+    {
+      "rank": 813,
+      "name": "SK이노베이션우",
+      "value_100m": 10.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.04
+    },
+    {
+      "rank": 814,
+      "name": "현대비앤지스틸",
+      "value_100m": 10.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.57
+    },
+    {
+      "rank": 815,
+      "name": "나이스정보통신",
+      "value_100m": 10.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.53
+    },
+    {
+      "rank": 816,
+      "name": "경방",
+      "value_100m": 10.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.55
+    },
+    {
+      "rank": 817,
+      "name": "그린플러스",
+      "value_100m": 9.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.18
+    },
+    {
+      "rank": 818,
+      "name": "삼성출판사",
+      "value_100m": 9.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.64
+    },
+    {
+      "rank": 819,
+      "name": "화승알앤에이",
+      "value_100m": 9.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.65
+    },
+    {
+      "rank": 820,
+      "name": "일성아이에스",
+      "value_100m": 9.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.45
+    },
+    {
+      "rank": 821,
+      "name": "이월드",
+      "value_100m": 9.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.44
+    },
+    {
+      "rank": 822,
+      "name": "퓨런티어",
+      "value_100m": 9.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.41
+    },
+    {
+      "rank": 823,
+      "name": "대정화금",
+      "value_100m": 9.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.0
+    },
+    {
+      "rank": 824,
+      "name": "차바이오텍",
+      "value_100m": 9.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.14
+    },
+    {
+      "rank": 825,
+      "name": "넥스틸",
+      "value_100m": 9.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.48
+    },
+    {
+      "rank": 826,
+      "name": "대신증권우",
+      "value_100m": 9.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.23
+    },
+    {
+      "rank": 827,
+      "name": "SJG세종",
+      "value_100m": 9.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.83
+    },
+    {
+      "rank": 828,
+      "name": "코윈테크",
+      "value_100m": 9.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.62
+    },
+    {
+      "rank": 829,
+      "name": "네오셈",
+      "value_100m": 9.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.23
+    },
+    {
+      "rank": 830,
+      "name": "모나용평",
+      "value_100m": 9.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.56
+    },
+    {
+      "rank": 831,
+      "name": "유티아이",
+      "value_100m": 9.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.2
+    },
+    {
+      "rank": 832,
+      "name": "동화기업",
+      "value_100m": 9.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.21
+    },
+    {
+      "rank": 833,
+      "name": "신원",
+      "value_100m": 9.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.57
+    },
+    {
+      "rank": 834,
+      "name": "부국증권",
+      "value_100m": 9.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.3
+    },
+    {
+      "rank": 835,
+      "name": "LS네트웍스",
+      "value_100m": 9.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.39
+    },
+    {
+      "rank": 836,
+      "name": "디아이씨",
+      "value_100m": 8.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.59
+    },
+    {
+      "rank": 837,
+      "name": "싸이맥스",
+      "value_100m": 8.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.91
+    },
+    {
+      "rank": 838,
+      "name": "유수홀딩스",
+      "value_100m": 8.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.61
+    },
+    {
+      "rank": 839,
+      "name": "디오",
+      "value_100m": 8.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.35
+    },
+    {
+      "rank": 840,
+      "name": "일신석재",
+      "value_100m": 8.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.5
+    },
+    {
+      "rank": 841,
+      "name": "이지스밸류리츠",
+      "value_100m": 8.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.37
+    },
+    {
+      "rank": 842,
+      "name": "KEC",
+      "value_100m": 8.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.53
+    },
+    {
+      "rank": 843,
+      "name": "CJ프레시웨이",
+      "value_100m": 8.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.39
+    },
+    {
+      "rank": 844,
+      "name": "그린케미칼",
+      "value_100m": 8.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.49
+    },
+    {
+      "rank": 845,
+      "name": "SFA반도체",
+      "value_100m": 8.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.16
+    },
+    {
+      "rank": 846,
+      "name": "HS애드",
+      "value_100m": 8.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.76
+    },
+    {
+      "rank": 847,
+      "name": "티로보틱스",
+      "value_100m": 8.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.59
+    },
+    {
+      "rank": 848,
+      "name": "제이스텍",
+      "value_100m": 8.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.89
+    },
+    {
+      "rank": 849,
+      "name": "YG PLUS",
+      "value_100m": 8.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.34
+    },
+    {
+      "rank": 850,
+      "name": "경인양행",
+      "value_100m": 8.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.69
+    },
+    {
+      "rank": 851,
+      "name": "BYC",
+      "value_100m": 8.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.42
+    },
+    {
+      "rank": 852,
+      "name": "HS화성",
+      "value_100m": 8.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.78
+    },
+    {
+      "rank": 853,
+      "name": "KCTC",
+      "value_100m": 8.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.65
+    },
+    {
+      "rank": 854,
+      "name": "DL이앤씨우",
+      "value_100m": 8.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 2.26
+    },
+    {
+      "rank": 855,
+      "name": "휴니드",
+      "value_100m": 8.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.7
+    },
+    {
+      "rank": 856,
+      "name": "대성홀딩스",
+      "value_100m": 8.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.67
+    },
+    {
+      "rank": 857,
+      "name": "코오롱모빌리티그룹",
+      "value_100m": 8.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.51
+    },
+    {
+      "rank": 858,
+      "name": "와이엔텍",
+      "value_100m": 8.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.67
+    },
+    {
+      "rank": 859,
+      "name": "이수화학",
+      "value_100m": 7.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.53
+    },
+    {
+      "rank": 860,
+      "name": "경동인베스트",
+      "value_100m": 7.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.51
+    },
+    {
+      "rank": 861,
+      "name": "선진",
+      "value_100m": 7.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.55
+    },
+    {
+      "rank": 862,
+      "name": "우진엔텍",
+      "value_100m": 7.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.56
+    },
+    {
+      "rank": 863,
+      "name": "동방",
+      "value_100m": 7.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.7
+    },
+    {
+      "rank": 864,
+      "name": "다우데이타",
+      "value_100m": 7.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.19
+    },
+    {
+      "rank": 865,
+      "name": "제주은행",
+      "value_100m": 7.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.27
+    },
+    {
+      "rank": 866,
+      "name": "아비코전자",
+      "value_100m": 7.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.22
+    },
+    {
+      "rank": 867,
+      "name": "나무가",
+      "value_100m": 7.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.34
+    },
+    {
+      "rank": 868,
+      "name": "조일알미늄",
+      "value_100m": 7.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.41
+    },
+    {
+      "rank": 869,
+      "name": "세운메디칼",
+      "value_100m": 7.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.67
+    },
+    {
+      "rank": 870,
+      "name": "삼익악기",
+      "value_100m": 7.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.68
+    },
+    {
+      "rank": 871,
+      "name": "AP위성",
+      "value_100m": 7.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.36
+    },
+    {
+      "rank": 872,
+      "name": "경보제약",
+      "value_100m": 7.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.46
+    },
+    {
+      "rank": 873,
+      "name": "하이딥",
+      "value_100m": 7.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.73
+    },
+    {
+      "rank": 874,
+      "name": "SG글로벌",
+      "value_100m": 7.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.46
+    },
+    {
+      "rank": 875,
+      "name": "아스플로",
+      "value_100m": 7.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.21
+    },
+    {
+      "rank": 876,
+      "name": "계룡건설",
+      "value_100m": 7.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.59
+    },
+    {
+      "rank": 877,
+      "name": "KG이니시스",
+      "value_100m": 7.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.27
+    },
+    {
+      "rank": 878,
+      "name": "HLB글로벌",
+      "value_100m": 7.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.34
+    },
+    {
+      "rank": 879,
+      "name": "이랜텍",
+      "value_100m": 7.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.52
+    },
+    {
+      "rank": 880,
+      "name": "엘오티베큠",
+      "value_100m": 7.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.45
+    },
+    {
+      "rank": 881,
+      "name": "미창석유",
+      "value_100m": 7.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.43
+    },
+    {
+      "rank": 882,
+      "name": "샘표식품",
+      "value_100m": 7.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.59
+    },
+    {
+      "rank": 883,
+      "name": "대명에너지",
+      "value_100m": 7.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.34
+    },
+    {
+      "rank": 884,
+      "name": "미원홀딩스",
+      "value_100m": 7.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.36
+    },
+    {
+      "rank": 885,
+      "name": "디와이피엔에프",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.47
+    },
+    {
+      "rank": 886,
+      "name": "현대이지웰",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.52
+    },
+    {
+      "rank": 887,
+      "name": "사조동아원",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.47
+    },
+    {
+      "rank": 888,
+      "name": "이건산업",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.13
+    },
+    {
+      "rank": 889,
+      "name": "한국주철관",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.45
+    },
+    {
+      "rank": 890,
+      "name": "롯데칠성우",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.22
+    },
+    {
+      "rank": 891,
+      "name": "제일파마홀딩스",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.5
+    },
+    {
+      "rank": 892,
+      "name": "에프엔에스테크",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.91
+    },
+    {
+      "rank": 893,
+      "name": "녹십자웰빙",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.35
+    },
+    {
+      "rank": 894,
+      "name": "아이티엠반도체",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.21
+    },
+    {
+      "rank": 895,
+      "name": "셀트리온제약배당(보)",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.0
+    },
+    {
+      "rank": 896,
+      "name": "동국S&C",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.45
+    },
+    {
+      "rank": 897,
+      "name": "극동유화",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.48
+    },
+    {
+      "rank": 898,
+      "name": "아시아나IDT",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.45
+    },
+    {
+      "rank": 899,
+      "name": "현대약품",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.52
+    },
+    {
+      "rank": 900,
+      "name": "포스코엠텍",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.12
+    },
+    {
+      "rank": 901,
+      "name": "뉴트리",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.16
+    },
+    {
+      "rank": 902,
+      "name": "에스비비테크",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.53
+    },
+    {
+      "rank": 903,
+      "name": "휴비스",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.66
+    },
+    {
+      "rank": 904,
+      "name": "샘표",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.53
+    },
+    {
+      "rank": 905,
+      "name": "자람테크놀로지",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.2
+    },
+    {
+      "rank": 906,
+      "name": "범한퓨얼셀",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.51
+    },
+    {
+      "rank": 907,
+      "name": "자이에스앤디",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.46
+    },
+    {
+      "rank": 908,
+      "name": "애니플러스",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.48
+    },
+    {
+      "rank": 909,
+      "name": "한양이엔지",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.19
+    },
+    {
+      "rank": 910,
+      "name": "팜스코",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.7
+    },
+    {
+      "rank": 911,
+      "name": "큐렉소",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.21
+    },
+    {
+      "rank": 912,
+      "name": "대성산업",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.38
+    },
+    {
+      "rank": 913,
+      "name": "한솔홀딩스",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.56
+    },
+    {
+      "rank": 914,
+      "name": "NI스틸",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.55
+    },
+    {
+      "rank": 915,
+      "name": "필에너지",
+      "value_100m": 6.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.2
+    },
+    {
+      "rank": 916,
+      "name": "비나텍배당(보)",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.0
+    },
+    {
+      "rank": 917,
+      "name": "모나리자",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.51
+    },
+    {
+      "rank": 918,
+      "name": "키다리스튜디오",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.43
+    },
+    {
+      "rank": 919,
+      "name": "두올",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.55
+    },
+    {
+      "rank": 920,
+      "name": "퍼스텍",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.37
+    },
+    {
+      "rank": 921,
+      "name": "한스바이오메드",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.45
+    },
+    {
+      "rank": 922,
+      "name": "한국화장품",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.53
+    },
+    {
+      "rank": 923,
+      "name": "제우스",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.14
+    },
+    {
+      "rank": 924,
+      "name": "TP",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.71
+    },
+    {
+      "rank": 925,
+      "name": "이구산업",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.39
+    },
+    {
+      "rank": 926,
+      "name": "켄코아에어로스페이스",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.4
+    },
+    {
+      "rank": 927,
+      "name": "동인기연",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.45
+    },
+    {
+      "rank": 928,
+      "name": "한신공영",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.67
+    },
+    {
+      "rank": 929,
+      "name": "DL우",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.48
+    },
+    {
+      "rank": 930,
+      "name": "세이브존I&C",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.59
+    },
+    {
+      "rank": 931,
+      "name": "신일전자",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.48
+    },
+    {
+      "rank": 932,
+      "name": "대영포장",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.44
+    },
+    {
+      "rank": 933,
+      "name": "갤럭시아머니트리",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.16
+    },
+    {
+      "rank": 934,
+      "name": "KTis",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.52
+    },
+    {
+      "rank": 935,
+      "name": "한국수출포장",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.42
+    },
+    {
+      "rank": 936,
+      "name": "신성통상",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.15
+    },
+    {
+      "rank": 937,
+      "name": "세아특수강",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.41
+    },
+    {
+      "rank": 938,
+      "name": "한양디지텍",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.35
+    },
+    {
+      "rank": 939,
+      "name": "미래나노텍",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.19
+    },
+    {
+      "rank": 940,
+      "name": "원익홀딩스",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.23
+    },
+    {
+      "rank": 941,
+      "name": "아이엠비디엑스",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.31
+    },
+    {
+      "rank": 942,
+      "name": "유비벨록스",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.48
+    },
+    {
+      "rank": 943,
+      "name": "삼성SDI우",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.19
+    },
+    {
+      "rank": 944,
+      "name": "화천기계",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.8
+    },
+    {
+      "rank": 945,
+      "name": "금호건설",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.46
+    },
+    {
+      "rank": 946,
+      "name": "삼성제약",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.31
+    },
+    {
+      "rank": 947,
+      "name": "SK케미칼우",
+      "value_100m": 5.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 1.07
+    },
+    {
+      "rank": 948,
+      "name": "KTcs",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.39
+    },
+    {
+      "rank": 949,
+      "name": "코아시아",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.43
+    },
+    {
+      "rank": 950,
+      "name": "진양산업",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.4
+    },
+    {
+      "rank": 951,
+      "name": "이지바이오",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.31
+    },
+    {
+      "rank": 952,
+      "name": "상신브레이크",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.71
+    },
+    {
+      "rank": 953,
+      "name": "디씨엠",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.33
+    },
+    {
+      "rank": 954,
+      "name": "황금에스티",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.52
+    },
+    {
+      "rank": 955,
+      "name": "수산중공업",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.36
+    },
+    {
+      "rank": 956,
+      "name": "진원생명과학",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.25
+    },
+    {
+      "rank": 957,
+      "name": "일성건설",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.21
+    },
+    {
+      "rank": 958,
+      "name": "방림",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.23
+    },
+    {
+      "rank": 959,
+      "name": "아주스틸",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.4
+    },
+    {
+      "rank": 960,
+      "name": "대창",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.35
+    },
+    {
+      "rank": 961,
+      "name": "국제약품",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.37
+    },
+    {
+      "rank": 962,
+      "name": "인천도시가스",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.37
+    },
+    {
+      "rank": 963,
+      "name": "한양증권",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.27
+    },
+    {
+      "rank": 964,
+      "name": "대현",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.38
+    },
+    {
+      "rank": 965,
+      "name": "크라운해태홀딩스",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.47
+    },
+    {
+      "rank": 966,
+      "name": "유니켐",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.26
+    },
+    {
+      "rank": 967,
+      "name": "조선선재",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.32
+    },
+    {
+      "rank": 968,
+      "name": "CJ씨푸드",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.36
+    },
+    {
+      "rank": 969,
+      "name": "동부건설",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.43
+    },
+    {
+      "rank": 970,
+      "name": "에이에스텍",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.35
+    },
+    {
+      "rank": 971,
+      "name": "포니링크",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.22
+    },
+    {
+      "rank": 972,
+      "name": "덕성",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.35
+    },
+    {
+      "rank": 973,
+      "name": "미래에셋벤처투자",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.15
+    },
+    {
+      "rank": 974,
+      "name": "STX",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.26
+    },
+    {
+      "rank": 975,
+      "name": "한진중공업홀딩스",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.32
+    },
+    {
+      "rank": 976,
+      "name": "무림페이퍼",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.41
+    },
+    {
+      "rank": 977,
+      "name": "동성제약",
+      "value_100m": 4.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.29
+    },
+    {
+      "rank": 978,
+      "name": "아이디스",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.19
+    },
+    {
+      "rank": 979,
+      "name": "서울옥션",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.29
+    },
+    {
+      "rank": 980,
+      "name": "한국특강",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.33
+    },
+    {
+      "rank": 981,
+      "name": "글로벌텍스프리무상(보)",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.0
+    },
+    {
+      "rank": 982,
+      "name": "한국내화",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.38
+    },
+    {
+      "rank": 983,
+      "name": "인지컨트롤스",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.38
+    },
+    {
+      "rank": 984,
+      "name": "아남전자",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.33
+    },
+    {
+      "rank": 985,
+      "name": "인스코비",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.19
+    },
+    {
+      "rank": 986,
+      "name": "영풍배당(보)",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.0
+    },
+    {
+      "rank": 987,
+      "name": "네온테크",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.28
+    },
+    {
+      "rank": 988,
+      "name": "신영와코루",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.4
+    },
+    {
+      "rank": 989,
+      "name": "모트렉스",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.14
+    },
+    {
+      "rank": 990,
+      "name": "미래에셋글로벌리츠",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.31
+    },
+    {
+      "rank": 991,
+      "name": "LS증권",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.15
+    },
+    {
+      "rank": 992,
+      "name": "인텍플러스",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.25
+    },
+    {
+      "rank": 993,
+      "name": "인벤티지랩",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.15
+    },
+    {
+      "rank": 994,
+      "name": "화천기공",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.55
+    },
+    {
+      "rank": 995,
+      "name": "유니온머티리얼",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.35
+    },
+    {
+      "rank": 996,
+      "name": "미래에셋증권우",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.53
+    },
+    {
+      "rank": 997,
+      "name": "팅크웨어",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.32
+    },
+    {
+      "rank": 998,
+      "name": "GS우",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.47
+    },
+    {
+      "rank": 999,
+      "name": "덕양산업",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.32
+    },
+    {
+      "rank": 1000,
+      "name": "유니드비티플러스",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.8
+    },
+    {
+      "rank": 1001,
+      "name": "미원화학",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.17
+    },
+    {
+      "rank": 1002,
+      "name": "에이프릴바이오",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.08
+    },
+    {
+      "rank": 1003,
+      "name": "삼일씨엔에스",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.71
+    },
+    {
+      "rank": 1004,
+      "name": "옵티팜",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.44
+    },
+    {
+      "rank": 1005,
+      "name": "광전자",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.29
+    },
+    {
+      "rank": 1006,
+      "name": "윤성에프앤씨",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.1
+    },
+    {
+      "rank": 1007,
+      "name": "유진로봇",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.12
+    },
+    {
+      "rank": 1008,
+      "name": "토모큐브",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.14
+    },
+    {
+      "rank": 1009,
+      "name": "일동홀딩스",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.3
+    },
+    {
+      "rank": 1010,
+      "name": "진흥기업",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.24
+    },
+    {
+      "rank": 1011,
+      "name": "SG세계물산",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.41
+    },
+    {
+      "rank": 1012,
+      "name": "동국산업",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.11
+    },
+    {
+      "rank": 1013,
+      "name": "두산퓨얼셀1우",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.41
+    },
+    {
+      "rank": 1014,
+      "name": "동양철관",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.26
+    },
+    {
+      "rank": 1015,
+      "name": "대한광통신",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.41
+    },
+    {
+      "rank": 1016,
+      "name": "대한화섬",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.19
+    },
+    {
+      "rank": 1017,
+      "name": "오리엔탈정공",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.11
+    },
+    {
+      "rank": 1018,
+      "name": "금호에이치티",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.19
+    },
+    {
+      "rank": 1019,
+      "name": "고려제강(무상)",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.0
+    },
+    {
+      "rank": 1020,
+      "name": "DRB동일",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.32
+    },
+    {
+      "rank": 1021,
+      "name": "하나기술",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.19
+    },
+    {
+      "rank": 1022,
+      "name": "이아이디",
+      "value_100m": 3.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.07
+    },
+    {
+      "rank": 1023,
+      "name": "다스코",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.46
+    },
+    {
+      "rank": 1024,
+      "name": "신흥",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.18
+    },
+    {
+      "rank": 1025,
+      "name": "테이팩스",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.4
+    },
+    {
+      "rank": 1026,
+      "name": "코람코더원리츠",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.14
+    },
+    {
+      "rank": 1027,
+      "name": "CJ우",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.18
+    },
+    {
+      "rank": 1028,
+      "name": "에스제이그룹",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.48
+    },
+    {
+      "rank": 1029,
+      "name": "사조씨푸드",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.29
+    },
+    {
+      "rank": 1030,
+      "name": "솔루스첨단소재1우",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.71
+    },
+    {
+      "rank": 1031,
+      "name": "세보엠이씨",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.21
+    },
+    {
+      "rank": 1032,
+      "name": "LB세미콘",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.14
+    },
+    {
+      "rank": 1033,
+      "name": "기신정기",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.3
+    },
+    {
+      "rank": 1034,
+      "name": "현대코퍼레이션홀딩스",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.23
+    },
+    {
+      "rank": 1035,
+      "name": "명문제약",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.34
+    },
+    {
+      "rank": 1036,
+      "name": "파수",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.36
+    },
+    {
+      "rank": 1037,
+      "name": "동일고무벨트",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.22
+    },
+    {
+      "rank": 1038,
+      "name": "부산산업",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.25
+    },
+    {
+      "rank": 1039,
+      "name": "동원개발",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.09
+    },
+    {
+      "rank": 1040,
+      "name": "한신기계",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.22
+    },
+    {
+      "rank": 1041,
+      "name": "이노와이어리스",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.12
+    },
+    {
+      "rank": 1042,
+      "name": "지어소프트",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.15
+    },
+    {
+      "rank": 1043,
+      "name": "브랜드엑스코퍼레이션",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.1
+    },
+    {
+      "rank": 1044,
+      "name": "남광토건",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.24
+    },
+    {
+      "rank": 1045,
+      "name": "KX",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.13
+    },
+    {
+      "rank": 1046,
+      "name": "이글루",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.32
+    },
+    {
+      "rank": 1047,
+      "name": "대구백화점",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.32
+    },
+    {
+      "rank": 1048,
+      "name": "화승코퍼레이션",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.24
+    },
+    {
+      "rank": 1049,
+      "name": "지엠비코리아",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.26
+    },
+    {
+      "rank": 1050,
+      "name": "유화증권",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.15
+    },
+    {
+      "rank": 1051,
+      "name": "유엔젤",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.22
+    },
+    {
+      "rank": 1052,
+      "name": "KIB플러그에너지",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.14
+    },
+    {
+      "rank": 1053,
+      "name": "케이피에프",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.22
+    },
+    {
+      "rank": 1054,
+      "name": "박셀바이오",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.07
+    },
+    {
+      "rank": 1055,
+      "name": "유니테스트",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.09
+    },
+    {
+      "rank": 1056,
+      "name": "넥센타이어1우B",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.92
+    },
+    {
+      "rank": 1057,
+      "name": "삼원강재",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.18
+    },
+    {
+      "rank": 1058,
+      "name": "DSR",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.27
+    },
+    {
+      "rank": 1059,
+      "name": "코세스",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.15
+    },
+    {
+      "rank": 1060,
+      "name": "휴비츠",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.16
+    },
+    {
+      "rank": 1061,
+      "name": "성창기업지주",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.17
+    },
+    {
+      "rank": 1062,
+      "name": "동일산업",
+      "value_100m": 2.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.16
+    },
+    {
+      "rank": 1063,
+      "name": "팬엔터테인먼트",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.26
+    },
+    {
+      "rank": 1064,
+      "name": "페이퍼코리아",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.1
+    },
+    {
+      "rank": 1065,
+      "name": "파세코",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.16
+    },
+    {
+      "rank": 1066,
+      "name": "신테카바이오",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.18
+    },
+    {
+      "rank": 1067,
+      "name": "형지엘리트",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.2
+    },
+    {
+      "rank": 1068,
+      "name": "노머스",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.06
+    },
+    {
+      "rank": 1069,
+      "name": "SH에너지화학",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.24
+    },
+    {
+      "rank": 1070,
+      "name": "디케이티",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.09
+    },
+    {
+      "rank": 1071,
+      "name": "코스텍시스",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.36
+    },
+    {
+      "rank": 1072,
+      "name": "디지털대성",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.07
+    },
+    {
+      "rank": 1073,
+      "name": "인팩",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.24
+    },
+    {
+      "rank": 1074,
+      "name": "제너셈",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.23
+    },
+    {
+      "rank": 1075,
+      "name": "팜젠사이언스",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.18
+    },
+    {
+      "rank": 1076,
+      "name": "금화피에스시",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.09
+    },
+    {
+      "rank": 1077,
+      "name": "한솔홈데코",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.26
+    },
+    {
+      "rank": 1078,
+      "name": "제일연마",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.15
+    },
+    {
+      "rank": 1079,
+      "name": "보락",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.2
+    },
+    {
+      "rank": 1080,
+      "name": "네패스",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.09
+    },
+    {
+      "rank": 1081,
+      "name": "영보화학",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.18
+    },
+    {
+      "rank": 1082,
+      "name": "인터지스",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.18
+    },
+    {
+      "rank": 1083,
+      "name": "조비",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.24
+    },
+    {
+      "rank": 1084,
+      "name": "푸른소나무",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.06
+    },
+    {
+      "rank": 1085,
+      "name": "브릿지바이오테라퓨틱스",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.07
+    },
+    {
+      "rank": 1086,
+      "name": "대덕전자1우",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.75
+    },
+    {
+      "rank": 1087,
+      "name": "사조오양",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.17
+    },
+    {
+      "rank": 1088,
+      "name": "시노펙스무상(보)",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.0
+    },
+    {
+      "rank": 1089,
+      "name": "문배철강",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.26
+    },
+    {
+      "rank": 1090,
+      "name": "현대건설우",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.27
+    },
+    {
+      "rank": 1091,
+      "name": "한국제지",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.08
+    },
+    {
+      "rank": 1092,
+      "name": "세원정공",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.17
+    },
+    {
+      "rank": 1093,
+      "name": "영풍제지",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.19
+    },
+    {
+      "rank": 1094,
+      "name": "혜인",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.19
+    },
+    {
+      "rank": 1095,
+      "name": "오리엔트바이오",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.06
+    },
+    {
+      "rank": 1096,
+      "name": "새론오토모티브",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.18
+    },
+    {
+      "rank": 1097,
+      "name": "계양전기",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.28
+    },
+    {
+      "rank": 1098,
+      "name": "동방아그로",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.14
+    },
+    {
+      "rank": 1099,
+      "name": "와이투솔루션",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.15
+    },
+    {
+      "rank": 1100,
+      "name": "써니전자",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.15
+    },
+    {
+      "rank": 1101,
+      "name": "셀리버리",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.04
+    },
+    {
+      "rank": 1102,
+      "name": "우성",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.24
+    },
+    {
+      "rank": 1103,
+      "name": "깨끗한나라",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.13
+    },
+    {
+      "rank": 1104,
+      "name": "한국비엔씨",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.04
+    },
+    {
+      "rank": 1105,
+      "name": "광명전기",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.15
+    },
+    {
+      "rank": 1106,
+      "name": "보해양조",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.15
+    },
+    {
+      "rank": 1107,
+      "name": "에이프로젠바이오로직스",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.08
+    },
+    {
+      "rank": 1108,
+      "name": "동양피스톤",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.17
+    },
+    {
+      "rank": 1109,
+      "name": "신송홀딩스",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.14
+    },
+    {
+      "rank": 1110,
+      "name": "진양화학",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.15
+    },
+    {
+      "rank": 1111,
+      "name": "지엔씨에너지",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.07
+    },
+    {
+      "rank": 1112,
+      "name": "핌스",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.26
+    },
+    {
+      "rank": 1113,
+      "name": "HL D&I",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.12
+    },
+    {
+      "rank": 1114,
+      "name": "한컴라이프케어",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.11
+    },
+    {
+      "rank": 1115,
+      "name": "LK삼양",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.07
+    },
+    {
+      "rank": 1116,
+      "name": "유유제약",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.12
+    },
+    {
+      "rank": 1117,
+      "name": "아모그린텍",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.09
+    },
+    {
+      "rank": 1118,
+      "name": "DSR제강",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.17
+    },
+    {
+      "rank": 1119,
+      "name": "태웅로직스",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.08
+    },
+    {
+      "rank": 1120,
+      "name": "코오롱인더우",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.17
+    },
+    {
+      "rank": 1121,
+      "name": "CS홀딩스",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.1
+    },
+    {
+      "rank": 1122,
+      "name": "세코닉스",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.1
+    },
+    {
+      "rank": 1123,
+      "name": "대한항공우",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.32
+    },
+    {
+      "rank": 1124,
+      "name": "만호제강",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.07
+    },
+    {
+      "rank": 1125,
+      "name": "인카금융서비스",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.03
+    },
+    {
+      "rank": 1126,
+      "name": "대호에이엘",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.09
+    },
+    {
+      "rank": 1127,
+      "name": "에넥스",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.22
+    },
+    {
+      "rank": 1128,
+      "name": "LX하우시스우",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.35
+    },
+    {
+      "rank": 1129,
+      "name": "한국종합기술",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.12
+    },
+    {
+      "rank": 1130,
+      "name": "한창제지",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.18
+    },
+    {
+      "rank": 1131,
+      "name": "웅진",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.11
+    },
+    {
+      "rank": 1132,
+      "name": "텔코웨어",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.08
+    },
+    {
+      "rank": 1133,
+      "name": "부국철강",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.15
+    },
+    {
+      "rank": 1134,
+      "name": "유니온",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.09
+    },
+    {
+      "rank": 1135,
+      "name": "코오롱티슈진",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.0
+    },
+    {
+      "rank": 1136,
+      "name": "하이트론",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.08
+    },
+    {
+      "rank": 1137,
+      "name": "정다운",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.08
+    },
+    {
+      "rank": 1138,
+      "name": "에이플러스에셋",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.07
+    },
+    {
+      "rank": 1139,
+      "name": "한화솔루션우",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.17
+    },
+    {
+      "rank": 1140,
+      "name": "씨티알모빌리티",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.13
+    },
+    {
+      "rank": 1141,
+      "name": "한솔로지스틱스",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.11
+    },
+    {
+      "rank": 1142,
+      "name": "삼성공조",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.09
+    },
+    {
+      "rank": 1143,
+      "name": "갤럭시아에스엠",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.12
+    },
+    {
+      "rank": 1144,
+      "name": "영화금속",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.13
+    },
+    {
+      "rank": 1145,
+      "name": "에스엠벡셀",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.04
+    },
+    {
+      "rank": 1146,
+      "name": "신세계건설",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.04
+    },
+    {
+      "rank": 1147,
+      "name": "조광페인트",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.08
+    },
+    {
+      "rank": 1148,
+      "name": "한국전자금융",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.03
+    },
+    {
+      "rank": 1149,
+      "name": "STX그린로지스",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.09
+    },
+    {
+      "rank": 1150,
+      "name": "인디에프",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.08
+    },
+    {
+      "rank": 1151,
+      "name": "동남합성",
+      "value_100m": 1.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.05
+    },
+    {
+      "rank": 1152,
+      "name": "티웨이홀딩스",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.06
+    },
+    {
+      "rank": 1153,
+      "name": "동성케미컬배당(보)",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.0
+    },
+    {
+      "rank": 1154,
+      "name": "화인베스틸",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.15
+    },
+    {
+      "rank": 1155,
+      "name": "케이비아이동국실업",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.07
+    },
+    {
+      "rank": 1156,
+      "name": "엔케이맥스",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.02
+    },
+    {
+      "rank": 1157,
+      "name": "이지스레지던스리츠",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.02
+    },
+    {
+      "rank": 1158,
+      "name": "제테마",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.01
+    },
+    {
+      "rank": 1159,
+      "name": "유성기업",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.06
+    },
+    {
+      "rank": 1160,
+      "name": "상상인증권",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.06
+    },
+    {
+      "rank": 1161,
+      "name": "쌍방울",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.04
+    },
+    {
+      "rank": 1162,
+      "name": "SJM",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.07
+    },
+    {
+      "rank": 1163,
+      "name": "세원이앤씨",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.04
+    },
+    {
+      "rank": 1164,
+      "name": "현대사료",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.02
+    },
+    {
+      "rank": 1165,
+      "name": "잉글우드랩",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.02
+    },
+    {
+      "rank": 1166,
+      "name": "국일제지",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.0
+    },
+    {
+      "rank": 1167,
+      "name": "코윈테크배당(보)",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.0
+    },
+    {
+      "rank": 1168,
+      "name": "에프에스티배당(보)",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.0
+    },
+    {
+      "rank": 1169,
+      "name": "이엔플러스",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.03
+    },
+    {
+      "rank": 1170,
+      "name": "삼화왕관",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.04
+    },
+    {
+      "rank": 1171,
+      "name": "비상교육",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.04
+    },
+    {
+      "rank": 1172,
+      "name": "주연테크",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.11
+    },
+    {
+      "rank": 1173,
+      "name": "인바이오젠",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.02
+    },
+    {
+      "rank": 1174,
+      "name": "KH 필룩스",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.02
+    },
+    {
+      "rank": 1175,
+      "name": "플리토",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.02
+    },
+    {
+      "rank": 1176,
+      "name": "신한글로벌액티브리츠",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.02
+    },
+    {
+      "rank": 1177,
+      "name": "대교우B",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.07
+    },
+    {
+      "rank": 1178,
+      "name": "코아스템켐온",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.02
+    },
+    {
+      "rank": 1179,
+      "name": "삼정펄프",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.03
+    },
+    {
+      "rank": 1180,
+      "name": "진도",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.08
+    },
+    {
+      "rank": 1181,
+      "name": "온타이드",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.06
+    },
+    {
+      "rank": 1182,
+      "name": "IHQ",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.02
+    },
+    {
+      "rank": 1183,
+      "name": "전방",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.04
+    },
+    {
+      "rank": 1184,
+      "name": "KCI",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.02
+    },
+    {
+      "rank": 1185,
+      "name": "티에이치엔",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.02
+    },
+    {
+      "rank": 1186,
+      "name": "NH프라임리츠",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.01
+    },
+    {
+      "rank": 1187,
+      "name": "원림",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.02
+    },
+    {
+      "rank": 1188,
+      "name": "LX홀딩스1우",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.06
+    },
+    {
+      "rank": 1189,
+      "name": "한화갤러리아우",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.09
+    },
+    {
+      "rank": 1190,
+      "name": "성보화학",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.01
+    },
+    {
+      "rank": 1191,
+      "name": "평화홀딩스",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.01
+    },
+    {
+      "rank": 1192,
+      "name": "선도전기",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.01
+    },
+    {
+      "rank": 1193,
+      "name": "MH에탄올",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.01
+    },
+    {
+      "rank": 1194,
+      "name": "영풍정밀",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.0
+    },
+    {
+      "rank": 1195,
+      "name": "코오롱글로벌우",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.03
+    },
+    {
+      "rank": 1196,
+      "name": "코퍼스코리아",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.01
+    },
+    {
+      "rank": 1197,
+      "name": "마니커",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.01
+    },
+    {
+      "rank": 1198,
+      "name": "핸즈코퍼레이션",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.01
+    },
+    {
+      "rank": 1199,
+      "name": "국보",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.01
+    },
+    {
+      "rank": 1200,
+      "name": "메타케어",
+      "value_100m": 0.0,
+      "weight_pct": 0.0,
+      "ownership_pct": 0.0
+    }
   ]
 }

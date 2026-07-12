@@ -147,9 +147,14 @@ function niceScale(maxValue, targetTicks = 4) {
 
 /* ---------------------------------------------------------- API */
 async function fetchJSON(url, opts) {
-  const res = await fetch(url, opts);
-  const body = await res.json().catch(() => ({}));
-  return { status: res.status, body };
+  try {
+    const res = await fetch(url, opts);
+    const body = await res.json().catch(() => ({}));
+    return { status: res.status, body };
+  } catch (e) {
+    // 서버 미기동/네트워크 오류 — 빈 상태로 렌더하고 죽지 않는다
+    return { status: 0, body: { empty: true, error: String(e) } };
+  }
 }
 
 /* ============================================================ 렌더 */
@@ -275,8 +280,10 @@ function renderAllocation() {
   chartBox.append(bar);
 
   // 라벨 실측: 세그먼트보다 라벨이 넓으면 떼어낸다 (범례·툴팁·테이블이 대신한다)
+  // 차트가 숨겨져 있으면(테이블 뷰) 폭이 0이므로 측정하지 않는다
   requestAnimationFrame(() => {
     bar.querySelectorAll(".seg").forEach((seg) => {
+      if (seg.clientWidth === 0) return;
       const label = seg.querySelector(".seg-label");
       if (label && label.scrollWidth > seg.clientWidth - 8) label.remove();
     });
@@ -323,7 +330,9 @@ function renderDiverging() {
   const tableBox = clear($("diverging-table"));
   const t = state.trends;
 
-  if (!t || t.empty || (!t.top_buys.length && !t.top_sells.length)) {
+  const buys = (t && t.top_buys) || [];
+  const sells = (t && t.top_sells) || [];
+  if (!t || t.empty || (!buys.length && !sells.length)) {
     chartBox.append(el("div", { class: "placeholder" },
       t && !t.empty ? "이 기간에 집계된 지분 변동 공시가 없습니다."
                     : "데이터가 없습니다. [데이터 갱신]을 눌러 수집하세요."));
@@ -331,7 +340,7 @@ function renderDiverging() {
   }
 
   // 위→아래: 순매수 큰 순 → 순매도 큰 순(맨 아래가 최대 매도)
-  const rows = [...t.top_buys, ...[...t.top_sells].sort((a, b) => b.delta_ratio - a.delta_ratio)];
+  const rows = [...buys, ...[...sells].sort((a, b) => b.delta_ratio - a.delta_ratio)];
   const maxAbs = Math.max(...rows.map((r) => Math.abs(r.delta_ratio)));
   const { max: xmax, ticks } = niceScale(maxAbs, 3);
 
@@ -435,6 +444,9 @@ function renderFilingsTable() {
       ratioCell.append(
         el("span", {}, `${prev != null ? prev.toFixed(2) : "?"}% → ${curr != null ? curr.toFixed(2) : "?"}% `),
         el("span", { class: deltaClass(delta.ratio) }, `(${fmtDeltaRatio(delta.ratio)})`));
+    } else if (f.parse_ok && f.curr && f.curr.ratio !== null && f.curr.ratio !== undefined) {
+      // 최초 보고 — 직전 보고가 없어 증감은 미상
+      ratioCell.append(el("span", {}, `신규 보고 → ${f.curr.ratio.toFixed(2)}%`));
     } else {
       ratioCell.append(el("span", { class: "no-parse" }, "본문 미해석"));
     }
@@ -692,6 +704,8 @@ function bindViewToggles() {
   });
 }
 
+let trendsReqSeq = 0; // 기간 토글 연타 시 늦게 온 응답이 최신 상태를 덮지 않도록
+
 function bindDaysToggle() {
   const toggle = $("days-toggle");
   toggle.querySelectorAll("button").forEach((btn) => {
@@ -701,14 +715,16 @@ function bindDaysToggle() {
       toggle.querySelectorAll("button").forEach((b) => b.classList.toggle("active", b === btn));
       state.days = days;
       state.filingsShown = 30;
+      const seq = ++trendsReqSeq;
       // 재조회 중 이전 렌더를 낮은 불투명도로 유지
       const body = $("trends-body");
       body.classList.add("is-loading");
       try {
         const { body: data } = await fetchJSON(`/api/trends?days=${days}`);
+        if (seq !== trendsReqSeq) return; // 더 최신 요청이 있음 — 무시
         state.trends = data;
       } finally {
-        body.classList.remove("is-loading");
+        if (seq === trendsReqSeq) body.classList.remove("is-loading");
       }
       renderTrends();
       renderKPIs();
@@ -755,7 +771,8 @@ function setLastFinished(iso) {
 }
 
 async function pollRefreshStatus() {
-  const { body: status } = await fetchJSON("/api/refresh/status");
+  const { status: code, body: status } = await fetchJSON("/api/refresh/status");
+  if (code === 0) return; // 일시적 네트워크 오류 — 다음 폴링에서 재시도
   if (status.running) {
     setProgress(status);
     return;

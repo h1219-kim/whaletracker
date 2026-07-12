@@ -7,6 +7,7 @@
 from __future__ import annotations
 
 import json
+import os
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
@@ -47,11 +48,17 @@ def load_data(name: str, data_dir=None):
 
 
 def save_data(name: str, payload: dict, data_dir=None) -> Path:
-    """data/<name>.json 에 저장. 저장한 경로를 반환."""
+    """data/<name>.json 에 저장. 저장한 경로를 반환.
+
+    임시 파일에 쓴 뒤 os.replace 로 원자 교체 — 갱신 도중
+    웹앱이 쓰다 만 파일을 읽는 일을 막는다.
+    """
     path = _path(name, data_dir)
     path.parent.mkdir(parents=True, exist_ok=True)
-    with open(path, "w", encoding="utf-8") as f:
+    tmp = path.with_suffix(".json.tmp")
+    with open(tmp, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
+    os.replace(tmp, path)
     return path
 
 
@@ -127,6 +134,8 @@ def compute_trends(days: int = 90, data_dir=None, today: date | None = None) -> 
         if filing.get("is_correction"):
             continue
         delta = filing.get("delta") or {}
+        if delta.get("ratio") is None:
+            continue  # 최초 보고 등 — 증감 미상은 합산 불가
         key = filing.get("corp_code") or filing.get("company") or ""
         entry = agg.setdefault(
             key,

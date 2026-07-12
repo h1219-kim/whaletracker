@@ -183,12 +183,18 @@ def fetch_section(rcp_no: str, node: dict, session=None) -> str:
 
 
 # ------------------------------------------------------- 직전/이번 보고 행 파싱
-def _parse_prev_curr_rows(soup) -> tuple[dict | None, dict | None]:
+# 표준 서식의 고정 컬럼: (주식수 인덱스, 비율 인덱스)
+_ROW_INDEX = {"exec": (2, 3), "bulk": (4, 5)}
+
+
+def _parse_prev_curr_rows(soup, report_type: str) -> tuple[dict | None, dict | None]:
     """'직전보고서'/'이번보고서' 행에서 (날짜, 주식수, 비율)을 뽑는다.
 
     exec: [직전보고서, 날짜, 주식수, 비율, 주식수, 비율]
     bulk: [직전보고서, 날짜, 보고자명, 특별관계자수, 주식등의 수, 비율, ...]
-    → 날짜 셀 다음에 나오는 (정수, 소수) 쌍 중 첫 번째를 사용.
+
+    최초 보고는 직전보고서 행이 전부 "-" → None 유지.
+    전량 처분은 이번보고서가 0주/0% → 0도 유효값으로 취급.
     """
     prev = curr = None
     for tr in soup.find_all("tr"):
@@ -203,16 +209,24 @@ def _parse_prev_curr_rows(soup) -> tuple[dict | None, dict | None]:
             d = _kdate(c)
             if d:
                 break
+        # 1) 표준 서식 고정 인덱스
         shares = ratio = None
-        i = 1
-        while i < len(cells) - 1:
-            n = _int_or_none(cells[i])
-            r = _float_or_none(cells[i + 1])
-            # 주식수(대개 큰 정수) 뒤에 비율(0~100 소수)이 붙는 첫 쌍
-            if n is not None and r is not None and 0 <= r <= 100 and n > 100:
+        idx = _ROW_INDEX.get(report_type)
+        if idx and len(cells) > idx[1]:
+            n = _int_or_none(cells[idx[0]])
+            r = _float_or_none(cells[idx[1]])
+            if n is not None and r is not None and 0 <= r <= 100:
                 shares, ratio = n, r
-                break
-            i += 1
+        # 2) 폴백: (큰 정수, 0~100 소수) 첫 쌍 스캔 — 컬럼이 변형된 문서용
+        if shares is None:
+            i = 1
+            while i < len(cells) - 1:
+                n = _int_or_none(cells[i])
+                r = _float_or_none(cells[i + 1])
+                if n is not None and r is not None and 0 <= r <= 100 and n > 100:
+                    shares, ratio = n, r
+                    break
+                i += 1
         if shares is None:
             continue
         rec = {"date": d, "shares": shares, "ratio": ratio}
@@ -227,9 +241,9 @@ def _parse_prev_curr_rows(soup) -> tuple[dict | None, dict | None]:
 def parse_exec_section(html: str) -> dict:
     """임원ㆍ주요주주 보고서의 '특정증권등의 소유상황' 섹션."""
     soup = BeautifulSoup(html, "lxml")
-    prev, curr = _parse_prev_curr_rows(soup)
-    if not prev or not curr:
-        raise ValueError("직전/이번보고서 행을 찾지 못함 (exec)")
+    prev, curr = _parse_prev_curr_rows(soup, "exec")
+    if not curr:  # 최초 보고는 prev가 없을 수 있다
+        raise ValueError("이번보고서 행을 찾지 못함 (exec)")
 
     trades = []
     for tr in soup.find_all("tr"):
@@ -280,22 +294,25 @@ def parse_exec_section(html: str) -> dict:
 def parse_bulk_section(html: str) -> dict:
     """대량보유 보고서의 '보유주식등의 수 및 보유비율' 섹션."""
     soup = BeautifulSoup(html, "lxml")
-    prev, curr = _parse_prev_curr_rows(soup)
-    if not prev or not curr:
-        raise ValueError("직전/이번보고서 행을 찾지 못함 (bulk)")
+    prev, curr = _parse_prev_curr_rows(soup, "bulk")
+    if not curr:
+        raise ValueError("이번보고서 행을 찾지 못함 (bulk)")
     return _assemble(prev, curr, [])
 
 
-def _assemble(prev: dict, curr: dict, trades: list) -> dict:
-    delta_shares = curr["shares"] - prev["shares"]
-    delta_ratio = None
-    if prev["ratio"] is not None and curr["ratio"] is not None:
-        delta_ratio = round(curr["ratio"] - prev["ratio"], 2)
+def _assemble(prev: dict | None, curr: dict, trades: list) -> dict:
+    """prev가 없으면(최초 보고) 증감은 미상(None)으로 둔다."""
+    delta_shares = delta_ratio = None
+    if prev:
+        delta_shares = curr["shares"] - prev["shares"]
+        if prev["ratio"] is not None and curr["ratio"] is not None:
+            delta_ratio = round(curr["ratio"] - prev["ratio"], 2)
     return {
         "prev": prev,
         "curr": curr,
         "delta": {"shares": delta_shares, "ratio": delta_ratio},
         "trades": trades,
+        "is_initial": prev is None,
     }
 
 

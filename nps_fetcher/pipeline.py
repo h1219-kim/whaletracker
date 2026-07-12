@@ -62,7 +62,12 @@ def run_refresh(days: int = 180, max_new: int = 300, progress=None) -> dict:
         counts["dart_listed"] = len(listed)
 
         existing = store.load_data("filings")
-        known = {f["rcp_no"] for f in (existing or {}).get("filings", [])}
+        # 파싱에 실패했던 exec/bulk 공시는 다음 갱신 때 재시도한다
+        known = {
+            f["rcp_no"]
+            for f in (existing or {}).get("filings", [])
+            if f.get("parse_ok") or f.get("report_type") == "other"
+        }
         new_metas = [m for m in listed if m["rcp_no"] not in known][:max_new]
         counts["dart_new"] = len(new_metas)
 

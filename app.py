@@ -253,4 +253,5 @@ if __name__ == "__main__":
     parser.add_argument("--port", type=int, default=5000, help="포트 (기본 5000)")
     parser.add_argument("--debug", action="store_true", help="Flask 디버그 모드")
     args = parser.parse_args()
-    app.run(host="127.0.0.1", port=args.port, debug=args.debug)
+    # threaded: 갱신 폴링과 데이터 요청이 동시에 와도 직렬화되지 않도록
+    app.run(host="127.0.0.1", port=args.port, debug=args.debug, threaded=True)

@@ -93,6 +93,26 @@ def test_parse_bulk_section_ratios():
     assert parsed["trades"] == []
 
 
+# ------------------------------------------------------- 경계 사례 (실데이터)
+def test_parse_exec_initial_report():
+    """최초 보고 — 직전보고서 행이 전부 '-'. prev 없음, 증감 미상."""
+    parsed = dart.parse_exec_section(_read("dart_sec_initial.html"))
+    assert parsed["prev"] is None
+    assert parsed["is_initial"] is True
+    assert parsed["curr"]["date"] == "2026-07-06"
+    assert parsed["curr"]["shares"] == 1170516
+    assert parsed["curr"]["ratio"] == 10.10
+    assert parsed["delta"] == {"shares": None, "ratio": None}
+
+
+def test_parse_bulk_zero_holdings():
+    """전량 처분 — 이번보고서가 0주/0%도 유효값으로 파싱돼야 한다."""
+    parsed = dart.parse_bulk_section(_read("dart_bulk_zero.html"))
+    assert parsed["prev"] == {"date": "2025-08-11", "shares": 25733062, "ratio": 13.63}
+    assert parsed["curr"] == {"date": "2026-01-02", "shares": 0, "ratio": 0.0}
+    assert parsed["delta"] == {"shares": -25733062, "ratio": -13.63}
+
+
 # ---------------------------------------------------------------- 분류 규칙
 def test_classify_report():
     assert dart.classify_report("주식등의대량보유상황보고서(약식)") == ("bulk", False)
