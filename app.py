@@ -335,8 +335,18 @@ if __name__ == "__main__":
         "--auto-refresh", type=float, default=24, metavar="HOURS",
         help="데이터가 이 시간(시)보다 오래되면 자동 수집 (기본 24, 0=끄기)",
     )
+    parser.add_argument(
+        "--open", action="store_true",
+        help="서버 시작 후 기본 브라우저로 대시보드를 자동으로 연다",
+    )
     args = parser.parse_args()
     if args.auto_refresh > 0:
         start_auto_refresh(args.auto_refresh)
+    if args.open and not args.debug:
+        # 서버가 뜬 직후 브라우저를 연다 (디버그 모드의 리로더 중복 실행은 회피)
+        import webbrowser
+
+        url = f"http://127.0.0.1:{args.port}/"
+        threading.Timer(1.2, lambda: webbrowser.open(url)).start()
     # threaded: 갱신 폴링과 데이터 요청이 동시에 와도 직렬화되지 않도록
     app.run(host="127.0.0.1", port=args.port, debug=args.debug, threaded=True)

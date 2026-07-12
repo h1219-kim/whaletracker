@@ -11,14 +11,24 @@
 
 ## 실행 방법 (Windows)
 
+> ⚠️ **`templates/index.html` 파일을 브라우저로 직접 열지 마세요.** 이 페이지는 Flask
+> 템플릿(`{{ url_for(...) }}`)이라 서버가 실행 시점에 경로를 채워 넣습니다. 파일을 그냥
+> 열면 스타일·데이터가 로드되지 않아 **깨진 화면**이 나옵니다. 반드시 아래처럼 서버를
+> 띄운 뒤 `http://127.0.0.1:5000` 으로 접속하세요.
+
+**가장 쉬운 방법:** 파일 탐색기에서 **`start.cmd` 를 더블클릭**하면 서버가 켜지고
+브라우저가 자동으로 열립니다.
+
+터미널에서 직접 실행하려면:
+
 ```powershell
 # 1) 가상환경 생성 및 의존성 설치 (최초 1회)
 python -m venv .venv
 .venv\Scripts\python.exe -m pip install -r requirements.txt
 
-# 2) 서버 실행
-.venv\Scripts\python.exe app.py            # http://127.0.0.1:5000
-.venv\Scripts\python.exe app.py --port 8080  # 포트 변경 시
+# 2) 서버 실행 (--open: 브라우저 자동 열기)
+.venv\Scripts\python.exe app.py --open        # http://127.0.0.1:5000
+.venv\Scripts\python.exe app.py --port 8080   # 포트 변경 시
 ```
 
 저장소에 최신 수집 데이터가 포함되어 있어 바로 확인할 수 있습니다.
