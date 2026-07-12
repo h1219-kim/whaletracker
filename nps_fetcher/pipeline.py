@@ -1,0 +1,87 @@
+"""전체 데이터 갱신 파이프라인.
+
+순서: 자산배분 → 보유종목 → 대량보유 스냅샷 → DART 목록 → 신규 공시 본문 파싱 → 저장.
+각 소스는 독립적으로 try/except — 하나가 실패해도 나머지는 저장하고,
+실패한 소스는 기존 캐시 파일을 그대로 유지한다.
+"""
+
+from datetime import date, timedelta
+
+from . import dart, datago, npsfund, store
+from .http_util import make_session
+
+
+def run_refresh(days: int = 180, max_new: int = 300, progress=None) -> dict:
+    """모든 소스를 갱신한다.
+
+    progress(step_label, done, total) 콜백으로 진행 상황을 알린다.
+    반환: {"ok": bool, "errors": {소스: 메시지}, "counts": {...}}
+    """
+
+    def report(step, done=0, total=0):
+        if progress:
+            progress(step, done, total)
+
+    session = make_session()
+    errors: dict[str, str] = {}
+    counts: dict[str, int] = {}
+
+    # 1) 자산배분 (기금운용본부)
+    report("자산배분 수집", 0, 4)
+    try:
+        allocation = npsfund.fetch_allocation(session)
+        store.save_data("allocation", allocation)
+        counts["allocation_assets"] = len(allocation["assets"])
+    except Exception as e:
+        errors["allocation"] = str(e)
+
+    # 2) 국내주식 보유종목 (공공데이터포털)
+    report("보유종목 수집", 1, 4)
+    try:
+        holdings = datago.fetch_holdings(session)
+        store.save_data("holdings", holdings)
+        counts["holdings_stocks"] = len(holdings["stocks"])
+    except Exception as e:
+        errors["holdings"] = str(e)
+
+    # 3) 대량보유 스냅샷 (공공데이터포털)
+    report("대량보유 스냅샷 수집", 2, 4)
+    try:
+        stakes = datago.fetch_major_stakes(session)
+        store.save_data("major_stakes", stakes)
+        counts["major_stakes"] = len(stakes["stakes"])
+    except Exception as e:
+        errors["major_stakes"] = str(e)
+
+    # 4) DART 공시 — 목록 후 신규 건만 본문 파싱 (증분)
+    report("DART 공시 목록 조회", 3, 4)
+    try:
+        end = date.today()
+        start = end - timedelta(days=days)
+        listed = dart.search_filings(start, end, session)
+        counts["dart_listed"] = len(listed)
+
+        existing = store.load_data("filings")
+        known = {f["rcp_no"] for f in (existing or {}).get("filings", [])}
+        new_metas = [m for m in listed if m["rcp_no"] not in known][:max_new]
+        counts["dart_new"] = len(new_metas)
+
+        detailed = []
+        total = len(new_metas)
+        for i, meta in enumerate(new_metas, 1):
+            report(f"DART 공시 본문 파싱 ({meta['company']})", i, total)
+            detailed.append(dart.fetch_filing_detail(meta, session))
+
+        merged = store.merge_filings(
+            existing,
+            detailed,
+            range_start=start.isoformat(),
+            range_end=end.isoformat(),
+        )
+        store.save_data("filings", merged)
+        counts["filings_total"] = len(merged["filings"])
+    except Exception as e:
+        errors["dart"] = str(e)
+
+    report("완료", 4, 4)
+    return {"ok": not errors, "errors": errors, "counts": counts}

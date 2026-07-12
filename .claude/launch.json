@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "whaletracker",
+      "runtimeExecutable": "C:\\Users\\HK\\Documents\\codes\\whaletracker\\.venv\\Scripts\\python.exe",
+      "runtimeArgs": ["app.py", "--port", "5173"],
+      "port": 5173
+    }
+  ]
+}
