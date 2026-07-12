@@ -31,8 +31,19 @@ python -m venv .venv
 .venv\Scripts\python.exe -m nps_fetcher --days 180 --max-new 300
 ```
 
-서버를 꺼두는 시간이 많다면 위 CLI를 Windows 작업 스케줄러에 등록하는 방법도 있습니다
-(수집은 서버와 무관하게 동작하며, 이미 파싱한 공시는 재요청하지 않는 증분 방식입니다).
+- **작업 스케줄러**: 서버와 무관하게 매일 18:30에 수집하는 Windows 예약 작업
+  ("WhaleTracker 데이터 수집")이 등록되어 있습니다. 놓친 실행은 다음 기회에 보충되고,
+  배터리 상태에서도 동작합니다. 실행 로그: `data\.cache\refresh_task.log`
+
+```powershell
+# 예약 작업 관리
+Get-ScheduledTask -TaskName "WhaleTracker 데이터 수집"          # 상태 확인
+Start-ScheduledTask -TaskName "WhaleTracker 데이터 수집"        # 즉시 실행
+Unregister-ScheduledTask -TaskName "WhaleTracker 데이터 수집"   # 삭제
+```
+
+수집은 이미 파싱한 공시를 재요청하지 않는 증분 방식이라 매일 돌아도 서버 부담과
+소요 시간이 작습니다(보통 1~2분).
 
 ## 데이터 출처 (전부 무료 공개, API 키 불필요)
 
