@@ -58,6 +58,45 @@ Unregister-ScheduledTask -TaskName "WhaleTracker 데이터 수집"   # 삭제
 수집은 이미 파싱한 공시를 재요청하지 않는 증분 방식이라 매일 돌아도 서버 부담과
 소요 시간이 작습니다(보통 1~2분).
 
+## 다른 사람에게 공유하기 (무료 공개 링크)
+
+Flask 서버 없이 열 수 있는 **정적 사이트**로 구워 GitHub Pages에 올리면, 누구나
+링크 하나로 볼 수 있고 내 PC를 켜둘 필요도 없습니다. 데이터는 GitHub Actions가
+매일 자동 수집·재배포합니다.
+
+### 1) 정적 사이트 굽기 (로컬 미리보기)
+
+```powershell
+.venv\Scripts\python.exe build_static.py                 # site\ 폴더 생성
+.venv\Scripts\python.exe -m http.server -d site 8000     # http://localhost:8000
+```
+
+`site\`는 서버 API 대신 미리 구운 JSON을 읽는 완전한 정적 사본입니다(갱신 버튼은 숨겨짐).
+
+### 2) GitHub Pages에 올리기 (최초 1회)
+
+```powershell
+# GitHub에서 빈 저장소를 만든 뒤 (예: whaletracker), 원격 연결 후 push
+git remote add origin https://github.com/<사용자명>/whaletracker.git
+git branch -M main
+git push -u origin main
+```
+
+그다음 GitHub 저장소 웹페이지에서 **Settings → Pages → Build and deployment →
+Source**를 **"GitHub Actions"**로 지정하세요. (`.github/workflows/deploy.yml`가
+빌드·배포를 담당합니다.)
+
+- 몇 분 뒤 `https://<사용자명>.github.io/whaletracker/` 로 공개됩니다.
+- 이후 매일 18:40(KST) 자동으로 데이터를 수집해 재배포하며, Actions 탭에서 수동
+  실행(**Run workflow**)도 가능합니다.
+- 참고: GitHub 러너는 해외 IP라 일부 한국 소스(KRX 등)가 막힐 수 있습니다. 그럴
+  땐 저장소에 커밋된 마지막 데이터로 사이트가 만들어지고, 로컬에서
+  `python -m nps_fetcher` 후 `git push` 하면 그 데이터로 다시 배포됩니다.
+
+> ⚠️ 공개 배포 시: DART·SEC은 공공데이터라 자유롭게 쓸 수 있으나, KRX 데이터는
+> 개인 참고용 범위에서만 사용하고 상업적 재배포는 삼가세요. 화면 하단에 "투자
+> 조언이 아님" 면책이 표시됩니다.
+
 ## 데이터 출처 (전부 무료 공개, API 키 불필요)
 
 | 데이터 | 출처 | 갱신 주기 |

@@ -168,9 +168,33 @@ function niceScale(maxValue, targetTicks = 4) {
 }
 
 /* ---------------------------------------------------------- API */
+// 정적 사이트(GitHub Pages 등)로 구울 때는 서버 API가 없으므로
+// 빌드 시 index.html에 window.WHALE_STATIC=true 를 주입하고,
+// API 경로를 미리 구운 JSON 파일 경로로 바꾼다.
+const STATIC_MODE = window.WHALE_STATIC === true;
+
+const STATIC_MAP = {
+  "/api/holdings": "data/holdings.json",
+  "/api/allocation": "data/allocation.json",
+  "/api/major-stakes": "data/major_stakes.json",
+  "/api/pension-flow": "data/pension_flow.json",
+  "/api/pension-stock-flow": "data/pension_stock_flow.json",
+  "/api/us-holdings": "data/us_holdings.json",
+};
+
+function apiPath(url) {
+  if (!STATIC_MODE) return url;
+  if (url.startsWith("/api/trends")) {
+    const q = url.split("?")[1] || "";
+    const days = new URLSearchParams(q).get("days") || "90";
+    return `data/trends_${days}.json`;
+  }
+  return STATIC_MAP[url] || url;
+}
+
 async function fetchJSON(url, opts) {
   try {
-    const res = await fetch(url, opts);
+    const res = await fetch(apiPath(url), opts);
     const body = await res.json().catch(() => ({}));
     return { status: res.status, body };
   } catch (e) {
@@ -1290,6 +1314,11 @@ async function pollRefreshStatus() {
 }
 
 function bindRefresh() {
+  if (STATIC_MODE) {
+    // 정적 사이트에는 수집 서버가 없다 — 갱신 버튼 숨김 (자동 갱신은 GitHub Actions가 담당)
+    $("refresh-btn").hidden = true;
+    return;
+  }
   $("refresh-btn").addEventListener("click", async () => {
     const btn = $("refresh-btn");
     btn.disabled = true;
@@ -1367,6 +1396,16 @@ async function init() {
   bindPensionWindowToggle();
   bindRefresh();
   await loadAll();
+
+  if (STATIC_MODE) {
+    // 정적 모드: 서버 상태 폴링 없이, 데이터 수집 시각만 표시
+    const fetchedAt = (state.pensionFlow && state.pensionFlow.fetched_at)
+      || (state.trends && state.trends.fetched_at)
+      || (state.allocation && state.allocation.fetched_at);
+    if (fetchedAt) setLastFinished(fetchedAt);
+    return;
+  }
+
   // 페이지 로드 시 이미 갱신이 돌고 있으면 따라간다
   const { body: status } = await fetchJSON("/api/refresh/status");
   if (status.running) {

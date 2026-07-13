@@ -1,8 +1,101 @@
 {
-  "fetched_at": "2026-07-12T23:52:27+09:00",
+  "fetched_at": "2026-07-13T22:08:23+09:00",
   "range_start": "2026-01-13",
-  "range_end": "2026-07-12",
+  "range_end": "2026-07-13",
   "filings": [
+    {
+      "rcp_no": "20260713000338",
+      "filed_date": "2026-07-13",
+      "company": "롯데관광개발",
+      "corp_code": "00231372",
+      "report_type": "exec",
+      "report_name": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "is_correction": false,
+      "prev": null,
+      "curr": {
+        "date": "2026-07-09",
+        "shares": 7983679,
+        "ratio": 10.01
+      },
+      "delta": {
+        "shares": null,
+        "ratio": null
+      },
+      "trades": [
+        {
+          "reason": "신규주요주주(+)",
+          "date": "2026-07-09",
+          "delta_shares": 17174,
+          "price": 16130.0
+        }
+      ],
+      "parse_ok": true,
+      "is_initial": true
+    },
+    {
+      "rcp_no": "20260713000335",
+      "filed_date": "2026-07-13",
+      "company": "현대해상",
+      "corp_code": "00164973",
+      "report_type": "exec",
+      "report_name": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "is_correction": false,
+      "prev": null,
+      "curr": {
+        "date": "2026-07-09",
+        "shares": 8648529,
+        "ratio": 10.15
+      },
+      "delta": {
+        "shares": null,
+        "ratio": null
+      },
+      "trades": [
+        {
+          "reason": "신규주요주주(+)",
+          "date": "2026-07-09",
+          "delta_shares": 207556,
+          "price": 37195.0
+        }
+      ],
+      "parse_ok": true,
+      "is_initial": true
+    },
+    {
+      "rcp_no": "20260713000332",
+      "filed_date": "2026-07-13",
+      "company": "한섬",
+      "corp_code": "00188089",
+      "report_type": "exec",
+      "report_name": "임원ㆍ주요주주특정증권등소유상황보고서",
+      "is_correction": false,
+      "prev": null,
+      "curr": {
+        "date": "2026-07-08",
+        "shares": 2167277,
+        "ratio": 10.09
+      },
+      "delta": {
+        "shares": null,
+        "ratio": null
+      },
+      "trades": [
+        {
+          "reason": "신규주요주주(+)",
+          "date": "2026-07-08",
+          "delta_shares": 35594,
+          "price": 22911.0
+        },
+        {
+          "reason": "장내매도(-)",
+          "date": "2026-07-08",
+          "delta_shares": -12316,
+          "price": 22612.0
+        }
+      ],
+      "parse_ok": true,
+      "is_initial": true
+    },
     {
       "rcp_no": "20260707000347",
       "filed_date": "2026-07-07",

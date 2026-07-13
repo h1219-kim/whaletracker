@@ -1,6 +1,6 @@
 {
   "source": "KRX 정보데이터시스템 · 투자자별(연기금) 순매수상위종목",
-  "fetched_at": "2026-07-13T00:02:38+09:00",
+  "fetched_at": "2026-07-13T22:08:15+09:00",
   "unit": "원",
   "windows": [
     {
@@ -12,246 +12,246 @@
         "kospi": {
           "buys": [
             {
-              "code": "000660",
-              "name": "SK하이닉스",
-              "net_shares": 53218,
-              "net_value": 110902112500
-            },
-            {
               "code": "010950",
               "name": "S-Oil",
-              "net_shares": 622752,
-              "net_value": 79293506000
+              "net_shares": 900688,
+              "net_value": 118856292900
             },
             {
               "code": "005930",
               "name": "삼성전자",
-              "net_shares": 253451,
-              "net_value": 72046590750
-            },
-            {
-              "code": "000270",
-              "name": "기아",
-              "net_shares": 334547,
-              "net_value": 51488538800
-            },
-            {
-              "code": "003490",
-              "name": "대한항공",
-              "net_shares": 1749741,
-              "net_value": 49688599150
-            },
-            {
-              "code": "055550",
-              "name": "신한지주",
-              "net_shares": 438824,
-              "net_value": 47381256450
-            },
-            {
-              "code": "005935",
-              "name": "삼성전자우",
-              "net_shares": 229478,
-              "net_value": 46510933250
-            },
-            {
-              "code": "352820",
-              "name": "하이브",
-              "net_shares": 197762,
-              "net_value": 45295057750
+              "net_shares": 352279,
+              "net_value": 100207503500
             },
             {
               "code": "096770",
               "name": "SK이노베이션",
-              "net_shares": 342021,
-              "net_value": 35041326650
+              "net_shares": 587668,
+              "net_value": 62198983750
             },
             {
-              "code": "005830",
-              "name": "DB손해보험",
-              "net_shares": 221766,
-              "net_value": 34013511900
+              "code": "000270",
+              "name": "기아",
+              "net_shares": 387510,
+              "net_value": 59430895200
+            },
+            {
+              "code": "000660",
+              "name": "SK하이닉스",
+              "net_shares": 24141,
+              "net_value": 53155243500
+            },
+            {
+              "code": "005935",
+              "name": "삼성전자우",
+              "net_shares": 258880,
+              "net_value": 51846320650
             },
             {
               "code": "086790",
               "name": "하나금융지주",
-              "net_shares": 269727,
-              "net_value": 33734237550
+              "net_shares": 383784,
+              "net_value": 49065190850
             },
             {
-              "code": "012330",
-              "name": "현대모비스",
-              "net_shares": 55640,
-              "net_value": 27285630250
+              "code": "055550",
+              "name": "신한지주",
+              "net_shares": 446255,
+              "net_value": 48236697050
+            },
+            {
+              "code": "003490",
+              "name": "대한항공",
+              "net_shares": 1604333,
+              "net_value": 45912105000
+            },
+            {
+              "code": "352820",
+              "name": "하이브",
+              "net_shares": 191639,
+              "net_value": 44011609250
+            },
+            {
+              "code": "005830",
+              "name": "DB손해보험",
+              "net_shares": 276054,
+              "net_value": 42745224250
             },
             {
               "code": "000810",
               "name": "삼성화재",
-              "net_shares": 38635,
-              "net_value": 25055915500
+              "net_shares": 47483,
+              "net_value": 30771063500
+            },
+            {
+              "code": "012330",
+              "name": "현대모비스",
+              "net_shares": 55988,
+              "net_value": 27576686250
             },
             {
               "code": "267270",
               "name": "HD건설기계",
-              "net_shares": 193105,
-              "net_value": 24340495150
-            },
-            {
-              "code": "018260",
-              "name": "삼성에스디에스",
-              "net_shares": 101621,
-              "net_value": 20384365450
-            },
-            {
-              "code": "066570",
-              "name": "LG전자",
-              "net_shares": 104904,
-              "net_value": 19879778250
-            },
-            {
-              "code": "003230",
-              "name": "삼양식품",
-              "net_shares": 16625,
-              "net_value": 19598209500
+              "net_shares": 213760,
+              "net_value": 27046657950
             },
             {
               "code": "068270",
               "name": "셀트리온",
-              "net_shares": 103436,
-              "net_value": 18354844850
+              "net_shares": 149375,
+              "net_value": 26516452500
+            },
+            {
+              "code": "207940",
+              "name": "삼성바이오로직스",
+              "net_shares": 17426,
+              "net_value": 24633617000
+            },
+            {
+              "code": "001450",
+              "name": "현대해상",
+              "net_shares": 520299,
+              "net_value": 19669390700
             },
             {
               "code": "006260",
               "name": "LS",
-              "net_shares": 51564,
-              "net_value": 17496032250
+              "net_shares": 57175,
+              "net_value": 19232676500
             },
             {
-              "code": "006360",
-              "name": "GS건설",
-              "net_shares": 538520,
-              "net_value": 16611607475
+              "code": "066570",
+              "name": "LG전자",
+              "net_shares": 101767,
+              "net_value": 18788390550
+            },
+            {
+              "code": "003230",
+              "name": "삼양식품",
+              "net_shares": 15373,
+              "net_value": 18195047000
             }
           ],
           "sells": [
             {
-              "code": "009150",
-              "name": "삼성전기",
-              "net_shares": -101141,
-              "net_value": -169417038000
-            },
-            {
               "code": "402340",
               "name": "SK스퀘어",
-              "net_shares": -101930,
-              "net_value": -138374483000
+              "net_shares": -166947,
+              "net_value": -217669026500
+            },
+            {
+              "code": "009150",
+              "name": "삼성전기",
+              "net_shares": -126983,
+              "net_value": -206063297500
             },
             {
               "code": "042660",
               "name": "한화오션",
-              "net_shares": -594279,
-              "net_value": -51260610600
-            },
-            {
-              "code": "064350",
-              "name": "현대로템",
-              "net_shares": -266513,
-              "net_value": -47316878050
-            },
-            {
-              "code": "329180",
-              "name": "HD현대중공업",
-              "net_shares": -87878,
-              "net_value": -45404829750
-            },
-            {
-              "code": "373220",
-              "name": "LG에너지솔루션",
-              "net_shares": -116774,
-              "net_value": -37345987250
-            },
-            {
-              "code": "000150",
-              "name": "두산",
-              "net_shares": -26859,
-              "net_value": -34890195500
-            },
-            {
-              "code": "012450",
-              "name": "한화에어로스페이스",
-              "net_shares": -34089,
-              "net_value": -31557529500
-            },
-            {
-              "code": "000720",
-              "name": "현대건설",
-              "net_shares": -259527,
-              "net_value": -27400603450
+              "net_shares": -762480,
+              "net_value": -64831846550
             },
             {
               "code": "011070",
               "name": "LG이노텍",
-              "net_shares": -35433,
-              "net_value": -26924259000
+              "net_shares": -86819,
+              "net_value": -61207882500
+            },
+            {
+              "code": "064350",
+              "name": "현대로템",
+              "net_shares": -329150,
+              "net_value": -58038729350
+            },
+            {
+              "code": "329180",
+              "name": "HD현대중공업",
+              "net_shares": -88265,
+              "net_value": -45532603000
+            },
+            {
+              "code": "000150",
+              "name": "두산",
+              "net_shares": -28425,
+              "net_value": -36817363000
+            },
+            {
+              "code": "012450",
+              "name": "한화에어로스페이스",
+              "net_shares": -38984,
+              "net_value": -36140622500
+            },
+            {
+              "code": "373220",
+              "name": "LG에너지솔루션",
+              "net_shares": -101780,
+              "net_value": -32271148750
             },
             {
               "code": "010120",
               "name": "LS ELECTRIC",
-              "net_shares": -118605,
-              "net_value": -24267813200
-            },
-            {
-              "code": "051910",
-              "name": "LG화학",
-              "net_shares": -85468,
-              "net_value": -22299979500
-            },
-            {
-              "code": "298040",
-              "name": "효성중공업",
-              "net_shares": -7577,
-              "net_value": -21827653000
-            },
-            {
-              "code": "353200",
-              "name": "대덕전자",
-              "net_shares": -183759,
-              "net_value": -20787976550
-            },
-            {
-              "code": "010140",
-              "name": "삼성중공업",
-              "net_shares": -918654,
-              "net_value": -20308801475
-            },
-            {
-              "code": "003670",
-              "name": "포스코퓨처엠",
-              "net_shares": -125459,
-              "net_value": -19078201900
-            },
-            {
-              "code": "047050",
-              "name": "포스코인터내셔널",
-              "net_shares": -373618,
-              "net_value": -18263114650
+              "net_shares": -159918,
+              "net_value": -32267130150
             },
             {
               "code": "032830",
               "name": "삼성생명",
-              "net_shares": -43986,
-              "net_value": -15468873000
+              "net_shares": -80171,
+              "net_value": -27089788500
+            },
+            {
+              "code": "000720",
+              "name": "현대건설",
+              "net_shares": -255672,
+              "net_value": -26977343950
+            },
+            {
+              "code": "105560",
+              "name": "KB금융",
+              "net_shares": -132833,
+              "net_value": -24644246800
+            },
+            {
+              "code": "051910",
+              "name": "LG화학",
+              "net_shares": -93732,
+              "net_value": -24422730750
+            },
+            {
+              "code": "010140",
+              "name": "삼성중공업",
+              "net_shares": -1034387,
+              "net_value": -22988551625
+            },
+            {
+              "code": "298040",
+              "name": "효성중공업",
+              "net_shares": -7141,
+              "net_value": -20629269000
+            },
+            {
+              "code": "003670",
+              "name": "포스코퓨처엠",
+              "net_shares": -132304,
+              "net_value": -20101486200
+            },
+            {
+              "code": "353200",
+              "name": "대덕전자",
+              "net_shares": -167247,
+              "net_value": -18763739650
+            },
+            {
+              "code": "047050",
+              "name": "포스코인터내셔널",
+              "net_shares": -354942,
+              "net_value": -17287470850
             },
             {
               "code": "047810",
               "name": "한국항공우주",
-              "net_shares": -103652,
-              "net_value": -15344552050
-            },
-            {
-              "code": "066970",
-              "name": "엘앤에프",
-              "net_shares": -156533,
-              "net_value": -14763759500
+              "net_shares": -113553,
+              "net_value": -16788862300
             }
           ]
         },
@@ -260,44 +260,44 @@
             {
               "code": "214450",
               "name": "파마리서치",
-              "net_shares": 126131,
-              "net_value": 42172675000
+              "net_shares": 140831,
+              "net_value": 47093328250
             },
             {
               "code": "222800",
               "name": "심텍",
-              "net_shares": 276445,
-              "net_value": 32793966100
-            },
-            {
-              "code": "041830",
-              "name": "인바디",
-              "net_shares": 168097,
-              "net_value": 9464598400
-            },
-            {
-              "code": "196170",
-              "name": "알테오젠",
-              "net_shares": 27205,
-              "net_value": 9100758250
+              "net_shares": 267594,
+              "net_value": 31850193300
             },
             {
               "code": "257720",
               "name": "실리콘투",
-              "net_shares": 234082,
-              "net_value": 8987490050
+              "net_shares": 287622,
+              "net_value": 11060662200
+            },
+            {
+              "code": "196170",
+              "name": "알테오젠",
+              "net_shares": 32283,
+              "net_value": 10800883750
+            },
+            {
+              "code": "041830",
+              "name": "인바디",
+              "net_shares": 168678,
+              "net_value": 9494720100
             },
             {
               "code": "041510",
               "name": "에스엠",
-              "net_shares": 94083,
-              "net_value": 7587846800
+              "net_shares": 92560,
+              "net_value": 7471865100
             },
             {
-              "code": "028300",
-              "name": "HLB",
-              "net_shares": 106481,
-              "net_value": 5538888925
+              "code": "347850",
+              "name": "디앤디파마텍",
+              "net_shares": 83617,
+              "net_value": 7427712800
             },
             {
               "code": "290550",
@@ -306,40 +306,46 @@
               "net_value": 3787528680
             },
             {
-              "code": "347850",
-              "name": "디앤디파마텍",
-              "net_shares": 36639,
-              "net_value": 3411299550
-            },
-            {
-              "code": "240810",
-              "name": "원익IPS",
-              "net_shares": 19043,
-              "net_value": 3184174850
-            },
-            {
               "code": "006730",
               "name": "서부T&D",
-              "net_shares": 283709,
-              "net_value": 3056454555
+              "net_shares": 318100,
+              "net_value": 3439742720
+            },
+            {
+              "code": "226950",
+              "name": "올릭스",
+              "net_shares": 26893,
+              "net_value": 3237547700
             },
             {
               "code": "005290",
               "name": "동진쎄미켐",
-              "net_shares": 62695,
-              "net_value": 2870083175
+              "net_shares": 60068,
+              "net_value": 2770373700
             },
             {
               "code": "251970",
               "name": "펌텍코리아",
-              "net_shares": 54513,
-              "net_value": 2453966900
+              "net_shares": 58758,
+              "net_value": 2640009400
+            },
+            {
+              "code": "240810",
+              "name": "원익IPS",
+              "net_shares": 14109,
+              "net_value": 2557967850
             },
             {
               "code": "237690",
               "name": "에스티팜",
-              "net_shares": 17134,
-              "net_value": 2199637550
+              "net_shares": 18036,
+              "net_value": 2315061850
+            },
+            {
+              "code": "080220",
+              "name": "제주반도체",
+              "net_shares": 23473,
+              "net_value": 2156073150
             },
             {
               "code": "347700",
@@ -348,84 +354,78 @@
               "net_value": 2080267670
             },
             {
+              "code": "319660",
+              "name": "피에스케이",
+              "net_shares": 7827,
+              "net_value": 2053902050
+            },
+            {
               "code": "145020",
               "name": "휴젤",
               "net_shares": 7569,
               "net_value": 1865971750
             },
             {
-              "code": "403870",
-              "name": "HPSP",
-              "net_shares": 47202,
-              "net_value": 1837562425
-            },
-            {
               "code": "035900",
               "name": "JYP Ent.",
-              "net_shares": 32131,
-              "net_value": 1805435650
+              "net_shares": 29586,
+              "net_value": 1677719450
             },
             {
-              "code": "080220",
-              "name": "제주반도체",
-              "net_shares": 18872,
-              "net_value": 1796189600
-            },
-            {
-              "code": "241710",
-              "name": "코스메카코리아",
-              "net_shares": 19590,
-              "net_value": 1659522400
+              "code": "064290",
+              "name": "인텍플러스",
+              "net_shares": 34634,
+              "net_value": 1475027250
             }
           ],
           "sells": [
             {
-              "code": "078600",
-              "name": "대주전자재료",
-              "net_shares": -163531,
-              "net_value": -12767504150
-            },
-            {
               "code": "089970",
               "name": "브이엠",
-              "net_shares": -144766,
-              "net_value": -12172566450
+              "net_shares": -200378,
+              "net_value": -17852814800
             },
             {
               "code": "064760",
               "name": "티씨케이",
-              "net_shares": -46688,
-              "net_value": -10454121500
+              "net_shares": -56151,
+              "net_value": -12658890500
+            },
+            {
+              "code": "078600",
+              "name": "대주전자재료",
+              "net_shares": -159092,
+              "net_value": -12396858850
             },
             {
               "code": "084370",
               "name": "유진테크",
-              "net_shares": -67484,
-              "net_value": -9918112250
-            },
-            {
-              "code": "298380",
-              "name": "에이비엘바이오",
-              "net_shares": -112966,
-              "net_value": -9427035150
+              "net_shares": -69296,
+              "net_value": -10194561750
             },
             {
               "code": "087010",
               "name": "펩트론",
-              "net_shares": -55553,
-              "net_value": -6874268700
+              "net_shares": -74249,
+              "net_value": -8946137400
             },
             {
-              "code": "141080",
-              "name": "리가켐바이오",
-              "net_shares": -50764,
-              "net_value": -5775787300
+              "code": "298380",
+              "name": "에이비엘바이오",
+              "net_shares": -82558,
+              "net_value": -6937290550
             },
             {
               "code": "101490",
               "name": "에스앤에스텍",
-              "net_shares": -119315,
-              "net_value": -5512135375
+              "net_shares": -132025,
+              "net_value": -6128923500
+            },
+            {
+              "code": "141080",
+              "name": "리가켐바이오",
+              "net_shares": -48766,
+              "net_value": -5525758550
             },
             {
               "code": "160980",
@@ -434,28 +434,40 @@
               "net_value": -4968023625
             },
             {
-              "code": "399720",
-              "name": "가온칩스",
-              "net_shares": -103149,
-              "net_value": -4852363300
+              "code": "456160",
+              "name": "지투지바이오",
+              "net_shares": -149541,
+              "net_value": -4790783800
             },
             {
-              "code": "039030",
-              "name": "이오테크닉스",
-              "net_shares": -12483,
-              "net_value": -4667437750
+              "code": "399720",
+              "name": "가온칩스",
+              "net_shares": -101687,
+              "net_value": -4777270350
+            },
+            {
+              "code": "043260",
+              "name": "성호전자",
+              "net_shares": -256088,
+              "net_value": -4700644790
+            },
+            {
+              "code": "104830",
+              "name": "원익머트리얼즈",
+              "net_shares": -132497,
+              "net_value": -4679224450
             },
             {
               "code": "074600",
               "name": "원익QnC",
-              "net_shares": -154573,
-              "net_value": -4407390375
+              "net_shares": -161020,
+              "net_value": -4602425800
             },
             {
-              "code": "456160",
-              "name": "지투지바이오",
-              "net_shares": -121087,
-              "net_value": -3883054800
+              "code": "039030",
+              "name": "이오테크닉스",
+              "net_shares": -11105,
+              "net_value": -4172845250
             },
             {
               "code": "089030",
@@ -464,40 +476,28 @@
               "net_value": -3849280375
             },
             {
+              "code": "365340",
+              "name": "성일하이텍",
+              "net_shares": -110612,
+              "net_value": -3814374425
+            },
+            {
               "code": "425420",
               "name": "티에프이",
               "net_shares": -102060,
               "net_value": -3763162175
             },
             {
-              "code": "131970",
-              "name": "두산테스나",
-              "net_shares": -36784,
-              "net_value": -3672105550
-            },
-            {
               "code": "476830",
               "name": "알지노믹스",
-              "net_shares": -101943,
-              "net_value": -3634231225
+              "net_shares": -105991,
+              "net_value": -3758053225
             },
             {
-              "code": "104830",
-              "name": "원익머트리얼즈",
-              "net_shares": -97554,
-              "net_value": -3440461525
-            },
-            {
-              "code": "095340",
-              "name": "ISC",
-              "net_shares": -23018,
-              "net_value": -3425947000
-            },
-            {
-              "code": "365340",
-              "name": "성일하이텍",
-              "net_shares": -90612,
-              "net_value": -3143020150
+              "code": "036930",
+              "name": "주성엔지니어링",
+              "net_shares": -14769,
+              "net_value": -3709753150
             }
           ]
         }
@@ -514,80 +514,80 @@
             {
               "code": "003490",
               "name": "대한항공",
-              "net_shares": 6140647,
-              "net_value": 176344134950
+              "net_shares": 5995239,
+              "net_value": 172567640800
             },
             {
               "code": "055550",
               "name": "신한지주",
-              "net_shares": 1523822,
-              "net_value": 157573610900
-            },
-            {
-              "code": "352820",
-              "name": "하이브",
-              "net_shares": 372772,
-              "net_value": 82221033350
-            },
-            {
-              "code": "015760",
-              "name": "한국전력",
-              "net_shares": 2027804,
-              "net_value": 79138817475
-            },
-            {
-              "code": "006260",
-              "name": "LS",
-              "net_shares": 210360,
-              "net_value": 77711565000
-            },
-            {
-              "code": "068270",
-              "name": "셀트리온",
-              "net_shares": 367193,
-              "net_value": 66421133050
-            },
-            {
-              "code": "267260",
-              "name": "HD현대일렉트릭",
-              "net_shares": 62288,
-              "net_value": 63233043500
+              "net_shares": 1531253,
+              "net_value": 158429051500
             },
             {
               "code": "010950",
               "name": "S-Oil",
-              "net_shares": 406727,
-              "net_value": 57628450950
+              "net_shares": 684663,
+              "net_value": 97191237850
             },
             {
-              "code": "034730",
-              "name": "SK",
-              "net_shares": 70637,
-              "net_value": 56694160000
+              "code": "352820",
+              "name": "하이브",
+              "net_shares": 366649,
+              "net_value": 80937584850
             },
             {
-              "code": "032830",
-              "name": "삼성생명",
-              "net_shares": 101851,
-              "net_value": 55897209750
+              "code": "006260",
+              "name": "LS",
+              "net_shares": 215971,
+              "net_value": 79448209250
             },
             {
-              "code": "066570",
-              "name": "LG전자",
-              "net_shares": 286891,
-              "net_value": 54730525900
+              "code": "068270",
+              "name": "셀트리온",
+              "net_shares": 413132,
+              "net_value": 74582740700
             },
             {
-              "code": "090430",
-              "name": "아모레퍼시픽",
-              "net_shares": 428002,
-              "net_value": 52192219050
+              "code": "015760",
+              "name": "한국전력",
+              "net_shares": 1827725,
+              "net_value": 72135168825
+            },
+            {
+              "code": "267260",
+              "name": "HD현대일렉트릭",
+              "net_shares": 64462,
+              "net_value": 65065972500
             },
             {
               "code": "086790",
               "name": "하나금융지주",
-              "net_shares": 385785,
-              "net_value": 49360212950
+              "net_shares": 499842,
+              "net_value": 64691166250
+            },
+            {
+              "code": "066570",
+              "name": "LG전자",
+              "net_shares": 283754,
+              "net_value": 53639138200
+            },
+            {
+              "code": "090430",
+              "name": "아모레퍼시픽",
+              "net_shares": 438052,
+              "net_value": 53436944150
+            },
+            {
+              "code": "034730",
+              "name": "SK",
+              "net_shares": 63082,
+              "net_value": 52236495000
+            },
+            {
+              "code": "032830",
+              "name": "삼성생명",
+              "net_shares": 65666,
+              "net_value": 44276294250
             },
             {
               "code": "097230",
@@ -596,162 +596,162 @@
               "net_value": 42298966240
             },
             {
-              "code": "028050",
-              "name": "삼성E&A",
-              "net_shares": 754167,
-              "net_value": 41836661775
-            },
-            {
               "code": "475150",
               "name": "SK이터닉스",
-              "net_shares": 785144,
-              "net_value": 39915484400
+              "net_shares": 798726,
+              "net_value": 40608340250
             },
             {
-              "code": "012450",
-              "name": "한화에어로스페이스",
-              "net_shares": 26220,
-              "net_value": 39376362000
+              "code": "028050",
+              "name": "삼성E&A",
+              "net_shares": 657589,
+              "net_value": 37764156825
+            },
+            {
+              "code": "005830",
+              "name": "DB손해보험",
+              "net_shares": 238074,
+              "net_value": 37245824750
             },
             {
               "code": "128940",
               "name": "한미약품",
-              "net_shares": 87730,
-              "net_value": 38032467500
+              "net_shares": 83366,
+              "net_value": 36368681750
             },
             {
-              "code": "079550",
-              "name": "LIG디펜스앤에어로스페이스",
-              "net_shares": 35430,
-              "net_value": 34630599000
+              "code": "012450",
+              "name": "한화에어로스페이스",
+              "net_shares": 21325,
+              "net_value": 34793269000
             },
             {
               "code": "279570",
               "name": "케이뱅크",
-              "net_shares": 4937392,
-              "net_value": 34502793425
+              "net_shares": 4936295,
+              "net_value": 34496523510
             }
           ],
           "sells": [
             {
               "code": "402340",
               "name": "SK스퀘어",
-              "net_shares": -300546,
-              "net_value": -478254111000
+              "net_shares": -365563,
+              "net_value": -557548654500
             },
             {
               "code": "009150",
               "name": "삼성전기",
-              "net_shares": -206041,
-              "net_value": -386084801500
+              "net_shares": -231883,
+              "net_value": -422731061000
             },
             {
               "code": "005930",
               "name": "삼성전자",
-              "net_shares": -719716,
-              "net_value": -277883689500
-            },
-            {
-              "code": "006800",
-              "name": "미래에셋증권",
-              "net_shares": -3809135,
-              "net_value": -175201964050
+              "net_shares": -620888,
+              "net_value": -249722776750
             },
             {
               "code": "011070",
               "name": "LG이노텍",
-              "net_shares": -180105,
-              "net_value": -165669647500
+              "net_shares": -231491,
+              "net_value": -199953271000
+            },
+            {
+              "code": "006800",
+              "name": "미래에셋증권",
+              "net_shares": -3809927,
+              "net_value": -175216201500
             },
             {
               "code": "005380",
               "name": "현대차",
-              "net_shares": -223362,
-              "net_value": -132335357750
-            },
-            {
-              "code": "005490",
-              "name": "POSCO홀딩스",
-              "net_shares": -331991,
-              "net_value": -117367077500
-            },
-            {
-              "code": "000150",
-              "name": "두산",
-              "net_shares": -77292,
-              "net_value": -114847557000
-            },
-            {
-              "code": "373220",
-              "name": "LG에너지솔루션",
-              "net_shares": -282085,
-              "net_value": -100523778750
-            },
-            {
-              "code": "017670",
-              "name": "SK텔레콤",
-              "net_shares": -717816,
-              "net_value": -65882134100
+              "net_shares": -204562,
+              "net_value": -123458111250
             },
             {
               "code": "000660",
               "name": "SK하이닉스",
-              "net_shares": 4479,
-              "net_value": -59354587500
+              "net_shares": -24598,
+              "net_value": -117101456500
             },
             {
-              "code": "064350",
-              "name": "현대로템",
-              "net_shares": -319932,
-              "net_value": -54858466250
+              "code": "000150",
+              "name": "두산",
+              "net_shares": -78858,
+              "net_value": -116774724500
+            },
+            {
+              "code": "005490",
+              "name": "POSCO홀딩스",
+              "net_shares": -318219,
+              "net_value": -113063586000
+            },
+            {
+              "code": "373220",
+              "name": "LG에너지솔루션",
+              "net_shares": -267091,
+              "net_value": -95448940250
             },
             {
               "code": "042660",
               "name": "한화오션",
-              "net_shares": -678389,
-              "net_value": -53942824600
-            },
-            {
-              "code": "047050",
-              "name": "포스코인터내셔널",
-              "net_shares": -953454,
-              "net_value": -52350034500
-            },
-            {
-              "code": "066970",
-              "name": "엘앤에프",
-              "net_shares": -483857,
-              "net_value": -52324396500
+              "net_shares": -846590,
+              "net_value": -67514060550
             },
             {
               "code": "105560",
               "name": "KB금융",
-              "net_shares": -306234,
-              "net_value": -51234296700
+              "net_shares": -385647,
+              "net_value": -66060433050
+            },
+            {
+              "code": "017670",
+              "name": "SK텔레콤",
+              "net_shares": -718295,
+              "net_value": -65891389750
+            },
+            {
+              "code": "064350",
+              "name": "현대로템",
+              "net_shares": -382569,
+              "net_value": -65580317550
+            },
+            {
+              "code": "066970",
+              "name": "엘앤에프",
+              "net_shares": -484905,
+              "net_value": -52447176400
+            },
+            {
+              "code": "047050",
+              "name": "포스코인터내셔널",
+              "net_shares": -934778,
+              "net_value": -51374390700
             },
             {
               "code": "039490",
               "name": "키움증권",
-              "net_shares": -148929,
-              "net_value": -49914367250
-            },
-            {
-              "code": "138040",
-              "name": "메리츠금융지주",
-              "net_shares": -451406,
-              "net_value": -49143885150
-            },
-            {
-              "code": "003670",
-              "name": "포스코퓨처엠",
-              "net_shares": -274690,
-              "net_value": -46836106100
+              "net_shares": -148131,
+              "net_value": -49623150000
             },
             {
               "code": "010140",
               "name": "삼성중공업",
-              "net_shares": -1976376,
-              "net_value": -46340635750
+              "net_shares": -2092109,
+              "net_value": -49020385900
+            },
+            {
+              "code": "003670",
+              "name": "포스코퓨처엠",
+              "net_shares": -281535,
+              "net_value": -47859390400
+            },
+            {
+              "code": "138040",
+              "name": "메리츠금융지주",
+              "net_shares": -434690,
+              "net_value": -47187650650
             }
           ]
         },
@@ -760,68 +760,68 @@
             {
               "code": "214450",
               "name": "파마리서치",
-              "net_shares": 279798,
-              "net_value": 95360788250
+              "net_shares": 294498,
+              "net_value": 100281441500
             },
             {
               "code": "222800",
               "name": "심텍",
-              "net_shares": 720219,
-              "net_value": 90311165550
+              "net_shares": 711368,
+              "net_value": 89367392750
             },
             {
               "code": "196170",
               "name": "알테오젠",
-              "net_shares": 157867,
-              "net_value": 56982638750
+              "net_shares": 162945,
+              "net_value": 58682764250
             },
             {
               "code": "347850",
               "name": "디앤디파마텍",
-              "net_shares": 489843,
-              "net_value": 46323583050
+              "net_shares": 536821,
+              "net_value": 50339996300
             },
             {
               "code": "226950",
               "name": "올릭스",
-              "net_shares": 251704,
-              "net_value": 40122076050
+              "net_shares": 274214,
+              "net_value": 43035113150
             },
             {
               "code": "237690",
               "name": "에스티팜",
-              "net_shares": 235776,
-              "net_value": 31472995150
+              "net_shares": 236678,
+              "net_value": 31588419450
             },
             {
               "code": "240810",
               "name": "원익IPS",
-              "net_shares": 201183,
-              "net_value": 31035992950
+              "net_shares": 196249,
+              "net_value": 30409785950
             },
             {
               "code": "041830",
               "name": "인바디",
-              "net_shares": 455540,
-              "net_value": 25293789825
-            },
-            {
-              "code": "420770",
-              "name": "기가비스",
-              "net_shares": 116438,
-              "net_value": 19839110750
+              "net_shares": 456121,
+              "net_value": 25323911525
             },
             {
               "code": "298380",
               "name": "에이비엘바이오",
-              "net_shares": 148078,
-              "net_value": 17838764350
+              "net_shares": 178486,
+              "net_value": 20328508950
+            },
+            {
+              "code": "420770",
+              "name": "기가비스",
+              "net_shares": 116065,
+              "net_value": 19772162650
             },
             {
               "code": "041510",
               "name": "에스엠",
-              "net_shares": 168078,
-              "net_value": 13283793350
+              "net_shares": 166555,
+              "net_value": 13167811650
             },
             {
               "code": "290550",
@@ -830,34 +830,34 @@
               "net_value": 12073547800
             },
             {
-              "code": "241710",
-              "name": "코스메카코리아",
-              "net_shares": 131191,
-              "net_value": 10162484450
-            },
-            {
               "code": "005290",
               "name": "동진쎄미켐",
-              "net_shares": 181020,
-              "net_value": 10103311850
+              "net_shares": 178393,
+              "net_value": 10003602375
+            },
+            {
+              "code": "241710",
+              "name": "코스메카코리아",
+              "net_shares": 121664,
+              "net_value": 9327789850
             },
             {
               "code": "141080",
               "name": "리가켐바이오",
-              "net_shares": 34164,
-              "net_value": 7817585900
+              "net_shares": 36162,
+              "net_value": 8067614650
             },
             {
-              "code": "089970",
-              "name": "브이엠",
-              "net_shares": 59841,
-              "net_value": 7775398650
+              "code": "257720",
+              "name": "실리콘투",
+              "net_shares": 169840,
+              "net_value": 7310847025
             },
             {
               "code": "195940",
               "name": "HK이노엔",
-              "net_shares": 153523,
-              "net_value": 6438050925
+              "net_shares": 152291,
+              "net_value": 6389845850
             },
             {
               "code": "475830",
@@ -882,50 +882,68 @@
             {
               "code": "078600",
               "name": "대주전자재료",
-              "net_shares": -423042,
-              "net_value": -38907565300
+              "net_shares": -418603,
+              "net_value": -38536920000
             },
             {
               "code": "086520",
               "name": "에코프로",
-              "net_shares": -320642,
-              "net_value": -31471710000
+              "net_shares": -322622,
+              "net_value": -31651263350
             },
             {
               "code": "043260",
               "name": "성호전자",
-              "net_shares": -1132521,
-              "net_value": -28226958390
-            },
-            {
-              "code": "095340",
-              "name": "ISC",
-              "net_shares": -174369,
-              "net_value": -26924476450
-            },
-            {
-              "code": "247540",
-              "name": "에코프로비엠",
-              "net_shares": -195992,
-              "net_value": -25915579300
+              "net_shares": -1282849,
+              "net_value": -31138828580
             },
             {
               "code": "036930",
               "name": "주성엔지니어링",
-              "net_shares": -107233,
-              "net_value": -24918984450
+              "net_shares": -119883,
+              "net_value": -27481507750
+            },
+            {
+              "code": "247540",
+              "name": "에코프로비엠",
+              "net_shares": -194822,
+              "net_value": -25732273700
             },
             {
               "code": "064760",
               "name": "티씨케이",
-              "net_shares": -97703,
-              "net_value": -23428690250
+              "net_shares": -107166,
+              "net_value": -25633459250
+            },
+            {
+              "code": "095340",
+              "name": "ISC",
+              "net_shares": -148153,
+              "net_value": -22756078000
             },
             {
               "code": "039030",
               "name": "이오테크닉스",
-              "net_shares": -40988,
-              "net_value": -17816022750
+              "net_shares": -39610,
+              "net_value": -17321430250
+            },
+            {
+              "code": "087010",
+              "name": "펩트론",
+              "net_shares": -112302,
+              "net_value": -16672481850
+            },
+            {
+              "code": "403870",
+              "name": "HPSP",
+              "net_shares": -217100,
+              "net_value": -15120563875
+            },
+            {
+              "code": "183300",
+              "name": "코미코",
+              "net_shares": -159765,
+              "net_value": -14823226950
             },
             {
               "code": "089030",
@@ -934,70 +952,52 @@
               "net_value": -14665453425
             },
             {
-              "code": "087010",
-              "name": "펩트론",
-              "net_shares": -93606,
-              "net_value": -14600613150
-            },
-            {
-              "code": "403870",
-              "name": "HPSP",
-              "net_shares": -203372,
-              "net_value": -14562894000
-            },
-            {
-              "code": "183300",
-              "name": "코미코",
-              "net_shares": -138851,
-              "net_value": -13082505250
+              "code": "277810",
+              "name": "레인보우로보틱스",
+              "net_shares": -22927,
+              "net_value": -12044227250
             },
             {
               "code": "131970",
               "name": "두산테스나",
-              "net_shares": -126009,
-              "net_value": -11941503050
-            },
-            {
-              "code": "277810",
-              "name": "레인보우로보틱스",
-              "net_shares": -22604,
-              "net_value": -11908020500
-            },
-            {
-              "code": "319660",
-              "name": "피에스케이",
-              "net_shares": -72697,
-              "net_value": -11643302300
-            },
-            {
-              "code": "084370",
-              "name": "유진테크",
-              "net_shares": -72409,
-              "net_value": -10954499100
-            },
-            {
-              "code": "178320",
-              "name": "서진시스템",
-              "net_shares": -184884,
-              "net_value": -10814703950
+              "net_shares": -124046,
+              "net_value": -11756077550
             },
             {
               "code": "098460",
               "name": "고영",
-              "net_shares": -353619,
-              "net_value": -10739309125
+              "net_shares": -385217,
+              "net_value": -11584208850
+            },
+            {
+              "code": "178320",
+              "name": "서진시스템",
+              "net_shares": -199330,
+              "net_value": -11390014350
             },
             {
               "code": "131290",
               "name": "티에스이",
-              "net_shares": -43790,
-              "net_value": -10465772750
+              "net_shares": -46962,
+              "net_value": -11335359000
+            },
+            {
+              "code": "084370",
+              "name": "유진테크",
+              "net_shares": -74221,
+              "net_value": -11230948600
+            },
+            {
+              "code": "319660",
+              "name": "피에스케이",
+              "net_shares": -67461,
+              "net_value": -10559989550
             },
             {
               "code": "456160",
               "name": "지투지바이오",
-              "net_shares": -238237,
-              "net_value": -9204126500
+              "net_shares": -266691,
+              "net_value": -10111855500
             }
           ]
         }
@@ -1014,92 +1014,98 @@
             {
               "code": "329180",
               "name": "HD현대중공업",
-              "net_shares": 588341,
-              "net_value": 367356810250
+              "net_shares": 587954,
+              "net_value": 367229037000
             },
             {
               "code": "035420",
               "name": "NAVER",
-              "net_shares": 814659,
-              "net_value": 262076393550
-            },
-            {
-              "code": "032830",
-              "name": "삼성생명",
-              "net_shares": 591786,
-              "net_value": 226082339500
+              "net_shares": 821239,
+              "net_value": 263397268250
             },
             {
               "code": "012330",
               "name": "현대모비스",
-              "net_shares": 281225,
-              "net_value": 216753026750
+              "net_shares": 281573,
+              "net_value": 217044082750
+            },
+            {
+              "code": "032830",
+              "name": "삼성생명",
+              "net_shares": 555601,
+              "net_value": 214461424000
             },
             {
               "code": "003490",
               "name": "대한항공",
-              "net_shares": 6760749,
-              "net_value": 195054956325
+              "net_shares": 6615341,
+              "net_value": 191278462175
             },
             {
               "code": "055550",
               "name": "신한지주",
-              "net_shares": 1829275,
-              "net_value": 189463595150
+              "net_shares": 1836706,
+              "net_value": 190319035750
             },
             {
               "code": "036570",
               "name": "NC",
-              "net_shares": 554827,
-              "net_value": 151741763500
+              "net_shares": 552904,
+              "net_value": 151274167000
             },
             {
               "code": "079550",
               "name": "LIG디펜스앤에어로스페이스",
-              "net_shares": 144360,
-              "net_value": 131873334500
+              "net_shares": 141994,
+              "net_value": 130135076500
             },
             {
               "code": "000990",
               "name": "DB하이텍",
-              "net_shares": 572157,
-              "net_value": 97702156600
+              "net_shares": 569418,
+              "net_value": 97400464900
             },
             {
               "code": "443060",
               "name": "HD현대마린솔루션",
-              "net_shares": 314532,
-              "net_value": 82988096950
+              "net_shares": 314420,
+              "net_value": 82968606350
             },
             {
               "code": "023530",
               "name": "롯데쇼핑",
-              "net_shares": 556661,
-              "net_value": 81536943850
+              "net_shares": 557262,
+              "net_value": 81629395850
+            },
+            {
+              "code": "010950",
+              "name": "S-Oil",
+              "net_shares": 492660,
+              "net_value": 79665254350
             },
             {
               "code": "009540",
               "name": "HD한국조선해양",
-              "net_shares": 169601,
-              "net_value": 80175578500
-            },
-            {
-              "code": "064400",
-              "name": "LG씨엔에스",
-              "net_shares": 827829,
-              "net_value": 71923329200
+              "net_shares": 165931,
+              "net_value": 78914967750
             },
             {
               "code": "007810",
               "name": "코리아써키트",
-              "net_shares": 530611,
-              "net_value": 71181415050
+              "net_shares": 569041,
+              "net_value": 74000163250
+            },
+            {
+              "code": "064400",
+              "name": "LG씨엔에스",
+              "net_shares": 842488,
+              "net_value": 72948684250
             },
             {
               "code": "006110",
               "name": "삼아알미늄",
-              "net_shares": 831301,
-              "net_value": 68937074125
+              "net_shares": 831300,
+              "net_value": 68937033925
             },
             {
               "code": "097230",
@@ -1108,150 +1114,144 @@
               "net_value": 66635351850
             },
             {
-              "code": "375500",
-              "name": "DL이앤씨",
-              "net_shares": 587704,
-              "net_value": 61023929700
-            },
-            {
               "code": "001450",
               "name": "현대해상",
-              "net_shares": 1460498,
-              "net_value": 59711054525
+              "net_shares": 1573704,
+              "net_value": 64135379225
+            },
+            {
+              "code": "375500",
+              "name": "DL이앤씨",
+              "net_shares": 604233,
+              "net_value": 62045267950
             },
             {
               "code": "279570",
               "name": "케이뱅크",
-              "net_shares": 8755794,
-              "net_value": 58015605725
-            },
-            {
-              "code": "003230",
-              "name": "삼양식품",
-              "net_shares": 46029,
-              "net_value": 57476581500
+              "net_shares": 8754697,
+              "net_value": 58009335810
             }
           ],
           "sells": [
             {
               "code": "009150",
               "name": "삼성전기",
-              "net_shares": -894330,
-              "net_value": -1378378924500
+              "net_shares": -920172,
+              "net_value": -1415025184000
             },
             {
               "code": "402340",
               "name": "SK스퀘어",
-              "net_shares": -316288,
-              "net_value": -614030953500
+              "net_shares": -381305,
+              "net_value": -693325497000
             },
             {
               "code": "006800",
               "name": "미래에셋증권",
-              "net_shares": -7807640,
-              "net_value": -394523797900
+              "net_shares": -7808432,
+              "net_value": -394538035350
             },
             {
               "code": "207940",
               "name": "삼성바이오로직스",
-              "net_shares": -255530,
-              "net_value": -366033652000
-            },
-            {
-              "code": "000150",
-              "name": "두산",
-              "net_shares": -207201,
-              "net_value": -340928405000
+              "net_shares": -247575,
+              "net_value": -354811007500
             },
             {
               "code": "000660",
               "name": "SK하이닉스",
-              "net_shares": -183287,
-              "net_value": -291481886500
+              "net_shares": -212364,
+              "net_value": -349228755500
             },
             {
-              "code": "005935",
-              "name": "삼성전자우",
-              "net_shares": -1353077,
-              "net_value": -256037399000
+              "code": "000150",
+              "name": "두산",
+              "net_shares": -208767,
+              "net_value": -342855572500
             },
             {
               "code": "010120",
               "name": "LS ELECTRIC",
-              "net_shares": -1008180,
-              "net_value": -254162651100
+              "net_shares": -1049493,
+              "net_value": -262161968050
+            },
+            {
+              "code": "005935",
+              "name": "삼성전자우",
+              "net_shares": -1323675,
+              "net_value": -250702011600
             },
             {
               "code": "011070",
               "name": "LG이노텍",
-              "net_shares": -39139,
-              "net_value": -203063332750
+              "net_shares": -90525,
+              "net_value": -237346956250
             },
             {
               "code": "047810",
               "name": "한국항공우주",
-              "net_shares": -1179108,
-              "net_value": -201540306350
+              "net_shares": -1189009,
+              "net_value": -202984616600
             },
             {
               "code": "298040",
               "name": "효성중공업",
-              "net_shares": -50936,
-              "net_value": -190656308000
+              "net_shares": -50500,
+              "net_value": -189457924000
             },
             {
               "code": "005930",
               "name": "삼성전자",
-              "net_shares": -553367,
-              "net_value": -187847219750
+              "net_shares": -454539,
+              "net_value": -159686307000
             },
             {
               "code": "035720",
               "name": "카카오",
-              "net_shares": -3611141,
-              "net_value": -150879008200
-            },
-            {
-              "code": "000720",
-              "name": "현대건설",
-              "net_shares": -931424,
-              "net_value": -141046215150
-            },
-            {
-              "code": "047050",
-              "name": "포스코인터내셔널",
-              "net_shares": -2218800,
-              "net_value": -135804442800
+              "net_shares": -3603444,
+              "net_value": -150598196350
             },
             {
               "code": "105560",
               "name": "KB금융",
-              "net_shares": -835668,
-              "net_value": -134393528900
+              "net_shares": -915081,
+              "net_value": -149219665250
+            },
+            {
+              "code": "000720",
+              "name": "현대건설",
+              "net_shares": -927569,
+              "net_value": -140622955650
+            },
+            {
+              "code": "047050",
+              "name": "포스코인터내셔널",
+              "net_shares": -2200124,
+              "net_value": -134828799000
             },
             {
               "code": "272210",
               "name": "한화시스템",
-              "net_shares": -1234039,
-              "net_value": -120962868700
+              "net_shares": -1253511,
+              "net_value": -122259456400
             },
             {
               "code": "007660",
               "name": "이수페타시스",
-              "net_shares": -971425,
-              "net_value": -116250288950
-            },
-            {
-              "code": "047040",
-              "name": "대우건설",
-              "net_shares": -3522071,
-              "net_value": -113787068250
+              "net_shares": -971561,
+              "net_value": -116199266150
             },
             {
               "code": "024110",
               "name": "기업은행",
-              "net_shares": -5244189,
-              "net_value": -110565777840
+              "net_shares": -5247319,
+              "net_value": -110629311190
+            },
+            {
+              "code": "047040",
+              "name": "대우건설",
+              "net_shares": -3271979,
+              "net_value": -109638846045
             }
           ]
         },
@@ -1260,92 +1260,86 @@
             {
               "code": "222800",
               "name": "심텍",
-              "net_shares": 1575147,
-              "net_value": 180521230550
+              "net_shares": 1566296,
+              "net_value": 179577457750
             },
             {
               "code": "214450",
               "name": "파마리서치",
-              "net_shares": 390629,
-              "net_value": 132365508250
+              "net_shares": 405329,
+              "net_value": 137286161500
             },
             {
               "code": "196170",
               "name": "알테오젠",
-              "net_shares": 236815,
-              "net_value": 88071410250
+              "net_shares": 241893,
+              "net_value": 89771535750
             },
             {
               "code": "347850",
               "name": "디앤디파마텍",
-              "net_shares": 517385,
-              "net_value": 52344895050
+              "net_shares": 564363,
+              "net_value": 56361308300
             },
             {
               "code": "226950",
               "name": "올릭스",
-              "net_shares": 190047,
-              "net_value": 35199995500
+              "net_shares": 212557,
+              "net_value": 38113032600
             },
             {
               "code": "041830",
               "name": "인바디",
-              "net_shares": 594652,
-              "net_value": 31339691650
+              "net_shares": 595233,
+              "net_value": 31369813350
             },
             {
               "code": "240810",
               "name": "원익IPS",
-              "net_shares": 159399,
-              "net_value": 30998238950
+              "net_shares": 154465,
+              "net_value": 30372031950
             },
             {
               "code": "043260",
               "name": "성호전자",
-              "net_shares": 189739,
-              "net_value": 30421311035
+              "net_shares": 39411,
+              "net_value": 27509440845
             },
             {
               "code": "420770",
               "name": "기가비스",
-              "net_shares": 187560,
-              "net_value": 26084791100
-            },
-            {
-              "code": "095610",
-              "name": "테스",
-              "net_shares": 174387,
-              "net_value": 24044603450
+              "net_shares": 187187,
+              "net_value": 26017843000
             },
             {
               "code": "237690",
               "name": "에스티팜",
-              "net_shares": 163711,
-              "net_value": 23292408800
+              "net_shares": 164613,
+              "net_value": 23407833100
+            },
+            {
+              "code": "095610",
+              "name": "테스",
+              "net_shares": 169925,
+              "net_value": 23232751150
             },
             {
               "code": "127120",
               "name": "제이에스링크",
-              "net_shares": 557642,
-              "net_value": 22018712350
+              "net_shares": 546708,
+              "net_value": 21609980650
             },
             {
               "code": "074600",
               "name": "원익QnC",
-              "net_shares": 461123,
-              "net_value": 19394051100
+              "net_shares": 454676,
+              "net_value": 19199015675
             },
             {
               "code": "080220",
               "name": "제주반도체",
-              "net_shares": 220251,
-              "net_value": 18138312225
-            },
-            {
-              "code": "031980",
-              "name": "피에스케이홀딩스",
-              "net_shares": 116113,
-              "net_value": 17406673350
+              "net_shares": 224852,
+              "net_value": 18498195775
             },
             {
               "code": "290550",
@@ -1360,10 +1354,16 @@
               "net_value": 15751636275
             },
             {
+              "code": "031980",
+              "name": "피에스케이홀딩스",
+              "net_shares": 100317,
+              "net_value": 15218764950
+            },
+            {
               "code": "042520",
               "name": "한스바이오메드",
-              "net_shares": 550268,
-              "net_value": 15628798300
+              "net_shares": 532843,
+              "net_value": 15164029700
             },
             {
               "code": "064290",
@@ -1382,62 +1382,62 @@
             {
               "code": "095340",
               "name": "ISC",
-              "net_shares": -384715,
-              "net_value": -72290782200
+              "net_shares": -358499,
+              "net_value": -68122383750
             },
             {
               "code": "086520",
               "name": "에코프로",
-              "net_shares": -544699,
-              "net_value": -62278644500
+              "net_shares": -546679,
+              "net_value": -62458197850
             },
             {
               "code": "078600",
               "name": "대주전자재료",
-              "net_shares": -607898,
-              "net_value": -58799713250
+              "net_shares": -603459,
+              "net_value": -58429067950
             },
             {
               "code": "247540",
               "name": "에코프로비엠",
-              "net_shares": -315920,
-              "net_value": -49911539600
+              "net_shares": -314750,
+              "net_value": -49728234000
             },
             {
               "code": "064760",
               "name": "티씨케이",
-              "net_shares": -153997,
-              "net_value": -38635232500
+              "net_shares": -163460,
+              "net_value": -40840001500
             },
             {
               "code": "058470",
               "name": "리노공업",
-              "net_shares": -334921,
-              "net_value": -36989506450
+              "net_shares": -333647,
+              "net_value": -36894500750
             },
             {
               "code": "178320",
               "name": "서진시스템",
-              "net_shares": -652648,
-              "net_value": -36001774875
-            },
-            {
-              "code": "357780",
-              "name": "솔브레인",
-              "net_shares": -85241,
-              "net_value": -33588562500
+              "net_shares": -667094,
+              "net_value": -36577085275
             },
             {
               "code": "218410",
               "name": "RFHIC",
-              "net_shares": -446332,
-              "net_value": -33515561550
+              "net_shares": -455332,
+              "net_value": -33943253750
+            },
+            {
+              "code": "357780",
+              "name": "솔브레인",
+              "net_shares": -85275,
+              "net_value": -33600187000
             },
             {
               "code": "327260",
               "name": "RF머트리얼즈",
-              "net_shares": -447897,
-              "net_value": -32561505400
+              "net_shares": -443872,
+              "net_value": -32346308000
             },
             {
               "code": "126340",
@@ -1446,28 +1446,40 @@
               "net_value": -32080068750
             },
             {
-              "code": "084370",
-              "name": "유진테크",
-              "net_shares": -223126,
-              "net_value": -28848507850
-            },
-            {
               "code": "036930",
               "name": "주성엔지니어링",
-              "net_shares": -118444,
-              "net_value": -26886738200
+              "net_shares": -131094,
+              "net_value": -29449261500
+            },
+            {
+              "code": "084370",
+              "name": "유진테크",
+              "net_shares": -224938,
+              "net_value": -29124957350
             },
             {
               "code": "000250",
               "name": "삼천당제약",
-              "net_shares": -66926,
-              "net_value": -26687617700
+              "net_shares": -70256,
+              "net_value": -27349392650
             },
             {
               "code": "183300",
               "name": "코미코",
-              "net_shares": -230651,
-              "net_value": -25490282600
+              "net_shares": -251565,
+              "net_value": -27231004300
+            },
+            {
+              "code": "087010",
+              "name": "펩트론",
+              "net_shares": -145165,
+              "net_value": -24628275850
+            },
+            {
+              "code": "140860",
+              "name": "파크시스템스",
+              "net_shares": -86805,
+              "net_value": -23319511000
             },
             {
               "code": "189300",
@@ -1476,28 +1488,16 @@
               "net_value": -22951702700
             },
             {
-              "code": "140860",
-              "name": "파크시스템스",
-              "net_shares": -85100,
-              "net_value": -22889845250
-            },
-            {
-              "code": "087010",
-              "name": "펩트론",
-              "net_shares": -126469,
-              "net_value": -22556407150
-            },
-            {
               "code": "403870",
               "name": "HPSP",
-              "net_shares": -382780,
-              "net_value": -22247026575
+              "net_shares": -396508,
+              "net_value": -22804696450
             },
             {
-              "code": "319660",
-              "name": "피에스케이",
-              "net_shares": -218523,
-              "net_value": -21841648450
+              "code": "083650",
+              "name": "비에이치아이",
+              "net_shares": -292436,
+              "net_value": -21568942675
             }
           ]
         }
