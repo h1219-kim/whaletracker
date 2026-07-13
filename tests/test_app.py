@@ -112,6 +112,40 @@ def test_passthrough_empty_when_file_missing(client, data_dir, route):
 
 
 # ---------------------------------------------------------------------------
+# build-meta (신선도 판정 근거)
+# ---------------------------------------------------------------------------
+
+def test_build_meta_collects_fetched_at_and_errors(client, data_dir):
+    _write_json(data_dir / "pension_flow.json",
+                {"fetched_at": "2026-07-14T03:00:00+09:00", "markets": {}})
+    _write_json(data_dir / "us_holdings.json",
+                {"fetched_at": "2026-04-01T00:00:00+09:00", "holdings": []})
+    cache = data_dir / ".cache"
+    cache.mkdir()
+    _write_json(cache / "last_refresh.json",
+                {"refreshed_at": "2026-07-14T03:00:00+09:00",
+                 "errors": {"pension_stock_flow": "KRX 접근 실패"}})
+
+    res = client.get("/api/build-meta")
+    assert res.status_code == 200
+    body = res.get_json()
+    assert body["built_at"] is None  # 로컬 서버는 항상 실시간 → built_at 없음
+    assert body["sources"]["pension_flow"] == "2026-07-14T03:00:00+09:00"
+    assert body["sources"]["us_holdings"] == "2026-04-01T00:00:00+09:00"
+    assert body["sources"]["holdings"] is None  # 파일 없으면 None
+    assert body["errors"] == {"pension_stock_flow": "KRX 접근 실패"}
+    assert body["refreshed_at"] == "2026-07-14T03:00:00+09:00"
+
+
+def test_build_meta_without_last_refresh(client, data_dir):
+    res = client.get("/api/build-meta")
+    assert res.status_code == 200
+    body = res.get_json()
+    assert body["errors"] == {}
+    assert body["refreshed_at"] is None
+
+
+# ---------------------------------------------------------------------------
 # trends — 심 monkeypatch
 # ---------------------------------------------------------------------------
 

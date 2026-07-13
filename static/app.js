@@ -11,6 +11,7 @@ const state = {
   pensionFlow: null,
   pensionStockFlow: null,
   usHoldings: null,
+  buildMeta: null,
   days: 90,
   pensionMarket: "kospi",
   pensionWindow: "1m",
@@ -180,6 +181,7 @@ const STATIC_MAP = {
   "/api/pension-flow": "data/pension_flow.json",
   "/api/pension-stock-flow": "data/pension_stock_flow.json",
   "/api/us-holdings": "data/us_holdings.json",
+  "/api/build-meta": "data/build_meta.json",
 };
 
 function apiPath(url) {
@@ -837,6 +839,7 @@ function bindPensionMarketToggle() {
       state.pensionMarket = btn.dataset.market;
       renderPensionFlow();
       renderPensionStock();
+      renderStalenessBanner();
     });
   });
 }
@@ -850,6 +853,7 @@ function bindPensionWindowToggle() {
       toggle.querySelectorAll("button").forEach((b) => b.classList.toggle("active", b === btn));
       state.pensionWindow = btn.dataset.window;
       renderPensionStock();
+      renderStalenessBanner();
     });
   });
 }
@@ -1156,6 +1160,94 @@ function renderUsTable() {
   pag.append(prev, el("span", {}, `${v.page} / ${pages} 페이지 · ${fmtInt(rows.length)}종목`), next);
 }
 
+/* ------------------------------------------ 데이터 신선도 경고 */
+// 소스별 기대 갱신 주기(일). 이보다 오래되면 '예전 데이터'로 간주.
+// daily=true(매일 갱신 기대)인 소스만 상단 배너로 경고 — 나머지(분기·월·연)는
+// 원래 오래되는 게 정상이라 잘못된 경고를 내지 않는다.
+const FRESHNESS = {
+  pension_flow:       { days: 3,   section: "pension-flow-section", label: "연기금 일별 순매수", daily: true },
+  pension_stock_flow: { days: 3,   section: "pension-flow-section", label: "연기금 종목별 수급", daily: true },
+  filings:            { days: 4,   section: "trends-section",       label: "국민연금 매매 공시(DART)", daily: true },
+  us_holdings:        { days: 100, section: "us-section",           label: "미국 주식 13F", daily: false },
+  allocation:         { days: 45,  section: "allocation-section",   label: "자산배분", daily: false },
+  // holdings(연 1회)·major_stakes(분기)는 원래 오래되므로 경고 대상 아님
+};
+
+function referenceTime() {
+  const bm = state.buildMeta;
+  // 정적 사이트: 빌드(=배포) 시각 기준. 로컬: 클라이언트 현재 시각 기준.
+  if (bm && bm.built_at) {
+    const t = new Date(bm.built_at).getTime();
+    if (!Number.isNaN(t)) return t;
+  }
+  return Date.now();
+}
+
+function stalenessReport() {
+  const bm = state.buildMeta;
+  if (!bm || !bm.sources) return [];
+  const ref = referenceTime();
+  const errors = bm.errors || {};
+  const out = [];
+  for (const [src, cfg] of Object.entries(FRESHNESS)) {
+    const fa = bm.sources[src];
+    if (!fa) continue;
+    const t = new Date(fa).getTime();
+    if (Number.isNaN(t)) continue;
+    const ageDays = (ref - t) / 86400000;
+    // DART는 수집 오류 키가 'dart'
+    const hasError = src in errors || (src === "filings" && "dart" in errors);
+    if (ageDays > cfg.days || hasError) {
+      out.push({ src, cfg, fetchedAt: fa, ageDays: Math.max(0, Math.floor(ageDays)), hasError });
+    }
+  }
+  return out;
+}
+
+function fmtDateOnly(iso) {
+  return (iso || "").slice(0, 10) || "?";
+}
+
+function renderStalenessBanner() {
+  const banner = $("staleness-banner");
+  clear(banner);
+  const reports = stalenessReport();
+  const daily = reports.filter((r) => r.cfg.daily); // 매일 갱신 기대 소스만 배너
+  if (!daily.length) {
+    banner.hidden = true;
+    markStaleSections(reports);
+    return;
+  }
+  banner.hidden = false;
+  banner.append(el("div", { class: "banner-title" },
+    "⚠️ 실시간 데이터 수집에 일부 실패했습니다 — 아래 항목은 예전 데이터를 표시 중입니다"));
+  const ul = el("ul", {});
+  daily.forEach((r) => {
+    ul.append(el("li", {},
+      `${r.cfg.label} — `,
+      el("b", {}, `${fmtDateOnly(r.fetchedAt)} 기준`),
+      ` (${r.ageDays}일 전 수집)`));
+  });
+  banner.append(ul);
+  const when = state.buildMeta && state.buildMeta.built_at
+    ? `사이트 갱신 시도: ${state.buildMeta.built_at.slice(0, 16).replace("T", " ")}` : "";
+  banner.append(el("div", { class: "banner-note" },
+    `나머지 항목은 정상 수집되었습니다. 다음 자동 갱신에서 복구되면 자동으로 최신화됩니다. ${when}`));
+  markStaleSections(reports);
+}
+
+// 해당 섹션 캡션 앞에 '⚠️ N일 전 데이터' 배지 (매일/비매일 모두)
+function markStaleSections(reports) {
+  document.querySelectorAll(".stale-badge").forEach((e) => e.remove());
+  reports.forEach((r) => {
+    const sec = document.getElementById(r.cfg.section);
+    const cap = sec && sec.querySelector(".card-caption");
+    if (cap && !cap.querySelector(".stale-badge")) {
+      cap.prepend(el("span", { class: "stale-badge" }, `⚠️ ${r.ageDays}일 전 데이터 · `));
+    }
+  });
+}
+
 /* ------------------------------------------------------ 푸터 */
 function renderFooterDates() {
   const node = $("footer-dates");
@@ -1212,7 +1304,10 @@ function initCollapsibles() {
       btn.setAttribute("aria-expanded", String(!nowCollapsed));
       saved[sec.id] = nowCollapsed;
       try { localStorage.setItem(COLLAPSE_KEY, JSON.stringify(saved)); } catch (e) { /* 무시 */ }
-      if (!nowCollapsed && SECTION_RERENDER[sec.id]) SECTION_RERENDER[sec.id]();
+      if (!nowCollapsed && SECTION_RERENDER[sec.id]) {
+        SECTION_RERENDER[sec.id]();
+        renderStalenessBanner();
+      }
     });
     head.append(btn);
   });
@@ -1257,6 +1352,7 @@ function bindDaysToggle() {
       renderTrends();
       renderKPIs();
       renderBadges();
+      renderStalenessBanner();
     });
   });
 }
@@ -1338,7 +1434,7 @@ function bindRefresh() {
 
 /* ============================================================ 초기화 */
 async function loadAll() {
-  const [h, a, m, t, pf, psf, us] = await Promise.all([
+  const [h, a, m, t, pf, psf, us, bm] = await Promise.all([
     fetchJSON("/api/holdings"),
     fetchJSON("/api/allocation"),
     fetchJSON("/api/major-stakes"),
@@ -1346,6 +1442,7 @@ async function loadAll() {
     fetchJSON("/api/pension-flow"),
     fetchJSON("/api/pension-stock-flow"),
     fetchJSON("/api/us-holdings"),
+    fetchJSON("/api/build-meta"),
   ]);
   state.holdings = h.body;
   state.allocation = a.body;
@@ -1354,6 +1451,7 @@ async function loadAll() {
   state.pensionFlow = pf.body;
   state.pensionStockFlow = psf.body;
   state.usHoldings = us.body;
+  state.buildMeta = bm.body && !bm.body.empty ? bm.body : null;
 
   renderBadges();
   renderKPIs();
@@ -1364,6 +1462,7 @@ async function loadAll() {
   renderHoldings();
   renderUsHoldings();
   renderFooterDates();
+  renderStalenessBanner(); // 섹션 캡션이 채워진 뒤 신선도 배지/배너를 얹는다
 }
 
 /* 서버 측 자동 갱신 감시 — 5분마다 확인해서 새 데이터가 있으면 다시 그린다 */

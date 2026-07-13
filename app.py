@@ -111,6 +111,38 @@ def api_pension_stock_flow():
     return jsonify(data if data is not None else {"empty": True})
 
 
+# 신선도 판정용 데이터셋 파일 매핑 (정적 빌드의 DATASET_FILES와 동일)
+_DATASET_FILES = {
+    "allocation": "allocation.json",
+    "holdings": "holdings.json",
+    "major_stakes": "major_stakes.json",
+    "pension_flow": "pension_flow.json",
+    "pension_stock_flow": "pension_stock_flow.json",
+    "us_holdings": "us_holdings.json",
+    "filings": "filings.json",
+}
+
+
+@app.route("/api/build-meta")
+def api_build_meta():
+    """각 소스의 수집 시각과 마지막 수집 실패 내역 — 신선도 경고의 근거.
+
+    로컬 서버는 built_at이 없다(항상 실시간). 프론트는 built_at이 없으면
+    클라이언트 현재 시각을 기준으로 신선도를 계산한다.
+    """
+    sources = {}
+    for name, fname in _DATASET_FILES.items():
+        d = _read_json(fname)
+        sources[name] = (d or {}).get("fetched_at")
+    last_refresh = _read_json(".cache/last_refresh.json") or {}
+    return jsonify({
+        "built_at": None,
+        "sources": sources,
+        "errors": last_refresh.get("errors", {}),
+        "refreshed_at": last_refresh.get("refreshed_at"),
+    })
+
+
 @app.route("/api/us-holdings")
 def api_us_holdings():
     """미국 주식 13F 보유(us_holdings.json) 패스스루."""

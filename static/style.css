@@ -220,6 +220,26 @@ a { color: var(--buy-text); }
 
 .card-caption { margin: 2px 0 0; font-size: 12px; color: var(--muted); }
 
+/* 신선도 경고 배너 */
+.staleness-banner {
+  margin-top: 16px;
+  padding: 12px 16px;
+  border: 1px solid var(--sell);
+  border-left: 4px solid var(--sell);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--sell) 10%, var(--surface));
+  font-size: 13px;
+  color: var(--text-1);
+}
+.staleness-banner .banner-title { font-weight: 600; margin-bottom: 6px; }
+.staleness-banner ul { margin: 4px 0 0; padding-left: 18px; }
+.staleness-banner li { margin: 2px 0; color: var(--text-2); }
+.staleness-banner li b { color: var(--text-1); font-weight: 600; }
+.staleness-banner .banner-note { margin-top: 6px; color: var(--muted); font-size: 12px; }
+
+/* 섹션 캡션의 신선도 배지 */
+.stale-badge { color: var(--sell-text); font-weight: 600; }
+
 /* 섹션 접기/펼치기 */
 .collapse-btn {
   flex: 0 0 auto;

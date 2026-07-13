@@ -5,10 +5,30 @@
 실패한 소스는 기존 캐시 파일을 그대로 유지한다.
 """
 
+import json
 from datetime import date, timedelta
 
 from . import dart, datago, krx_flow, naver_flow, npsfund, sec13f, store
 from .http_util import make_session
+
+
+def _write_last_refresh(errors: dict, counts: dict) -> None:
+    """마지막 수집 결과를 data/.cache/last_refresh.json에 남긴다.
+
+    build_static과 웹앱이 '어느 소스가 언제 실패했는지'를 알아 신선도 경고를
+    띄우는 근거로 쓴다. (.cache는 gitignore — 같은 실행 내에서만 참조)
+    """
+    cache = store.DATA_DIR / ".cache"
+    cache.mkdir(parents=True, exist_ok=True)
+    meta = {
+        "refreshed_at": store.now_kst_iso(),
+        "ok": not errors,
+        "errors": errors,
+        "counts": counts,
+    }
+    (cache / "last_refresh.json").write_text(
+        json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
 
 
 def run_refresh(days: int = 180, max_new: int = 300, progress=None) -> dict:
@@ -119,4 +139,5 @@ def run_refresh(days: int = 180, max_new: int = 300, progress=None) -> dict:
         errors["dart"] = str(e)
 
     report("완료", TOTAL, TOTAL)
+    _write_last_refresh(errors, counts)
     return {"ok": not errors, "errors": errors, "counts": counts}

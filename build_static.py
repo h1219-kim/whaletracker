@@ -15,6 +15,17 @@ from pathlib import Path
 
 from nps_fetcher import store
 
+# 각 데이터셋을 담은 파일명 (fetched_at 신선도 판정용)
+DATASET_FILES = {
+    "allocation": "allocation.json",
+    "holdings": "holdings.json",
+    "major_stakes": "major_stakes.json",
+    "pension_flow": "pension_flow.json",
+    "pension_stock_flow": "pension_stock_flow.json",
+    "us_holdings": "us_holdings.json",
+    "filings": "filings.json",  # DART (사이트엔 trends로 반영되지만 신선도는 이걸로)
+}
+
 ROOT = Path(__file__).resolve().parent
 SITE = ROOT / "site"
 DATA = ROOT / "data"
@@ -56,7 +67,32 @@ def build():
     shutil.copy(STATIC / "style.css", SITE / "style.css")
     shutil.copy(STATIC / "app.js", SITE / "app.js")
 
-    # 4) index.html 변환 (Flask 템플릿 → 정적)
+    # 4) build_meta.json — 신선도 경고의 근거
+    #    (사이트 빌드 시각 + 각 소스 수집 시각 + 마지막 수집 실패 내역)
+    sources = {}
+    for name, fname in DATASET_FILES.items():
+        src = DATA / fname
+        try:
+            sources[name] = json.loads(src.read_text(encoding="utf-8")).get("fetched_at")
+        except Exception:
+            sources[name] = None
+    last_refresh = {}
+    lr_path = DATA / ".cache" / "last_refresh.json"
+    if lr_path.exists():
+        try:
+            last_refresh = json.loads(lr_path.read_text(encoding="utf-8"))
+        except Exception:
+            last_refresh = {}
+    build_meta = {
+        "built_at": store.now_kst_iso(),
+        "sources": sources,
+        "errors": last_refresh.get("errors", {}),
+        "refreshed_at": last_refresh.get("refreshed_at"),
+    }
+    with open(SITE / "data" / "build_meta.json", "w", encoding="utf-8") as f:
+        json.dump(build_meta, f, ensure_ascii=False, indent=2)
+
+    # 5) index.html 변환 (Flask 템플릿 → 정적)
     html = TEMPLATE.read_text(encoding="utf-8")
     html = html.replace(
         "{{ url_for('static', filename='style.css') }}", "style.css"
