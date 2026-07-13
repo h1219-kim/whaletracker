@@ -47,6 +47,9 @@ python -m venv .venv
 - **작업 스케줄러**: 서버와 무관하게 매일 18:30에 수집하는 Windows 예약 작업
   ("WhaleTracker 데이터 수집")이 등록되어 있습니다. 놓친 실행은 다음 기회에 보충되고,
   배터리 상태에서도 동작합니다. 실행 로그: `data\.cache\refresh_task.log`
+  수집 후 **데이터가 바뀌면 자동으로 커밋·push**하여 공개 사이트(GitHub Pages)까지
+  갱신합니다(변경 없는 날은 커밋하지 않음). Git Credential Manager에 저장된 인증을
+  사용하므로 최초 1회 수동 `git push`로 인증을 저장해 두면 이후 무인 실행됩니다.
 
 ```powershell
 # 예약 작업 관리
