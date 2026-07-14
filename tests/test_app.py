@@ -319,3 +319,17 @@ def test_refresh_error_is_reported_in_status(client, monkeypatch):
     status = client.get("/api/refresh/status").get_json()
     assert status["running"] is False
     assert "수집 실패 테스트" in status["error"]
+
+
+def test_returns_passthrough(client, data_dir):
+    sample = {"as_of": "2026-07-14", "top_n": 5, "markets": {"kospi": {"windows": {}}}}
+    _write_json(data_dir / "returns.json", sample)
+    res = client.get("/api/returns")
+    assert res.status_code == 200
+    assert res.get_json() == sample
+
+
+def test_returns_empty_when_file_missing(client, data_dir):
+    res = client.get("/api/returns")
+    assert res.status_code == 200
+    assert res.get_json() == {"empty": True}

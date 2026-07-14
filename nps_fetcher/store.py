@@ -17,7 +17,7 @@ DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 # 관리 대상 데이터셋 이름
 VALID_NAMES = (
     "holdings", "allocation", "major_stakes", "filings",
-    "pension_flow", "pension_stock_flow", "us_holdings",
+    "pension_flow", "pension_stock_flow", "us_holdings", "returns",
 )
 
 # 한국 표준시

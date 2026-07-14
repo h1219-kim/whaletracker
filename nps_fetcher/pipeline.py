@@ -8,7 +8,7 @@
 import json
 from datetime import date, timedelta
 
-from . import dart, datago, krx_flow, naver_flow, npsfund, sec13f, store
+from . import dart, datago, krx_flow, naver_flow, npsfund, returns, sec13f, store
 from .http_util import make_session
 
 
@@ -46,7 +46,7 @@ def run_refresh(days: int = 180, max_new: int = 300, progress=None) -> dict:
     errors: dict[str, str] = {}
     counts: dict[str, int] = {}
 
-    TOTAL = 7
+    TOTAL = 8
 
     # 1) 자산배분 (기금운용본부)
     report("자산배분 수집", 0, TOTAL)
@@ -93,8 +93,19 @@ def run_refresh(days: int = 180, max_new: int = 300, progress=None) -> dict:
     except Exception as e:
         errors["pension_stock_flow"] = str(e)
 
+    # 5.5) 연기금 따라 투자 수익률 (주가 수집이 무거우므로 독립 처리)
+    report("따라투자 수익률 계산", 5, TOTAL)
+    try:
+        ret = returns.compute_returns(session)
+        store.save_data("returns", ret)
+        counts["returns_windows"] = sum(
+            len(m["windows"]) for m in ret["markets"].values()
+        )
+    except Exception as e:
+        errors["returns"] = str(e)
+
     # 6) 미국 주식 보유 (SEC 13F)
-    report("미국 주식 13F 수집", 5, TOTAL)
+    report("미국 주식 13F 수집", 6, TOTAL)
     try:
         us = sec13f.fetch_us_holdings()
         store.save_data("us_holdings", us)
@@ -103,7 +114,7 @@ def run_refresh(days: int = 180, max_new: int = 300, progress=None) -> dict:
         errors["us_holdings"] = str(e)
 
     # 7) DART 공시 — 목록 후 신규 건만 본문 파싱 (증분)
-    report("DART 공시 목록 조회", 6, TOTAL)
+    report("DART 공시 목록 조회", 7, TOTAL)
     try:
         end = date.today()
         start = end - timedelta(days=days)
@@ -125,7 +136,7 @@ def run_refresh(days: int = 180, max_new: int = 300, progress=None) -> dict:
         for i, meta in enumerate(new_metas, 1):
             report(f"DART 공시 본문 파싱 ({meta['company']})", i, total)
             detailed.append(dart.fetch_filing_detail(meta, session))
-        report("저장", 6, TOTAL)
+        report("저장", 7, TOTAL)
 
         merged = store.merge_filings(
             existing,

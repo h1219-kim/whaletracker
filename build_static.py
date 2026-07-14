@@ -24,6 +24,7 @@ DATASET_FILES = {
     "pension_stock_flow": "pension_stock_flow.json",
     "us_holdings": "us_holdings.json",
     "filings": "filings.json",  # DART (사이트엔 trends로 반영되지만 신선도는 이걸로)
+    "returns": "returns.json",
 }
 
 ROOT = Path(__file__).resolve().parent
@@ -35,7 +36,7 @@ TEMPLATE = ROOT / "templates" / "index.html"
 # 정적 사이트가 실제로 fetch하는 데이터셋 (app.js STATIC_MAP과 일치)
 COPY_DATASETS = [
     "holdings", "allocation", "major_stakes",
-    "pension_flow", "pension_stock_flow", "us_holdings",
+    "pension_flow", "pension_stock_flow", "us_holdings", "returns",
 ]
 TREND_DAYS = [30, 90, 180]
 
