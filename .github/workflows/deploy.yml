@@ -30,6 +30,16 @@ jobs:
       - name: 의존성 설치
         run: pip install -r requirements.txt
 
+      # KRX 일별 순매수·종목 주가 캐시를 복원해 증분만 수집한다.
+      # (없으면 1년치를 통째로 다시 받아 수 분이 더 걸린다)
+      - name: 데이터 캐시 복원
+        uses: actions/cache@v4
+        with:
+          path: data/.cache
+          key: whale-cache-${{ github.run_id }}
+          restore-keys: |
+            whale-cache-
+
       # GitHub 러너(해외 IP)에서 일부 한국 소스가 막혀도 저장소에 커밋된
       # 마지막 데이터로 사이트를 굽는다 (그래서 실패해도 계속 진행).
       - name: 데이터 수집
