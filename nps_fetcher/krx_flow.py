@@ -9,10 +9,12 @@
 NETBID_TRDVAL(순매수 대금, 원) — 순매수 대금 내림차순 정렬(하단이 순매도 상위).
 """
 
+import json
 import time
 from datetime import date, timedelta
 from datetime import datetime
 
+from . import store
 from .http_util import make_session, request_with_retry
 
 OUTER_REFERER = (
@@ -80,6 +82,39 @@ def _fetch_window(session, mkt_id: str, start: date, end: date) -> list[dict]:
     if "output" not in body:
         raise ValueError(f"KRX 응답에 output 없음 (로그인 게이트 변경 가능성): {str(body)[:120]}")
     return parse_rank_rows(body["output"])
+
+
+# ------------------------------------------- 일별 종목별 순매수 (연속 방식용)
+DAILY_CACHE_DIR = store.DATA_DIR / ".cache" / "krx_daily"
+
+
+def rows_to_netbuy(rows: list[dict]) -> dict[str, int]:
+    """파싱된 행 목록 → {종목코드: 순매수 대금(원)}."""
+    return {r["code"]: r["net_value"] for r in rows}
+
+
+def fetch_daily_netbuy(market: str, day: date, session=None, cache_dir=None) -> dict[str, int]:
+    """특정 거래일의 종목별 연기금 순매수 대금.
+
+    같은 날짜는 다시 바뀌지 않으므로 디스크에 캐시한다(재수집 방지).
+    캐시가 있으면 네트워크를 타지 않는다.
+    """
+    mkt_id = MARKETS[market]
+    cdir = cache_dir or DAILY_CACHE_DIR
+    cache_file = cdir / f"{day.strftime('%Y%m%d')}_{mkt_id}.json"
+    if cache_file.exists():
+        try:
+            return json.loads(cache_file.read_text(encoding="utf-8"))
+        except ValueError:
+            pass  # 손상된 캐시는 무시하고 다시 받는다
+
+    session = session or make_session()
+    rows = _fetch_window(session, mkt_id, day, day)
+    result = rows_to_netbuy(rows)
+
+    cdir.mkdir(parents=True, exist_ok=True)
+    cache_file.write_text(json.dumps(result, ensure_ascii=False), encoding="utf-8")
+    return result
 
 
 def fetch_pension_stock_flow(session=None) -> dict:

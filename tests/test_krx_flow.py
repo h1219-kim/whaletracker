@@ -2,6 +2,7 @@
 
 import json
 import sys
+from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -41,3 +42,27 @@ def test_split_buys_sells():
     assert buys_v == sorted(buys_v, reverse=True)
     assert sells_v == sorted(sells_v)
     assert all(v > 0 for v in buys_v) and all(v < 0 for v in sells_v)
+
+
+# ------------------------------------------- 일별 종목별 순매수 (연속 방식용)
+def test_rows_to_netbuy_maps_code_to_value():
+    """행 목록 → {종목코드: 순매수대금} 매핑."""
+    m = krx_flow.rows_to_netbuy(_rows())
+    # 실측: SK하이닉스(000660) 순매수 176,860,112,500원
+    assert m["000660"] == 176860112500
+    assert all(isinstance(k, str) and len(k) == 6 for k in m)
+    assert all(isinstance(v, int) for v in m.values())
+
+
+def test_fetch_daily_netbuy_uses_disk_cache(tmp_path):
+    """캐시 파일이 있으면 네트워크를 타지 않는다 (재수집 방지)."""
+    cache = tmp_path / "krx_daily"
+    cache.mkdir()
+    (cache / "20260713_STK.json").write_text(
+        '{"005930": 12345, "000660": -6789}', encoding="utf-8"
+    )
+    # session=None인데도 성공해야 한다 = 네트워크 미사용
+    result = krx_flow.fetch_daily_netbuy(
+        "kospi", date(2026, 7, 13), session=None, cache_dir=cache
+    )
+    assert result == {"005930": 12345, "000660": -6789}
