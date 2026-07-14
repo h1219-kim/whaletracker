@@ -96,7 +96,9 @@ def run_refresh(days: int = 180, max_new: int = 300, progress=None) -> dict:
     # 5.5) 연기금 따라 투자 수익률 (주가 수집이 무거우므로 독립 처리)
     report("따라투자 수익률 계산", 5, TOTAL)
     try:
-        ret = returns.compute_returns(session)
+        ret = returns.compute_returns(
+            session, progress=lambda m: report(f"따라투자 수익률: {m}", 5, TOTAL)
+        )
         store.save_data("returns", ret)
         counts["returns_windows"] = sum(
             len(m["windows"]) for m in ret["markets"].values()

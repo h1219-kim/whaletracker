@@ -92,29 +92,45 @@ def fetch_index_closes(symbol: str, start: date, end: date, session=None) -> dic
 
 def fetch_closes_cached(code: str, start: date, end: date, session=None,
                         cache_dir=None) -> dict[str, float]:
-    """종가를 디스크에 캐시해 재수집을 피한다 (백테스트에 수백 종목이 필요).
+    """종가를 디스크에 캐시하되, **부족한 구간만 증분 수집**한다.
 
-    캐시가 요청 구간을 덮으면 네트워크를 타지 않는다.
+    매일 갱신 시 전체를 다시 받지 않고 마지막 날짜 이후만 붙인다
+    (백테스트에 수백 종목이 필요하므로 전체 재수집은 너무 느리다).
     """
     cdir = cache_dir or PRICE_CACHE_DIR
     cache_file = cdir / f"{code}.json"
     s_iso, e_iso = start.isoformat(), end.isoformat()
 
+    cached_closes: dict[str, float] = {}
+    cached_start, cached_end = None, None
     if cache_file.exists():
         try:
             cached = json.loads(cache_file.read_text(encoding="utf-8"))
-            if cached.get("start", "9999") <= s_iso and cached.get("end", "0000") >= e_iso:
-                return {d: v for d, v in cached["closes"].items() if s_iso <= d <= e_iso}
+            cached_closes = cached.get("closes", {})
+            cached_start, cached_end = cached.get("start"), cached.get("end")
         except (ValueError, KeyError):
-            pass  # 손상된 캐시는 다시 받는다
+            cached_closes, cached_start, cached_end = {}, None, None
 
-    closes = fetch_closes(code, start, end, session)
+    # 캐시가 요청 구간을 완전히 덮으면 네트워크 없이 반환
+    if cached_start and cached_end and cached_start <= s_iso and cached_end >= e_iso:
+        return {d: v for d, v in cached_closes.items() if s_iso <= d <= e_iso}
+
+    if cached_closes and cached_start and cached_start <= s_iso and cached_end < e_iso:
+        # 증분: 캐시 끝 이후 구간만 추가 수집 (겹치게 조금 여유를 둔다)
+        gap_start = to_date(cached_end)
+        new = fetch_closes(code, gap_start, end, session)
+        merged = {**cached_closes, **new}
+        new_start, new_end = cached_start, e_iso
+    else:
+        merged = fetch_closes(code, start, end, session)
+        new_start, new_end = s_iso, e_iso
+
     cdir.mkdir(parents=True, exist_ok=True)
     cache_file.write_text(
-        json.dumps({"start": s_iso, "end": e_iso, "closes": closes}, ensure_ascii=False),
+        json.dumps({"start": new_start, "end": new_end, "closes": merged}, ensure_ascii=False),
         encoding="utf-8",
     )
-    return closes
+    return {d: v for d, v in merged.items() if s_iso <= d <= e_iso}
 
 
 def trading_days(closes: dict[str, float], start: str, end: str) -> list[str]:

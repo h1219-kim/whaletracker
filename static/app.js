@@ -13,6 +13,9 @@ const state = {
   usHoldings: null,
   returns: null,
   returnsMarket: "kospi",
+  returnsL: 3,   // 신호 누적일 (강건성 검증 상위 조합 기본값)
+  returnsR: 5,   // 리밸런싱 주기 (5 = 주 1회)
+  returnsN: 10,  // 종목 수
   returnsWindow: "3m",
   buildMeta: null,
   days: 90,
@@ -953,6 +956,8 @@ function renderPensionStock() {
 
 /* --------------------------------------- 연기금 따라 투자 수익률 */
 const RETURN_SERIES = [
+  { key: "strategy", label: "일별 추종 전략", color: "var(--s5)",
+    desc: "N일 신호로 상위 종목을 골라 주기적으로 갈아탐 (파라미터 조절 가능)" },
   { key: "snapshot", label: "스냅샷 (사서 보유)", color: "var(--s1)",
     desc: "시작일에 사서 그대로 보유" },
   { key: "continuous", label: "연속 (매일 따라매매)", color: "var(--s2)",
@@ -960,6 +965,13 @@ const RETURN_SERIES = [
   { key: "benchmark", label: "지수 (벤치마크)", color: "var(--muted)",
     desc: "그냥 지수를 샀다면" },
 ];
+
+// 선택된 파라미터의 전략 곡선을 window 객체에 얹어준다
+function strategyCurve(w) {
+  if (!w || !w.strategies) return null;
+  const key = `L${state.returnsL}_R${state.returnsR}_N${state.returnsN}`;
+  return w.strategies[key] || null;
+}
 
 function currentReturnsWindow() {
   const r = state.returns;
@@ -990,6 +1002,80 @@ function bindReturnsToggles() {
   });
 }
 
+function bindParamToggles() {
+  const bind = (id, attr, key) => {
+    const box = $(id);
+    if (!box) return;
+    box.querySelectorAll("button").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const val = Number(btn.dataset[attr]);
+        if (val === state[key]) return;
+        box.querySelectorAll("button").forEach((b) => b.classList.toggle("active", b === btn));
+        state[key] = val;
+        renderReturns();
+      });
+    });
+  };
+  bind("param-lookback", "l", "returnsL");
+  bind("param-rebalance", "r", "returnsR");
+  bind("param-topn", "n", "returnsN");
+}
+
+/* 강건성 검증 표 — 여러 구간에서 조합이 일관되게 통했는지 (매일 재계산) */
+function renderRobustness() {
+  const box = clear($("robustness-table"));
+  const caption = $("robustness-caption");
+  const verdict = $("robustness-verdict");
+  clear(verdict);
+
+  const r = state.returns;
+  const market = r && !r.empty && r.markets ? r.markets[state.returnsMarket] : null;
+  const rob = market && market.robustness ? market.robustness : [];
+  if (!rob.length) {
+    caption.textContent = "";
+    box.append(el("div", { class: "placeholder" }, "검증 데이터가 없습니다."));
+    return;
+  }
+
+  const cfg = r.robust_config || {};
+  const nWindows = rob[0].windows;
+  caption.textContent =
+    `최근 ${Math.round((cfg.history_days || 365) / 30)}개월을 ` +
+    `${Math.round((cfg.window_days || 91) / 30)}개월 구간 ${nWindows}개로 나눠 조합별 성과의 일관성을 검증 ` +
+    `(데이터 갱신 때마다 다시 계산)`;
+
+  const table = el("table", { class: "data-table" },
+    el("thead", {}, el("tr", {},
+      el("th", {}, "신호"), el("th", {}, "리밸런싱"),
+      el("th", { class: "num" }, "평균 초과"), el("th", { class: "num" }, "표준편차"),
+      el("th", { class: "num" }, "승률"), el("th", {}, "판정"))),
+    el("tbody", {}, rob.map((x, i) =>
+      el("tr", { class: i === 0 && x.consistent ? "robust-row-best" : "" },
+        el("td", {}, `${x.lookback}일`),
+        el("td", {}, x.rebalance === 1 ? "매일" : "주 1회"),
+        el("td", { class: `num ${deltaClass(x.mean_alpha)}` }, fmtPp(x.mean_alpha)),
+        el("td", { class: "num" }, `${x.stdev.toFixed(1)}%p`),
+        el("td", { class: "num" }, `${x.win_rate.toFixed(0)}%`),
+        el("td", {}, x.consistent
+          ? el("span", { class: "robust-consistent" }, "★ 일관적 우수")
+          : el("span", { class: "no-parse" }, "—"))))));
+  box.append(el("div", { class: "table-wrap" }, table));
+
+  const consistent = rob.filter((x) => x.consistent);
+  const mktName = state.returnsMarket === "kospi" ? "코스피" : "코스닥";
+  if (consistent.length) {
+    verdict.append(
+      el("b", { class: "verdict-good" }, `${mktName}: 일관적으로 우수한 조합 ${consistent.length}개`),
+      ` — 여러 구간에서 반복적으로 지수를 이겼습니다(승률 70%+ & 평균 초과 양수). ` +
+      `다만 구간이 서로 겹쳐 독립 표본이 아니고, 거래비용·슬리피지를 무시했으므로 과신은 금물입니다.`);
+  } else {
+    verdict.append(
+      el("b", { class: "verdict-bad" }, `${mktName}: 일관적으로 우수한 조합 없음`),
+      ` — 어떤 파라미터도 여러 구간에서 꾸준히 지수를 이기지 못했습니다. ` +
+      `특정 조합이 좋아 보여도 그 구간에 우연히 맞은 것(과적합)일 가능성이 큽니다.`);
+  }
+}
+
 function fmtPct(v) {
   const sign = v > 0 ? "+" : v < 0 ? "−" : "";
   return `${sign}${Math.abs(v).toFixed(2)}%`;
@@ -1015,26 +1101,33 @@ function renderReturns() {
     return;
   }
 
+  // 선택된 파라미터의 전략 곡선을 얹는다 (차트·테이블이 RETURN_SERIES를 순회)
+  win.strategy = strategyCurve(win) || [];
+  const stratRet = win.strategy.length ? win.strategy[win.strategy.length - 1] : 0;
+  const benchRet = win.benchmark.length ? win.benchmark[win.benchmark.length - 1] : 0;
+  const stratAlpha = stratRet - benchRet;
+
   const s = win.summary;
+  const rebalLabel = state.returnsR === 1 ? "매일" : "주 1회";
   caption.textContent =
     `${win.start} ~ ${state.returns.as_of} · ${win.dates.length}거래일 · ` +
-    `상위 ${state.returns.top_n}종목을 순매수 비중대로 매수 가정`;
+    `전략: 최근 ${state.returnsL}일 신호로 상위 ${state.returnsN}종목, ${rebalLabel} 리밸런싱`;
 
-  // 요약 KPI: 두 방식 + 지수 + 초과수익
+  // 요약 KPI: 전략(주인공) + 지수 + 참고 2방식
   const tile = (label, value, sub, cls) =>
     el("div", { class: "stat-tile" },
       el("div", { class: "stat-label" }, label),
       el("div", { class: `stat-value ${cls || ""}` }, value),
       el("div", { class: "stat-sub" }, sub));
   summaryBox.append(
-    tile("스냅샷 (사서 보유)", fmtPct(s.snapshot_return),
+    tile("일별 추종 전략", fmtPct(stratRet),
+      `지수 대비 ${fmtPp(stratAlpha)}`, deltaClass(stratRet)),
+    tile("지수 (벤치마크)", fmtPct(benchRet),
+      state.returnsMarket === "kospi" ? "KOSPI" : "코스닥", deltaClass(benchRet)),
+    tile("스냅샷 (참고)", fmtPct(s.snapshot_return),
       `지수 대비 ${fmtPp(s.snapshot_alpha)}`, deltaClass(s.snapshot_return)),
-    tile("연속 (매일 따라매매)", fmtPct(s.continuous_return),
-      `지수 대비 ${fmtPp(s.continuous_alpha)}`, deltaClass(s.continuous_return)),
-    tile("지수 (벤치마크)", fmtPct(s.benchmark_return),
-      state.returnsMarket === "kospi" ? "KOSPI" : "코스닥", deltaClass(s.benchmark_return)),
-    tile("판정", s.snapshot_alpha > 0 || s.continuous_alpha > 0 ? "지수 상회" : "지수 하회",
-      "초과수익 기준", s.snapshot_alpha > 0 || s.continuous_alpha > 0 ? "delta-buy" : "delta-sell"));
+    tile("판정", stratAlpha > 0 ? "지수 상회" : "지수 하회",
+      "선택한 전략 기준", stratAlpha > 0 ? "delta-buy" : "delta-sell"));
 
   chartBox.append(buildReturnsChart(win));
 
@@ -1059,19 +1152,30 @@ function renderReturns() {
         el("td", { class: "num" }, `${fmtInt(b.buy_value_100m)}억`)))));
   basketBox.append(el("div", { class: "table-wrap" }, bt));
 
-  // 테이블 대체 뷰 (날짜별 세 값)
+  // 테이블 대체 뷰 (날짜별 네 값)
   const rows = win.dates.map((d, i) =>
     el("tr", {},
       el("td", {}, d),
+      el("td", { class: `num ${deltaClass(win.strategy[i] ?? 0)}` }, fmtPct(win.strategy[i] ?? 0)),
       el("td", { class: `num ${deltaClass(win.snapshot[i])}` }, fmtPct(win.snapshot[i])),
       el("td", { class: `num ${deltaClass(win.continuous[i])}` }, fmtPct(win.continuous[i])),
       el("td", { class: `num ${deltaClass(win.benchmark[i])}` }, fmtPct(win.benchmark[i]))));
   tableBox.append(el("div", { class: "table-wrap" },
     el("table", { class: "data-table" },
       el("thead", {}, el("tr", {},
-        el("th", {}, "날짜"), el("th", { class: "num" }, "스냅샷"),
+        el("th", {}, "날짜"), el("th", { class: "num" }, "전략"),
+        el("th", { class: "num" }, "스냅샷"),
         el("th", { class: "num" }, "연속"), el("th", { class: "num" }, "지수"))),
       el("tbody", {}, rows.reverse()))));
+
+  // 파라미터 설명 + 강건성 검증 표
+  const stratCap = $("strategy-caption");
+  if (stratCap) {
+    stratCap.textContent =
+      "최근 N일 연기금 누적 순매수 상위 종목을 주기적으로 갈아탑니다(롱온리·종가 매매). " +
+      "파라미터를 바꾸면 위 차트의 '일별 추종 전략' 곡선이 즉시 바뀝니다.";
+  }
+  renderRobustness();
 }
 
 function buildReturnsChart(win) {
@@ -1079,7 +1183,7 @@ function buildReturnsChart(win) {
   const plotW = W - padL - padR, plotH = H - padT - padB;
   const n = win.dates.length;
 
-  const all = [...win.snapshot, ...win.continuous, ...win.benchmark, 0];
+  const all = [...(win.strategy || []), ...win.snapshot, ...win.continuous, ...win.benchmark, 0];
   const lo = Math.min(...all), hi = Math.max(...all);
   const { max: absMax, ticks } = niceScale(Math.max(Math.abs(lo), Math.abs(hi)), 3);
   const yMin = lo < 0 ? -absMax : 0;
@@ -1732,6 +1836,7 @@ async function init() {
   bindPensionMarketToggle();
   bindPensionWindowToggle();
   bindReturnsToggles();
+  bindParamToggles();
   bindRefresh();
   await loadAll();
 

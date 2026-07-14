@@ -239,59 +239,177 @@ def benchmark_curve(index_closes: dict, dates: list[str]) -> list[float]:
     return curve
 
 
+# -------------------------------------- 전략 그리드 + 강건성 검증 (매일 재계산)
+# UI에서 고를 수 있는 파라미터. (신호 누적일 L, 리밸런싱 주기 R)
+LOOKBACKS = [1, 3, 5, 20]
+REBALANCES = [1, 5]          # 1=매일, 5=주1회
+TOPNS = [5, 10]
+
+ROBUST_WINDOW_DAYS = 91      # 검증 구간 길이(3개월)
+ROBUST_STEP_DAYS = 30        # 1개월씩 이동
+ROBUST_HISTORY_DAYS = 365    # 1년치로 검증
+
+
+def _rolling_windows(all_dates: list[str], window_days: int, step_days: int) -> list[list[str]]:
+    """겹치는 rolling window 목록. (독립 표본은 아니지만 일관성 판단에 쓴다)"""
+    if not all_dates:
+        return []
+    windows, i = [], 0
+    while i < len(all_dates):
+        start_d = prices.to_date(all_dates[i])
+        end_iso = (start_d + timedelta(days=window_days)).isoformat()
+        seg = [d for d in all_dates if all_dates[i] <= d <= end_iso]
+        if len(seg) < 30:  # 너무 짧은 꼬리 구간은 버린다
+            break
+        windows.append(seg)
+        nxt_iso = (start_d + timedelta(days=step_days)).isoformat()
+        nxt = [k for k, d in enumerate(all_dates) if d >= nxt_iso]
+        if not nxt or nxt[0] == i:
+            break
+        i = nxt[0]
+    return windows
+
+
+def compute_robustness(flows, closes, index_closes, all_dates, top_n=10) -> list[dict]:
+    """조합별로 여러 구간에서 지수 대비 초과수익을 재서 일관성을 판정한다.
+
+    승률 70%+ & 평균 초과 양수 → consistent=True (과적합이 아닐 가능성).
+    """
+    windows = _rolling_windows(all_dates, ROBUST_WINDOW_DAYS, ROBUST_STEP_DAYS)
+    if not windows:
+        return []
+
+    out = []
+    for L in LOOKBACKS:
+        for R in REBALANCES:
+            alphas = []
+            for seg in windows:
+                bench = benchmark_curve(index_closes, seg)
+                curve = daily_topn_curve(flows, closes, seg, lookback=L, rebalance=R, top_n=top_n)
+                if curve and bench:
+                    alphas.append(curve[-1] - bench[-1])
+            if not alphas:
+                continue
+            mean = sum(alphas) / len(alphas)
+            var = sum((a - mean) ** 2 for a in alphas) / len(alphas)
+            wins = sum(1 for a in alphas if a > 0)
+            winrate = wins / len(alphas) * 100
+            out.append({
+                "lookback": L,
+                "rebalance": R,
+                "mean_alpha": round(mean, 2),
+                "stdev": round(var ** 0.5, 2),
+                "win_rate": round(winrate, 1),
+                "windows": len(alphas),
+                "alphas": [round(a, 1) for a in alphas],
+                "consistent": winrate >= 70 and mean > 0,
+            })
+    out.sort(key=lambda r: -r["mean_alpha"])
+    return out
+
+
 # ---------------------------------------------------------------- 전체 계산
 def _now_iso() -> str:
     return store.now_kst_iso()
 
 
-def compute_returns(session=None, today: date | None = None, top_n: int = TOP_N) -> dict:
-    """시장×기간별로 두 방식 + 벤치마크 곡선을 계산해 returns.json 구조를 만든다."""
+def strategy_key(L: int, R: int, N: int) -> str:
+    return f"L{L}_R{R}_N{N}"
+
+
+def compute_returns(session=None, today: date | None = None, top_n: int = TOP_N,
+                    progress=None) -> dict:
+    """returns.json 전체를 계산한다.
+
+    - 기간별(1/3/6개월): 스냅샷 · 연속 · 지수 곡선 + **일별 Top-N 전략 그리드**
+    - 시장별: **강건성 검증**(1년치를 3개월 rolling window로 잘라 조합별 일관성 판정)
+    매 실행마다 최신 데이터로 다시 계산하므로, 시간이 지나면 결과도 갱신된다.
+    """
     session = session or krx_flow.make_session()
     today = today or date.today()
 
+    def note(msg):
+        if progress:
+            progress(msg)
+
     markets = {}
     for market in ("kospi", "kosdaq"):
+        hist_start = today - timedelta(days=ROBUST_HISTORY_DAYS)
         index_closes = prices.fetch_index_closes(
-            INDEX_SYMBOL[market], today - timedelta(days=200), today, session
+            INDEX_SYMBOL[market], hist_start - timedelta(days=40), today, session
         )
-        windows = {}
+        all_dates = prices.trading_days(index_closes, hist_start.isoformat(), today.isoformat())
+        if not all_dates:
+            markets[market] = {"windows": {}, "robustness": []}
+            continue
+
+        # 1) 1년치 일별 순매수 (날짜별 디스크 캐시 — 매일 1일치만 추가됨)
+        note(f"{market}: 일별 순매수 {len(all_dates)}일")
+        flows = {}
+        for d in all_dates:
+            try:
+                flows[d] = krx_flow.fetch_daily_netbuy(market, prices.to_date(d), session)
+            except Exception:
+                flows[d] = {}
+
+        # 2) 기간별 바스켓 (기존 스냅샷/연속 방식용, T0 이전 정보만 사용)
+        baskets = {}
         for key, _label, days_back in WINDOWS:
             t0 = today - timedelta(days=days_back)
-            dates = prices.trading_days(index_closes, t0.isoformat(), today.isoformat())
-            if not dates:
-                continue
-
-            # 1) 대상 선정: T0 직전 1개월 순매수 상위 (look-ahead 없음)
-            rows = krx_flow._fetch_window(
-                session, krx_flow.MARKETS[market],
-                t0 - timedelta(days=BASKET_LOOKBACK_DAYS), t0,
-            )
-            basket = select_basket(rows, top_n)
-            if not basket:
-                continue
-
-            # 2) 대상 종목 주가
-            closes = {
-                b["code"]: prices.fetch_closes(
-                    b["code"], t0 - timedelta(days=7), today, session
+            try:
+                rows = krx_flow._fetch_window(
+                    session, krx_flow.MARKETS[market],
+                    t0 - timedelta(days=BASKET_LOOKBACK_DAYS), t0,
                 )
-                for b in basket
-            }
+                baskets[key] = select_basket(rows, top_n)
+            except Exception:
+                baskets[key] = []
 
-            # 3) 연속 방식용 일별 순매수 (날짜별 캐시)
-            flows = {}
-            for d in dates:
-                day = prices.to_date(d)
-                try:
-                    flows[d] = krx_flow.fetch_daily_netbuy(market, day, session)
-                except Exception:
-                    flows[d] = {}  # 그날 수집 실패 → 흐름 없음으로 취급
+        # 3) 필요한 모든 종목의 주가 (전략 그리드 + 바스켓의 합집합, 증분 캐시)
+        universe: set[str] = set()
+        for L in LOOKBACKS:
+            for R in REBALANCES:
+                for N in TOPNS:
+                    universe |= universe_from_flows(flows, all_dates, L, R, N)
+        for b in baskets.values():
+            universe |= {x["code"] for x in b}
 
-            snap = snapshot_curve(basket, closes, dates)
-            cont = continuous_curve(basket, flows, closes, dates)
+        note(f"{market}: 종목 주가 {len(universe)}개")
+        closes = {}
+        for code in universe:
+            try:
+                closes[code] = prices.fetch_closes_cached(
+                    code, hist_start - timedelta(days=10), today, session
+                )
+            except Exception:
+                pass
+
+        # 4) 강건성 검증 (1년, rolling window) — 매 실행 재계산
+        note(f"{market}: 강건성 검증")
+        robustness = compute_robustness(flows, closes, index_closes, all_dates, top_n=10)
+
+        # 5) 기간별 곡선
+        windows_out = {}
+        for key, _label, days_back in WINDOWS:
+            t0 = today - timedelta(days=days_back)
+            dates = [d for d in all_dates if d >= t0.isoformat()]
+            if len(dates) < 5:
+                continue
+            basket = baskets.get(key) or []
             bench = benchmark_curve(index_closes, dates)
+            snap = snapshot_curve(basket, closes, dates) if basket else []
+            cont = continuous_curve(basket, flows, closes, dates) if basket else []
 
-            windows[key] = {
+            # 일별 Top-N 전략 그리드 (UI에서 파라미터를 바꿔가며 비교)
+            strategies = {}
+            for L in LOOKBACKS:
+                for R in REBALANCES:
+                    for N in TOPNS:
+                        curve = daily_topn_curve(flows, closes, dates, L, R, N)
+                        if curve:
+                            strategies[strategy_key(L, R, N)] = [round(v, 2) for v in curve]
+
+            windows_out[key] = {
                 "start": dates[0],
                 "basket": [
                     {
@@ -305,6 +423,7 @@ def compute_returns(session=None, today: date | None = None, top_n: int = TOP_N)
                 "snapshot": [round(v, 2) for v in snap],
                 "continuous": [round(v, 2) for v in cont],
                 "benchmark": [round(v, 2) for v in bench],
+                "strategies": strategies,
                 "summary": {
                     "snapshot_return": round(snap[-1], 2) if snap else 0.0,
                     "continuous_return": round(cont[-1], 2) if cont else 0.0,
@@ -313,12 +432,19 @@ def compute_returns(session=None, today: date | None = None, top_n: int = TOP_N)
                     "continuous_alpha": round(cont[-1] - bench[-1], 2) if cont and bench else 0.0,
                 },
             }
-        markets[market] = {"windows": windows}
+
+        markets[market] = {"windows": windows_out, "robustness": robustness}
 
     return {
         "source": "KRX 연기금 순매수 + 네이버 일별 종가",
         "fetched_at": _now_iso(),
         "as_of": today.isoformat(),
         "top_n": top_n,
+        "params": {"lookbacks": LOOKBACKS, "rebalances": REBALANCES, "topns": TOPNS},
+        "robust_config": {
+            "history_days": ROBUST_HISTORY_DAYS,
+            "window_days": ROBUST_WINDOW_DAYS,
+            "step_days": ROBUST_STEP_DAYS,
+        },
         "markets": markets,
     }

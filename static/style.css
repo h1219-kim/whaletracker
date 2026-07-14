@@ -220,6 +220,17 @@ a { color: var(--buy-text); }
 
 .card-caption { margin: 2px 0 0; font-size: 12px; color: var(--muted); }
 
+/* ------------------------------------------------------------------ 전략 파라미터 */
+.param-row { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+.param-group { display: flex; align-items: center; gap: 8px; }
+.param-label { font-size: 12px; color: var(--text-2); white-space: nowrap; }
+
+/* 강건성 표 */
+.robust-consistent { color: var(--buy-text); font-weight: 600; }
+.robust-row-best td { background: color-mix(in srgb, var(--s2) 10%, transparent); }
+.verdict-good { color: var(--buy-text); font-weight: 600; }
+.verdict-bad { color: var(--sell-text); font-weight: 600; }
+
 /* ------------------------------------------------------------------ 라인차트 (수익률) */
 .linechart { position: relative; }
 .linechart svg { display: block; width: 100%; height: auto; }

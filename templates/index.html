@@ -113,6 +113,53 @@
     <div id="returns-chart" class="view-chart"></div>
     <div id="returns-table" class="view-table" hidden></div>
 
+    <!-- 일별 Top-N 전략 파라미터 (직접 바꿔가며 비교) -->
+    <div class="subcard">
+      <div class="card-head">
+        <div>
+          <h3>일별 추종 전략 파라미터</h3>
+          <p id="strategy-caption" class="card-caption"></p>
+        </div>
+      </div>
+      <div class="param-row">
+        <div class="param-group">
+          <span class="param-label">신호(누적일)</span>
+          <div class="seg-toggle" id="param-lookback" role="group" aria-label="신호 누적일">
+            <button type="button" data-l="1">1일</button>
+            <button type="button" data-l="3" class="active">3일</button>
+            <button type="button" data-l="5">5일</button>
+            <button type="button" data-l="20">20일</button>
+          </div>
+        </div>
+        <div class="param-group">
+          <span class="param-label">리밸런싱</span>
+          <div class="seg-toggle" id="param-rebalance" role="group" aria-label="리밸런싱 주기">
+            <button type="button" data-r="1">매일</button>
+            <button type="button" data-r="5" class="active">주 1회</button>
+          </div>
+        </div>
+        <div class="param-group">
+          <span class="param-label">종목 수</span>
+          <div class="seg-toggle" id="param-topn" role="group" aria-label="종목 수">
+            <button type="button" data-n="5">5개</button>
+            <button type="button" data-n="10" class="active">10개</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 강건성 검증 (매일 재계산) -->
+    <div class="subcard">
+      <div class="card-head">
+        <div>
+          <h3>강건성 검증 <span class="type-badge">과적합 판별</span></h3>
+          <p id="robustness-caption" class="card-caption"></p>
+        </div>
+      </div>
+      <div id="robustness-table"></div>
+      <p id="robustness-verdict" class="card-caption"></p>
+    </div>
+
     <div class="subcard">
       <h3>따라 산 종목 (기간 시작 시점 기준 순매수 상위 5)</h3>
       <div id="returns-basket"></div>
