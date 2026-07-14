@@ -1,16 +1,9 @@
 {
   "source": "KRX 투자자별 매매동향 (네이버 금융 집계)",
-  "fetched_at": "2026-07-14T03:27:32+09:00",
+  "fetched_at": "2026-07-15T03:34:50+09:00",
   "unit": "억원",
   "markets": {
     "kospi": [
-      {
-        "date": "2026-04-15",
-        "pension": -1116,
-        "individual": -9400,
-        "foreign": 4973,
-        "inst_total": 368
-      },
       {
         "date": "2026-04-16",
         "pension": -299,
@@ -423,16 +416,16 @@
         "individual": 38869,
         "foreign": -16705,
         "inst_total": -22338
+      },
+      {
+        "date": "2026-07-14",
+        "pension": 868,
+        "individual": -41411,
+        "foreign": 9565,
+        "inst_total": 32117
       }
     ],
     "kosdaq": [
-      {
-        "date": "2026-04-15",
-        "pension": 218,
-        "individual": -2561,
-        "foreign": 2209,
-        "inst_total": 1767
-      },
       {
         "date": "2026-04-16",
         "pension": -59,
@@ -845,6 +838,13 @@
         "individual": 1833,
         "foreign": -3878,
         "inst_total": 1843
+      },
+      {
+        "date": "2026-07-14",
+        "pension": -9,
+        "individual": 698,
+        "foreign": -2471,
+        "inst_total": 1587
       }
     ]
   }

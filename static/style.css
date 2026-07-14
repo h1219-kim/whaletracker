@@ -220,6 +220,28 @@ a { color: var(--buy-text); }
 
 .card-caption { margin: 2px 0 0; font-size: 12px; color: var(--muted); }
 
+/* ------------------------------------------------------------------ 라인차트 (수익률) */
+.linechart { position: relative; }
+.linechart svg { display: block; width: 100%; height: auto; }
+.linechart .crosshair-line { stroke: var(--baseline); stroke-width: 1; }
+.linechart .marker-dot { stroke: var(--surface); stroke-width: 2; }
+.series-snapshot { stroke: var(--s1); }
+.series-continuous { stroke: var(--s2); }
+.series-benchmark { stroke: var(--muted); }
+
+/* 수익률 요약 타일의 값 색 */
+.stat-value.pos { color: var(--buy-text); }
+.stat-value.neg { color: var(--sell-text); }
+
+.method-note {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border);
+  color: var(--text-2);
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+
 /* 신선도 경고 배너 */
 .staleness-banner {
   margin-top: 16px;
@@ -303,6 +325,10 @@ section.card.collapsed .card-body { display: none; }
 .stat-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
 .stat-sub .delta-buy { color: var(--buy-text); font-weight: 600; }
 .stat-sub .delta-sell { color: var(--sell-text); font-weight: 600; }
+
+/* 수익률 KPI: 값 자체에 방향 색 (양수=빨강, 음수=파랑 — 한국 관행) */
+.stat-value.delta-buy { color: var(--buy-text); }
+.stat-value.delta-sell { color: var(--sell-text); }
 
 /* ------------------------------------------------------------------ 토글 */
 .seg-toggle, .view-toggle {

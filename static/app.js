@@ -11,6 +11,9 @@ const state = {
   pensionFlow: null,
   pensionStockFlow: null,
   usHoldings: null,
+  returns: null,
+  returnsMarket: "kospi",
+  returnsWindow: "3m",
   buildMeta: null,
   days: 90,
   pensionMarket: "kospi",
@@ -181,7 +184,9 @@ const STATIC_MAP = {
   "/api/pension-flow": "data/pension_flow.json",
   "/api/pension-stock-flow": "data/pension_stock_flow.json",
   "/api/us-holdings": "data/us_holdings.json",
+  "/api/returns": "data/returns.json",
   "/api/build-meta": "data/build_meta.json",
+  "/api/returns": "data/returns.json",
 };
 
 function apiPath(url) {
@@ -946,6 +951,235 @@ function renderPensionStock() {
   tableBox.append(el("div", { class: "table-wrap" }, table));
 }
 
+/* --------------------------------------- 연기금 따라 투자 수익률 */
+const RETURN_SERIES = [
+  { key: "snapshot", label: "스냅샷 (사서 보유)", color: "var(--s1)",
+    desc: "시작일에 사서 그대로 보유" },
+  { key: "continuous", label: "연속 (매일 따라매매)", color: "var(--s2)",
+    desc: "매일 연기금 매매를 따라감(보유 없는 종목 매도는 무시)" },
+  { key: "benchmark", label: "지수 (벤치마크)", color: "var(--muted)",
+    desc: "그냥 지수를 샀다면" },
+];
+
+function currentReturnsWindow() {
+  const r = state.returns;
+  if (!r || r.empty || !r.markets) return null;
+  const m = r.markets[state.returnsMarket];
+  if (!m || !m.windows) return null;
+  return m.windows[state.returnsWindow] || null;
+}
+
+function bindReturnsToggles() {
+  const mkt = $("returns-market-toggle");
+  mkt.querySelectorAll("button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (btn.dataset.market === state.returnsMarket) return;
+      mkt.querySelectorAll("button").forEach((b) => b.classList.toggle("active", b === btn));
+      state.returnsMarket = btn.dataset.market;
+      renderReturns();
+    });
+  });
+  const win = $("returns-window-toggle");
+  win.querySelectorAll("button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (btn.dataset.window === state.returnsWindow) return;
+      win.querySelectorAll("button").forEach((b) => b.classList.toggle("active", b === btn));
+      state.returnsWindow = btn.dataset.window;
+      renderReturns();
+    });
+  });
+}
+
+function fmtPct(v) {
+  const sign = v > 0 ? "+" : v < 0 ? "−" : "";
+  return `${sign}${Math.abs(v).toFixed(2)}%`;
+}
+
+function fmtPp(v) {
+  const sign = v > 0 ? "+" : v < 0 ? "−" : "";
+  return `${sign}${Math.abs(v).toFixed(2)}%p`;
+}
+
+function renderReturns() {
+  const caption = $("returns-caption");
+  const summaryBox = clear($("returns-summary"));
+  const chartBox = clear($("returns-chart"));
+  const tableBox = clear($("returns-table"));
+  const basketBox = clear($("returns-basket"));
+
+  const win = currentReturnsWindow();
+  if (!win || !win.dates || !win.dates.length) {
+    caption.textContent = "";
+    chartBox.append(el("div", { class: "placeholder" },
+      "데이터가 없습니다. [데이터 갱신]을 눌러 수집하세요."));
+    return;
+  }
+
+  const s = win.summary;
+  caption.textContent =
+    `${win.start} ~ ${state.returns.as_of} · ${win.dates.length}거래일 · ` +
+    `상위 ${state.returns.top_n}종목을 순매수 비중대로 매수 가정`;
+
+  // 요약 KPI: 두 방식 + 지수 + 초과수익
+  const tile = (label, value, sub, cls) =>
+    el("div", { class: "stat-tile" },
+      el("div", { class: "stat-label" }, label),
+      el("div", { class: `stat-value ${cls || ""}` }, value),
+      el("div", { class: "stat-sub" }, sub));
+  summaryBox.append(
+    tile("스냅샷 (사서 보유)", fmtPct(s.snapshot_return),
+      `지수 대비 ${fmtPp(s.snapshot_alpha)}`, deltaClass(s.snapshot_return)),
+    tile("연속 (매일 따라매매)", fmtPct(s.continuous_return),
+      `지수 대비 ${fmtPp(s.continuous_alpha)}`, deltaClass(s.continuous_return)),
+    tile("지수 (벤치마크)", fmtPct(s.benchmark_return),
+      state.returnsMarket === "kospi" ? "KOSPI" : "코스닥", deltaClass(s.benchmark_return)),
+    tile("판정", s.snapshot_alpha > 0 || s.continuous_alpha > 0 ? "지수 상회" : "지수 하회",
+      "초과수익 기준", s.snapshot_alpha > 0 || s.continuous_alpha > 0 ? "delta-buy" : "delta-sell"));
+
+  chartBox.append(buildReturnsChart(win));
+
+  // 범례 (3시리즈)
+  const legend = el("div", { class: "legend" });
+  RETURN_SERIES.forEach((se) => {
+    legend.append(el("span", { class: "legend-item" },
+      el("span", { class: "legend-swatch", style: `background:${se.color}` }), se.label));
+  });
+  chartBox.append(legend);
+
+  // 바스켓 5종목
+  const bt = el("table", { class: "data-table" },
+    el("thead", {}, el("tr", {},
+      el("th", {}, "종목"), el("th", { class: "num" }, "코드"),
+      el("th", { class: "num" }, "비중"), el("th", { class: "num" }, "당시 순매수"))),
+    el("tbody", {}, (win.basket || []).map((b) =>
+      el("tr", {},
+        el("td", {}, b.name),
+        el("td", { class: "num" }, b.code),
+        el("td", { class: "num" }, `${(b.weight * 100).toFixed(1)}%`),
+        el("td", { class: "num" }, `${fmtInt(b.buy_value_100m)}억`)))));
+  basketBox.append(el("div", { class: "table-wrap" }, bt));
+
+  // 테이블 대체 뷰 (날짜별 세 값)
+  const rows = win.dates.map((d, i) =>
+    el("tr", {},
+      el("td", {}, d),
+      el("td", { class: `num ${deltaClass(win.snapshot[i])}` }, fmtPct(win.snapshot[i])),
+      el("td", { class: `num ${deltaClass(win.continuous[i])}` }, fmtPct(win.continuous[i])),
+      el("td", { class: `num ${deltaClass(win.benchmark[i])}` }, fmtPct(win.benchmark[i]))));
+  tableBox.append(el("div", { class: "table-wrap" },
+    el("table", { class: "data-table" },
+      el("thead", {}, el("tr", {},
+        el("th", {}, "날짜"), el("th", { class: "num" }, "스냅샷"),
+        el("th", { class: "num" }, "연속"), el("th", { class: "num" }, "지수"))),
+      el("tbody", {}, rows.reverse()))));
+}
+
+function buildReturnsChart(win) {
+  const W = 960, H = 300, padL = 52, padR = 14, padT = 14, padB = 30;
+  const plotW = W - padL - padR, plotH = H - padT - padB;
+  const n = win.dates.length;
+
+  const all = [...win.snapshot, ...win.continuous, ...win.benchmark, 0];
+  const lo = Math.min(...all), hi = Math.max(...all);
+  const { max: absMax, ticks } = niceScale(Math.max(Math.abs(lo), Math.abs(hi)), 3);
+  const yMin = lo < 0 ? -absMax : 0;
+  const yMax = hi > 0 ? absMax : 0;
+  const span = (yMax - yMin) || 1;
+
+  const x = (i) => padL + (n <= 1 ? 0 : (i / (n - 1)) * plotW);
+  const y = (v) => padT + plotH - ((v - yMin) / span) * plotH;
+
+  const svg = svgEl("svg", {
+    viewBox: `0 0 ${W} ${H}`, role: "img",
+    "aria-label": "연기금 따라 투자 누적수익률 곡선",
+  });
+
+  // 그리드 + y 눈금 (0선 강조)
+  const yTicks = [...new Set([0, ...ticks, ...ticks.map((t) => -t)])]
+    .filter((t) => t >= yMin - 1e-9 && t <= yMax + 1e-9);
+  yTicks.forEach((t) => {
+    svg.append(svgEl("line", {
+      x1: padL, x2: W - padR, y1: y(t), y2: y(t),
+      stroke: t === 0 ? "var(--baseline)" : "var(--grid)", "stroke-width": 1,
+    }));
+    const lab = svgEl("text", {
+      x: padL - 8, y: y(t) + 4, "text-anchor": "end", class: "svg-tick",
+    });
+    lab.textContent = `${t > 0 ? "+" : t < 0 ? "−" : ""}${Math.abs(t)}%`;
+    svg.append(lab);
+  });
+
+  // x 라벨 (시작/중간/끝)
+  [0, Math.floor((n - 1) / 2), n - 1].forEach((i) => {
+    if (i < 0 || i >= n) return;
+    const lab = svgEl("text", {
+      x: x(i), y: H - 8,
+      "text-anchor": i === 0 ? "start" : i === n - 1 ? "end" : "middle",
+      class: "svg-tick",
+    });
+    lab.textContent = win.dates[i].slice(2);
+    svg.append(lab);
+  });
+
+  // 3개 곡선 (2px 선)
+  RETURN_SERIES.forEach((se) => {
+    const d = win[se.key].map((v, i) => `${i === 0 ? "M" : "L"}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
+    svg.append(svgEl("path", {
+      d, fill: "none", stroke: se.color, "stroke-width": 2,
+      "stroke-linejoin": "round", "stroke-linecap": "round",
+      "stroke-dasharray": se.key === "benchmark" ? "" : "",
+      opacity: se.key === "benchmark" ? 0.75 : 1,
+    }));
+  });
+
+  // 크로스헤어 + 호버 툴팁
+  const cross = svgEl("line", {
+    y1: padT, y2: padT + plotH, stroke: "var(--baseline)", "stroke-width": 1, opacity: 0,
+  });
+  svg.append(cross);
+  const dots = RETURN_SERIES.map((se) => {
+    const c = svgEl("circle", { r: 4, fill: se.color, stroke: "var(--surface)", "stroke-width": 2, opacity: 0 });
+    svg.append(c);
+    return c;
+  });
+
+  const hit = svgEl("rect", {
+    x: padL, y: padT, width: plotW, height: plotH, fill: "transparent",
+  });
+  hit.style.cursor = "crosshair";
+
+  const showAt = (evt) => {
+    const rect = svg.getBoundingClientRect();
+    const px = ((evt.clientX - rect.left) / rect.width) * W;
+    let i = Math.round(((px - padL) / plotW) * (n - 1));
+    i = Math.max(0, Math.min(n - 1, i));
+    cross.setAttribute("x1", x(i));
+    cross.setAttribute("x2", x(i));
+    cross.setAttribute("opacity", 1);
+    RETURN_SERIES.forEach((se, k) => {
+      dots[k].setAttribute("cx", x(i));
+      dots[k].setAttribute("cy", y(win[se.key][i]));
+      dots[k].setAttribute("opacity", 1);
+    });
+    showTooltip(evt, win.dates[i], [
+      ...RETURN_SERIES.map((se) =>
+        tooltipRow(se.label, fmtPct(win[se.key][i]), se.color)),
+      tooltipRow("스냅샷이란", "시작일에 사서 그대로 보유"),
+      tooltipRow("연속이란", "매일 연기금 매매를 따라감(없는 종목 매도는 무시)"),
+    ]);
+  };
+  hit.addEventListener("pointerenter", showAt);
+  hit.addEventListener("pointermove", showAt);
+  hit.addEventListener("pointerleave", () => {
+    cross.setAttribute("opacity", 0);
+    dots.forEach((d) => d.setAttribute("opacity", 0));
+    hideTooltip();
+  });
+  svg.append(hit);
+
+  return svg;
+}
+
 /* ------------------------------------------------- 미국 주식 (13F) */
 function renderUsHoldings() {
   renderUsTop();
@@ -1273,6 +1507,7 @@ const DEFAULT_COLLAPSED = { "holdings-section": true };
 // 펼칠 때 실측 기반 렌더(라벨 폭 측정 등)를 다시 수행
 const SECTION_RERENDER = {
   "pension-flow-section": () => { renderPensionFlow(); renderPensionStock(); },
+  "returns-section": renderReturns,
   "trends-section": renderTrends,
   "us-section": renderUsHoldings,
   "allocation-section": renderAllocation,
@@ -1434,7 +1669,7 @@ function bindRefresh() {
 
 /* ============================================================ 초기화 */
 async function loadAll() {
-  const [h, a, m, t, pf, psf, us, bm] = await Promise.all([
+  const [h, a, m, t, pf, psf, us, rt, bm] = await Promise.all([
     fetchJSON("/api/holdings"),
     fetchJSON("/api/allocation"),
     fetchJSON("/api/major-stakes"),
@@ -1442,6 +1677,7 @@ async function loadAll() {
     fetchJSON("/api/pension-flow"),
     fetchJSON("/api/pension-stock-flow"),
     fetchJSON("/api/us-holdings"),
+    fetchJSON("/api/returns"),
     fetchJSON("/api/build-meta"),
   ]);
   state.holdings = h.body;
@@ -1451,6 +1687,7 @@ async function loadAll() {
   state.pensionFlow = pf.body;
   state.pensionStockFlow = psf.body;
   state.usHoldings = us.body;
+  state.returns = rt.body;
   state.buildMeta = bm.body && !bm.body.empty ? bm.body : null;
 
   renderBadges();
@@ -1459,6 +1696,7 @@ async function loadAll() {
   renderTrends();
   renderPensionFlow();
   renderPensionStock();
+  renderReturns();
   renderHoldings();
   renderUsHoldings();
   renderFooterDates();
@@ -1493,6 +1731,7 @@ async function init() {
   bindDaysToggle();
   bindPensionMarketToggle();
   bindPensionWindowToggle();
+  bindReturnsToggles();
   bindRefresh();
   await loadAll();
 
