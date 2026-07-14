@@ -10,9 +10,13 @@
 """
 
 import ast
+import json
 from datetime import date, datetime
 
+from . import store
 from .http_util import make_session, request_with_retry
+
+PRICE_CACHE_DIR = store.DATA_DIR / ".cache" / "prices"
 
 URL = "https://api.finance.naver.com/siseJson.naver"
 HEADERS = {"Referer": "https://finance.naver.com"}
@@ -84,6 +88,33 @@ def fetch_closes(code: str, start: date, end: date, session=None) -> dict[str, f
 def fetch_index_closes(symbol: str, start: date, end: date, session=None) -> dict[str, float]:
     """지수(KOSPI/KOSDAQ)의 일별 종가."""
     return _fetch(symbol, start, end, session)
+
+
+def fetch_closes_cached(code: str, start: date, end: date, session=None,
+                        cache_dir=None) -> dict[str, float]:
+    """종가를 디스크에 캐시해 재수집을 피한다 (백테스트에 수백 종목이 필요).
+
+    캐시가 요청 구간을 덮으면 네트워크를 타지 않는다.
+    """
+    cdir = cache_dir or PRICE_CACHE_DIR
+    cache_file = cdir / f"{code}.json"
+    s_iso, e_iso = start.isoformat(), end.isoformat()
+
+    if cache_file.exists():
+        try:
+            cached = json.loads(cache_file.read_text(encoding="utf-8"))
+            if cached.get("start", "9999") <= s_iso and cached.get("end", "0000") >= e_iso:
+                return {d: v for d, v in cached["closes"].items() if s_iso <= d <= e_iso}
+        except (ValueError, KeyError):
+            pass  # 손상된 캐시는 다시 받는다
+
+    closes = fetch_closes(code, start, end, session)
+    cdir.mkdir(parents=True, exist_ok=True)
+    cache_file.write_text(
+        json.dumps({"start": s_iso, "end": e_iso, "closes": closes}, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    return closes
 
 
 def trading_days(closes: dict[str, float], start: str, end: str) -> list[str]:

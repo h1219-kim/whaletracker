@@ -119,3 +119,48 @@ def test_benchmark_curve():
     dates = ["2026-01-01", "2026-01-02", "2026-01-03"]
     curve = returns.benchmark_curve(idx, dates)
     assert curve == [pytest.approx(0.0), pytest.approx(5.0), pytest.approx(-5.0)]
+
+
+# ------------------------------------------- 일별 Top-N 리밸런싱 (신규 전략)
+def test_daily_topn_rebalance_hand_calculation():
+    """매일 상위 1종목으로 갈아타기 — 초기자본 1을 재배분(자본 유입 없음).
+
+    d1: A 매수(100) → V=1.0        (수익률 0%)
+    d2: A가 110으로 +10% → V=1.1, 그날 신호는 B → B로 전량 교체 (V 유지 1.1)
+    d3: B는 50 그대로 → V=1.1, 신호는 A → A로 교체 (V 유지)
+    """
+    closes = {
+        "A": {"d1": 100.0, "d2": 110.0, "d3": 120.0},
+        "B": {"d1": 50.0, "d2": 50.0, "d3": 50.0},
+    }
+    dates = ["d1", "d2", "d3"]
+    flows = {
+        "d1": {"A": 1000},
+        "d2": {"B": 1000},
+        "d3": {"A": 1000},
+    }
+    curve = returns.daily_topn_curve(flows, closes, dates, lookback=1, rebalance=1, top_n=1)
+
+    assert curve[0] == pytest.approx(0.0)
+    assert curve[1] == pytest.approx(10.0)   # A가 오른 만큼만
+    assert curve[2] == pytest.approx(10.0)   # 교체해도 가치는 유지(재배분)
+
+
+def test_daily_topn_lookback_accumulates_signal():
+    """lookback=2면 최근 2일 누적 순매수로 상위를 뽑는다."""
+    closes = {"A": {"d1": 100.0, "d2": 100.0}, "B": {"d1": 100.0, "d2": 100.0}}
+    dates = ["d1", "d2"]
+    # d1은 A가 크고, d2는 B가 크지만 2일 누적은 A(600) > B(500)
+    flows = {"d1": {"A": 500, "B": 100}, "d2": {"A": 100, "B": 400}}
+
+    held = returns.daily_topn_positions(flows, closes, dates, lookback=2, rebalance=1, top_n=1)
+    assert list(held["d2"].keys()) == ["A"]  # 누적 기준이라 A 유지
+
+
+def test_daily_topn_ignores_net_sellers():
+    """순매도(음수) 종목은 후보에서 제외 (공매도 없음)."""
+    closes = {"A": {"d1": 100.0}, "B": {"d1": 100.0}}
+    dates = ["d1"]
+    flows = {"d1": {"A": -500, "B": 300}}
+    held = returns.daily_topn_positions(flows, closes, dates, lookback=1, rebalance=1, top_n=2)
+    assert list(held["d1"].keys()) == ["B"]

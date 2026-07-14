@@ -135,6 +135,95 @@ def continuous_curve(basket, flows: dict, closes: dict, dates: list[str]) -> lis
     return curve
 
 
+# ------------------------------------- 일별 Top-N 리밸런싱 (프로그램 매매 가정)
+def _cumulative_flows(flows: dict, dates: list[str], i: int, lookback: int) -> dict[str, int]:
+    """dates[i]까지 최근 lookback 거래일의 종목별 누적 순매수."""
+    window = dates[max(0, i - lookback + 1): i + 1]
+    cum: dict[str, int] = {}
+    for d in window:
+        for code, f in (flows.get(d) or {}).items():
+            cum[code] = cum.get(code, 0) + f
+    return cum
+
+
+def _target_weights(cum: dict[str, int], top_n: int) -> dict[str, float]:
+    """누적 순매수 상위 top_n의 목표 비중(순매도 종목 제외, 합=1)."""
+    buys = sorted(((c, v) for c, v in cum.items() if v > 0), key=lambda x: -x[1])[:top_n]
+    total = sum(v for _, v in buys)
+    if not buys or total <= 0:
+        return {}
+    return {c: v / total for c, v in buys}
+
+
+def daily_topn_positions(flows, closes, dates, lookback=5, rebalance=1, top_n=10):
+    """일별 보유주수 {날짜: {코드: 주수}}. 초기자본 1을 재배분(자본 유입 없음)."""
+    value = 1.0
+    shares: dict[str, float] = {}
+    result = {}
+
+    for i, t in enumerate(dates):
+        # 1) 오늘 종가로 현재 포트폴리오 평가 (보유가 있으면)
+        if shares:
+            v = 0.0
+            for code, s in shares.items():
+                p = prices.last_close_on_or_before(closes.get(code, {}), t)
+                if p:
+                    v += s * p
+            if v > 0:
+                value = v
+
+        # 2) 리밸런싱일이면 목표 비중으로 재구성 (종가 매매)
+        if i % rebalance == 0:
+            weights = _target_weights(_cumulative_flows(flows, dates, i, lookback), top_n)
+            if weights:
+                new_shares = {}
+                for code, w in weights.items():
+                    p = prices.last_close_on_or_before(closes.get(code, {}), t)
+                    if p:
+                        new_shares[code] = value * w / p
+                if new_shares:
+                    shares = new_shares  # 롱온리: 목표 비중은 모두 양수
+
+        result[t] = dict(shares)
+    return result
+
+
+def daily_topn_curve(flows, closes, dates, lookback=5, rebalance=1, top_n=10) -> list[float]:
+    """매 rebalance 거래일마다 최근 lookback일 누적 순매수 상위 top_n으로 갈아타기.
+
+    자본 유입 없이 초기자본 1을 재배분하므로 누적수익률 = 평가액 − 1.
+    """
+    if not dates:
+        return []
+    positions = daily_topn_positions(flows, closes, dates, lookback, rebalance, top_n)
+
+    curve = []
+    prev = 1.0
+    for t in dates:
+        shares = positions[t]
+        v = 0.0
+        for code, s in shares.items():
+            p = prices.last_close_on_or_before(closes.get(code, {}), t)
+            if p:
+                v += s * p
+        if v <= 0:
+            v = prev  # 아직 편입 전이면 현금 보유로 간주
+        curve.append((v - 1.0) * 100.0)
+        prev = v
+    return curve
+
+
+def universe_from_flows(flows: dict, dates: list[str], lookback: int, rebalance: int,
+                        top_n: int) -> set[str]:
+    """백테스트에 필요한 종목 집합 (리밸런싱 시점마다 상위 top_n에 든 종목들)."""
+    codes: set[str] = set()
+    for i in range(len(dates)):
+        if i % rebalance != 0:
+            continue
+        codes.update(_target_weights(_cumulative_flows(flows, dates, i, lookback), top_n))
+    return codes
+
+
 # ---------------------------------------------------------------- 벤치마크
 def benchmark_curve(index_closes: dict, dates: list[str]) -> list[float]:
     """지수 누적수익률(%) 곡선."""
