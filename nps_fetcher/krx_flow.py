@@ -25,7 +25,7 @@ DATA_URL = "https://data.krx.co.kr/comm/bldAttendant/getJsonData.cmd"
 BLD = "dbms/MDC_OUT/STAT/standard/MDCSTAT02401_OUT"
 INVST_PENSION = "6000"  # 연기금등
 MARKETS = {"kospi": "STK", "kosdaq": "KSQ"}
-WINDOWS = [("1w", "1주", 7), ("1m", "1개월", 30), ("3m", "3개월", 91)]
+WINDOWS = [("1d", "오늘", 0), ("1w", "1주", 7), ("1m", "1개월", 30), ("3m", "3개월", 91)]
 KRX_DELAY = 0.4  # 요청 간 지연(초)
 TOP_N = 20
 
@@ -126,6 +126,25 @@ def fetch_pension_stock_flow(session=None) -> dict:
     end = date.today()
     windows = []
     for key, label, days_back in WINDOWS:
+        if days_back == 0:
+            # '오늘' = 최근 거래일 하루. 당일 데이터가 없으면(장중·휴장)
+            # 직전 거래일까지 최대 6일 거슬러 올라가 데이터가 있는 하루를 쓴다.
+            markets, used = {}, end
+            for back in range(6):
+                day = end - timedelta(days=back)
+                trial = {
+                    m: split_buys_sells(_fetch_window(session, mid, day, day))
+                    for m, mid in MARKETS.items()
+                }
+                if any(t["buys"] or t["sells"] for t in trial.values()):
+                    markets, used = trial, day
+                    break
+            windows.append({
+                "key": key, "label": label,
+                "start": used.isoformat(), "end": used.isoformat(),
+                "markets": markets,
+            })
+            continue
         start = end - timedelta(days=days_back)
         markets = {}
         for market, mkt_id in MARKETS.items():

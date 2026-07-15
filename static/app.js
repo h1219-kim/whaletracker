@@ -1568,7 +1568,7 @@ function renderStalenessBanner() {
   });
   banner.append(ul);
   const when = state.buildMeta && state.buildMeta.built_at
-    ? `사이트 갱신 시도: ${state.buildMeta.built_at.slice(0, 16).replace("T", " ")}` : "";
+    ? `사이트 갱신 시도: ${fmtKst(state.buildMeta.built_at)} (KST)` : "";
   banner.append(el("div", { class: "banner-note" },
     `나머지 항목은 정상 수집되었습니다. 다음 자동 갱신에서 복구되면 자동으로 최신화됩니다. ${when}`));
   markStaleSections(reports);
@@ -1727,10 +1727,18 @@ function showToast(msg, ms = 3500) {
   setTimeout(() => { toast.hidden = true; }, ms);
 }
 
+// ISO 시각(오프셋 무관)을 한국 시간(KST) 문자열로. GitHub 러너는 UTC라
+// 오프셋이 +00:00이지만 절대시각은 같으므로 KST로 변환해 표시한다.
+function fmtKst(iso) {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return (iso || "").slice(0, 16).replace("T", " ");
+  return new Date(d.getTime() + 9 * 3600 * 1000).toISOString().slice(0, 16).replace("T", " ");
+}
+
 function setLastFinished(iso) {
   if (!iso) return;
   $("last-finished").hidden = false;
-  $("last-finished").textContent = `마지막 갱신 ${iso.replace("T", " ").slice(0, 16)}`;
+  $("last-finished").textContent = `마지막 갱신 ${fmtKst(iso)} (KST)`;
 }
 
 async function pollRefreshStatus() {
