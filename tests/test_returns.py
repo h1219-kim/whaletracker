@@ -164,3 +164,16 @@ def test_daily_topn_ignores_net_sellers():
     flows = {"d1": {"A": -500, "B": 300}}
     held = returns.daily_topn_positions(flows, closes, dates, lookback=1, rebalance=1, top_n=2)
     assert list(held["d1"].keys()) == ["B"]
+
+
+def test_daily_topn_renormalizes_when_price_missing():
+    """가격 데이터가 없는 종목(상장폐지 등)의 비중은 증발하면 안 되고,
+    가격이 있는 종목들로 재정규화되어야 한다."""
+    closes = {"A": {"d1": 100.0, "d2": 100.0}}  # B는 가격 데이터 자체가 없음
+    dates = ["d1", "d2"]
+    flows = {"d1": {"A": 500, "B": 500}, "d2": {}}
+
+    curve = returns.daily_topn_curve(flows, closes, dates, lookback=1, rebalance=1, top_n=2)
+    # B 비중 50%가 증발하면 -50%로 보이는 버그. 재정규화되면 A에 전액 → 0%
+    assert curve[0] == pytest.approx(0.0)
+    assert curve[1] == pytest.approx(0.0)

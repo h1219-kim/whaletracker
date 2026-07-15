@@ -175,14 +175,19 @@ def daily_topn_positions(flows, closes, dates, lookback=5, rebalance=1, top_n=10
         # 2) 리밸런싱일이면 목표 비중으로 재구성 (종가 매매)
         if i % rebalance == 0:
             weights = _target_weights(_cumulative_flows(flows, dates, i, lookback), top_n)
-            if weights:
-                new_shares = {}
-                for code, w in weights.items():
-                    p = prices.last_close_on_or_before(closes.get(code, {}), t)
-                    if p:
-                        new_shares[code] = value * w / p
-                if new_shares:
-                    shares = new_shares  # 롱온리: 목표 비중은 모두 양수
+            # 가격 데이터가 없는 종목(상장폐지·미상장 등)은 매수 불가 —
+            # 그 비중이 증발해 인위적 손실로 잡히지 않도록, 가격이 있는
+            # 종목들로 비중을 재정규화한다.
+            priced = {
+                code: (w, prices.last_close_on_or_before(closes.get(code, {}), t))
+                for code, w in weights.items()
+            }
+            priced = {c: (w, p) for c, (w, p) in priced.items() if p}
+            w_sum = sum(w for w, _ in priced.values())
+            if priced and w_sum > 0:
+                shares = {
+                    code: value * (w / w_sum) / p for code, (w, p) in priced.items()
+                }  # 롱온리: 목표 비중은 모두 양수
 
         result[t] = dict(shares)
     return result
