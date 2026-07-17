@@ -17,6 +17,7 @@ const state = {
   microStock: "000660",
   microMode: "raw",
   microScale: "daily", // daily=일별 막대, cum=누적 선
+  microPriceH: 150,    // 캔들 패널 세로폭(px) — 슬라이더로 조절, localStorage 유지
   returnsL: 3,   // 신호 누적일 (강건성 검증 상위 조합 기본값)
   returnsR: 5,   // 리밸런싱 주기 (5 = 주 1회)
   returnsN: 10,  // 종목 수
@@ -1678,7 +1679,8 @@ function renderMicroscope() {
 }
 
 function buildMicroChart(d, adj) {
-  const W = 960, priceH = 150, flowH = 190, gap = 26, padL = 60, padR = 14, padT = 10, padB = 26;
+  const W = 960, priceH = state.microPriceH || 150,
+    flowH = 190, gap = 26, padL = 60, padR = 14, padT = 10, padB = 26;
   const H = padT + priceH + gap + flowH + padB;
   const n = d.dates.length;
   const x = (i) => padL + (n <= 1 ? 0 : (i / (n - 1)) * (W - padL - padR));
@@ -1697,7 +1699,10 @@ function buildMicroChart(d, adj) {
   const pLo = Math.min(...priceVals), pHi = Math.max(...priceVals);
   const pSpan = (pHi - pLo) || 1;
   const py = (v) => padT + priceH - ((v - pLo) / pSpan) * priceH;
-  [pLo, (pLo + pHi) / 2, pHi].forEach((t) => {
+  const pTicks = priceH >= 280
+    ? [pLo, pLo + pSpan * 0.25, pLo + pSpan * 0.5, pLo + pSpan * 0.75, pHi]
+    : [pLo, (pLo + pHi) / 2, pHi];
+  pTicks.forEach((t) => {
     svg.append(svgEl("line", { x1: padL, x2: W - padR, y1: py(t), y2: py(t),
       stroke: "var(--grid)", "stroke-width": 1 }));
     const lab = svgEl("text", { x: padL - 6, y: py(t) + 4, "text-anchor": "end", class: "svg-tick" });
@@ -1918,6 +1923,21 @@ function bindMicroToggles() {
       renderMicroscope();
     });
   });
+  // 차트 세로폭 슬라이더 — 드래그 중 연속 발화하므로 rAF로 렌더 1회/프레임 제한
+  const range = $("micro-height-range");
+  if (range) {
+    try {
+      const saved = parseInt(localStorage.getItem("microPriceH"), 10);
+      if (saved >= 120 && saved <= 480) state.microPriceH = saved;
+    } catch (e) { /* 사생활 모드 등 저장 불가 환경 무시 */ }
+    range.value = state.microPriceH;
+    let pending = 0; // 드래그 중 연속 발화 → 40ms 스로틀 (rAF는 백그라운드 탭에서 멈춤)
+    range.addEventListener("input", () => {
+      state.microPriceH = +range.value;
+      try { localStorage.setItem("microPriceH", range.value); } catch (e) { /* 무시 */ }
+      if (!pending) pending = setTimeout(() => { pending = 0; renderMicroscope(); }, 40);
+    });
+  }
 }
 
 /* ------------------------------------------ 데이터 신선도 경고 */

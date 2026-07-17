@@ -384,6 +384,21 @@ section.card.collapsed .card-body { display: none; }
 .seg-toggle button:hover:not(.active),
 .view-toggle button:hover:not(.active) { color: var(--text-1); }
 
+/* 차트 세로폭 슬라이더 (수급 현미경) */
+.height-ctl {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-2);
+  padding: 0 4px;
+}
+.height-ctl input[type="range"] {
+  width: 110px;
+  accent-color: var(--s2);
+  cursor: pointer;
+}
+
 /* ------------------------------------------------------------------ 스택 바 (자산배분) */
 .stackbar {
   display: flex;
