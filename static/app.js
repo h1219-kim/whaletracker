@@ -1683,7 +1683,11 @@ function buildMicroChart(d, adj) {
     flowH = 190, gap = 26, padL = 60, padR = 14, padT = 10, padB = 26;
   const H = padT + priceH + gap + flowH + padB;
   const n = d.dates.length;
-  const x = (i) => padL + (n <= 1 ? 0 : (i / (n - 1)) * (W - padL - padR));
+  // 하루 = 균등 슬롯. 슬롯 중앙에 배치해야 양 끝 캔들·막대가 밀리거나 겹치지 않는다.
+  const plotW = W - padL - padR;
+  const slot = plotW / n;
+  const x = (i) => padL + slot * (i + 0.5);
+  const bw = Math.min(14, Math.max(1.5, slot - 1.5)); // 캔들·스트립·막대 공통 폭
 
   const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, role: "img",
     "aria-label": "주가와 투자자별 순매수" });
@@ -1710,8 +1714,6 @@ function buildMicroChart(d, adj) {
     svg.append(lab);
   });
   if (hasOHLC) {
-    const slotP = (W - padL - padR) / n;
-    const cw = Math.min(14, Math.max(1.5, slotP - 1.5)); // 하단 막대와 같은 폭
     for (let i = 0; i < n; i++) {
       const o = d.open[i], h = d.high[i], l = d.low[i], c = d.close[i];
       if (o == null || h == null || l == null || !c) continue;
@@ -1719,9 +1721,8 @@ function buildMicroChart(d, adj) {
       const cx = x(i);
       svg.append(svgEl("line", { x1: cx.toFixed(1), x2: cx.toFixed(1),
         y1: py(h).toFixed(1), y2: py(l).toFixed(1), stroke: color, "stroke-width": 1 }));
-      const bx = Math.min(W - padR - cw, Math.max(padL, cx - cw / 2));
-      svg.append(svgEl("rect", { x: bx.toFixed(1),
-        y: py(Math.max(o, c)).toFixed(1), width: cw.toFixed(1),
+      svg.append(svgEl("rect", { x: (cx - bw / 2).toFixed(1),
+        y: py(Math.max(o, c)).toFixed(1), width: bw.toFixed(1),
         height: Math.max(Math.abs(py(o) - py(c)), 1).toFixed(1), fill: color }));
     }
   } else {
@@ -1745,13 +1746,10 @@ function buildMicroChart(d, adj) {
   const leaders = microLeaders(d, adj);
   const colorOf = Object.fromEntries(MICRO_SERIES.map((s) => [s.key, s.color]));
   const stripY = padT + priceH + 8, stripH = 9;
-  const slotS = (W - padL - padR) / n;
-  const sw = Math.min(14, Math.max(1.5, slotS - 1.5));
   leaders.forEach((L, i) => {
     if (!L) return;
-    const bx = Math.min(W - padR - sw, Math.max(padL, x(i) - sw / 2));
     svg.append(svgEl("rect", {
-      x: bx.toFixed(1), y: stripY, width: sw.toFixed(1), height: stripH,
+      x: (x(i) - bw / 2).toFixed(1), y: stripY, width: bw.toFixed(1), height: stripH,
       fill: L.key ? colorOf[L.key] : "var(--muted)",
       opacity: L.key ? 1 : 0.35,
     }));
@@ -1782,10 +1780,8 @@ function buildMicroChart(d, adj) {
       lab.textContent = t === 0 ? "0" : `${t > 0 ? "+" : "−"}${(Math.abs(t) / 1e4).toFixed(1)}조`;
       svg.append(lab);
     }
-    const slot = (W - padL - padR) / n;
-    const barW = Math.min(14, Math.max(1.5, slot - 1.5));
     for (let i = 0; i < n; i++) {
-      const bx = Math.min(W - padR - barW, Math.max(padL, x(i) - barW / 2));
+      const bx = x(i) - bw / 2;
       let accUp = 0, accDn = 0;
       MICRO_SERIES.forEach((s) => {
         const v = dailySeries[s.key][i] || 0;
@@ -1794,7 +1790,7 @@ function buildMicroChart(d, adj) {
         if (v > 0) { yTop = fy(accUp + v); yBot = fy(accUp); accUp += v; }
         else { yTop = fy(accDn); yBot = fy(accDn + v); accDn += v; }
         svg.append(svgEl("rect", { x: bx.toFixed(1), y: yTop.toFixed(1),
-          width: barW.toFixed(1), height: Math.max(yBot - yTop, 0.5).toFixed(1),
+          width: bw.toFixed(1), height: Math.max(yBot - yTop, 0.5).toFixed(1),
           fill: s.color }));
       });
     }
@@ -1843,7 +1839,7 @@ function buildMicroChart(d, adj) {
   const showAt = (evt) => {
     const rect = svg.getBoundingClientRect();
     const px = ((evt.clientX - rect.left) / rect.width) * W;
-    let i = Math.round(((px - padL) / (W - padL - padR)) * (n - 1));
+    let i = Math.floor((px - padL) / slot); // 슬롯 중앙 배치와 같은 좌표계
     i = Math.max(0, Math.min(n - 1, i));
     cross.setAttribute("x1", x(i));
     cross.setAttribute("x2", x(i));
