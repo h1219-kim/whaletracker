@@ -16,6 +16,7 @@ const state = {
   stockFlow: null,
   microStock: "000660",
   microMode: "raw",
+  microScale: "daily", // daily=일별 막대, cum=누적 선
   returnsL: 3,   // 신호 누적일 (강건성 검증 상위 조합 기본값)
   returnsR: 5,   // 리밸런싱 주기 (5 = 주 1회)
   returnsN: 10,  // 종목 수
@@ -1535,10 +1536,13 @@ function renderMicroscope() {
   }
 
   const adj = state.microMode === "adj";
+  const daily = state.microScale === "daily";
   const sm = d.summary;
   caption.textContent =
     `${d.dates[0]} ~ ${d.dates[d.dates.length - 1]} (${d.dates.length}거래일) · ` +
-    `주가 + 투자자별 누적 순매수 — 기울기가 그날의 매수 주체` +
+    (daily
+      ? "주가 + 투자자별 일별 순매수 — 0선 위 막대가 그날 산 쪽, 아래가 판 쪽"
+      : "주가 + 투자자별 누적 순매수 — 기울기가 그날의 매수 주체") +
     (adj ? " · 보정: 개인에 레버리지 경유 수요 반영(±2배)" : "");
 
   // 요약 카드
@@ -1612,7 +1616,7 @@ function buildMicroChart(d, adj) {
   const x = (i) => padL + (n <= 1 ? 0 : (i / (n - 1)) * (W - padL - padR));
 
   const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, role: "img",
-    "aria-label": "주가와 투자자별 누적 순매수" });
+    "aria-label": "주가와 투자자별 순매수" });
 
   // ---- 상단: 주가 ----
   const closes = d.close.map((c) => c || 0);
@@ -1632,32 +1636,78 @@ function buildMicroChart(d, adj) {
     "stroke-linejoin": "round", "stroke-linecap": "round",
   }));
 
-  // ---- 하단: 누적 순매수 (조원) ----
-  const series = {
-    individual: cumsum(adj ? d.individual_adjusted : d.flows.individual),
-    foreign: cumsum(d.flows.foreign),
-    institution: cumsum(d.flows.institution),
+  // ---- 하단: 투자자별 순매수 (일별=양방향 스택 막대, 누적=선) ----
+  const daily = state.microScale === "daily";
+  const dailySeries = {
+    individual: adj ? d.individual_adjusted : d.flows.individual,
+    foreign: d.flows.foreign,
+    institution: d.flows.institution,
   };
-  const all = [...series.individual, ...series.foreign, ...series.institution, 0];
-  const fLo = Math.min(...all), fHi = Math.max(...all);
-  const fSpan = (fHi - fLo) || 1;
   const fTop = padT + priceH + gap;
-  const fy = (v) => fTop + flowH - ((v - fLo) / fSpan) * flowH;
-  // 0선 + 상/하한 눈금
-  [[0, "var(--baseline)"], [fLo, "var(--grid)"], [fHi, "var(--grid)"]].forEach(([t, c]) => {
-    svg.append(svgEl("line", { x1: padL, x2: W - padR, y1: fy(t), y2: fy(t),
-      stroke: c, "stroke-width": 1 }));
-    const lab = svgEl("text", { x: padL - 6, y: fy(t) + 4, "text-anchor": "end", class: "svg-tick" });
-    lab.textContent = `${(t / 1e4).toFixed(1)}조`;
-    svg.append(lab);
-  });
-  MICRO_SERIES.forEach((s) => {
-    svg.append(svgEl("path", {
-      d: series[s.key].map((v, i) => `${i === 0 ? "M" : "L"}${x(i).toFixed(1)},${fy(v).toFixed(1)}`).join(" "),
-      fill: "none", stroke: s.color, "stroke-width": 2,
-      "stroke-linejoin": "round", "stroke-linecap": "round",
-    }));
-  });
+
+  if (daily) {
+    // 하루 = 막대 하나. 산 주체는 0선 위로, 판 주체는 아래로 쌓아
+    // "그날 누가 사고 누가 팔았는지"를 주가와 같은 x축에서 바로 대조한다.
+    let maxAbs = 1;
+    for (let i = 0; i < n; i++) {
+      let pos = 0, neg = 0;
+      MICRO_SERIES.forEach((s) => {
+        const v = dailySeries[s.key][i] || 0;
+        if (v > 0) pos += v; else neg -= v;
+      });
+      maxAbs = Math.max(maxAbs, pos, neg);
+    }
+    const { max: ymax, ticks } = niceScale(maxAbs, 2);
+    const fy = (v) => fTop + flowH / 2 - (v / ymax) * (flowH / 2);
+    for (const t of [...ticks.map((v) => -v), 0, ...ticks]) {
+      svg.append(svgEl("line", { x1: padL, x2: W - padR, y1: fy(t), y2: fy(t),
+        stroke: t === 0 ? "var(--baseline)" : "var(--grid)", "stroke-width": 1 }));
+      const lab = svgEl("text", { x: padL - 6, y: fy(t) + 4, "text-anchor": "end", class: "svg-tick" });
+      lab.textContent = t === 0 ? "0" : `${t > 0 ? "+" : "−"}${(Math.abs(t) / 1e4).toFixed(1)}조`;
+      svg.append(lab);
+    }
+    const slot = (W - padL - padR) / n;
+    const barW = Math.min(14, Math.max(1.5, slot - 1.5));
+    for (let i = 0; i < n; i++) {
+      const bx = Math.min(W - padR - barW, Math.max(padL, x(i) - barW / 2));
+      let accUp = 0, accDn = 0;
+      MICRO_SERIES.forEach((s) => {
+        const v = dailySeries[s.key][i] || 0;
+        if (!v) return;
+        let yTop, yBot;
+        if (v > 0) { yTop = fy(accUp + v); yBot = fy(accUp); accUp += v; }
+        else { yTop = fy(accDn); yBot = fy(accDn + v); accDn += v; }
+        svg.append(svgEl("rect", { x: bx.toFixed(1), y: yTop.toFixed(1),
+          width: barW.toFixed(1), height: Math.max(yBot - yTop, 0.5).toFixed(1),
+          fill: s.color }));
+      });
+    }
+  } else {
+    const series = {
+      individual: cumsum(dailySeries.individual),
+      foreign: cumsum(dailySeries.foreign),
+      institution: cumsum(dailySeries.institution),
+    };
+    const all = [...series.individual, ...series.foreign, ...series.institution, 0];
+    const fLo = Math.min(...all), fHi = Math.max(...all);
+    const fSpan = (fHi - fLo) || 1;
+    const fy = (v) => fTop + flowH - ((v - fLo) / fSpan) * flowH;
+    // 0선 + 상/하한 눈금
+    [[0, "var(--baseline)"], [fLo, "var(--grid)"], [fHi, "var(--grid)"]].forEach(([t, c]) => {
+      svg.append(svgEl("line", { x1: padL, x2: W - padR, y1: fy(t), y2: fy(t),
+        stroke: c, "stroke-width": 1 }));
+      const lab = svgEl("text", { x: padL - 6, y: fy(t) + 4, "text-anchor": "end", class: "svg-tick" });
+      lab.textContent = `${(t / 1e4).toFixed(1)}조`;
+      svg.append(lab);
+    });
+    MICRO_SERIES.forEach((s) => {
+      svg.append(svgEl("path", {
+        d: series[s.key].map((v, i) => `${i === 0 ? "M" : "L"}${x(i).toFixed(1)},${fy(v).toFixed(1)}`).join(" "),
+        fill: "none", stroke: s.color, "stroke-width": 2,
+        "stroke-linejoin": "round", "stroke-linecap": "round",
+      }));
+    });
+  }
 
   // x축 라벨 (시작/중간/끝)
   [0, Math.floor((n - 1) / 2), n - 1].forEach((i) => {
@@ -1686,6 +1736,12 @@ function buildMicroChart(d, adj) {
     clear(tooltip);
     tooltip.append(el("div", { class: "tt-title" }, d.dates[i]));
     tooltip.append(tooltipRow("종가", d.close[i] ? `${fmtInt(d.close[i])}원` : "—", "var(--muted)"));
+    if (i > 0 && d.close[i] && d.close[i - 1]) {
+      const chg = (d.close[i] / d.close[i - 1] - 1) * 100;
+      tooltip.append(tooltipRow("전일比",
+        `${chg >= 0 ? "+" : "−"}${Math.abs(chg).toFixed(2)}%`,
+        chg >= 0 ? "var(--buy)" : "var(--sell)"));
+    }
     tooltip.append(tooltipRow(state.microMode === "adj" ? "개인(실질) 당일" : "개인 당일",
       fmtEok(state.microMode === "adj" ? d.individual_adjusted[i] : d.flows.individual[i]), "var(--s1)"));
     tooltip.append(tooltipRow("외국인 당일", fmtEok(d.flows.foreign[i]), "var(--s6)"));
@@ -1694,7 +1750,9 @@ function buildMicroChart(d, adj) {
       tooltip.append(tooltipRow("└ 레버리지 경유", fmtEok(d.lever_extra[i])));
     }
     tooltip.append(el("div", { class: "method-note" },
-      "기울기가 가파른 쪽이 그날의 수급 주도자 · 기관에는 LP 헤지 물량 포함"));
+      state.microScale === "daily"
+        ? "0선 위 막대=그날 산 쪽 · 아래=판 쪽 · 기관에는 LP 헤지 물량 포함"
+        : "기울기가 가파른 쪽이 그날의 수급 주도자 · 기관에는 LP 헤지 물량 포함"));
     tooltip.hidden = false;
     moveTooltip(evt);
   };
@@ -1724,6 +1782,15 @@ function bindMicroToggles() {
       if (btn.dataset.mode === state.microMode) return;
       mode.querySelectorAll("button").forEach((b) => b.classList.toggle("active", b === btn));
       state.microMode = btn.dataset.mode;
+      renderMicroscope();
+    });
+  });
+  const scale = $("micro-scale-toggle");
+  scale.querySelectorAll("button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (btn.dataset.scale === state.microScale) return;
+      scale.querySelectorAll("button").forEach((b) => b.classList.toggle("active", b === btn));
+      state.microScale = btn.dataset.scale;
       renderMicroscope();
     });
   });
