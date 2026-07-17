@@ -1520,6 +1520,27 @@ function cumsum(xs) {
   return xs.map((v) => (acc += v || 0));
 }
 
+/* 그날 주가 방향을 '주도'한 주체 — 상승일=최대 순매수, 하락일=최대 순매도.
+   반환: [{key, v, up}] (key=null이면 3주체 밖(기타법인 등)이 주도, 방향 미상은 null). */
+function microLeaders(d, adj) {
+  const flows = {
+    individual: adj ? d.individual_adjusted : d.flows.individual,
+    foreign: d.flows.foreign,
+    institution: d.flows.institution,
+  };
+  return d.dates.map((_, i) => {
+    const prev = i > 0 ? d.close[i - 1] : null, cur = d.close[i];
+    if (!prev || !cur || prev === cur) return null; // 첫날·보합은 판정 불가
+    const up = cur > prev;
+    let key = null, v = 0;
+    MICRO_SERIES.forEach((s) => {
+      const f = flows[s.key][i] || 0;
+      if (up ? f > v : f < v) { key = s.key; v = f; }
+    });
+    return { key, v, up };
+  });
+}
+
 function renderMicroscope() {
   const chartBox = clear($("micro-chart"));
   const tableBox = clear($("micro-table"));
@@ -1543,6 +1564,7 @@ function renderMicroscope() {
     (daily
       ? "주가 + 투자자별 일별 순매수 — 0선 위 막대가 그날 산 쪽, 아래가 판 쪽"
       : "주가 + 투자자별 누적 순매수 — 기울기가 그날의 매수 주체") +
+    " · 캔들 아래 색 띠 = 그날 주가를 주도한 주체" +
     (adj ? " · 보정: 개인에 레버리지 경유 수요 반영(±2배)" : "");
 
   // 요약 카드
@@ -1582,6 +1604,37 @@ function renderMicroscope() {
         el("span", { class: "legend-swatch", style: `background:${s.color}` }),
         s.key === "individual" && adj ? "개인(실질)" : s.label))));
 
+  // 주도 일수 집계 — "상승일은 누가 주도했나"를 기간 전체로 요약
+  const leaders = microLeaders(d, adj);
+  const counts = { up: {}, down: {} };
+  let upDays = 0, downDays = 0;
+  leaders.forEach((L) => {
+    if (!L) return;
+    if (L.up) upDays += 1; else downDays += 1;
+    const box = L.up ? counts.up : counts.down;
+    const k = L.key || "other";
+    box[k] = (box[k] || 0) + 1;
+  });
+  const seriesMeta = [
+    ...MICRO_SERIES.map((s) => ({
+      key: s.key, color: s.color,
+      label: s.key === "individual" && adj ? "개인(실질)" : s.label,
+    })),
+    { key: "other", color: "var(--muted)", label: "기타" },
+  ];
+  const sideRow = (label, total, obj) =>
+    el("div", { class: "legend" },
+      el("span", { class: "legend-item" }, `${label} ${total}일 주도 —`),
+      ...seriesMeta
+        .map((m) => ({ m, c: obj[m.key] || 0 }))
+        .filter((x) => x.c > 0)
+        .sort((a, b) => b.c - a.c)
+        .map((x) =>
+          el("span", { class: "legend-item" },
+            el("span", { class: "legend-swatch", style: `background:${x.m.color}` }),
+            `${x.m.label} ${x.c}일`)));
+  chartBox.append(sideRow("상승", upDays, counts.up), sideRow("하락", downDays, counts.down));
+
   // 연계 상품 목록
   prodBox.append(el("h3", {}, `연계 레버리지·인버스 상품 (자동 탐색, ${d.products.length}개)`));
   prodBox.append(el("div", { class: "table-wrap" },
@@ -1602,6 +1655,7 @@ function renderMicroscope() {
     el("table", { class: "data-table" },
       el("thead", {}, el("tr", {},
         el("th", {}, "날짜"), el("th", { class: "num" }, "종가"),
+        el("th", {}, "주도"),
         el("th", { class: "num" }, "개인(억)"), el("th", { class: "num" }, "외국인(억)"),
         el("th", { class: "num" }, "기관(억)"), el("th", { class: "num" }, "레버리지경유(억)"),
         el("th", { class: "num" }, "개인 실질(억)"))),
@@ -1609,6 +1663,13 @@ function renderMicroscope() {
         el("tr", {},
           el("td", {}, d.dates[i]),
           el("td", { class: "num" }, d.close[i] ? fmtInt(d.close[i]) : "—"),
+          (() => {
+            const L = leaders[i];
+            if (!L) return el("td", {}, "—");
+            const ls = seriesMeta.find((m) => m.key === (L.key || "other"));
+            return el("td", { style: `color:${ls.color}` },
+              `${L.up ? "▲" : "▼"} ${ls.label}`);
+          })(),
           el("td", { class: `num ${deltaClass(d.flows.individual[i])}` }, fmtEok(d.flows.individual[i])),
           el("td", { class: `num ${deltaClass(d.flows.foreign[i])}` }, fmtEok(d.flows.foreign[i])),
           el("td", { class: `num ${deltaClass(d.flows.institution[i])}` }, fmtEok(d.flows.institution[i])),
@@ -1674,6 +1735,26 @@ function buildMicroChart(d, adj) {
     institution: d.flows.institution,
   };
   const fTop = padT + priceH + gap;
+
+  // ---- 패널 사이 주도 스트립: 상승일=가장 많이 산 주체 색, 하락일=가장 많이 판 주체 색
+  const leaders = microLeaders(d, adj);
+  const colorOf = Object.fromEntries(MICRO_SERIES.map((s) => [s.key, s.color]));
+  const stripY = padT + priceH + 8, stripH = 9;
+  const slotS = (W - padL - padR) / n;
+  const sw = Math.min(14, Math.max(1.5, slotS - 1.5));
+  leaders.forEach((L, i) => {
+    if (!L) return;
+    const bx = Math.min(W - padR - sw, Math.max(padL, x(i) - sw / 2));
+    svg.append(svgEl("rect", {
+      x: bx.toFixed(1), y: stripY, width: sw.toFixed(1), height: stripH,
+      fill: L.key ? colorOf[L.key] : "var(--muted)",
+      opacity: L.key ? 1 : 0.35,
+    }));
+  });
+  const stripLab = svgEl("text", { x: padL - 6, y: stripY + stripH,
+    "text-anchor": "end", class: "svg-tick" });
+  stripLab.textContent = "주도";
+  svg.append(stripLab);
 
   if (daily) {
     // 하루 = 막대 하나. 산 주체는 0선 위로, 판 주체는 아래로 쌓아
@@ -1775,6 +1856,15 @@ function buildMicroChart(d, adj) {
       tooltip.append(tooltipRow("전일比",
         `${chg >= 0 ? "+" : "−"}${Math.abs(chg).toFixed(2)}%`,
         chg >= 0 ? "var(--buy)" : "var(--sell)"));
+    }
+    const L = leaders[i];
+    if (L) {
+      const ls = MICRO_SERIES.find((s) => s.key === L.key);
+      tooltip.append(tooltipRow(L.up ? "상승 주도" : "하락 주도",
+        ls
+          ? `${L.key === "individual" && adj ? "개인(실질)" : ls.label} ${fmtEok(L.v)}`
+          : "기타 주체(3주체 외)",
+        ls ? ls.color : "var(--muted)"));
     }
     tooltip.append(tooltipRow(state.microMode === "adj" ? "개인(실질) 당일" : "개인 당일",
       fmtEok(state.microMode === "adj" ? d.individual_adjusted[i] : d.flows.individual[i]), "var(--s1)"));
