@@ -333,3 +333,17 @@ def test_returns_empty_when_file_missing(client, data_dir):
     res = client.get("/api/returns")
     assert res.status_code == 200
     assert res.get_json() == {"empty": True}
+
+
+def test_stock_flow_passthrough(client, data_dir):
+    sample = {"as_of": "2026-07-17", "stocks": {"000660": {"name": "SK하이닉스"}}}
+    _write_json(data_dir / "stock_flow.json", sample)
+    res = client.get("/api/stock-flow")
+    assert res.status_code == 200
+    assert res.get_json() == sample
+
+
+def test_stock_flow_empty_when_missing(client, data_dir):
+    res = client.get("/api/stock-flow")
+    assert res.status_code == 200
+    assert res.get_json() == {"empty": True}

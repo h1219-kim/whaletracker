@@ -61,12 +61,13 @@ def split_buys_sells(rows: list[dict], top_n: int = TOP_N) -> dict:
     return {"buys": buys, "sells": sells}
 
 
-def _fetch_window(session, mkt_id: str, start: date, end: date) -> list[dict]:
+def _fetch_window(session, mkt_id: str, start: date, end: date,
+                  invst: str = INVST_PENSION) -> list[dict]:
     data = {
         "bld": BLD,
         "locale": "ko_KR",
         "mktId": mkt_id,
-        "invstTpCd": INVST_PENSION,
+        "invstTpCd": invst,
         "strtDd": start.strftime("%Y%m%d"),
         "endDd": end.strftime("%Y%m%d"),
         "share": "1",
@@ -93,15 +94,18 @@ def rows_to_netbuy(rows: list[dict]) -> dict[str, int]:
     return {r["code"]: r["net_value"] for r in rows}
 
 
-def fetch_daily_netbuy(market: str, day: date, session=None, cache_dir=None) -> dict[str, int]:
-    """특정 거래일의 종목별 연기금 순매수 대금.
+def fetch_daily_netbuy(market: str, day: date, session=None, cache_dir=None,
+                       invst: str = INVST_PENSION) -> dict[str, int]:
+    """특정 거래일의 종목별 순매수 대금 (기본: 연기금, invst로 투자자 변경).
 
     같은 날짜는 다시 바뀌지 않으므로 디스크에 캐시한다(재수집 방지).
-    캐시가 있으면 네트워크를 타지 않는다.
+    캐시가 있으면 네트워크를 타지 않는다. 연기금(기본값)은 기존 캐시
+    파일명을 그대로 써서 이미 쌓인 캐시와 호환된다.
     """
     mkt_id = MARKETS[market]
     cdir = cache_dir or DAILY_CACHE_DIR
-    cache_file = cdir / f"{day.strftime('%Y%m%d')}_{mkt_id}.json"
+    suffix = "" if invst == INVST_PENSION else f"_{invst}"
+    cache_file = cdir / f"{day.strftime('%Y%m%d')}_{mkt_id}{suffix}.json"
     if cache_file.exists():
         try:
             return json.loads(cache_file.read_text(encoding="utf-8"))
@@ -109,7 +113,7 @@ def fetch_daily_netbuy(market: str, day: date, session=None, cache_dir=None) -> 
             pass  # 손상된 캐시는 무시하고 다시 받는다
 
     session = session or make_session()
-    rows = _fetch_window(session, mkt_id, day, day)
+    rows = _fetch_window(session, mkt_id, day, day, invst=invst)
     result = rows_to_netbuy(rows)
 
     cdir.mkdir(parents=True, exist_ok=True)

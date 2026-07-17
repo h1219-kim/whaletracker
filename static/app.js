@@ -13,6 +13,9 @@ const state = {
   usHoldings: null,
   returns: null,
   returnsMarket: "kospi",
+  stockFlow: null,
+  microStock: "000660",
+  microMode: "raw",
   returnsL: 3,   // 신호 누적일 (강건성 검증 상위 조합 기본값)
   returnsR: 5,   // 리밸런싱 주기 (5 = 주 1회)
   returnsN: 10,  // 종목 수
@@ -189,7 +192,7 @@ const STATIC_MAP = {
   "/api/us-holdings": "data/us_holdings.json",
   "/api/returns": "data/returns.json",
   "/api/build-meta": "data/build_meta.json",
-  "/api/returns": "data/returns.json",
+  "/api/stock-flow": "data/stock_flow.json",
 };
 
 function apiPath(url) {
@@ -1498,6 +1501,234 @@ function renderUsTable() {
   pag.append(prev, el("span", {}, `${v.page} / ${pages} 페이지 · ${fmtInt(rows.length)}종목`), next);
 }
 
+/* ------------------------------------------ 수급 현미경 (본주×레버리지) */
+const MICRO_SERIES = [
+  { key: "individual", label: "개인", color: "var(--s1)" },
+  { key: "foreign", label: "외국인", color: "var(--s6)" },
+  { key: "institution", label: "기관", color: "var(--s2)" },
+];
+
+function microData() {
+  const sf = state.stockFlow;
+  if (!sf || sf.empty || !sf.stocks) return null;
+  return sf.stocks[state.microStock] || null;
+}
+
+function cumsum(xs) {
+  let acc = 0;
+  return xs.map((v) => (acc += v || 0));
+}
+
+function renderMicroscope() {
+  const chartBox = clear($("micro-chart"));
+  const tableBox = clear($("micro-table"));
+  const sumBox = clear($("micro-summary"));
+  const prodBox = clear($("micro-products"));
+  const caption = $("micro-caption");
+
+  const d = microData();
+  if (!d || !d.dates || !d.dates.length) {
+    caption.textContent = "";
+    chartBox.append(el("div", { class: "placeholder" },
+      "데이터가 없습니다. [데이터 갱신]을 눌러 수집하세요."));
+    return;
+  }
+
+  const adj = state.microMode === "adj";
+  const sm = d.summary;
+  caption.textContent =
+    `${d.dates[0]} ~ ${d.dates[d.dates.length - 1]} (${d.dates.length}거래일) · ` +
+    `주가 + 투자자별 누적 순매수 — 기울기가 그날의 매수 주체` +
+    (adj ? " · 보정: 개인에 레버리지 경유 수요 반영(±2배)" : "");
+
+  // 요약 카드
+  const indivTotal = adj
+    ? sm.individual + d.lever_extra.reduce((a, b) => a + b, 0)
+    : sm.individual;
+  const tile = (label, v, sub) =>
+    el("div", { class: "stat-tile" },
+      el("div", { class: "stat-label" }, label),
+      el("div", { class: `stat-value ${deltaClass(v)}` }, fmtEok(Math.round(v))),
+      el("div", { class: "stat-sub" }, sub));
+  sumBox.append(
+    tile(adj ? "개인 (실질·보정)" : "개인 (본주)", indivTotal, "90일 누적 순매수"),
+    tile("외국인", sm.foreign, "90일 누적 순매수"),
+    tile("기관 (LP 헤지 포함)", sm.institution, "90일 누적 순매수"),
+    el("div", { class: "stat-tile" },
+      el("div", { class: "stat-label" }, "레버리지 개인 유입 / AUM"),
+      el("div", { class: "stat-value" }, `${fmtEok(Math.round(sm.lever_inflow))}`),
+      el("div", { class: "stat-sub" },
+        `현재 잔존 ${fmtInt(sm.lever_aum_100m)}억 (레버리지 ${d.products.filter(p => p.factor > 0).length}종)`)));
+
+  chartBox.append(buildMicroChart(d, adj));
+
+  // 범례
+  chartBox.append(el("div", { class: "legend" },
+    el("span", { class: "legend-item" },
+      el("span", { class: "legend-swatch", style: "background:var(--muted)" }), "주가(상단)"),
+    ...MICRO_SERIES.map((s) =>
+      el("span", { class: "legend-item" },
+        el("span", { class: "legend-swatch", style: `background:${s.color}` }),
+        s.key === "individual" && adj ? "개인(실질)" : s.label))));
+
+  // 연계 상품 목록
+  prodBox.append(el("h3", {}, `연계 레버리지·인버스 상품 (자동 탐색, ${d.products.length}개)`));
+  prodBox.append(el("div", { class: "table-wrap" },
+    el("table", { class: "data-table" },
+      el("thead", {}, el("tr", {},
+        el("th", {}, "상품"), el("th", { class: "num" }, "배수"),
+        el("th", { class: "num" }, "현재 AUM"))),
+      el("tbody", {}, d.products.map((p) =>
+        el("tr", {},
+          el("td", {}, p.name),
+          el("td", { class: "num" }, p.factor > 0 ? `+${p.factor}x` : `${p.factor}x`),
+          el("td", { class: "num" },
+            p.aum_100m != null ? `${fmtInt(p.aum_100m)}억` : "—")))))));
+
+  // 테이블 대체 뷰 (최근 30거래일)
+  const idxs = d.dates.map((_, i) => i).slice(-30).reverse();
+  tableBox.append(el("div", { class: "table-wrap" },
+    el("table", { class: "data-table" },
+      el("thead", {}, el("tr", {},
+        el("th", {}, "날짜"), el("th", { class: "num" }, "종가"),
+        el("th", { class: "num" }, "개인(억)"), el("th", { class: "num" }, "외국인(억)"),
+        el("th", { class: "num" }, "기관(억)"), el("th", { class: "num" }, "레버리지경유(억)"),
+        el("th", { class: "num" }, "개인 실질(억)"))),
+      el("tbody", {}, idxs.map((i) =>
+        el("tr", {},
+          el("td", {}, d.dates[i]),
+          el("td", { class: "num" }, d.close[i] ? fmtInt(d.close[i]) : "—"),
+          el("td", { class: `num ${deltaClass(d.flows.individual[i])}` }, fmtEok(d.flows.individual[i])),
+          el("td", { class: `num ${deltaClass(d.flows.foreign[i])}` }, fmtEok(d.flows.foreign[i])),
+          el("td", { class: `num ${deltaClass(d.flows.institution[i])}` }, fmtEok(d.flows.institution[i])),
+          el("td", { class: `num ${deltaClass(d.lever_extra[i])}` }, fmtEok(d.lever_extra[i])),
+          el("td", { class: `num ${deltaClass(d.individual_adjusted[i])}` }, fmtEok(d.individual_adjusted[i]))))))));
+}
+
+function buildMicroChart(d, adj) {
+  const W = 960, priceH = 150, flowH = 190, gap = 26, padL = 60, padR = 14, padT = 10, padB = 26;
+  const H = padT + priceH + gap + flowH + padB;
+  const n = d.dates.length;
+  const x = (i) => padL + (n <= 1 ? 0 : (i / (n - 1)) * (W - padL - padR));
+
+  const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, role: "img",
+    "aria-label": "주가와 투자자별 누적 순매수" });
+
+  // ---- 상단: 주가 ----
+  const closes = d.close.map((c) => c || 0);
+  const pLo = Math.min(...closes.filter(Boolean)), pHi = Math.max(...closes);
+  const pSpan = (pHi - pLo) || 1;
+  const py = (v) => padT + priceH - ((v - pLo) / pSpan) * priceH;
+  [pLo, (pLo + pHi) / 2, pHi].forEach((t) => {
+    svg.append(svgEl("line", { x1: padL, x2: W - padR, y1: py(t), y2: py(t),
+      stroke: "var(--grid)", "stroke-width": 1 }));
+    const lab = svgEl("text", { x: padL - 6, y: py(t) + 4, "text-anchor": "end", class: "svg-tick" });
+    lab.textContent = t >= 10000 ? `${Math.round(t / 1000)}천` : fmtInt(t);
+    svg.append(lab);
+  });
+  svg.append(svgEl("path", {
+    d: closes.map((v, i) => `${i === 0 ? "M" : "L"}${x(i).toFixed(1)},${py(v).toFixed(1)}`).join(" "),
+    fill: "none", stroke: "var(--muted)", "stroke-width": 2,
+    "stroke-linejoin": "round", "stroke-linecap": "round",
+  }));
+
+  // ---- 하단: 누적 순매수 (조원) ----
+  const series = {
+    individual: cumsum(adj ? d.individual_adjusted : d.flows.individual),
+    foreign: cumsum(d.flows.foreign),
+    institution: cumsum(d.flows.institution),
+  };
+  const all = [...series.individual, ...series.foreign, ...series.institution, 0];
+  const fLo = Math.min(...all), fHi = Math.max(...all);
+  const fSpan = (fHi - fLo) || 1;
+  const fTop = padT + priceH + gap;
+  const fy = (v) => fTop + flowH - ((v - fLo) / fSpan) * flowH;
+  // 0선 + 상/하한 눈금
+  [[0, "var(--baseline)"], [fLo, "var(--grid)"], [fHi, "var(--grid)"]].forEach(([t, c]) => {
+    svg.append(svgEl("line", { x1: padL, x2: W - padR, y1: fy(t), y2: fy(t),
+      stroke: c, "stroke-width": 1 }));
+    const lab = svgEl("text", { x: padL - 6, y: fy(t) + 4, "text-anchor": "end", class: "svg-tick" });
+    lab.textContent = `${(t / 1e4).toFixed(1)}조`;
+    svg.append(lab);
+  });
+  MICRO_SERIES.forEach((s) => {
+    svg.append(svgEl("path", {
+      d: series[s.key].map((v, i) => `${i === 0 ? "M" : "L"}${x(i).toFixed(1)},${fy(v).toFixed(1)}`).join(" "),
+      fill: "none", stroke: s.color, "stroke-width": 2,
+      "stroke-linejoin": "round", "stroke-linecap": "round",
+    }));
+  });
+
+  // x축 라벨 (시작/중간/끝)
+  [0, Math.floor((n - 1) / 2), n - 1].forEach((i) => {
+    const lab = svgEl("text", { x: x(i), y: H - 8,
+      "text-anchor": i === 0 ? "start" : i === n - 1 ? "end" : "middle", class: "svg-tick" });
+    lab.textContent = d.dates[i].slice(5);
+    svg.append(lab);
+  });
+
+  // ---- 크로스헤어 (두 패널 관통) ----
+  const cross = svgEl("line", { class: "crosshair-line", y1: padT, y2: H - padB, opacity: 0 });
+  svg.append(cross);
+  const hit = svgEl("rect", { x: padL, y: padT, width: W - padL - padR,
+    height: H - padT - padB, fill: "transparent" });
+  svg.append(hit);
+
+  const showAt = (evt) => {
+    const rect = svg.getBoundingClientRect();
+    const px = ((evt.clientX - rect.left) / rect.width) * W;
+    let i = Math.round(((px - padL) / (W - padL - padR)) * (n - 1));
+    i = Math.max(0, Math.min(n - 1, i));
+    cross.setAttribute("x1", x(i));
+    cross.setAttribute("x2", x(i));
+    cross.setAttribute("opacity", 1);
+
+    clear(tooltip);
+    tooltip.append(el("div", { class: "tt-title" }, d.dates[i]));
+    tooltip.append(tooltipRow("종가", d.close[i] ? `${fmtInt(d.close[i])}원` : "—", "var(--muted)"));
+    tooltip.append(tooltipRow(state.microMode === "adj" ? "개인(실질) 당일" : "개인 당일",
+      fmtEok(state.microMode === "adj" ? d.individual_adjusted[i] : d.flows.individual[i]), "var(--s1)"));
+    tooltip.append(tooltipRow("외국인 당일", fmtEok(d.flows.foreign[i]), "var(--s6)"));
+    tooltip.append(tooltipRow("기관 당일", fmtEok(d.flows.institution[i]), "var(--s2)"));
+    if (d.lever_extra[i]) {
+      tooltip.append(tooltipRow("└ 레버리지 경유", fmtEok(d.lever_extra[i])));
+    }
+    tooltip.append(el("div", { class: "method-note" },
+      "기울기가 가파른 쪽이 그날의 수급 주도자 · 기관에는 LP 헤지 물량 포함"));
+    tooltip.hidden = false;
+    moveTooltip(evt);
+  };
+  hit.addEventListener("pointerenter", showAt);
+  hit.addEventListener("pointermove", showAt);
+  hit.addEventListener("pointerleave", () => {
+    cross.setAttribute("opacity", 0);
+    hideTooltip();
+  });
+
+  return el("div", { class: "linechart" }, svg);
+}
+
+function bindMicroToggles() {
+  const stock = $("micro-stock-toggle");
+  stock.querySelectorAll("button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (btn.dataset.stock === state.microStock) return;
+      stock.querySelectorAll("button").forEach((b) => b.classList.toggle("active", b === btn));
+      state.microStock = btn.dataset.stock;
+      renderMicroscope();
+    });
+  });
+  const mode = $("micro-mode-toggle");
+  mode.querySelectorAll("button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (btn.dataset.mode === state.microMode) return;
+      mode.querySelectorAll("button").forEach((b) => b.classList.toggle("active", b === btn));
+      state.microMode = btn.dataset.mode;
+      renderMicroscope();
+    });
+  });
+}
+
 /* ------------------------------------------ 데이터 신선도 경고 */
 // 소스별 기대 갱신 주기(일). 이보다 오래되면 '예전 데이터'로 간주.
 // daily=true(매일 갱신 기대)인 소스만 상단 배너로 경고 — 나머지(분기·월·연)는
@@ -1506,6 +1737,7 @@ const FRESHNESS = {
   pension_flow:       { days: 3,   section: "pension-flow-section", label: "연기금 일별 순매수", daily: true },
   pension_stock_flow: { days: 3,   section: "pension-flow-section", label: "연기금 종목별 수급", daily: true },
   filings:            { days: 4,   section: "trends-section",       label: "국민연금 매매 공시(DART)", daily: true },
+  stock_flow:         { days: 4,   section: "microscope-section",   label: "수급 현미경(본주×레버리지)", daily: true },
   us_holdings:        { days: 100, section: "us-section",           label: "미국 주식 13F", daily: false },
   allocation:         { days: 45,  section: "allocation-section",   label: "자산배분", daily: false },
   // holdings(연 1회)·major_stakes(분기)는 원래 오래되므로 경고 대상 아님
@@ -1612,6 +1844,7 @@ const DEFAULT_COLLAPSED = { "holdings-section": true };
 const SECTION_RERENDER = {
   "pension-flow-section": () => { renderPensionFlow(); renderPensionStock(); },
   "returns-section": renderReturns,
+  "microscope-section": renderMicroscope,
   "trends-section": renderTrends,
   "us-section": renderUsHoldings,
   "allocation-section": renderAllocation,
@@ -1781,7 +2014,7 @@ function bindRefresh() {
 
 /* ============================================================ 초기화 */
 async function loadAll() {
-  const [h, a, m, t, pf, psf, us, rt, bm] = await Promise.all([
+  const [h, a, m, t, pf, psf, us, rt, sf, bm] = await Promise.all([
     fetchJSON("/api/holdings"),
     fetchJSON("/api/allocation"),
     fetchJSON("/api/major-stakes"),
@@ -1790,6 +2023,7 @@ async function loadAll() {
     fetchJSON("/api/pension-stock-flow"),
     fetchJSON("/api/us-holdings"),
     fetchJSON("/api/returns"),
+    fetchJSON("/api/stock-flow"),
     fetchJSON("/api/build-meta"),
   ]);
   state.holdings = h.body;
@@ -1800,6 +2034,7 @@ async function loadAll() {
   state.pensionStockFlow = psf.body;
   state.usHoldings = us.body;
   state.returns = rt.body;
+  state.stockFlow = sf.body;
   state.buildMeta = bm.body && !bm.body.empty ? bm.body : null;
 
   renderBadges();
@@ -1808,6 +2043,7 @@ async function loadAll() {
   renderTrends();
   renderPensionFlow();
   renderPensionStock();
+  renderMicroscope();
   renderReturns();
   renderHoldings();
   renderUsHoldings();
@@ -1845,6 +2081,7 @@ async function init() {
   bindPensionWindowToggle();
   bindReturnsToggles();
   bindParamToggles();
+  bindMicroToggles();
   bindRefresh();
   await loadAll();
 

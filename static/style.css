@@ -220,6 +220,21 @@ a { color: var(--buy-text); }
 
 .card-caption { margin: 2px 0 0; font-size: 12px; color: var(--muted); }
 
+/* ------------------------------------------------------------------ 수급 현미경 */
+.findings-list {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.7;
+}
+.findings-list li { margin: 6px 0; }
+.findings-list b { color: var(--text-1); }
+
+.series-individual { stroke: var(--s1); }
+.series-foreign { stroke: var(--s6); }
+.series-institution { stroke: var(--s2); }
+
 /* ------------------------------------------------------------------ 전략 파라미터 */
 .param-row { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
 .param-group { display: flex; align-items: center; gap: 8px; }

@@ -118,6 +118,13 @@ def api_returns():
     return jsonify(data if data is not None else {"empty": True})
 
 
+@app.route("/api/stock-flow")
+def api_stock_flow():
+    """종목 수급 현미경(stock_flow.json) 패스스루 — 본주×레버리지."""
+    data = _read_json("stock_flow.json")
+    return jsonify(data if data is not None else {"empty": True})
+
+
 # 신선도 판정용 데이터셋 파일 매핑 (정적 빌드의 DATASET_FILES와 동일)
 _DATASET_FILES = {
     "allocation": "allocation.json",
@@ -128,6 +135,7 @@ _DATASET_FILES = {
     "us_holdings": "us_holdings.json",
     "filings": "filings.json",
     "returns": "returns.json",
+    "stock_flow": "stock_flow.json",
 }
 
 
