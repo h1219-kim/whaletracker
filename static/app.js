@@ -1566,10 +1566,17 @@ function renderMicroscope() {
 
   chartBox.append(buildMicroChart(d, adj));
 
-  // 범례
+  // 범례 (캔들 데이터가 있으면 양봉/음봉, 없으면 주가 선)
+  const hasCandle = Array.isArray(d.open) && d.open.some((v) => v != null);
+  const priceLegend = hasCandle
+    ? [el("span", { class: "legend-item" },
+        el("span", { class: "legend-swatch", style: "background:var(--buy)" }), "양봉(상승)"),
+       el("span", { class: "legend-item" },
+        el("span", { class: "legend-swatch", style: "background:var(--sell)" }), "음봉(하락)")]
+    : [el("span", { class: "legend-item" },
+        el("span", { class: "legend-swatch", style: "background:var(--muted)" }), "주가(상단)")];
   chartBox.append(el("div", { class: "legend" },
-    el("span", { class: "legend-item" },
-      el("span", { class: "legend-swatch", style: "background:var(--muted)" }), "주가(상단)"),
+    ...priceLegend,
     ...MICRO_SERIES.map((s) =>
       el("span", { class: "legend-item" },
         el("span", { class: "legend-swatch", style: `background:${s.color}` }),
@@ -1618,9 +1625,15 @@ function buildMicroChart(d, adj) {
   const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, role: "img",
     "aria-label": "주가와 투자자별 순매수" });
 
-  // ---- 상단: 주가 ----
+  // ---- 상단: 주가 (캔들 · 시/고/저 없는 옛 데이터면 종가 선으로 폴백) ----
+  const hasOHLC = Array.isArray(d.open) && d.open.some((v) => v != null);
   const closes = d.close.map((c) => c || 0);
-  const pLo = Math.min(...closes.filter(Boolean)), pHi = Math.max(...closes);
+  const priceVals = closes.filter(Boolean);
+  if (hasOHLC) {
+    d.high.forEach((v) => { if (v != null) priceVals.push(v); });
+    d.low.forEach((v) => { if (v != null) priceVals.push(v); });
+  }
+  const pLo = Math.min(...priceVals), pHi = Math.max(...priceVals);
   const pSpan = (pHi - pLo) || 1;
   const py = (v) => padT + priceH - ((v - pLo) / pSpan) * priceH;
   [pLo, (pLo + pHi) / 2, pHi].forEach((t) => {
@@ -1630,11 +1643,28 @@ function buildMicroChart(d, adj) {
     lab.textContent = t >= 10000 ? `${Math.round(t / 1000)}천` : fmtInt(t);
     svg.append(lab);
   });
-  svg.append(svgEl("path", {
-    d: closes.map((v, i) => `${i === 0 ? "M" : "L"}${x(i).toFixed(1)},${py(v).toFixed(1)}`).join(" "),
-    fill: "none", stroke: "var(--muted)", "stroke-width": 2,
-    "stroke-linejoin": "round", "stroke-linecap": "round",
-  }));
+  if (hasOHLC) {
+    const slotP = (W - padL - padR) / n;
+    const cw = Math.min(14, Math.max(1.5, slotP - 1.5)); // 하단 막대와 같은 폭
+    for (let i = 0; i < n; i++) {
+      const o = d.open[i], h = d.high[i], l = d.low[i], c = d.close[i];
+      if (o == null || h == null || l == null || !c) continue;
+      const color = c >= o ? "var(--buy)" : "var(--sell)";
+      const cx = x(i);
+      svg.append(svgEl("line", { x1: cx.toFixed(1), x2: cx.toFixed(1),
+        y1: py(h).toFixed(1), y2: py(l).toFixed(1), stroke: color, "stroke-width": 1 }));
+      const bx = Math.min(W - padR - cw, Math.max(padL, cx - cw / 2));
+      svg.append(svgEl("rect", { x: bx.toFixed(1),
+        y: py(Math.max(o, c)).toFixed(1), width: cw.toFixed(1),
+        height: Math.max(Math.abs(py(o) - py(c)), 1).toFixed(1), fill: color }));
+    }
+  } else {
+    svg.append(svgEl("path", {
+      d: closes.map((v, i) => `${i === 0 ? "M" : "L"}${x(i).toFixed(1)},${py(v).toFixed(1)}`).join(" "),
+      fill: "none", stroke: "var(--muted)", "stroke-width": 2,
+      "stroke-linejoin": "round", "stroke-linecap": "round",
+    }));
+  }
 
   // ---- 하단: 투자자별 순매수 (일별=양방향 스택 막대, 누적=선) ----
   const daily = state.microScale === "daily";
@@ -1736,6 +1766,10 @@ function buildMicroChart(d, adj) {
     clear(tooltip);
     tooltip.append(el("div", { class: "tt-title" }, d.dates[i]));
     tooltip.append(tooltipRow("종가", d.close[i] ? `${fmtInt(d.close[i])}원` : "—", "var(--muted)"));
+    if (d.open && d.open[i] != null) {
+      tooltip.append(tooltipRow("시 · 고 · 저",
+        `${fmtInt(d.open[i])} · ${fmtInt(d.high[i])} · ${fmtInt(d.low[i])}`));
+    }
     if (i > 0 && d.close[i] && d.close[i - 1]) {
       const chg = (d.close[i] / d.close[i - 1] - 1) * 100;
       tooltip.append(tooltipRow("전일比",

@@ -42,6 +42,27 @@ def test_parse_sise_json_empty_raises():
         prices.parse_sise_json("")
 
 
+def test_parse_sise_ohlc_stock():
+    """캔들용: 같은 응답에서 시/고/저/종을 함께 얻는다."""
+    ohlc = prices.parse_sise_ohlc(_read("naver_sise_005930.txt"))
+
+    # 실측: 2026-04-01 시 179000 / 고 190800 / 저 178000 / 종 189600
+    bar = ohlc["2026-04-01"]
+    assert bar == {"o": 179000.0, "h": 190800.0, "l": 178000.0, "c": 189600.0}
+    # 종가 파서와 날짜·종가가 완전히 일치해야 한다
+    closes = prices.parse_sise_json(_read("naver_sise_005930.txt"))
+    assert set(ohlc) == set(closes)
+    assert all(ohlc[d]["c"] == closes[d] for d in closes)
+    # 고가 ≥ 시/종 ≥ 저가 불변식
+    assert all(b["h"] >= max(b["o"], b["c"]) and b["l"] <= min(b["o"], b["c"])
+               for b in ohlc.values())
+
+
+def test_parse_sise_ohlc_empty_raises():
+    with pytest.raises(ValueError):
+        prices.parse_sise_ohlc("[['날짜','시가'],]")
+
+
 def test_last_close_on_or_before():
     """휴장일 보정: 해당일이 없으면 그 이전 최근 거래일 종가."""
     closes = {"2026-04-01": 100.0, "2026-04-03": 110.0}

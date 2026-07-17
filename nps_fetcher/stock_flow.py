@@ -165,6 +165,11 @@ def compute_stock_flow(session=None, today: date | None = None) -> dict:
         code, name = s["code"], s["name"]
         closes = prices.fetch_closes_cached(code, hist_start - timedelta(days=7),
                                             today, session)
+        try:  # 캔들용 시/고/저 — 실패해도 종가 선 차트로 동작해야 하므로 선택적
+            ohlc = prices.fetch_ohlc(code, hist_start - timedelta(days=7),
+                                     today, session)
+        except Exception:
+            ohlc = {}
         products = per_stock_products[code]
 
         # 상품별 개인 유입 (일별)
@@ -175,8 +180,13 @@ def compute_stock_flow(session=None, today: date | None = None) -> dict:
         flows = {k: [] for k in INVESTORS}
         lever_extra, lever_inflow = [], []
         close_series = []
+        open_s, high_s, low_s = [], [], []
         for d in dates:
             close_series.append(prices.last_close_on_or_before(closes, d))
+            bar = ohlc.get(d)
+            open_s.append(bar["o"] if bar else None)
+            high_s.append(bar["h"] if bar else None)
+            low_s.append(bar["l"] if bar else None)
             for k in INVESTORS:
                 flows[k].append(round(daily[k][d].get(code, 0) / 1e8, 1))  # 억원
             extra = inflow = 0.0
@@ -192,6 +202,9 @@ def compute_stock_flow(session=None, today: date | None = None) -> dict:
             "name": name,
             "dates": dates,
             "close": close_series,
+            "open": open_s,                      # 캔들용 (없는 날은 null)
+            "high": high_s,
+            "low": low_s,
             "flows": flows,                      # 억원/일 (KRX 정확)
             "lever_extra": lever_extra,          # 억원/일, 배수 반영 익스포저 (근사)
             "lever_inflow": lever_inflow,        # 억원/일, 레버리지 개인 유입(1배 돈)

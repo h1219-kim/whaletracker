@@ -55,6 +55,55 @@ def parse_sise_json(text: str) -> dict[str, float]:
     return out
 
 
+def parse_sise_ohlc(text: str) -> dict[str, dict[str, float]]:
+    """응답 텍스트 → {"YYYY-MM-DD": {"o","h","l","c"}} (캔들 차트용)."""
+    text = (text or "").strip()
+    if not text:
+        raise ValueError("빈 응답 (네이버 시세)")
+    try:
+        rows = ast.literal_eval(text)
+    except (ValueError, SyntaxError) as e:
+        raise ValueError(f"시세 응답 파싱 실패: {e}") from e
+    if not isinstance(rows, list) or len(rows) < 2:
+        raise ValueError("시세 응답에 데이터 행이 없음")
+
+    out: dict[str, dict[str, float]] = {}
+    for row in rows[1:]:
+        if not isinstance(row, (list, tuple)) or len(row) < 5:
+            continue
+        raw_date = str(row[0]).strip()
+        if len(raw_date) != 8 or not raw_date.isdigit():
+            continue
+        try:
+            o, h, l, c = (float(row[i]) for i in (1, 2, 3, 4))
+        except (TypeError, ValueError):
+            continue
+        if not c:
+            continue  # 거래 없는 날(전부 0) 방어
+        out[f"{raw_date[:4]}-{raw_date[4:6]}-{raw_date[6:]}"] = {
+            "o": o, "h": h, "l": l, "c": c,
+        }
+    if not out:
+        raise ValueError("시세 응답에서 시가/고가/저가를 얻지 못함")
+    return out
+
+
+def fetch_ohlc(code: str, start: date, end: date, session=None) -> dict[str, dict[str, float]]:
+    """종목코드의 일별 시가/고가/저가/종가. 한 요청으로 전체 구간을 받는다."""
+    session = session or make_session()
+    params = {
+        "symbol": code,
+        "requestType": "1",
+        "startTime": start.strftime("%Y%m%d"),
+        "endTime": end.strftime("%Y%m%d"),
+        "timeframe": "day",
+    }
+    resp = request_with_retry(
+        session, "GET", URL, params=params, headers=HEADERS, delay=DELAY
+    )
+    return parse_sise_ohlc(resp.text)
+
+
 def last_close_on_or_before(closes: dict[str, float], day: str) -> float | None:
     """day의 종가. 휴장 등으로 없으면 그 이전 최근 거래일 종가. 없으면 None."""
     if day in closes:
